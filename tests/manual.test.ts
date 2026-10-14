@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { MANUAL_CHAPTERS, chapterAnchors, loadChapter, renderManual } from "@/lib/manual";
+import { MANUAL_CHAPTERS, chapterAnchors, loadChapter, renderManual, splitAtTitle } from "@/lib/manual";
 
 afterEach(() => vi.unstubAllEnvs());
 
@@ -25,6 +25,20 @@ describe("renderManual", () => {
     expect(html).toContain('href="/hemsida/hjalp/system#kalkyler"');
     expect(html).toContain('href="#frakt"');
     expect(html).toContain('href="https://draculatheme.com"');
+  });
+});
+
+describe("splitAtTitle", () => {
+  it("delar kapitlet efter h1 så att avsnittslänkarna kan ligga under rubriken", () => {
+    const { html } = renderManual("# Lager\n\nIntro.\n\n## Saldo\n");
+    const { title, body } = splitAtTitle(html);
+    expect(title).toBe('<h1 id="lager">Lager</h1>\n');
+    expect(body).toContain("<p>Intro.</p>");
+    expect(title + body).toBe(html);
+  });
+
+  it("lämnar allt i brödtexten när kapitlet saknar h1", () => {
+    expect(splitAtTitle("<p>a</p>")).toEqual({ title: "", body: "<p>a</p>" });
   });
 });
 

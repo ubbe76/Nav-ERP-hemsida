@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // First, so every component stylesheet (header and footer included) comes after the globals in the cascade.
 import "./globals.css";
 import { Figtree, Space_Grotesk } from "next/font/google";
+import { BackToTop } from "@/components/BackToTop";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE, absoluteUrl, withBase } from "@/lib/site";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="innehall">{children}</main>
         <SiteFooter />
+        <BackToTop />
       </body>
     </html>
   );

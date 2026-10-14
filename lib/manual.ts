@@ -49,6 +49,14 @@ export function renderManual(markdown: string): RenderedChapter {
   return { html: marked.parse(markdown, { async: false }) as string, toc };
 }
 
+/** Split rendered chapter HTML after its h1, so the layout can put the section links under the title. */
+export function splitAtTitle(html: string): { title: string; body: string } {
+  const end = html.indexOf("</h1>\n");
+  if (end === -1) return { title: "", body: html };
+  const cut = end + "</h1>\n".length;
+  return { title: html.slice(0, cut), body: html.slice(cut) };
+}
+
 function readChapter(chapter: ManualChapter, dir: string): string {
   const file = path.join(dir, chapter.file);
   try {

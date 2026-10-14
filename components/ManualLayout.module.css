@@ -36,13 +36,18 @@
 
 .chapters a:hover,
 .toc a:hover,
-.chapters a[aria-current="page"] {
+.chapters a[aria-current="page"],
+.toc a[aria-current="location"] {
   background: var(--color-track);
   color: var(--color-text-primary);
 }
 
 .chapters a[aria-current="page"] {
   font-weight: 600;
+}
+
+.toc a[aria-current="location"] {
+  box-shadow: inset 2px 0 0 var(--accent-fg);
 }
 
 .chapters .home {
@@ -65,7 +70,65 @@
   max-width: 72ch;
 }
 
+.tocMobile {
+  display: none;
+}
+
 @media (max-width: 1024px) {
+  .tocMobile {
+    display: block;
+    margin: 0 0 1.5em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    font-size: 15px;
+  }
+
+  .tocMobile summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .tocMobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .tocMobile[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .tocMobile ul {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0 8px 8px;
+    list-style: none;
+  }
+
+  .tocMobile li + li {
+    margin-top: 0;
+  }
+
+  .tocMobile a {
+    display: block;
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .tocMobile a:hover {
+    background: var(--color-track);
+    color: var(--color-text-primary);
+  }
+
   .layout {
     grid-template-columns: minmax(0, 1fr);
   }

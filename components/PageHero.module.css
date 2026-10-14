@@ -1,0 +1,18 @@
+.hero {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+  padding-top: 88px;
+  padding-bottom: 56px;
+}
+
+.title {
+  max-width: 900px;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+}

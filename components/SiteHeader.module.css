@@ -1,0 +1,144 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--site-header-h);
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.desktopNav {
+  margin-right: auto;
+}
+
+.links {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  padding: 8px 12px;
+  border-radius: var(--radius-control);
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link:hover,
+.link[aria-current="page"] {
+  background: var(--color-track);
+  color: var(--color-text-primary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.github {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.github:hover {
+  color: var(--color-text-primary);
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.mobileMenu summary {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-control);
+  color: var(--color-text-primary);
+  list-style: none;
+  cursor: pointer;
+}
+
+.mobileMenu summary::-webkit-details-marker {
+  display: none;
+}
+
+/* The header's backdrop-filter makes it the containing block for this fixed
+   panel, so top: 100% places it right under the header. */
+.mobilePanel {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 16px;
+  padding: 16px var(--site-gutter) 24px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-popover);
+}
+
+.mobileLinks {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobileLink {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-divider);
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mobileLink[aria-current="page"] {
+  color: var(--accent-fg);
+}
+
+@media (max-width: 1024px) {
+  .desktopNav,
+  .cta {
+    display: none;
+  }
+
+  .brand {
+    margin-right: auto;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .github span {
+    display: none;
+  }
+}

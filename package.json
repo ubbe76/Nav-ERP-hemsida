@@ -10,7 +10,8 @@
     "predev": "npm run sync",
     "prebuild": "npm run sync",
     "pretest": "npm run sync",
-    "pretypecheck": "npm run sync"
+    "pretypecheck": "npm run sync",
+    "test:e2e": "playwright test"
   },
   "author": "Urban Källefors",
   "license": "GPL-3.0-or-later",
@@ -26,6 +27,7 @@
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
     "@types/node": "^20.19.43",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

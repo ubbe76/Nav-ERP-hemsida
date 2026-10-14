@@ -26,3 +26,10 @@ export function siteUrl(): string {
 export function absoluteUrl(p: string): string {
   return `${siteUrl()}${withBase(p)}`;
 }
+
+export const NAV_ITEMS = [
+  { href: "/funktioner/", label: "Funktioner" },
+  { href: "/kom-igang/", label: "Kom igång" },
+  { href: "/hjalp/", label: "Manual" },
+  { href: "/oppen-kallkod/", label: "Öppen källkod" },
+] as const;

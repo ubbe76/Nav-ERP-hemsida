@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree, Space_Grotesk } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SITE, withBase } from "@/lib/site";
 import { themeBootScript } from "@/lib/themes";
 import "./globals.css";
@@ -37,7 +39,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>
       <body suppressHydrationWarning className={`${spaceGrotesk.variable} ${figtree.variable}`}>
-        {children}
+        <a href="#innehall" className="skipLink">
+          Hoppa till innehållet
+        </a>
+        <SiteHeader />
+        <main id="innehall">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

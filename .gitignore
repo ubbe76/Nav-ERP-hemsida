@@ -9,3 +9,6 @@ public/screenshots/
 styles/tokens.css
 lib/upstream/
 components/upstream/
+test-results/
+playwright-report/
+e2e-screens/

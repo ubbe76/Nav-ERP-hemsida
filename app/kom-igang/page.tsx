@@ -1,3 +1,4 @@
+import { FlaskConical } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/CodeBlock";
@@ -66,6 +67,16 @@ export default function GetStartedPage() {
       />
 
       <div className="container">
+        <div className={styles.notice} role="note" aria-label="Ännu inte redo för produktion">
+          <FlaskConical size={22} aria-hidden className={styles.noticeIcon} />
+          <p>
+            <strong>Ännu inte redo för produktion.</strong> Nav|ERP är under aktiv utveckling. Prova och utvärdera
+            gärna, men använd det ännu inte som ert enda affärssystem eller för er skarpa bokföring. Funktioner kan
+            ändras mellan versioner, och det finns säkert fel vi inte har hittat än. Hittar ni ett,{" "}
+            <Link href="/oppen-kallkod/#hjalp-till">berätta gärna</Link>.
+          </p>
+        </div>
+
         <section className={styles.needs}>
           <h2 className={styles.h2}>Det här behöver ni</h2>
           <ul className={styles.list}>

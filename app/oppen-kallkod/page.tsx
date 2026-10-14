@@ -56,10 +56,12 @@ export default function OpenSourcePage() {
             komplexitet som gör stora affärssystem tunga att införa och dyra att äga.
           </p>
 
-          <h2>Bidra</h2>
+          <h2 id="hjalp-till">Hjälp till att göra Nav|ERP bättre</h2>
           <p>
-            Hittar ni ett fel eller saknar en funktion? Skapa ett ärende på <a href={`${SITE.repoUrl}/issues`}>GitHub</a>.
-            Felrapporter, förslag och kod är lika välkomna.
+            Nav|ERP är ett ungt projekt, och det blir bättre av att fler provar det. Ni behöver inte kunna programmera
+            för att hjälpa till: berätta hur ert företag arbetar, vad ni saknar eller vad som var svårt att förstå.
+            Felrapporter, frågor och förslag är lika välkomna som kod —{" "}
+            <a href={`${SITE.repoUrl}/issues`}>skapa ett ärende på GitHub</a>.
           </p>
 
           <h2>Tredjepartsinnehåll</h2>

@@ -34,3 +34,22 @@ test("installationsguiden säger att API-adressen lämnas tom och att bara port 
   await expect(guide).toContainText("WEB_ORIGIN");
   await expect(guide).not.toContainText("4000");
 });
+
+test("installationsguiden säger före stegen att Nav|ERP inte är redo för produktion", async ({ page }) => {
+  await page.goto("/kom-igang/");
+  const notice = page.getByRole("note", { name: "Ännu inte redo för produktion" });
+  await expect(notice).toContainText("använd det ännu inte som ert enda affärssystem eller för er skarpa bokföring");
+  const noticeBox = await notice.boundingBox();
+  const stepsBox = await page.getByRole("list", { name: "Installationssteg" }).boundingBox();
+  expect(noticeBox!.y).toBeLessThan(stepsBox!.y);
+});
+
+test("öppen källkod-sidan bjuder in till att hjälpa till, även utan att programmera", async ({ page }) => {
+  await page.goto("/oppen-kallkod/");
+  await expect(page.getByRole("heading", { level: 2, name: "Hjälp till att göra Nav|ERP bättre" })).toBeVisible();
+  await expect(page.getByText("Ni behöver inte kunna programmera för att hjälpa till")).toBeVisible();
+  await expect(page.getByRole("link", { name: "skapa ett ärende på GitHub" })).toHaveAttribute(
+    "href",
+    "https://github.com/ubbe76/Nav-ERP/issues",
+  );
+});

@@ -31,10 +31,11 @@ test("navet och värdena syns utan JavaScript", async ({ browser }) => {
   await context.close();
 });
 
-test("startsidan berättar att Nav|ERP släpps inom kort, mellan sidhuvudet och heron", async ({ page }) => {
+test("startsidan säger att Nav|ERP är en tidig version, mellan sidhuvudet och heron", async ({ page }) => {
   await page.goto("/");
-  const notice = page.getByRole("region", { name: "Kommer snart" });
-  await expect(notice).toContainText("Nav|ERP släpps som öppen källkod inom kort");
+  const notice = page.getByRole("region", { name: "Tidig version" });
+  await expect(notice).toContainText("Nav|ERP släpps snart som öppen källkod");
+  await expect(notice).toContainText("ännu inte är redo för skarp drift");
   const header = await page.locator("header").first().boundingBox();
   const box = await notice.boundingBox();
   const h1 = await page.getByRole("heading", { level: 1 }).boundingBox();
@@ -42,10 +43,10 @@ test("startsidan berättar att Nav|ERP släpps inom kort, mellan sidhuvudet och 
   expect(box!.y + box!.height).toBeLessThanOrEqual(h1!.y);
 });
 
-test("meddelandet om lansering syns utan JavaScript", async ({ browser }) => {
+test("meddelandet om den tidiga versionen syns utan JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4321/");
-  await expect(page.getByRole("region", { name: "Kommer snart" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Tidig version" })).toBeVisible();
   await context.close();
 });

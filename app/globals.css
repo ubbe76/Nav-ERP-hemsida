@@ -151,6 +151,8 @@ code {
 .prose {
   max-width: var(--measure);
   color: var(--color-text-secondary);
+  /* The manual has long unbroken paths (/forsaljning/samlingsfakturering) that would push a phone screen sideways. */
+  overflow-wrap: break-word;
 }
 
 .prose h1 {
@@ -159,6 +161,7 @@ code {
 
 .prose h2 {
   margin: 2.2em 0 0.6em;
+  font-size: clamp(24px, 2.4vw, 28px);
 }
 
 .prose h3 {

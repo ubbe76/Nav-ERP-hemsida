@@ -11,7 +11,9 @@
     "prebuild": "npm run sync",
     "pretest": "npm run sync",
     "pretypecheck": "npm run sync",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "postbuild": "tsx scripts/check-links.ts out",
+    "test:visual": "VISUAL=1 playwright test e2e/visual.spec.ts"
   },
   "author": "Urban Källefors",
   "license": "GPL-3.0-or-later",

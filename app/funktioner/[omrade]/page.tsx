@@ -37,7 +37,7 @@ export default async function AreaPage({ params }: Props) {
         </div>
       )}
       {area.slug === "kalkyl" && (
-        <div className="container section">
+        <div className={`container ${styles.calc}`}>
           <CalcChain />
         </div>
       )}

@@ -158,8 +158,10 @@ sätter `data-theme` före första renderingen, samma mönster som appens
 ### 4.5 Skärmdumpar per tema
 
 Varje skärmdump har en logisk nyckel (t.ex. `dashboard`, `article`) och upp
-till tre varianter. Valt tema visar sin variant; saknas den faller det
-tillbaka Dracula → Mörkt → Ljust. Växlingen sker med CSS på `data-theme`
+till tre varianter, härledda ur filnamnet (`screenshot-<nyckel>.png`,
+`-dark.png`, `-dracula.png`). Valt tema visar sin variant; saknas den
+används närmaste: Ljust → Mörkt → Dracula, Mörkt → Dracula → Ljust,
+Dracula → Mörkt → Ljust. (Flera bilder finns bara i en variant.) Växlingen sker med CSS på `data-theme`
 (alla varianter i markup, endast en synlig), eftersom `<picture>` inte kan
 läsa `data-theme`. Bilder utanför skärm laddas lat (`loading="lazy"`).
 
@@ -185,15 +187,18 @@ Körs före `dev` och `build` (npm `predev`/`prebuild`). Kopierar:
 | `docs/assets/*.png`, `*.svg` | `public/screenshots/` |
 | `apps/web/styles/tokens.css` | `styles/tokens.css` |
 | `apps/web/lib/manual.ts` | `lib/upstream/manual.ts` |
+| `apps/web/components/ui/Wordmark.tsx` + `.module.css` | `components/upstream/` |
 
-Källan är `NAV_ERP_DIR` (standard `../dev`). Finns katalogen inte (t.ex. i
-CI) görs en grund kloning av `https://github.com/ubbe76/Nav-ERP` till en
-temporär katalog. Saknas en förväntad fil avbryts bygget med ett tydligt
+Källan är `NAV_ERP_DIR` (standard `../dev`). Finns standardkatalogen inte
+görs en grund kloning av `https://github.com/ubbe76/Nav-ERP` till en
+temporär katalog. I CI checkas ERP-repot ut med `actions/checkout` (med
+token om repot är privat) och `NAV_ERP_DIR` pekar dit. Saknas en förväntad fil avbryts bygget med ett tydligt
 felmeddelande som namnger filen. De kopierade filerna listas i `.gitignore`.
 
-Logotyper (`nav-erp-logo*.svg`, `nav-erp-symbol.svg`) och favicons finns i
-`/home/ubbe/Nav-ERP/design/logo/`, som ligger utanför ERP-repot. De kopieras
-en gång och checkas in i hemsidans `public/brand/` respektive `public/`.
+Logotypen renderas med appens `Wordmark`-komponent (synkad, se tabellen),
+som följer temat via `--wordmark-*`-tokens. Favicons finns i
+`/home/ubbe/Nav-ERP/design/logo/favicon/`, utanför ERP-repot; de kopieras en
+gång och checkas in i hemsidans `public/` och `app/favicon.ico`.
 
 ### 5.3 Manualen
 
@@ -248,7 +253,10 @@ Bas-URL konfigureras med `SITE_URL` (domänen är inte bestämd).
 ### 5.8 Driftsättning
 
 GitHub Actions: vid push till `main` och nattligt (cron) — sync, build,
-tester, publicering till GitHub Pages. Nattbygget hämtar uppdaterad manual
+tester, publicering till GitHub Pages. `SITE_URL` och `BASE_PATH` tas från
+`actions/configure-pages`, så sidan fungerar både på egen domän och under
+`<användare>.github.io/<repo>/`. Allt som skrivs ut som rå HTML (manualens
+länkar, skärmdumpars `src`) prefixas med `BASE_PATH`. Nattbygget hämtar uppdaterad manual
 och skärmdumpar. `out/` är ren statik och kan flyttas till Cloudflare
 Pages/Netlify utan kodändring.
 

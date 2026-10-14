@@ -1,0 +1,29 @@
+.toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+}
+
+.option {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.option:hover {
+  color: var(--color-text-primary);
+}
+
+.option[aria-pressed="true"] {
+  background: var(--color-track);
+  color: var(--color-text-primary);
+}

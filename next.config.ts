@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   reactStrictMode: true,
+  // Hosts the dev server may be reached through, as in the app (dev/apps/web).
+  // Next.js blocks /_next/* dev resources from unlisted hosts, which silently
+  // kills all client-side JS — the theme switcher and mobile menu go dead.
+  allowedDevOrigins: ["dev.cibbe.org", "192.168.1.215"],
   images: { unoptimized: true },
   basePath,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },

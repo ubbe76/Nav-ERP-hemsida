@@ -4,7 +4,7 @@ import "./globals.css";
 import { Figtree, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SITE, withBase } from "@/lib/site";
+import { SITE, absoluteUrl, withBase } from "@/lib/site";
 import { themeBootScript } from "@/lib/themes";
 
 const spaceGrotesk = Space_Grotesk({
@@ -22,6 +22,15 @@ const figtree = Figtree({
 export const metadata: Metadata = {
   title: { default: `${SITE.name} — affärssystemet för svensk tillverkning`, template: `%s · ${SITE.name}` },
   description: SITE.description,
+  metadataBase: new URL(absoluteUrl("/")),
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    siteName: SITE.name,
+    // The real product, light theme — no separate marketing image.
+    images: [{ url: absoluteUrl("/screenshots/screenshot-dashboard.png"), width: 2880, height: 1800, alt: "Översikten i Nav|ERP" }],
+  },
+  twitter: { card: "summary_large_image" },
   icons: {
     icon: [
       { url: withBase("/favicon-32x32.png"), sizes: "32x32", type: "image/png" },

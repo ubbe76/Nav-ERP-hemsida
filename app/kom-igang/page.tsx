@@ -21,10 +21,11 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
     title: "Hämta och konfigurera",
     text: (
       <>
-        Öppna sedan <code>.env</code> och sätt <code>JWT_SECRET</code> till ett slumpat värde (
-        <code>openssl rand -hex 32</code>), och <code>NEXT_PUBLIC_API_URL</code> och <code>WEB_ORIGIN</code> till
-        serverns adress — inte <code>localhost</code>. Kör ni utan HTTPS i ett internt nätverk, sätt även{" "}
-        <code>COOKIE_SECURE=false</code>, annars går det inte att logga in.
+        Hämta koden och skapa <code>.env</code> från mallen med kommandona nedan. Sätt därefter{" "}
+        <code>JWT_SECRET</code> i <code>.env</code> till ett slumpat värde (<code>openssl rand -hex 32</code>) och{" "}
+        <code>WEB_ORIGIN</code> till adressen användarna når webben på, t.ex. <code>http://er-server:3000</code>.
+        Lämna NEXT_PUBLIC_API_URL tom — webben skickar själv vidare anropen till API:et. Kör ni utan HTTPS i ett
+        internt nätverk, sätt även <code>COOKIE_SECURE=false</code>, annars går det inte att logga in.
       </>
     ),
     code: `git clone ${SITE.cloneUrl}\ncd Nav-ERP\ncp .env.example .env`,
@@ -48,8 +49,8 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
     text: (
       <>
         Ska servern nås från internet: ta bort raderna <code>ports: - &quot;5432:5432&quot;</code> under{" "}
-        <code>postgres</code> i <code>docker-compose.yml</code>. Bara containrarna behöver nå databasen. Öppna port
-        3000 (webben) och 4000 (API:et) för användarna.
+        <code>postgres</code> i <code>docker-compose.yml</code>. Bara containrarna behöver nå databasen. Användarna
+        behöver bara port 3000 (webben).
       </>
     ),
   },

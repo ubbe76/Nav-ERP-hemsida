@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/upstream/Wordmark";
 import { getRepoStats } from "@/lib/github";
 import { SITE } from "@/lib/site";
+import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./SiteHeader.module.css";
@@ -31,18 +32,21 @@ export async function SiteHeader() {
           <Link href="/kom-igang/" className={`btn btnPrimary btnSmall ${styles.cta}`}>
             Ladda ner
           </Link>
-          {/* <details> keeps the mobile menu usable without JavaScript. */}
-          <details className={styles.mobileMenu}>
-            <summary aria-label="Meny">
-              <Menu size={22} aria-hidden />
-            </summary>
+          <MobileMenu
+            className={styles.mobileMenu}
+            summary={
+              <summary aria-label="Meny">
+                <Menu size={22} aria-hidden />
+              </summary>
+            }
+          >
             <nav className={styles.mobilePanel} aria-label="Huvudmeny (mobil)">
               <NavLinks className={styles.mobileLinks} linkClassName={styles.mobileLink} />
               <Link href="/kom-igang/" className="btn btnPrimary">
                 Ladda ner
               </Link>
             </nav>
-          </details>
+          </MobileMenu>
         </div>
       </div>
     </header>

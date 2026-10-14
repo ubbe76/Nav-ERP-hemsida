@@ -22,9 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NAV_ERP_DIR: ${{ github.workspace }}/.nav-erp
-      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       # The ERP repo holds the manual, screenshots and tokens. NAV_ERP_TOKEN
       # (a read-only fine-grained token) is only needed while it is private.
@@ -33,6 +34,7 @@ jobs:
           repository: ubbe76/Nav-ERP
           path: .nav-erp
           token: ${{ secrets.NAV_ERP_TOKEN || github.token }}
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
@@ -47,7 +49,11 @@ jobs:
       - run: npm test
 
       # e2e runs against a build at the root path (the test server serves out/ at /).
+      # GITHUB_TOKEN only where the build reads stars/release from the GitHub API —
+      # not job-wide, where npm ci's third-party install scripts could read it.
       - run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
 
@@ -57,6 +63,7 @@ jobs:
         env:
           SITE_URL: ${{ steps.pages.outputs.origin }}
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

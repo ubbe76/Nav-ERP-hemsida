@@ -43,3 +43,17 @@ test("sidhuvudet får plats på en smal mobil", async ({ page, isMobile }) => {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(0);
 });
+
+test("mobilmenyn stängs när man navigerar", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobilmenyn finns bara på mobil");
+  const menu = page.locator("header details");
+  await page.goto("/");
+  await page.getByLabel("Meny", { exact: true }).click();
+  await page.getByRole("navigation", { name: "Huvudmeny (mobil)" }).getByRole("link", { name: "Ladda ner" }).click();
+  await expect(page).toHaveURL(/\/kom-igang\/$/);
+  await expect(menu).not.toHaveAttribute("open");
+  await page.getByLabel("Meny", { exact: true }).click();
+  await page.getByRole("link", { name: "Nav|ERP, till startsidan" }).click();
+  await expect(page).toHaveURL(/127\.0\.0\.1:4321\/$/);
+  await expect(menu).not.toHaveAttribute("open");
+});

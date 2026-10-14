@@ -26,3 +26,11 @@ test("öppen källkod-sidan nämner licensen och Dracula-attributionen", async (
   await expect(page.getByText("GNU General Public License version 3 eller senare")).toBeVisible();
   await expect(page.getByRole("link", { name: "Dracula-paletten" })).toHaveAttribute("href", "https://draculatheme.com");
 });
+
+test("installationsguiden säger att API-adressen lämnas tom och att bara port 3000 behövs", async ({ page }) => {
+  await page.goto("/kom-igang/");
+  const guide = page.getByRole("list", { name: "Installationssteg" });
+  await expect(guide).toContainText("Lämna NEXT_PUBLIC_API_URL tom");
+  await expect(guide).toContainText("WEB_ORIGIN");
+  await expect(guide).not.toContainText("4000");
+});

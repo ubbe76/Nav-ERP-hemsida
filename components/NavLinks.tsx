@@ -19,8 +19,6 @@ export function NavLinks({ className, linkClassName }: { className?: string; lin
               href={item.href}
               className={linkClassName}
               aria-current={active ? "page" : undefined}
-              // Client-side navigation keeps the layout mounted, so close the mobile menu by hand.
-              onClick={(e) => e.currentTarget.closest("details")?.removeAttribute("open")}
             >
               {item.label}
             </Link>

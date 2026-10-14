@@ -2,6 +2,7 @@ import { BookOpen } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CalcChain } from "@/components/CalcChain";
 import { CtaBand } from "@/components/CtaBand";
 import { FeatureGroups } from "@/components/FeatureGroups";
 import { PageHero } from "@/components/PageHero";
@@ -33,6 +34,11 @@ export default async function AreaPage({ params }: Props) {
       {area.screenshot && (
         <div className="container">
           <Screenshot shot={area.screenshot} />
+        </div>
+      )}
+      {area.slug === "kalkyl" && (
+        <div className="container section">
+          <CalcChain />
         </div>
       )}
       <div className={`container section ${styles.body}`}>

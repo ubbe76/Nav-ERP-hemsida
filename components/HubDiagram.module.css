@@ -1,0 +1,145 @@
+.hub {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+/* The hub draws its spokes instead of fading in as a block. */
+.hub[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lines line {
+  stroke: var(--wordmark-symbol);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.hub[data-reveal="pending"] .lines line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.hub[data-reveal="done"] .lines line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 900ms var(--ease-out);
+}
+
+.spokes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spoke {
+  position: absolute;
+  width: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.card {
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-kpi-card);
+  background: var(--color-surface);
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 150ms ease, transform 150ms var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--wordmark-symbol);
+  transform: translateY(-2px);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.text {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  width: 24%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-text);
+  text-align: center;
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+}
+
+.centerLabel {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.centerText {
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .hub {
+    display: grid;
+    gap: 12px;
+    aspect-ratio: auto;
+  }
+
+  .lines {
+    display: none;
+  }
+
+  .center {
+    position: static;
+    order: 1;
+    width: auto;
+    aspect-ratio: auto;
+    padding: 16px 20px;
+    border-radius: var(--radius-kpi-card);
+    place-content: start;
+    text-align: left;
+    transform: none;
+  }
+
+  .spokes {
+    display: grid;
+    gap: 12px;
+    order: 2;
+  }
+
+  .spoke {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .card {
+    text-align: left;
+  }
+}

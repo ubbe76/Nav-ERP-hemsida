@@ -1,0 +1,73 @@
+name: Bygg och publicera
+
+on:
+  push:
+    branches: [main]
+  # Nightly: picks up manual and screenshot changes from Nav-ERP.
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NAV_ERP_DIR: ${{ github.workspace }}/.nav-erp
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # The ERP repo holds the manual, screenshots and tokens. NAV_ERP_TOKEN
+      # (a read-only fine-grained token) is only needed while it is private.
+      - uses: actions/checkout@v4
+        with:
+          repository: ubbe76/Nav-ERP
+          path: .nav-erp
+          token: ${{ secrets.NAV_ERP_TOKEN || github.token }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      # e2e runs against a build at the root path (the test server serves out/ at /).
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+
+      # The published build: origin + base path from GitHub Pages. postbuild
+      # re-runs the link check with BASE_PATH, so every link carries the prefix.
+      - run: npm run build
+        env:
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,84 @@
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 220px;
+  gap: 48px;
+  align-items: start;
+  padding-top: 48px;
+  padding-bottom: 32px;
+}
+
+.chapters,
+.toc {
+  position: sticky;
+  top: calc(var(--site-header-h) + 24px);
+  max-height: calc(100vh - var(--site-header-h) - 48px);
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.chapters ul,
+.toc ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chapters a,
+.toc a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.chapters a:hover,
+.toc a:hover,
+.chapters a[aria-current="page"] {
+  background: var(--color-track);
+  color: var(--color-text-primary);
+}
+
+.chapters a[aria-current="page"] {
+  font-weight: 600;
+}
+
+.chapters .home {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.tocTitle {
+  margin: 0 0 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.layout .article {
+  min-width: 0;
+  max-width: 72ch;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .toc {
+    display: none;
+  }
+
+  .chapters {
+    position: static;
+    order: 2;
+    max-height: none;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+  }
+}

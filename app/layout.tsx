@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+// First, so every component stylesheet (header and footer included) comes after the globals in the cascade.
+import "./globals.css";
 import { Figtree, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE, withBase } from "@/lib/site";
 import { themeBootScript } from "@/lib/themes";
-import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],

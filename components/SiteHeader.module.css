@@ -123,8 +123,9 @@
 }
 
 @media (max-width: 1024px) {
+  /* .actions .cta: the global .btn class sets display too, so a single class loses. */
   .desktopNav,
-  .cta {
+  .actions .cta {
     display: none;
   }
 

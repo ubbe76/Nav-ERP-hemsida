@@ -1,0 +1,195 @@
+.hero {
+  padding-top: 96px;
+  padding-bottom: 64px;
+}
+
+.heroText {
+  display: grid;
+  gap: 0;
+  max-width: 860px;
+}
+
+.heroTitle {
+  margin-top: 16px;
+  font-size: var(--text-hero);
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.heroTitle span {
+  display: block;
+  color: var(--color-text-muted);
+}
+
+.heroLead {
+  margin-top: 24px;
+}
+
+.actions {
+  margin-top: 32px;
+}
+
+.note {
+  margin-top: 16px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.heroShot {
+  margin-top: 64px;
+}
+
+.alt {
+  border-block: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.sectionHead {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+  max-width: 760px;
+  margin-bottom: 56px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-card-grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.value {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  height: 100%;
+  padding: var(--space-card-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.value p {
+  color: var(--color-text-secondary);
+}
+
+.valueIcon {
+  color: var(--accent-fg);
+}
+
+.showcase {
+  display: grid;
+  gap: 96px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.row:nth-child(even) .rowText {
+  order: 2;
+}
+
+.rowText {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.rowText p {
+  color: var(--color-text-secondary);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-fg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.more:hover {
+  text-decoration: underline;
+}
+
+.calc {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.calc .sectionHead {
+  margin-bottom: 0;
+}
+
+.costs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-card-grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cost {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding-top: 20px;
+  border-top: 2px solid var(--color-text-primary);
+}
+
+.costValue {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cost p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .values,
+  .costs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .row,
+  .calc {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .row:nth-child(even) .rowText {
+    order: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 56px;
+    padding-bottom: 40px;
+  }
+
+  .heroShot {
+    margin-top: 40px;
+  }
+
+  .showcase {
+    gap: 64px;
+  }
+
+  .value {
+    padding: 24px;
+  }
+}

@@ -35,3 +35,11 @@ test("sidan fungerar utan JavaScript", async ({ browser }) => {
   await expect(page.getByRole("img", { name: /Översikten i Nav\|ERP/ })).toBeVisible();
   await context.close();
 });
+
+test("sidhuvudet får plats på en smal mobil", async ({ page, isMobile }) => {
+  test.skip(isMobile, "bredden sätts här");
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.goto("/");
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+});

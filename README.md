@@ -55,7 +55,7 @@ push till `main` och varje natt. Första gången:
 1. Skapa ett GitHub-repo för hemsidan och pusha.
 2. Settings → Pages → Source: **GitHub Actions**.
 3. Är Nav-ERP privat: skapa en finkornig token med läsrätt till Nav-ERP och spara den som
-   secreten `NAV_ERP_TOKEN`.
+   secreten `NAV_ERP_SECRET`.
 4. Egen domän: Settings → Pages → Custom domain. `SITE_URL` och `BASE_PATH` följer med automatiskt.
 
 `out/` är ren statik och kan lika gärna läggas på Cloudflare Pages, Netlify eller valfri webbserver.

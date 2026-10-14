@@ -27,13 +27,13 @@ jobs:
         with:
           persist-credentials: false
 
-      # The ERP repo holds the manual, screenshots and tokens. NAV_ERP_TOKEN
+      # The ERP repo holds the manual, screenshots and tokens. NAV_ERP_SECRET
       # (a read-only fine-grained token) is only needed while it is private.
       - uses: actions/checkout@v4
         with:
           repository: ubbe76/Nav-ERP
           path: .nav-erp
-          token: ${{ secrets.NAV_ERP_TOKEN || github.token }}
+          token: ${{ secrets.NAV_ERP_SECRET || github.token }}
           persist-credentials: false
 
       - uses: actions/setup-node@v4

@@ -30,3 +30,22 @@ test("navet och värdena syns utan JavaScript", async ({ browser }) => {
   await expect(page.getByRole("heading", { name: "Ingen licenskostnad, ingen inlåsning" })).toBeVisible();
   await context.close();
 });
+
+test("startsidan berättar att Nav|ERP släpps inom kort, mellan sidhuvudet och heron", async ({ page }) => {
+  await page.goto("/");
+  const notice = page.getByRole("region", { name: "Kommer snart" });
+  await expect(notice).toContainText("Nav|ERP släpps som öppen källkod inom kort");
+  const header = await page.locator("header").first().boundingBox();
+  const box = await notice.boundingBox();
+  const h1 = await page.getByRole("heading", { level: 1 }).boundingBox();
+  expect(box!.y).toBeGreaterThanOrEqual(header!.y + header!.height - 1);
+  expect(box!.y + box!.height).toBeLessThanOrEqual(h1!.y);
+});
+
+test("meddelandet om lansering syns utan JavaScript", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("http://127.0.0.1:4321/");
+  await expect(page.getByRole("region", { name: "Kommer snart" })).toBeVisible();
+  await context.close();
+});

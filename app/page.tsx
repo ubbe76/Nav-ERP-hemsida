@@ -1,5 +1,6 @@
 import { ArrowRight, KeyRound, Receipt, Wrench } from "lucide-react";
 import Link from "next/link";
+import { AnnouncementBar } from "@/components/AnnouncementBar";
 import { CalcChain } from "@/components/CalcChain";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CtaBand } from "@/components/CtaBand";
@@ -66,6 +67,7 @@ docker compose up -d --build`;
 export default function Home() {
   return (
     <>
+      <AnnouncementBar />
       <section className={`container ${styles.hero}`}>
         <div className={styles.heroText}>
           <p className="eyebrow">Öppen källkod · GPL-3.0</p>

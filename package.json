@@ -5,7 +5,12 @@
     "dev": "next dev",
     "build": "next build",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sync": "tsx scripts/sync-content.ts",
+    "predev": "npm run sync",
+    "prebuild": "npm run sync",
+    "pretest": "npm run sync",
+    "pretypecheck": "npm run sync"
   },
   "author": "Urban Källefors",
   "license": "GPL-3.0-or-later",

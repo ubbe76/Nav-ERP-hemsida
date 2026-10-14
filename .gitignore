@@ -3,3 +3,9 @@ node_modules/
 out/
 next-env.d.ts
 *.tsbuildinfo
+# Synced from Nav-ERP by scripts/sync-content.ts — never edit by hand.
+content/manual/
+public/screenshots/
+styles/tokens.css
+lib/upstream/
+components/upstream/

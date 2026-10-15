@@ -61,7 +61,8 @@ export default function OpenSourcePage() {
             Nav|ERP är ett ungt projekt, och det blir bättre av att fler provar det. Ni behöver inte kunna programmera
             för att hjälpa till: berätta hur ert företag arbetar, vad ni saknar eller vad som var svårt att förstå.
             Felrapporter, frågor och förslag är lika välkomna som kod —{" "}
-            <a href={`${SITE.repoUrl}/issues`}>skapa ett ärende på GitHub</a>.
+            <a href={SITE.newIssueUrl}>skapa ett ärende på GitHub</a>. Säkerhetsbrister rapporteras däremot{" "}
+            <a href={SITE.securityUrl}>privat</a>, aldrig i ett öppet ärende.
           </p>
 
           <h2>Tredjepartsinnehåll</h2>

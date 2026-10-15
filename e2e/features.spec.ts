@@ -48,6 +48,7 @@ test("installationsguiden säger före stegen att Nav|ERP inte är redo för pro
   await page.goto("/kom-igang/");
   const notice = page.getByRole("note", { name: "Ännu inte redo för produktion" });
   await expect(notice).toContainText("använd det ännu inte som ert enda affärssystem eller för er skarpa bokföring");
+  await expect(notice.getByRole("link", { name: "berätta gärna" })).toHaveAttribute("href", "https://github.com/ubbe76/Nav-ERP/issues/new/choose");
   const noticeBox = await notice.boundingBox();
   const stepsBox = await page.getByRole("list", { name: "Installationssteg" }).boundingBox();
   expect(noticeBox!.y).toBeLessThan(stepsBox!.y);
@@ -59,6 +60,10 @@ test("öppen källkod-sidan bjuder in till att hjälpa till, även utan att prog
   await expect(page.getByText("Ni behöver inte kunna programmera för att hjälpa till")).toBeVisible();
   await expect(page.getByRole("link", { name: "skapa ett ärende på GitHub" })).toHaveAttribute(
     "href",
-    "https://github.com/ubbe76/Nav-ERP/issues",
+    "https://github.com/ubbe76/Nav-ERP/issues/new/choose",
+  );
+  await expect(page.getByRole("link", { name: "privat" })).toHaveAttribute(
+    "href",
+    "https://github.com/ubbe76/Nav-ERP/security/advisories/new",
   );
 });

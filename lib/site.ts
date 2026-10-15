@@ -7,6 +7,9 @@ export const SITE = {
     "Öppet källkod-ERP för svenska tillverkande företag: artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett system. Självhostat och utan licensavgifter.",
   repoUrl: "https://github.com/ubbe76/Nav-ERP",
   cloneUrl: "https://github.com/ubbe76/Nav-ERP.git",
+  // The issue chooser: Felrapport, Förslag and the private security report.
+  newIssueUrl: "https://github.com/ubbe76/Nav-ERP/issues/new/choose",
+  securityUrl: "https://github.com/ubbe76/Nav-ERP/security/advisories/new",
 } as const;
 
 export function basePath(): string {

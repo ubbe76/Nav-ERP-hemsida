@@ -34,7 +34,8 @@ test("navet och värdena syns utan JavaScript", async ({ browser }) => {
 test("startsidan säger att Nav|ERP är en tidig version, mellan sidhuvudet och heron", async ({ page }) => {
   await page.goto("/");
   const notice = page.getByRole("region", { name: "Tidig version" });
-  await expect(notice).toContainText("Nav|ERP släpps snart som öppen källkod");
+  await expect(notice).toContainText("Nav|ERP 0.1.0-alpha finns nu som öppen källkod");
+  await expect(notice.getByRole("link", { name: "på GitHub" })).toHaveAttribute("href", "https://github.com/ubbe76/Nav-ERP");
   await expect(notice).toContainText("ännu inte är redo för skarp drift");
   const header = await page.locator("header").first().boundingBox();
   const box = await notice.boundingBox();

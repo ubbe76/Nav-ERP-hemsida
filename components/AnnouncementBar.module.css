@@ -26,3 +26,10 @@
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
+
+/* The link takes the bar's own text colour, so its contrast is the text's. */
+.inner a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

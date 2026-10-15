@@ -128,7 +128,7 @@ export default function Home() {
         <div className="container">
           <div className={styles.sectionHead}>
             <p className="eyebrow">Produkten</p>
-            <h2>Riktiga skärmar, inte marknadsbilder</h2>
+            <h2>Direkt ur Nav|ERP</h2>
           </div>
           <div className={styles.showcase}>
             {SHOWCASE.map((item) => (

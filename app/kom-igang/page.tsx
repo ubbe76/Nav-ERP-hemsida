@@ -89,7 +89,8 @@ export default function GetStartedPage() {
           <ul className={styles.list}>
             <li>
               En Linux-server med Docker — en VPS eller en maskin i ert eget nätverk. Node.js och PostgreSQL behövs
-              inte, allt körs i containrar.
+              inte, allt körs i containrar. Vill ni prova på en Windows-dator, se <a href="#windows">På Windows</a>{" "}
+              nedan.
             </li>
             <li>Git, för att hämta och uppdatera källkoden.</li>
             <li>Någon som är van vid en terminal. Resten av företaget behöver bara en webbläsare.</li>
@@ -110,6 +111,33 @@ export default function GetStartedPage() {
             </li>
           ))}
         </ol>
+
+        <section id="windows" className={`${styles.needs} ${styles.windows}`} aria-labelledby="windows-rubrik">
+          <h2 id="windows-rubrik" className={styles.h2}>
+            På Windows
+          </h2>
+          <p>
+            Nav|ERP går också att köra på en Windows-dator med Docker Desktop och WSL 2 — samma containrar som på en
+            Linux-server. Det är ännu inte testat i projektet, så se det som ett sätt att prova och utvärdera.
+          </p>
+          <ul className={styles.list}>
+            <li>
+              Installera <a href="https://docs.docker.com/desktop/setup/install/windows-install/">Docker Desktop</a>{" "}
+              med WSL 2 och en Linux-distribution i WSL, t.ex. Ubuntu (<code>wsl --install</code>).
+            </li>
+            <li>
+              Hämta koden <strong>inne i WSL</strong>, t.ex. till <code>~/Nav-ERP</code> i Ubuntu-terminalen — inte
+              under <code>C:\</code>. Följ sedan stegen ovan i den terminalen.
+            </li>
+            <li>
+              Skripten för backup och återställning körs i WSL-terminalen. Hur nattlig backup schemaläggs står i{" "}
+              <Link href="/hjalp/drift-utveckling/#windows">manualen</Link>.
+            </li>
+            <li>
+              Docker Desktop är gratis för företag med färre än 250 anställda och under 10 miljoner USD i omsättning.
+            </li>
+          </ul>
+        </section>
 
         <section className={styles.after}>
           <div>

@@ -50,6 +50,12 @@
   color: var(--color-text-secondary);
 }
 
+.windows {
+  display: grid;
+  gap: 12px;
+  margin-top: 72px;
+}
+
 .steps {
   display: grid;
   gap: 40px;

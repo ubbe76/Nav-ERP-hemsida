@@ -54,6 +54,14 @@ test("installationsguiden säger före stegen att Nav|ERP inte är redo för pro
   expect(noticeBox!.y).toBeLessThan(stepsBox!.y);
 });
 
+test("installationsguiden beskriver Windows med Docker Desktop och länkar till manualen", async ({ page }) => {
+  await page.goto("/kom-igang/");
+  const windows = page.getByRole("region", { name: "På Windows" });
+  await expect(windows).toContainText("Docker Desktop");
+  await expect(windows).toContainText("inne i WSL");
+  await expect(windows.getByRole("link", { name: "manualen" })).toHaveAttribute("href", /\/hjalp\/drift-utveckling\/#windows$/);
+});
+
 test("öppen källkod-sidan bjuder in till att hjälpa till, även utan att programmera", async ({ page }) => {
   await page.goto("/oppen-kallkod/");
   await expect(page.getByRole("heading", { level: 2, name: "Hjälp till att göra Nav|ERP bättre" })).toBeVisible();

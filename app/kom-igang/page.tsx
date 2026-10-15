@@ -22,8 +22,10 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
     title: "Hämta och konfigurera",
     text: (
       <>
-        Hämta koden och skapa <code>.env</code> från mallen med kommandona nedan. Sätt därefter{" "}
-        <code>JWT_SECRET</code> i <code>.env</code> till ett slumpat värde (<code>openssl rand -hex 32</code>) och{" "}
+        Hämta koden och skapa <code>.env</code> från mallen med kommandona nedan. Fyll sedan i två obligatoriska
+        värden i <code>.env</code> — så länge de är tomma vägrar Docker Compose starta:{" "}
+        <code>POSTGRES_PASSWORD</code>, databasens lösenord (<code>openssl rand -hex 24</code>), och{" "}
+        <code>JWT_SECRET</code>, som signerar inloggningarna (<code>openssl rand -hex 32</code>). Sätt också{" "}
         <code>WEB_ORIGIN</code> till adressen användarna når webben på, t.ex. <code>http://er-server:3000</code>.
         Lämna NEXT_PUBLIC_API_URL tom — webben skickar själv vidare anropen till API:et. Kör ni utan HTTPS i ett
         internt nätverk, sätt även <code>COOKIE_SECURE=false</code>, annars går det inte att logga in.
@@ -40,18 +42,23 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
     title: "Skapa första användaren",
     text: (
       <>
-        Gå till <code>http://er-server:3000/register</code>. Det första kontot blir administratör, och sidan stänger
-        sig själv så fort en användare finns. Fler användare skapar administratören inifrån systemet.
+        Gör det direkt efter starten. Hämta engångskoden som API:et skriver i sin logg med kommandot nedan, gå till{" "}
+        <code>http://er-server:3000/register</code> och fyll i den i fältet Engångskod. Koden gör att bara den som
+        kommer åt servern kan skapa kontot, och en ny kod skrivs vid varje omstart. Det första kontot blir
+        administratör, och sidan stänger sig själv så fort en användare finns. Fler användare skapar
+        administratören inifrån systemet.
       </>
     ),
+    code: "docker compose logs api | grep Engångskod",
   },
   {
-    title: "Stäng databasporten",
+    title: "Öppna bara webben",
     text: (
       <>
-        Ska servern nås från internet: ta bort raderna <code>ports: - &quot;5432:5432&quot;</code> under{" "}
-        <code>postgres</code> i <code>docker-compose.yml</code>. Bara containrarna behöver nå databasen. Användarna
-        behöver bara port 3000 (webben).
+        Användarna behöver bara port 3000 — eller hellre en omvänd proxy med HTTPS framför den. Databasen och API:et
+        lyssnar redan bara på servern själv. Ändra inte det i <code>docker-compose.yml</code>: Docker går förbi
+        brandväggen ufw, så en port som publiceras på alla nätverk blir nåbar från internet även om brandväggen
+        säger stängt.
       </>
     ),
   },
@@ -119,7 +126,12 @@ export default function GetStartedPage() {
           </div>
           <div>
             <h2 className={styles.h2}>Uppdatera</h2>
-            <p>Nya versioner hämtas med git. Databasen migreras automatiskt när API:et startar.</p>
+            <p>
+              Nya versioner hämtas med git. Databasen migreras automatiskt när API:et startar. Installerade ni före
+              version 0.1.0-alpha? Lägg då först till <code>POSTGRES_PASSWORD=erp_dev_password</code> i{" "}
+              <code>.env</code> — en befintlig databas behåller sitt lösenord — och läs README:ns avsnitt om att
+              uppdatera.
+            </p>
             <CodeBlock code={"git pull\ndocker compose up -d --build"} />
           </div>
           <div>

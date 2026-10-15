@@ -18,7 +18,7 @@ test("installationsguiden visar stegen i ordning", async ({ page }) => {
   await page.goto("/kom-igang/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Från noll till inloggad på några minuter");
   const steps = page.getByRole("list", { name: "Installationssteg" }).getByRole("heading", { level: 3 });
-  await expect(steps).toHaveText(["Installera Docker", "Hämta och konfigurera", "Starta", "Skapa första användaren", "Stäng databasporten"]);
+  await expect(steps).toHaveText(["Installera Docker", "Hämta och konfigurera", "Starta", "Skapa första användaren", "Öppna bara webben"]);
 });
 
 test("öppen källkod-sidan nämner licensen och Dracula-attributionen", async ({ page }) => {
@@ -33,6 +33,15 @@ test("installationsguiden säger att API-adressen lämnas tom och att bara port 
   await expect(guide).toContainText("Lämna NEXT_PUBLIC_API_URL tom");
   await expect(guide).toContainText("WEB_ORIGIN");
   await expect(guide).not.toContainText("4000");
+});
+
+test("installationsguiden kräver databaslösenordet och engångskoden", async ({ page }) => {
+  await page.goto("/kom-igang/");
+  const guide = page.getByRole("list", { name: "Installationssteg" });
+  await expect(guide).toContainText("POSTGRES_PASSWORD");
+  await expect(guide).toContainText("Engångskod");
+  await expect(guide).toContainText("docker compose logs api");
+  await expect(guide).not.toContainText("5432");
 });
 
 test("installationsguiden säger före stegen att Nav|ERP inte är redo för produktion", async ({ page }) => {

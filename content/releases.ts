@@ -12,6 +12,26 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.2.1-alpha",
+    date: "2026-10-16",
+    summary:
+      "Stämpelterminalens arbetslista visar nu en operation per rad — med station, beredskap, färdigdatum och material — och installationen körs av ett eget servicekonto.",
+    breaking: [
+      "Lägg in Förvalda stationer på personalkorten (Tillverkning → Personal → fliken Allmänt). Terminalen väljer dem när den anställde identifierar sig; utan förval visas Alla stationer.",
+      "Stämpelterminalen fungerar annorlunda: steget där man först valde en order är borta, och Stämpla in på arbete visar direkt alla operationer att börja på. Berätta för personalen innan ni uppdaterar.",
+    ],
+    added: [
+      "Stämpelterminalen visar en operation per rad. Välj Station (resurserna i nummerordning, egna stationer förvalda, byt fritt eller välj Alla stationer), filtrera på Material eller Bara redo, sortera Brådskande (färdigdatum) eller Material (samma material intill varandra), och sök.",
+      "Varje rad visar Redo, 8 av 20 redo eller Inte redo — det spärrar aldrig — tillsammans med färdigdatum (försenade markerade) och kopplat material. Starta valda ligger fast längst ned och fungerar över flera ordrar.",
+      "Förvalda stationer per anställd på personalkortet.",
+      "API: `GET /terminal/operations` och `GET /terminal/stations`; personalkatalogen och `GET/PATCH /employees/:id` bär `defaultWorkCenterIds`.",
+    ],
+    changed: [
+      "Installationsanvisningarna kör Nav|ERP som ett eget servicekonto, `naverp`, med `.env` bara läsbar för det kontot. Befintliga installationer fungerar som förut.",
+      "Databasen migreras automatiskt (migration 0121) när API:et startar.",
+    ],
+  },
+  {
     version: "0.2.0-alpha",
     date: "2026-10-16",
     summary:

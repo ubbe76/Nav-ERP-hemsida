@@ -18,7 +18,7 @@ test("installationsguiden visar stegen i ordning", async ({ page }) => {
   await page.goto("/kom-igang/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Från noll till inloggad på några minuter");
   const steps = page.getByRole("list", { name: "Installationssteg" }).getByRole("heading", { level: 3 });
-  await expect(steps).toHaveText(["Installera Docker", "Hämta och konfigurera", "Starta", "Skapa första användaren", "Öppna bara webben"]);
+  await expect(steps).toHaveText(["Installera Docker och skapa ett servicekonto", "Hämta och konfigurera", "Starta", "Skapa första användaren", "Öppna bara webben"]);
 });
 
 test("öppen källkod-sidan nämner licensen och Dracula-attributionen", async ({ page }) => {
@@ -42,6 +42,15 @@ test("installationsguiden kräver databaslösenordet och engångskoden", async (
   await expect(guide).toContainText("Engångskod");
   await expect(guide).toContainText("docker compose logs api");
   await expect(guide).not.toContainText("5432");
+});
+
+test("installationsguiden kör Nav|ERP som ett eget servicekonto och skyddar .env", async ({ page }) => {
+  await page.goto("/kom-igang/");
+  const guide = page.getByRole("list", { name: "Installationssteg" });
+  await expect(guide).toContainText("sudo usermod -aG docker naverp");
+  await expect(guide).toContainText("sudo -iu naverp");
+  await expect(guide).toContainText("chmod 600 .env");
+  await expect(guide).not.toContainText("$USER");
 });
 
 test("installationsguiden säger före stegen att Nav|ERP inte är redo för produktion", async ({ page }) => {

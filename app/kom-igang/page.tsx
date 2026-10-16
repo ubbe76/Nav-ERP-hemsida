@@ -14,15 +14,23 @@ export const metadata: Metadata = {
 
 const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
   {
-    title: "Installera Docker",
-    text: "Hoppa över steget om servern redan har Docker. På en ny Ubuntu- eller Debian-server:",
-    code: "curl -fsSL https://get.docker.com | sh\nsudo usermod -aG docker $USER   # logga ut och in igen",
+    title: "Installera Docker och skapa ett servicekonto",
+    text: (
+      <>
+        På en ny Ubuntu- eller Debian-server (hoppa över första raden om Docker redan finns). Nav|ERP körs av ett eget
+        konto, här <code>naverp</code> — inte root och inte ert personliga konto. Det äger koden, <code>.env</code>{" "}
+        och säkerhetskopiorna. Lägg bara det kontot i gruppen <code>docker</code>: medlemskap där är i praktiken
+        root-behörighet på servern.
+      </>
+    ),
+    code: 'curl -fsSL https://get.docker.com | sh\nsudo adduser --disabled-password --gecos "Nav|ERP" naverp\nsudo usermod -aG docker naverp',
   },
   {
     title: "Hämta och konfigurera",
     text: (
       <>
-        Hämta koden och skapa <code>.env</code> från mallen med kommandona nedan. Fyll sedan i två obligatoriska
+        Logga in som <code>naverp</code>, hämta koden och skapa <code>.env</code> från mallen med kommandona nedan —{" "}
+        <code>chmod 600</code> gör att bara kontot kan läsa filen. Fyll sedan i två obligatoriska
         värden i <code>.env</code> — så länge de är tomma vägrar Docker Compose starta:{" "}
         <code>POSTGRES_PASSWORD</code>, databasens lösenord (<code>openssl rand -hex 24</code>), och{" "}
         <code>JWT_SECRET</code>, som signerar inloggningarna (<code>openssl rand -hex 32</code>). Sätt också{" "}
@@ -31,7 +39,7 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
         internt nätverk, sätt även <code>COOKIE_SECURE=false</code>, annars går det inte att logga in.
       </>
     ),
-    code: `git clone ${SITE.cloneUrl}\ncd Nav-ERP\ncp .env.example .env`,
+    code: `sudo -iu naverp\ngit clone ${SITE.cloneUrl}\ncd Nav-ERP\ncp .env.example .env\nchmod 600 .env`,
   },
   {
     title: "Starta",

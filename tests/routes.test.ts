@@ -15,6 +15,7 @@ describe("allRoutes", () => {
     expect(routes).toContain("/");
     expect(routes).toContain("/kom-igang/");
     expect(routes).toContain("/oppen-kallkod/");
-    expect(routes).toHaveLength(5 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
+    expect(routes).toContain("/versioner/");
+    expect(routes).toHaveLength(6 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
   });
 });

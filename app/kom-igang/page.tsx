@@ -155,12 +155,12 @@ export default function GetStartedPage() {
           <div>
             <h2 className={styles.h2}>Uppdatera</h2>
             <p>
-              Nya versioner hämtas med git. Databasen migreras automatiskt när API:et startar. Installerade ni före
-              version 0.1.0-alpha? Lägg då först till <code>POSTGRES_PASSWORD=erp_dev_password</code> i{" "}
-              <code>.env</code> — en befintlig databas behåller sitt lösenord — och läs README:ns avsnitt om att
-              uppdatera.
+              Nya versioner hämtas med git, och databasen migreras automatiskt när API:et startar. Läs först vad som
+              kräver åtgärd under <Link href="/versioner/">Versioner</Link>. Installerade ni före version
+              0.1.0-alpha? Lägg då först till <code>POSTGRES_PASSWORD=erp_dev_password</code> i <code>.env</code> — en
+              befintlig databas behåller sitt lösenord — och läs README:ns avsnitt om att uppdatera.
             </p>
-            <CodeBlock code={"git pull\ndocker compose up -d --build"} />
+            <CodeBlock code={"git pull\ndocker compose build --pull\ndocker compose up -d"} />
           </div>
           <div>
             <h2 className={styles.h2}>Säkerhetskopiering</h2>

@@ -25,6 +25,7 @@ export async function SiteFooter() {
               <li><Link href="/funktioner/">Funktioner</Link></li>
               <li><Link href="/kom-igang/">Kom igång</Link></li>
               <li><Link href="/hjalp/">Manual</Link></li>
+              <li><Link href="/versioner/">Versioner</Link></li>
             </ul>
           </div>
           <div>

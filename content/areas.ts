@@ -244,8 +244,9 @@ export const FEATURE_AREAS: FeatureArea[] = [
         title: "Stämpelterminalen",
         points: [
           "Helskärmsvy för en delad skärm i verkstaden — personalen identifierar sig med sitt anställningsnummer.",
-          "Närvaro (kom/gå), stämpling på order och uttag av ATF.",
-          "Pågående arbete visar i realtid vem som är instämplad på vad.",
+          "Arbetslistan visar en operation per rad för den anställdes egna stationer — vad som är redo att börja, vad som brådskar och vilket material som behövs.",
+          "Närvaro (kom/gå) och uttag av ATF. En glömd utstämpling fångas nästa gång personen stämplar in.",
+          "Pågående arbete visar i realtid vem som är instämplad på vad, och vem som är frånvarande.",
         ],
       },
       {

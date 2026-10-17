@@ -12,6 +12,19 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.2.4-alpha",
+    date: "2026-10-17",
+    summary:
+      "Resurser kan få kapacitet i timmar per dag i stället för ett veckoschema — beläggningen och Leveranstidskontrollen räknar med den direkt.",
+    breaking: [],
+    added: [
+      "Kapacitet (timmar per dag) på resursen: så många timmar måndag–fredag (× kapacitetsfaktorn), en röd dag i helgdagskalendern ledig och en halvdag på helgdagens dagschema. Har resursen ett veckoschema gäller schemat. Beläggningen och Leveranstidskontrollen räknar med timmarna.",
+      "Resurslistans kolumn Kapacitet visar veckoschemat eller t.ex. 8 h/dag, och timmarna kan ändras direkt i listan.",
+      "API: resurser bär `hoursPerDay`.",
+    ],
+    changed: ["Databasen migreras automatiskt (migration 0123) när API:et startar."],
+  },
+  {
     version: "0.2.3-alpha",
     date: "2026-10-17",
     summary:

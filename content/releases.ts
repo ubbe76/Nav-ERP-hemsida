@@ -12,6 +12,20 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.2.3-alpha",
+    date: "2026-10-17",
+    summary:
+      "Leveranstidskontroll: tidigaste avsändnings- och leveransdatum för en kundorder ur lager, öppna order, materialets ledtid och ledig kapacitet i produktionen.",
+    breaking: [],
+    added: [
+      "Leveranstidskontroll på kundorderkortet och i Ny kundorder, och som egen sida under Försäljning → Leveranstidskontroll (valfria artiklar och antal, valfri kund). Kontrollen räknar med lager och öppna order efter de behov som redan är lovade, ledtiden på material som måste köpas, och ledig tid per resurs och vecka för det som måste tillverkas — på alla nivåer i strukturen och för konfigurerade rader.",
+      "Resultatet visar leveransdatum, avsändningsdag och vad som begränsar varje rad steg för steg; Använd datumet sätter orderns Förväntat leveransdatum. Kontrollen bokar varken tid eller material.",
+      "Beläggningen räknas för resurser som har ett veckoschema — lägg in veckoscheman på resurserna för att kapaciteten ska påverka datumen.",
+      "API: `POST /delivery-time-check`; `PATCH /sales-orders/:id` tar `expectedDeliveryDate`.",
+    ],
+    changed: ["Ingen migration i den här versionen."],
+  },
+  {
     version: "0.2.2-alpha",
     date: "2026-10-17",
     summary:

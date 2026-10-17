@@ -12,6 +12,25 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.2.5-alpha",
+    date: "2026-10-17",
+    summary:
+      "Rättningar efter granskningen av leveransdagarna och Leveranstidskontrollen — kontrollen räknar nu mot projicerat saldo och skjuter eftersläpande last framåt — och versionsnumret syns i appen.",
+    breaking: [
+      "API: datumfält som räknas på (kundorderns `expectedDeliveryDate` i `POST /quotes` och `PATCH /sales-orders/:id`, `date` i förslagsendpointsen) tar nu bara år 1900–2999 — ett datum utanför ger 400. Integrationer som skickar platshållardatum som 9999-12-31 behöver ändras.",
+    ],
+    added: [
+      "Versionen syns längst ned i sidomenyn, under användaren, med länk till versionssidan. API:ets `GET /health` svarar också med versionen.",
+    ],
+    changed: [
+      "Leveranstidskontroll räknar det som redan finns mot det projicerade saldot: en kundorder långt fram tar inte längre lagret framför en ny order. Last som inte ryms i en vecka skjuts framåt vecka för vecka i stället för att försvinna. Datumen kan därför bli både tidigare och senare än förut.",
+      "Försenade order och utkast till inköpsorder räknas fortfarande som tillgång men märks i kedjan och i noteringarna. En tillverkad artikel utan beredning noteras, och ett avrundat inköp delas mellan raderna.",
+      "Använd datumet visas bara när kontrollen räknats med en kund, och en order som inte är öppen kan inte kontrolleras.",
+      "Fasta leveransdagar: långa transporttider räknas nu rätt i planeringen, i Skapa ordrar och i datumvarningarna — tidigare försvann transporten tyst.",
+      "Kontrollen är snabbare på stora strukturer. Ingen migration i den här versionen.",
+    ],
+  },
+  {
     version: "0.2.4-alpha",
     date: "2026-10-17",
     summary:

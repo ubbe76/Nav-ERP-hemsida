@@ -12,6 +12,27 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.2.2-alpha",
+    date: "2026-10-17",
+    summary:
+      "Fasta leveransdagar och transportdagar för leverantörer och kunder: datumen på inköps- och kundorder föreslås ur dem, Skapa ordrar följer leverantörens dagar och ledtid, och planeringen räknar kundorderns behov på avsändningsdagen.",
+    breaking: [
+      "Skapa ordrar i behovsberäkningen använder nu ledtiden i leverantörskatalogen (Ledtid (dagar), räknat i arbetsdagar). Tidigare visades den bara. Inköpsordrar till leverantörer som har en ledtid får därför ett senare Önskat leveransdatum än förut när ledtiden inte hinner före behovet — resultatet listar då en varning. Se över ledtiderna i katalogen innan ni skapar ordrar.",
+    ],
+    added: [
+      "Leveransdagar på leverantörs- och kundkortet (fliken Villkor & frakt): veckodagar, om dagarna avser ankomst eller avsändning, och transportdagar. Förvalen för läge och transportdagar ställs in under System → Inställningar → Leveransdagar.",
+      "Ny inköpsorder och Ny kundorder föreslår datum ur partnerns leveransdagar, och Lägg till rad på inköpsordern föreslår radens datum med artikelns ledtid. Ett datum du skriver själv rörs inte.",
+      "Datumfälten på inköps- och kundorder visar partnerns dagar och varnar när ett datum inte passar dem — varningen spärrar aldrig.",
+      "Skapa ordrar lägger inköpens datum på leverantörens leveransdagar före behovet och varnar när leveransen kommer efter behovet.",
+      "API: `GET /supplier-delivery-date-suggestion` och `GET /customer-delivery-date-suggestion`; leverantörer och kunder bär `deliveryWeekdays`, `deliveryDayMode` och `transitDays`, och svaret från `POST /planning/orders` har listan `warnings`.",
+    ],
+    changed: [
+      "Kundorderns Förväntat leveransdatum är dagen kunden får varan. Artikelöversikten, färdigdatumsförslaget för nya tillverkningsordrar och Skapa ordrar räknar kundorderns behov på avsändningsdagen, alltså leveransdatumet minus kundens transportdagar. Utan transportdagar och leveransdagar är allt som förut.",
+      "Stämpelterminalens stationsval är kompaktare och ligger i en egen panel.",
+      "Databasen migreras automatiskt (migration 0122) när API:et startar.",
+    ],
+  },
+  {
     version: "0.2.1-alpha",
     date: "2026-10-16",
     summary:

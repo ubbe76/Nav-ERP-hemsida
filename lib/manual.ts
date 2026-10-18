@@ -23,6 +23,17 @@ export interface RenderedChapter {
 const MANUAL_DIR = path.join(process.cwd(), "content", "manual");
 
 const attr = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+
+/**
+ * The manual is written for the app, where /hjalp/lon works as is; the site's
+ * pages end in a slash (trailingSlash in next.config.ts), so /hjalp/lon would
+ * cost a redirect. Adds the slash to site paths, leaving files and anchors alone.
+ */
+export function withTrailingSlash(href: string): string {
+  const m = /^(\/(?!\/)[^?#]*?)([?#].*)?$/.exec(href);
+  if (!m?.[1] || m[1].endsWith("/") || /\.[a-z0-9]+$/i.test(m[1])) return href;
+  return `${m[1]}/${m[2] ?? ""}`;
+}
 const plainText = (md: string) => md.replace(/\*\*|__|`/g, "");
 
 // Created per call so withBase() reads the environment at render time.
@@ -34,7 +45,8 @@ function createMarked(): Marked {
       },
       link({ href, title, tokens }) {
         const titleAttr = title ? ` title="${attr(title)}"` : "";
-        return `<a href="${attr(withBase(href))}"${titleAttr}>${this.parser.parseInline(tokens)}</a>`;
+        const target = attr(withBase(withTrailingSlash(href)));
+        return `<a href="${target}"${titleAttr}>${this.parser.parseInline(tokens)}</a>`;
       },
     },
   });

@@ -1,7 +1,14 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { MANUAL_CHAPTERS, chapterAnchors, loadChapter, renderManual, splitAtTitle } from "@/lib/manual";
+import {
+  MANUAL_CHAPTERS,
+  chapterAnchors,
+  loadChapter,
+  renderManual,
+  splitAtTitle,
+  withTrailingSlash,
+} from "@/lib/manual";
 
 afterEach(() => vi.unstubAllEnvs());
 
@@ -22,9 +29,26 @@ describe("renderManual", () => {
   it("lägger base path på rotrelativa länkar men inte på andra", () => {
     vi.stubEnv("NEXT_PUBLIC_BASE_PATH", "/hemsida");
     const { html } = renderManual("[a](/hjalp/system#kalkyler) [b](#frakt) [c](https://draculatheme.com)");
-    expect(html).toContain('href="/hemsida/hjalp/system#kalkyler"');
+    expect(html).toContain('href="/hemsida/hjalp/system/#kalkyler"');
     expect(html).toContain('href="#frakt"');
     expect(html).toContain('href="https://draculatheme.com"');
+  });
+});
+
+describe("withTrailingSlash", () => {
+  it("lägger snedstreck på sajtens sökvägar, före ankare och frågor", () => {
+    expect(withTrailingSlash("/hjalp/lon")).toBe("/hjalp/lon/");
+    expect(withTrailingSlash("/hjalp/system#behorighetsgrupper")).toBe("/hjalp/system/#behorighetsgrupper");
+    expect(withTrailingSlash("/hjalp?q=saldo")).toBe("/hjalp/?q=saldo");
+  });
+
+  it("rör inte det som redan stämmer, filer, ankare eller externa länkar", () => {
+    const unchanged = ["/hjalp/lon/", "/hjalp/lon/#x", "/screenshots/a.png", "#lagervardering", "https://example.com/a"];
+    for (const href of [...unchanged, "//cdn.example.com/a"]) expect(withTrailingSlash(href)).toBe(href);
+  });
+
+  it("används när manualen renderas", () => {
+    expect(renderManual("[Lön](/hjalp/lon#attestering)").html).toContain('href="/hjalp/lon/#attestering"');
   });
 });
 

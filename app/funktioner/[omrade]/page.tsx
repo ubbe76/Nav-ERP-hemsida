@@ -23,7 +23,7 @@ type Props = { params: Promise<{ omrade: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const area = getArea((await params).omrade);
-  return area ? { title: area.title, description: area.intro } : {};
+  return area ? { title: area.seoTitle, description: area.description } : {};
 }
 
 export default async function AreaPage({ params }: Props) {

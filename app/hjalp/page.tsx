@@ -5,8 +5,9 @@ import { ManualSearch } from "@/components/ManualSearch";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Manual",
-  description: "Användarmanualen för Nav|ERP — alla rutiner, kapitel för kapitel.",
+  title: "Manual: användarhandbok för affärssystemet",
+  description:
+    "Användarmanualen för Nav|ERP: alla rutiner kapitel för kapitel, från artiklar, inköp och försäljning till tillverkning, lön och bokföring.",
 };
 
 const GROUPS = [...new Set(MANUAL_CHAPTERS.map((c) => c.group))];

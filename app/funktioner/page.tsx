@@ -7,7 +7,7 @@ import { FEATURE_AREAS } from "@/content/areas";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Funktioner",
+  title: "Funktioner i affärssystemet för tillverkning",
   description:
     "Tillverkning, lager och artiklar, inköp och försäljning, kalkyl, personal och lön, och ekonomi — allt som ingår i Nav|ERP.",
 };

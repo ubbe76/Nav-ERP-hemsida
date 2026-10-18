@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { ManualLayout } from "@/components/ManualLayout";
+import { MANUAL_META } from "@/content/manual-meta";
 import { MANUAL_CHAPTERS, getChapter, loadChapter } from "@/lib/manual";
 import { SITE } from "@/lib/site";
 import { breadcrumbs, techArticle } from "@/lib/structured-data";
@@ -16,7 +17,10 @@ type Props = { params: Promise<{ kapitel: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const chapter = getChapter((await params).kapitel);
-  return chapter ? { title: `${chapter.title} — manual`, description: chapter.description } : {};
+  if (!chapter) return {};
+  // A chapter without its own entry falls back to the app's title and description.
+  const meta = MANUAL_META[chapter.slug] ?? chapter;
+  return { title: `${meta.title} — manual`, description: meta.description };
 }
 
 export default async function ChapterPage({ params }: Props) {

@@ -6,8 +6,9 @@ import { SITE } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Versioner",
-  description: "Vad som är nytt i varje version av Nav|ERP, och vad som kräver en åtgärd när ni uppdaterar.",
+  title: "Versioner och ändringslogg",
+  description:
+    "Vad som är nytt i varje version av Nav|ERP, vad som har ändrats och vad som kräver en åtgärd när ni uppdaterar er installation.",
 };
 
 // `code` spans in the release texts are written with backticks.

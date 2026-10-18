@@ -8,7 +8,7 @@ import { SITE } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Kom igång",
+  title: "Kom igång: installera med Docker",
   description: "Installera Nav|ERP på en egen server med Docker: krav, steg för steg, import av register, uppdatering och backup.",
 };
 

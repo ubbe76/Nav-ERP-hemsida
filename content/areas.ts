@@ -60,6 +60,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Behovsberäkningen räknar fram nettobehovet per artikel och föreslår inköps- och tillverkningsordrar.",
           "Beläggning: last mot tillgänglig tid per resurs och vecka, där röda dagar minskar kapaciteten.",
+          "Produktionsplanering: Planera lägger operationerna på resursernas lediga tid vecka för vecka, en operation kan flyttas och låsas för hand, och en ny tillverkningsorder planeras direkt.",
+          "Leveranstidskontrollen på kundordern räknar fram ett leveransdatum ur lager, inköp och kapacitet och kan skapa tillverkningsordrarna för det som saknas.",
           "Pågående arbete visar i realtid vem som jobbar med vad.",
         ],
       },
@@ -77,6 +79,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       { chapter: "tillverkning", label: "Kapitlet Tillverkning" },
       { chapter: "tillverkning", anchor: "behovsberakning", label: "Behovsberäkning" },
       { chapter: "tillverkning", anchor: "belaggning", label: "Beläggning" },
+      { chapter: "tillverkning", anchor: "planerade-veckor", label: "Planerade veckor" },
       { chapter: "terminal", label: "Stämpelterminalen" },
     ],
   },

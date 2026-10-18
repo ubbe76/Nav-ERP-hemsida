@@ -14,8 +14,8 @@ export function AnnouncementBar() {
         <span className={styles.badge}>Alfaversion</span>
         <span>
           Nav|ERP {latest.version} finns som öppen källkod <a href={SITE.repoUrl}>på GitHub</a> —{" "}
-          <Link href="/versioner/">se vad som är nytt</Link>. Det är en tidig version som ännu inte är redo för skarp
-          drift, men den går att prova — och varje synpunkt hjälper oss framåt.
+          <Link href="/versioner/">se vad som är nytt</Link>. En tidig version som ännu inte är redo för skarp drift,
+          men den går att prova.
         </span>
       </p>
     </section>

@@ -27,6 +27,20 @@
   white-space: nowrap;
 }
 
+/* On a phone the badge runs inline with the text instead of taking a row of its own. */
+@media (max-width: 640px) {
+  .inner {
+    display: block;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-right: 8px;
+  }
+}
+
 /* The link takes the bar's own text colour, so its contrast is the text's. */
 .inner a {
   color: inherit;

@@ -53,3 +53,10 @@ test("meddelandet om den tidiga versionen syns utan JavaScript", async ({ browse
   await expect(page.getByRole("region", { name: "Tidig version" })).toBeVisible();
   await context.close();
 });
+
+test("startsidan förklarar vad Nav|ERP är, med den senaste versionen", async ({ page }) => {
+  await page.goto("/");
+  const definition = page.getByRole("region", { name: "Vad är Nav|ERP?" });
+  await expect(definition).toContainText("Nav|ERP är ett affärssystem (ERP) med öppen källkod");
+  await expect(definition).toContainText(`senaste version är ${RELEASES[0]!.version}`);
+});

@@ -51,8 +51,8 @@ export default function OpenSourcePage() {
 
           <h2>Bakgrunden</h2>
           <p>
-            Nav|ERP byggs av någon som arbetar dagligen med inköp, tillverkning, lager och kalkyl i ett tillverkande
-            företag. Målet är ett system som täcker kärnflödet från artikel till kalkyl och bokföring — utan den
+            Nav|ERP byggs av Urban Källefors, som arbetar dagligen med inköp, tillverkning, lager och kalkyl i ett
+            tillverkande företag. Målet är ett system som täcker kärnflödet från artikel till kalkyl och bokföring — utan den
             komplexitet som gör stora affärssystem tunga att införa och dyra att äga.
           </p>
 

@@ -29,6 +29,13 @@
   margin-top: 32px;
 }
 
+.definition {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+  padding-bottom: var(--site-section-y);
+}
+
 .note {
   margin-top: 16px;
   color: var(--color-text-muted);

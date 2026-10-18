@@ -7,6 +7,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { HubDiagram } from "@/components/HubDiagram";
 import { Reveal } from "@/components/Reveal";
 import { Screenshot } from "@/components/Screenshot";
+import { RELEASES } from "@/content/releases";
 import type { ScreenshotKey } from "@/content/screenshots";
 import { SITE } from "@/lib/site";
 import styles from "./page.module.css";
@@ -20,7 +21,7 @@ const VALUES = [
   {
     icon: Wrench,
     title: "Byggt från verkstadsgolvet",
-    text: "Systemet byggs av någon som arbetar dagligen med inköp, tillverkning och kalkyl. Rutinerna följer hur ett tillverkande företag faktiskt jobbar.",
+    text: "Systemet byggs av Urban Källefors, som arbetar dagligen med inköp, tillverkning och kalkyl. Rutinerna följer hur ett tillverkande företag faktiskt jobbar.",
   },
   {
     icon: Receipt,
@@ -91,6 +92,19 @@ export default function Home() {
         </div>
         <div className={styles.heroShot}>
           <Screenshot shot="dashboard" />
+        </div>
+      </section>
+
+      {/* The one-paragraph answer to "what is Nav|ERP?" — written to be quoted as is. */}
+      <section className="container" aria-labelledby="vad-ar-nav-erp">
+        <div className={styles.definition}>
+          <h2 id="vad-ar-nav-erp">Vad är Nav|ERP?</h2>
+          <p className="lead">
+            Nav|ERP är ett affärssystem (ERP) med öppen källkod för mindre och medelstora tillverkande företag i
+            Sverige. Det samlar artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett
+            system, är gratis under licensen GPL-3.0 och körs på företagets egen server med Docker och PostgreSQL.
+            Nav|ERP byggs av Urban Källefors och är ännu i alfa — senaste version är {RELEASES[0]!.version}.
+          </p>
         </div>
       </section>
 

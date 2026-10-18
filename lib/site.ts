@@ -4,7 +4,8 @@
 export const SITE = {
   name: "Nav|ERP",
   description:
-    "Öppet källkod-ERP för svenska tillverkande företag: artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett system. Självhostat och utan licensavgifter.",
+    // Under 160 characters, so search results show it whole.
+    "Affärssystem med öppen källkod för svensk tillverkning: lager, inköp, försäljning, tillverkning, kalkyl och bokföring i ett system. Gratis och självhostat.",
   repoUrl: "https://github.com/ubbe76/Nav-ERP",
   cloneUrl: "https://github.com/ubbe76/Nav-ERP.git",
   // The issue chooser: Felrapport, Förslag and the private security report.

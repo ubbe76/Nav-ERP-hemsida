@@ -9,7 +9,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import styles from "./SiteHeader.module.css";
 
 export async function SiteHeader() {
-  const { stars } = await getRepoStats();
+  // A zero count reads as "nobody uses this" — show the number from the first star on.
+  const stars = (await getRepoStats()).stars || null;
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>

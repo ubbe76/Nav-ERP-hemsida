@@ -73,7 +73,7 @@ export default function Home() {
         <div className={styles.heroText}>
           <p className="eyebrow">Öppen källkod · GPL-3.0</p>
           <h1 className={styles.heroTitle}>
-            Affärssystemet för svensk tillverkning.
+            Affärssystemet för svensk tillverkning.{" "}
             <span>Öppet, självhostat och utan licensavgifter.</span>
           </h1>
           <p className={`lead ${styles.heroLead}`}>

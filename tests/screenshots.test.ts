@@ -76,7 +76,23 @@ describe("loadScreenshot", () => {
     const dir = mkdtempSync(path.join(os.tmpdir(), "shots-"));
     writeFileSync(path.join(dir, "screenshot-article.png"), fakePng(100, 50));
     expect(loadScreenshot("article", dir)).toEqual([
-      { src: "/screenshots/screenshot-article.png", themes: ["light", "dark", "dracula"], width: 100, height: 50 },
+      {
+        src: "/screenshots/screenshot-article.png",
+        webp: [],
+        themes: ["light", "dark", "dracula"],
+        width: 100,
+        height: 50,
+      },
+    ]);
+  });
+
+  it("listar de WebP-kopior som finns, minst först", () => {
+    const dir = mkdtempSync(path.join(os.tmpdir(), "shots-"));
+    writeFileSync(path.join(dir, "screenshot-article.png"), fakePng(2880, 1800));
+    for (const w of [2880, 720]) writeFileSync(path.join(dir, `screenshot-article-${w}.webp`), "");
+    expect(loadScreenshot("article", dir)[0]!.webp).toEqual([
+      { src: "/screenshots/screenshot-article-720.webp", width: 720 },
+      { src: "/screenshots/screenshot-article-2880.webp", width: 2880 },
     ]);
   });
 

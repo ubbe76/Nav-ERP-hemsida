@@ -6,6 +6,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { OG_IMAGE } from "@/lib/screenshots";
 import { SITE, absoluteUrl, withBase } from "@/lib/site";
 import { siteGraph } from "@/lib/structured-data";
 import { themeBootScript } from "@/lib/themes";
@@ -34,8 +35,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "sv_SE",
     siteName: SITE.name,
-    // The real product, light theme — no separate marketing image.
-    images: [{ url: absoluteUrl("/screenshots/screenshot-dashboard.png"), width: 2880, height: 1800, alt: "Översikten i Nav|ERP" }],
+    // The real product, light theme, cut to the 1200×630 link-preview size by scripts/optimize-screenshots.ts.
+    images: [
+      {
+        url: absoluteUrl(`/screenshots/${OG_IMAGE.file}`),
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: "Översikten i Nav|ERP",
+      },
+    ],
   },
   twitter: { card: "summary_large_image" },
   icons: {

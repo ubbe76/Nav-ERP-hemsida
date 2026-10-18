@@ -91,7 +91,7 @@ export default function Home() {
           <p className={styles.note}>Körs på er egen server med Docker. Ingen registrering.</p>
         </div>
         <div className={styles.heroShot}>
-          <Screenshot shot="dashboard" />
+          <Screenshot shot="dashboard" priority />
         </div>
       </section>
 

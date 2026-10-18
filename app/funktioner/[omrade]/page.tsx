@@ -43,7 +43,7 @@ export default async function AreaPage({ params }: Props) {
       <PageHero eyebrow="Funktioner" title={area.title} lead={area.intro} />
       {area.screenshot && (
         <div className="container">
-          <Screenshot shot={area.screenshot} />
+          <Screenshot shot={area.screenshot} priority />
         </div>
       )}
       {area.slug === "kalkyl" && (

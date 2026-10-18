@@ -16,9 +16,22 @@ export type Variants = Partial<Record<ThemeId, string>>;
 
 export interface ScreenshotImage {
   src: string;
+  /** WebP copies for <img srcset>; empty when they haven't been generated (tests, a bare sync). */
+  webp: Array<{ src: string; width: number }>;
   themes: ThemeId[];
   width: number;
   height: number;
+}
+
+/** Widths scripts/optimize-screenshots.ts writes: phone, 1x desktop, 2x desktop. */
+export const WEBP_WIDTHS = [720, 1440, 2880] as const;
+
+/** The link-preview card cut from the light dashboard, also by scripts/optimize-screenshots.ts. */
+export const OG_IMAGE = { file: "og-image.jpg", width: 1200, height: 630 } as const;
+
+/** screenshot-dashboard-dark.png at 720 px → screenshot-dashboard-dark-720.webp */
+export function webpName(png: string, width: number): string {
+  return png.replace(/\.png$/, `-${width}.webp`);
 }
 
 export function parseScreenshotName(file: string): { key: string; theme: ThemeId } | null {
@@ -63,8 +76,13 @@ export function loadScreenshot(key: string, dir: string = DEFAULT_DIR): Screensh
   if (!variants) {
     throw new Error(`Skärmdumpen "${key}" saknas i ${dir} — finns screenshot-${key}*.png i Nav-ERP/docs/assets?`);
   }
+  const files = new Set(readdirSync(dir));
   return resolveVariants(variants).map(({ file, themes }) => ({
     src: `/screenshots/${file}`,
+    webp: WEBP_WIDTHS.filter((w) => files.has(webpName(file, w))).map((w) => ({
+      src: `/screenshots/${webpName(file, w)}`,
+      width: w,
+    })),
     themes,
     ...pngSize(readFileSync(path.join(dir, file))),
   }));

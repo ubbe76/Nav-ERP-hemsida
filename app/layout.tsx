@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Figtree, Space_Grotesk } from "next/font/google";
 import { BackToTop } from "@/components/BackToTop";
+import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE, absoluteUrl, withBase } from "@/lib/site";
+import { siteGraph } from "@/lib/structured-data";
 import { themeBootScript } from "@/lib/themes";
 
 const spaceGrotesk = Space_Grotesk({
@@ -52,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="sv" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+        <JsonLd data={siteGraph()} />
       </head>
       <body suppressHydrationWarning className={`${spaceGrotesk.variable} ${figtree.variable}`}>
         <a href="#innehall" className="skipLink">

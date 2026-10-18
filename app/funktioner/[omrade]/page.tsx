@@ -5,9 +5,12 @@ import { notFound } from "next/navigation";
 import { CalcChain } from "@/components/CalcChain";
 import { CtaBand } from "@/components/CtaBand";
 import { FeatureGroups } from "@/components/FeatureGroups";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Screenshot } from "@/components/Screenshot";
 import { FEATURE_AREAS, getArea, manualHref } from "@/content/areas";
+import { SITE } from "@/lib/site";
+import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const dynamicParams = false;
@@ -30,6 +33,13 @@ export default async function AreaPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: SITE.name, path: "/" },
+          { name: "Funktioner", path: "/funktioner/" },
+          { name: area.title },
+        ])}
+      />
       <PageHero eyebrow="Funktioner" title={area.title} lead={area.intro} />
       {area.screenshot && (
         <div className="container">

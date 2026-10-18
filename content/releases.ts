@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.3.0-alpha",
+    date: "2026-10-18",
+    summary:
+      "Produktionsplanering: tillverkningsordrarnas operationer planeras på resursernas lediga kapacitet vecka för vecka, kan flyttas och låsas för hand, och Leveranstidskontrollen kan skapa tillverkningsordrarna för det som saknas direkt från kundordern.",
+    breaking: [
+      "Migration 0124 körs automatiskt när API:et startar och lägger till planerade veckor på operationerna. Befintliga tillverkningsordrar lämnas oplanerade och räknas i beläggningen som förut, i färdigdatumets vecka. Tryck Planera under Tillverkning → Beläggning en gång efter uppdateringen för att planera dem.",
+      "API: en tillverkningsorder som skapas med `POST /manufacturing-orders` planeras nu direkt i samma transaktion. `releaseWarnings` kan därför också innehålla planeringsvarningar, till exempel att ordern blir klar efter färdigdatumet eller hamnar utanför planeringshorisonten. Ordern skapas ändå; varningarna stoppar aldrig.",
+    ],
+    added: [
+      "Planera under Beläggning lägger alla öppna tillverkningsordrars operationer på resursernas lediga kapacitet, i färdigdatumsordning och i operationsordning. Sammanfattningsraden visar när planen senast gjordes och varnar för ordrar som blir sena.",
+      "Flytta… i beläggningens utfällda cell flyttar en operation till en annan vecka, som förval tillsammans med de efterföljande. En flyttad operation låses och ligger kvar vid nästa Planera tills någon väljer Lås upp.",
+      "En ny tillverkningsorder planeras direkt när den skapas, från alla vägar: Ny tillverkningsorder, kundorderradens Skapa TO, behovsberäkningens Skapa ordrar och API:t.",
+      "TO-listan och TO-kortet visar Planerad vecka, Sen och Låst. Terminalens operationslista har förvalet Planerad vecka.",
+      "Leveranstidskontroll på en bekräftad kundorder har kryssrutan Skapa tillverkningsordrar för det som saknas: Använd datumet skapar då hela strukturens tillverkningsordrar i de veckor kontrollen räknade med och låser dem, så att det lovade datumet håller. Har läget ändrats sedan kontrollen visas den nya kontrollen och ingenting skapas.",
+      "API: `POST /planning/plan`, `POST /planning/operations/:opId/move`, `POST /planning/operations/:opId/unlock` och `POST /delivery-time-check/apply`.",
+    ],
+    changed: [
+      "Beläggningen och Leveranstidskontrollen räknar en planerad operations återstående tid i de planerade veckorna i stället för i färdigdatumets vecka.",
+      "En operation på en resurs utan kalender blir inte längre klar en helgdag.",
+    ],
+  },
+  {
     version: "0.2.5-alpha",
     date: "2026-10-17",
     summary:

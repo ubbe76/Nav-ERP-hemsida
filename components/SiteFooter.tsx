@@ -36,6 +36,14 @@ export async function SiteFooter() {
               <li><a href="https://www.gnu.org/licenses/gpl-3.0.html">Licens: GPL-3.0-or-later</a></li>
             </ul>
           </div>
+          <div>
+            <h2 className={styles.colTitle}>Kontakt</h2>
+            <ul>
+              <li><Link href="/om/">Om Nav|ERP</Link></li>
+              <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+              <li><a href={SITE.newIssueUrl}>Rapportera ett fel</a></li>
+            </ul>
+          </div>
         </nav>
       </div>
       <div className={`container ${styles.bottom}`}>

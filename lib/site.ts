@@ -6,6 +6,7 @@ export const SITE = {
   description:
     // Under 160 characters, so search results show it whole.
     "Affärssystem med öppen källkod för svensk tillverkning: lager, inköp, försäljning, tillverkning, kalkyl och bokföring i ett system. Gratis och självhostat.",
+  email: "erp@kallefors.se",
   repoUrl: "https://github.com/ubbe76/Nav-ERP",
   cloneUrl: "https://github.com/ubbe76/Nav-ERP.git",
   // The issue chooser: Felrapport, Förslag and the private security report.

@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+// No canonical or og:url: the layout's "./" would resolve to the internal /_not-found/ route.
+export const metadata: Metadata = {
+  title: "Sidan finns inte",
+  alternates: { canonical: null },
+  openGraph: null,
+};
 
 export default function NotFound() {
   return (

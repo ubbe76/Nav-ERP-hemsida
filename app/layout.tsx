@@ -24,7 +24,11 @@ export const metadata: Metadata = {
   title: { default: `${SITE.name} — affärssystemet för svensk tillverkning`, template: `%s · ${SITE.name}` },
   description: SITE.description,
   metadataBase: new URL(absoluteUrl("/")),
+  // "./" resolves against each page's own path, so every page is its own canonical
+  // (and /index.html, or the manual rendered on GitHub, is not).
+  alternates: { canonical: "./" },
   openGraph: {
+    url: "./",
     type: "website",
     locale: "sv_SE",
     siteName: SITE.name,

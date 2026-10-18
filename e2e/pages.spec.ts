@@ -14,5 +14,14 @@ test.describe("alla sidor", () => {
         expect(overflow, `${route} vid ${width} px`).toBeLessThanOrEqual(0);
       }
     });
+
+    // The e2e build has no SITE_URL, so only the path is compared — the origin is checked in the build output.
+    test(`${route} är sin egen canonical och og:url`, async ({ page }) => {
+      await page.goto(route);
+      for (const selector of ['link[rel="canonical"]', 'meta[property="og:url"]']) {
+        const value = await page.locator(selector).getAttribute(selector.startsWith("link") ? "href" : "content");
+        expect(new URL(value ?? "").pathname, `${selector} på ${route}`).toBe(route);
+      }
+    });
   }
 });

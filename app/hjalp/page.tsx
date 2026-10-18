@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MANUAL_CHAPTERS } from "@/lib/manual";
+import { ManualSearch } from "@/components/ManualSearch";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -20,6 +21,9 @@ export default function ManualIndex() {
           Samma manual som finns inbyggd i Nav|ERP under Hjälp. Den beskriver varje rutin som den fungerar i dag och
           uppdateras i samma takt som programmet.
         </p>
+      </div>
+      <div style={{ marginTop: 32, maxWidth: 760 }}>
+        <ManualSearch />
       </div>
       {GROUPS.map((group) => (
         <section key={group} className={styles.group}>

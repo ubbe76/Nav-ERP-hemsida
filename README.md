@@ -22,7 +22,12 @@ redigeras aldrig här — ändra dem i Nav-ERP.
 | `docs/assets/screenshot-*.png` | `public/screenshots/` |
 | `apps/web/styles/tokens.css` | `styles/tokens.css` |
 | `apps/web/lib/manual.ts` | `lib/upstream/manual.ts` |
+| `apps/web/lib/manualSearch.ts` | `lib/upstream/manualSearch.ts` |
 | `apps/web/components/ui/Wordmark.*` | `components/upstream/` |
+
+Manualens sökning: sökindexet (`/hjalp/index.json`, ett avsnitt per rubrik) byggs vid `build` ur
+de synkade kapitlen av `lib/manual-index.ts`, och `ManualSearch` söker i det i webbläsaren med den
+delade rena `manualSearch.ts`.
 
 Källan är `NAV_ERP_DIR`, annars `../dev`, annars en klon av GitHub-repot.
 

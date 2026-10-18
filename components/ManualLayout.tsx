@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { MANUAL_CHAPTERS, splitAtTitle, type TocEntry } from "@/lib/manual";
 import { ChapterToc } from "./ChapterToc";
+import { ManualSearch } from "./ManualSearch";
 import { MobileMenu } from "./MobileMenu";
 import styles from "./ManualLayout.module.css";
 
@@ -27,6 +28,7 @@ export function ManualLayout({ current, html, toc }: { current: string; html: st
         </ul>
       </nav>
       <article className={`prose ${styles.article}`}>
+        <ManualSearch />
         <div dangerouslySetInnerHTML={{ __html: title }} />
         {toc.length > 0 && (
           <MobileMenu

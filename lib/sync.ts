@@ -18,6 +18,7 @@ export const SYNC_ITEMS: SyncItem[] = [
   { from: "docs/assets", to: "public/screenshots", match: /^screenshot-.+\.png$/ },
   { from: "apps/web/styles/tokens.css", to: "styles/tokens.css" },
   { from: "apps/web/lib/manual.ts", to: "lib/upstream/manual.ts" },
+  { from: "apps/web/lib/manualSearch.ts", to: "lib/upstream/manualSearch.ts" },
   { from: "apps/web/components/ui/Wordmark.tsx", to: "components/upstream/Wordmark.tsx" },
   { from: "apps/web/components/ui/Wordmark.module.css", to: "components/upstream/Wordmark.module.css" },
 ];

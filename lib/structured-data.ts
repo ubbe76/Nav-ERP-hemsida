@@ -38,6 +38,18 @@ export function siteGraph() {
         name: AUTHOR.name,
         url: absoluteUrl("/om/"),
         email: SITE.email,
+        // Confirmed by him (2026-10-19), as on /om/.
+        description:
+          "Har arbetat i mekaniska verkstäder sedan 1999 med produktionsberedning, planering, offerter, IT och CAD-konstruktion.",
+        knowsAbout: [
+          "Produktionsberedning",
+          "Produktionsplanering",
+          "Offertkalkyl",
+          "Affärssystem",
+          "CAD-konstruktion",
+          "Plåtbearbetning",
+          "Skärande bearbetning",
+        ],
         sameAs: [AUTHOR.profileUrl],
       },
     ],

@@ -17,6 +17,10 @@
   margin: 12px 0 0;
 }
 
+.demo {
+  margin-bottom: 24px;
+}
+
 .notice {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);

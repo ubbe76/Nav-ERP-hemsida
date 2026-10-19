@@ -12,6 +12,9 @@ export const SITE = {
   // The issue chooser: Felrapport, Förslag and the private security report.
   newIssueUrl: "https://github.com/ubbe76/Nav-ERP/issues/new/choose",
   securityUrl: "https://github.com/ubbe76/Nav-ERP/security/advisories/new",
+  // The public demo: a shared visitor account marked Endast läsning, so
+  // visitors can open everything but change nothing. Published on purpose.
+  demo: { url: "https://demo.naverp.se", user: "besok@demo.naverp.se", password: "visamigdemo" },
 } as const;
 
 export function basePath(): string {

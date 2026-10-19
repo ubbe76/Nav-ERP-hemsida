@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CtaBand } from "@/components/CtaBand";
+import { DemoBox } from "@/components/DemoBox";
 import { PageHero } from "@/components/PageHero";
 import { HARDWARE } from "@/content/hardware";
 import { SITE } from "@/lib/site";
@@ -91,6 +92,10 @@ export default function GetStartedPage() {
             ändras mellan versioner, och det finns säkert fel vi inte har hittat än. Hittar ni ett,{" "}
             <a href={SITE.newIssueUrl}>berätta gärna</a>.
           </p>
+        </div>
+
+        <div className={styles.demo}>
+          <DemoBox />
         </div>
 
         <section className={styles.needs}>

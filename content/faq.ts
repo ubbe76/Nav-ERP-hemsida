@@ -110,8 +110,8 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "prova",
         question: "Kan vi prova utan att lägga in egna data?",
         answer:
-          "Ja. På en ny installation skapar System → Exempeldata ett påhittat företag som tillverkar storköksinredning, med resurser, leverantörer, kunder och artiklar med struktur och operationer. Därifrån kan ni lägga en kundorder och följa flödet hela vägen.",
-        more: { href: "/hjalp/system/#exempeldata", label: "Exempeldata i manualen" },
+          "Ja. Enklast är demon på demo.naverp.se, ett påhittat företag med ordrar, planering och bokföring, där ni loggar in med ett konto som bara kan läsa. På en egen installation skapar System → Exempeldata samma påhittade företag, och där kan ni lägga en kundorder och följa flödet hela vägen.",
+        more: { href: "/kom-igang/#demo", label: "Inloggningen till demon" },
       },
       {
         id: "anvandare",

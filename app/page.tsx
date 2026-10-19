@@ -4,6 +4,7 @@ import { AnnouncementBar } from "@/components/AnnouncementBar";
 import { CalcChain } from "@/components/CalcChain";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CtaBand } from "@/components/CtaBand";
+import { DemoBox } from "@/components/DemoBox";
 import { FaqList } from "@/components/FaqList";
 import { HubDiagram } from "@/components/HubDiagram";
 import { Reveal } from "@/components/Reveal";
@@ -90,7 +91,10 @@ export default function Home() {
               Se funktionerna
             </Link>
           </div>
-          <p className={styles.note}>Körs på er egen server med Docker. Ingen registrering.</p>
+          <p className={styles.note}>
+            Körs på er egen server med Docker. Ingen registrering. <a href="#demo">Prova demon</a> direkt i
+            webbläsaren.
+          </p>
         </div>
         <div className={styles.heroShot}>
           <Screenshot shot="dashboard" priority />
@@ -107,6 +111,9 @@ export default function Home() {
             system, är gratis under licensen GPL-3.0 och körs på företagets egen server med Docker och PostgreSQL.
             Nav|ERP byggs av Urban Källefors och är ännu i alfa — senaste version är {RELEASES[0]!.version}.
           </p>
+        </div>
+        <div className={styles.demo}>
+          <DemoBox />
         </div>
       </section>
 

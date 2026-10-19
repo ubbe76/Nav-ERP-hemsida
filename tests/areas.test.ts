@@ -17,6 +17,31 @@ describe("funktionsområdena", () => {
     }
   });
 
+  it("har ett exempel, en lista över det som saknas och vanliga frågor", () => {
+    for (const area of FEATURE_AREAS) {
+      expect(area.example.steps.length, area.slug).toBeGreaterThanOrEqual(4);
+      expect(area.limits.length, area.slug).toBeGreaterThanOrEqual(2);
+      expect(area.faq.length, area.slug).toBeGreaterThanOrEqual(4);
+      // The page's own section ids.
+      for (const g of area.groups) expect(["exempel", "saknas", "fragor"], `${area.slug}#${g.id}`).not.toContain(g.id);
+    }
+  });
+
+  it("har tillräckligt med text för att svara på frågan, inte bara rubriker", () => {
+    for (const area of FEATURE_AREAS) {
+      const text = [
+        area.intro,
+        ...area.groups.flatMap((g) => [g.title, ...g.points]),
+        area.example.title,
+        area.example.intro ?? "",
+        ...area.example.steps,
+        ...area.limits,
+        ...area.faq.flatMap((f) => [f.question, f.answer]),
+      ].join(" ");
+      expect(text.split(/\s+/).length, area.slug).toBeGreaterThanOrEqual(550);
+    }
+  });
+
   it("länkar bara till manualkapitel och rubriker som finns", () => {
     for (const area of FEATURE_AREAS) {
       for (const ref of area.manual) {

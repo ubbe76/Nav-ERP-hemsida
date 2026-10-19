@@ -23,6 +23,41 @@
   color: var(--color-text-secondary);
 }
 
+.text,
+.faq {
+  display: grid;
+  gap: 16px;
+  color: var(--color-text-secondary);
+}
+
+.text p,
+.faq p {
+  margin: 0;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.steps li::marker {
+  color: var(--accent-fg);
+  font-weight: 600;
+}
+
+.faq {
+  gap: 24px;
+}
+
+.question {
+  margin: 0 0 6px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  color: var(--color-text-primary);
+}
+
 @media (max-width: 640px) {
   .group {
     grid-template-columns: minmax(0, 1fr);

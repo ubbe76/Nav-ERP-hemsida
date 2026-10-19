@@ -61,3 +61,14 @@
     padding: 24px;
   }
 }
+
+.guide {
+  max-width: var(--measure);
+  margin: 40px 0 0;
+  color: var(--color-text-secondary);
+}
+
+.guide a {
+  color: var(--accent-fg);
+  font-weight: 600;
+}

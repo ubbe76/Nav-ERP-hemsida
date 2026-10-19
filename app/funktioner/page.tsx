@@ -48,6 +48,10 @@ export default function FeaturesPage() {
             </li>
           ))}
         </ul>
+        <p className={styles.guide}>
+          Ska ni välja affärssystem? <Link href="/affarssystem-for-tillverkning/">Läs checklistan</Link> med det ett
+          affärssystem för tillverkning ska klara, och hur Nav|ERP klarar varje punkt.
+        </p>
       </div>
       <CtaBand
         title="Se det med egna ögon"

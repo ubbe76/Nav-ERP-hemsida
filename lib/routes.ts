@@ -6,6 +6,7 @@ export function allRoutes(): string[] {
   return [
     "/",
     "/funktioner/",
+    "/affarssystem-for-tillverkning/",
     ...FEATURE_AREAS.map((a) => `/funktioner/${a.slug}/`),
     "/kom-igang/",
     "/gratis-affarssystem/",

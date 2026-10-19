@@ -12,6 +12,7 @@ import { MANUAL_DATES_FILE } from "./sync";
 /** Files in this repo whose changes count as a change to the page's content. */
 export function routeSources(route: string): string[] {
   if (route === "/") return ["app/page.tsx", "content/releases.ts", "content/faq.ts"];
+  if (route === "/affarssystem-for-tillverkning/") return ["app/affarssystem-for-tillverkning/page.tsx", "content/guide.ts"];
   if (route === "/fragor/") return ["app/fragor/page.tsx", "content/faq.ts"];
   if (route === "/verktyg/paslagskalkyl/") return ["app/verktyg/paslagskalkyl/page.tsx", "lib/calc.ts"];
   if (route === "/funktioner/") return ["app/funktioner/page.tsx", "content/areas.ts"];

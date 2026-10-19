@@ -20,6 +20,7 @@ describe("allRoutes", () => {
     expect(routes).toContain("/gratis-affarssystem/");
     expect(routes).toContain("/fragor/");
     expect(routes).toContain("/verktyg/paslagskalkyl/");
-    expect(routes).toHaveLength(10 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
+    expect(routes).toContain("/affarssystem-for-tillverkning/");
+    expect(routes).toHaveLength(11 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
   });
 });

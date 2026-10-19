@@ -24,6 +24,7 @@ export async function SiteFooter() {
             <ul>
               <li><Link href="/funktioner/">Funktioner</Link></li>
               <li><Link href="/kom-igang/">Kom igång</Link></li>
+              <li><Link href="/affarssystem-for-tillverkning/">Välja affärssystem</Link></li>
               <li><Link href="/gratis-affarssystem/">Vad det kostar</Link></li>
               <li><Link href="/fragor/">Vanliga frågor</Link></li>
               <li><Link href="/verktyg/paslagskalkyl/">Påläggskalkyl</Link></li>

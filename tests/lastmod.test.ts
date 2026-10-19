@@ -32,7 +32,10 @@ describe("gitDates", () => {
   it("ger varje fils senaste commitdatum och hoppar över filer utan commit", async () => {
     const dir = await repo();
     await writeFile(path.join(dir, "ny.md"), "ny");
-    expect(gitDates(dir, ["a.md", "b.md", "ny.md"])).toEqual({ "a.md": "2026-01-02", "b.md": "2026-03-04" });
+    expect(gitDates(dir, ["a.md", "b.md", "ny.md"])).toEqual({
+      "a.md": "2026-01-02T10:00:00.000Z",
+      "b.md": "2026-03-04T10:00:00.000Z",
+    });
   });
 
   it("ger inga datum från en grund klon, där alla filer skulle få samma datum", async () => {

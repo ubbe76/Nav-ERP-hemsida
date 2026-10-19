@@ -19,7 +19,7 @@ export function ManualLayout({
   current: string;
   html: string;
   toc: TocEntry[];
-  /** YYYY-MM-DD of the chapter's last change, when known. */
+  /** ISO timestamp of the chapter's last change, when known. */
   updated?: string;
 }) {
   const { title, body } = splitAtTitle(html);
@@ -82,4 +82,4 @@ export function ManualLayout({
 }
 
 const formatDate = (date: string) =>
-  new Intl.DateTimeFormat("sv-SE", { dateStyle: "long", timeZone: "UTC" }).format(new Date(date));
+  new Intl.DateTimeFormat("sv-SE", { dateStyle: "long", timeZone: "Europe/Stockholm" }).format(new Date(date));

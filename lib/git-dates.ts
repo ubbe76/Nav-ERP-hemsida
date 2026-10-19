@@ -4,9 +4,10 @@ const git = (repoDir: string, args: string[]) =>
   execFileSync("git", ["-C", repoDir, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
 
 /**
- * Date (YYYY-MM-DD) of the last commit touching each file, keyed by the given
- * path. Empty when git can't vouch for the dates: not a repository, or a
- * shallow clone, where every file would get the one fetched commit's date.
+ * Time of the last commit touching each file, as an ISO timestamp in UTC (so
+ * they sort as strings), keyed by the given path. Empty when git can't vouch
+ * for the dates: not a repository, or a shallow clone, where every file would
+ * get the one fetched commit's date.
  * Files without a commit (new, untracked) are left out.
  */
 export function gitDates(repoDir: string, files: string[]): Record<string, string> {
@@ -14,8 +15,10 @@ export function gitDates(repoDir: string, files: string[]): Record<string, strin
     if (git(repoDir, ["rev-parse", "--is-shallow-repository"]) !== "false") return {};
     const dates: Record<string, string> = {};
     for (const file of files) {
-      const date = git(repoDir, ["log", "-1", "--format=%cs", "--", file]);
-      if (date) dates[file] = date;
+      // Full time, not just the day: a second change the same day must still
+      // move the sitemap's lastmod, or IndexNow never hears of it.
+      const seconds = git(repoDir, ["log", "-1", "--format=%ct", "--", file]);
+      if (seconds) dates[file] = new Date(Number(seconds) * 1000).toISOString();
     }
     return dates;
   } catch {

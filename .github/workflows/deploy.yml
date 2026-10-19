@@ -23,8 +23,11 @@ jobs:
     env:
       NAV_ERP_DIR: ${{ github.workspace }}/.nav-erp
     steps:
+      # Full history in both checkouts: the sitemap's lastmod and the manual's
+      # "uppdaterad" date come from git, and a shallow clone has no dates to give.
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
 
       # The ERP repo holds the manual, screenshots and tokens. NAV_ERP_SECRET
@@ -33,6 +36,7 @@ jobs:
         with:
           repository: ubbe76/Nav-ERP
           path: .nav-erp
+          fetch-depth: 0
           token: ${{ secrets.NAV_ERP_SECRET || github.token }}
           persist-credentials: false
 

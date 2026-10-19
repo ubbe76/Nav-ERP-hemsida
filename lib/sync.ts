@@ -14,7 +14,8 @@ export interface SyncItem {
 }
 
 export const SYNC_ITEMS: SyncItem[] = [
-  { from: "docs/manual", to: "content/manual", match: /\.md$/ },
+  // README.md is the folder's index on GitHub, not a chapter.
+  { from: "docs/manual", to: "content/manual", match: /^(?!README\.md$).+\.md$/ },
   { from: "docs/assets", to: "public/screenshots", match: /^screenshot-.+\.png$/ },
   { from: "apps/web/styles/tokens.css", to: "styles/tokens.css" },
   { from: "apps/web/lib/manual.ts", to: "lib/upstream/manual.ts" },
@@ -22,6 +23,9 @@ export const SYNC_ITEMS: SyncItem[] = [
   { from: "apps/web/components/ui/Wordmark.tsx", to: "components/upstream/Wordmark.tsx" },
   { from: "apps/web/components/ui/Wordmark.module.css", to: "components/upstream/Wordmark.module.css" },
 ];
+
+/** Chapter file → date of its last commit in Nav-ERP, written by scripts/sync-content.ts. */
+export const MANUAL_DATES_FILE = path.join("content", "manual-dates.json");
 
 export class SyncError extends Error {}
 

@@ -19,3 +19,10 @@ test("manualen går att läsa utan JavaScript", async ({ browser }) => {
   await expect(page.getByRole("heading", { level: 1, name: "Lager" })).toBeVisible();
   await context.close();
 });
+
+test("kapitlet visar när det uppdaterades och senaste versionen", async ({ page }) => {
+  await page.goto("/hjalp/lager/");
+  const meta = page.locator("article p").filter({ hasText: "senaste version" });
+  await expect(meta).toContainText(/Uppdaterad \d{1,2} \p{L}+ \d{4} · senaste version \d+\.\d+\.\d+/u);
+  await expect(meta.locator("time")).toHaveAttribute("datetime", /^\d{4}-\d{2}-\d{2}$/);
+});

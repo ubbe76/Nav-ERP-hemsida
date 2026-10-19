@@ -82,8 +82,11 @@ export function breadcrumbs(trail: Array<{ name: string; path?: string }>) {
   };
 }
 
-/** A manual chapter. No dates: the chapters carry none we could vouch for. */
-export function techArticle(chapter: ManualChapter) {
+/**
+ * A manual chapter. `dateModified` is its file's last commit in Nav-ERP, when
+ * known; no datePublished, as there is none we could vouch for.
+ */
+export function techArticle(chapter: ManualChapter, dateModified?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -94,5 +97,6 @@ export function techArticle(chapter: ManualChapter) {
     isPartOf: { "@id": WEBSITE_ID() },
     about: { "@id": SOFTWARE_ID() },
     author: { "@id": AUTHOR_ID() },
+    ...(dateModified && { dateModified }),
   };
 }

@@ -31,7 +31,7 @@ test("avsnittslänkarna finns överst i kapitlet på mobil", async ({ page, isMo
   const [h1, summary, firstParagraph] = await Promise.all([
     page.getByRole("heading", { level: 1 }).boundingBox(),
     list.locator("summary").boundingBox(),
-    page.locator("article p").first().boundingBox(),
+    page.locator("article details ~ div p").first().boundingBox(),
   ]);
   expect(summary!.y).toBeGreaterThan(h1!.y);
   expect(summary!.y).toBeLessThan(firstParagraph!.y);

@@ -5,6 +5,7 @@ next-env.d.ts
 *.tsbuildinfo
 # Synced from Nav-ERP by scripts/sync-content.ts — never edit by hand.
 content/manual/
+content/manual-dates.json
 public/screenshots/
 styles/tokens.css
 lib/upstream/

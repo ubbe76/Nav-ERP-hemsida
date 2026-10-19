@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { RELEASES } from "@/content/releases";
 import { MANUAL_CHAPTERS, splitAtTitle, type TocEntry } from "@/lib/manual";
 import { ChapterToc } from "./ChapterToc";
 import { ManualSearch } from "./ManualSearch";
@@ -9,7 +10,18 @@ import styles from "./ManualLayout.module.css";
 // The chapter's own "# Title" is the page's h1, so this layout adds none.
 // Section links: a sticky side list on wide screens, a collapsible list under
 // the title on narrow ones (MobileMenu closes it when a link is tapped).
-export function ManualLayout({ current, html, toc }: { current: string; html: string; toc: TocEntry[] }) {
+export function ManualLayout({
+  current,
+  html,
+  toc,
+  updated,
+}: {
+  current: string;
+  html: string;
+  toc: TocEntry[];
+  /** YYYY-MM-DD of the chapter's last change, when known. */
+  updated?: string;
+}) {
   const { title, body } = splitAtTitle(html);
   return (
     <div className={`container ${styles.layout}`}>
@@ -30,6 +42,19 @@ export function ManualLayout({ current, html, toc }: { current: string; html: st
       <article className={`prose ${styles.article}`}>
         <ManualSearch />
         <div dangerouslySetInnerHTML={{ __html: title }} />
+        {/* The manual follows Nav-ERP's main branch, so it can run ahead of the latest
+            release: the line names the latest version rather than claiming the chapter
+            matches it. */}
+        <p className={styles.meta}>
+          {updated ? (
+            <>
+              Uppdaterad <time dateTime={updated}>{formatDate(updated)}</time> · senaste version{" "}
+            </>
+          ) : (
+            "Senaste version "
+          )}
+          <Link href="/versioner/">{RELEASES[0]!.version}</Link>
+        </p>
         {toc.length > 0 && (
           <MobileMenu
             className={styles.tocMobile}
@@ -55,3 +80,6 @@ export function ManualLayout({ current, html, toc }: { current: string; html: st
     </div>
   );
 }
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("sv-SE", { dateStyle: "long", timeZone: "UTC" }).format(new Date(date));

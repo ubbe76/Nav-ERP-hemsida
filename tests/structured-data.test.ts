@@ -54,3 +54,12 @@ describe("techArticle", () => {
     expect(article.about).toEqual({ "@id": "https://naverp.se/#software" });
   });
 });
+
+describe("techArticle med datum", () => {
+  it("anger dateModified bara när datumet är känt", () => {
+    stubSite();
+    const chapter = MANUAL_CHAPTERS[0]!;
+    expect(techArticle(chapter, "2026-10-18").dateModified).toBe("2026-10-18");
+    expect(techArticle(chapter)).not.toHaveProperty("dateModified");
+  });
+});

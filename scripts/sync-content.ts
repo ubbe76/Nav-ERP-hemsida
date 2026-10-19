@@ -1,8 +1,9 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { SyncError, syncContent } from "../lib/sync";
+import { gitDates } from "../lib/git-dates";
+import { MANUAL_DATES_FILE, SyncError, syncContent } from "../lib/sync";
 
 // Source: NAV_ERP_DIR, else the sibling checkout ../dev. Only when neither is
 // set up do we shallow-clone the public repo (CI checks the repo out itself
@@ -27,9 +28,30 @@ async function main() {
   try {
     const copied = await syncContent(source, root);
     console.log(`sync: ${copied.length} filer från ${tmp ? REPO : source}`);
+    // The copies lose their history, so record each chapter's last commit date now.
+    const chapters = copied.filter((f) => f.startsWith("content/manual/")).map((f) => path.basename(f));
+    const dates = gitDates(source, chapters.map((f) => `docs/manual/${f}`));
+    const byFile = Object.fromEntries(Object.entries(dates).map(([f, d]) => [path.basename(f), d]));
+    writeFileSync(path.join(root, MANUAL_DATES_FILE), `${JSON.stringify(byFile, null, 2)}\n`);
+    console.log(`sync: datum för ${Object.keys(byFile).length} av ${chapters.length} manualkapitel`);
+    warnUnlistedChapters(source, chapters);
   } finally {
     if (tmp) rmSync(tmp, { recursive: true, force: true });
   }
+}
+
+// docs/manual/README.md links each chapter to its page here — the GitHub copy
+// points readers to the site. Only a warning: a stale index shouldn't stop a deploy.
+function warnUnlistedChapters(source: string, chapters: string[]) {
+  let readme: string;
+  try {
+    readme = readFileSync(path.join(source, "docs/manual/README.md"), "utf8");
+  } catch {
+    console.warn("sync: varning: docs/manual/README.md saknas i Nav-ERP");
+    return;
+  }
+  const missing = chapters.filter((f) => !readme.includes(`(${f})`));
+  if (missing.length) console.warn(`sync: varning: docs/manual/README.md saknar ${missing.join(", ")}`);
 }
 
 main().catch((err: unknown) => {

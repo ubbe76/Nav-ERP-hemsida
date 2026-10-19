@@ -56,6 +56,17 @@
   color: var(--color-text-primary);
 }
 
+/* .article for weight over .prose p's margin. */
+.article .meta {
+  margin: -8px 0 24px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.meta a {
+  white-space: nowrap;
+}
+
 .tocTitle {
   margin: 0 0 8px 10px;
   font-size: 12px;

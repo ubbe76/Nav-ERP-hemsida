@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { ManualLayout } from "@/components/ManualLayout";
 import { MANUAL_META } from "@/content/manual-meta";
+import { manualDate } from "@/lib/lastmod";
 import { MANUAL_CHAPTERS, getChapter, loadChapter } from "@/lib/manual";
 import { SITE } from "@/lib/site";
 import { breadcrumbs, techArticle } from "@/lib/structured-data";
@@ -27,9 +28,10 @@ export default async function ChapterPage({ params }: Props) {
   const chapter = getChapter((await params).kapitel);
   if (!chapter) notFound();
   const { html, toc } = loadChapter(chapter);
+  const updated = manualDate(chapter);
   return (
     <>
-      <JsonLd data={techArticle(chapter)} />
+      <JsonLd data={techArticle(chapter, updated)} />
       <JsonLd
         data={breadcrumbs([
           { name: SITE.name, path: "/" },
@@ -37,7 +39,7 @@ export default async function ChapterPage({ params }: Props) {
           { name: chapter.title },
         ])}
       />
-      <ManualLayout current={chapter.slug} html={html} toc={toc} />
+      <ManualLayout current={chapter.slug} html={html} toc={toc} updated={updated} />
     </>
   );
 }

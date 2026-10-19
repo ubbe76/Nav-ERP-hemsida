@@ -67,8 +67,22 @@
   color: var(--color-text-muted);
 }
 
+.field > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 767px) {
   .calc {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Long labels ("tillverkningskostnaden") beside a 120 px field don't fit a phone: stack them. */
+@media (max-width: 480px) {
+  .field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 }

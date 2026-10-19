@@ -12,6 +12,34 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.4.0-alpha",
+    date: "2026-10-19",
+    summary:
+      "Leveransdatum per orderrad och bekräftat leveransdatum på inköpsorder, ny leveransadress direkt på kundordern, ändringar av material och operationer på en skapad tillverkningsorder, orderförteckning för kundorder och inköp, nummerserie för artikelnummer, användarkonton som bara kan läsa och sökning i manualen.",
+    breaking: [
+      "Migrationerna 0125–0128 körs automatiskt när API:et startar. Befintliga orderrader och inköpsordrar får inga egna datum — de följer orderns datum som förut.",
+      "Planeringen räknar inköpsorderns rader på Bekräftat leveransdatum när ett sådant finns, före Önskat leveransdatum. Kundorder- och inköpsorderlistornas Leveransdatum och Översiktens försenade ordrar visar nu nästa leveransdatum bland raderna som inte är fullt levererade eller mottagna, i stället för orderhuvudets datum.",
+      "Planera, Flytta och en ny tillverkningsorder varnar när en operation ensam skulle fylla resursen i fler än 4 normalveckor. Gränsen ställs in under Systeminställningar (Orimligt mycket tid på en operation (veckor), 0 stänger av varningen). Operationen planeras ändå.",
+      "Rapporten Kalkylutfall jämför nu varje orders efterkalkyl med artikelns förkalkyl som gällde då, så siffrorna ändras. API: räknaren `notComparable.onlyPre` är borttagen.",
+      "API: en rad på en leverantörsfaktura kan IO-matchas mot en inköpsorder från en annan leverantör än fakturans — bara artikeln måste stämma. `PATCH /supplier-invoices/:id` tar `supplierId` på ett utkast.",
+    ],
+    added: [
+      "Kundorderrader kan få ett eget Leveransdatum (Ny kundorder med Eget leveransdatum per rad, kortets Lägg till rad och Ändra). Offert, orderbekräftelse och plocklista skriver radens datum när det avviker från orderns.",
+      "Inköpsordern har Bekräftat leveransdatum i huvudet och per rad; raderna ärver huvudets.",
+      "+ Ny leveransadress… i Ny kundorder, Ny offert och Ändra orderhuvud. Utan Spara på kunden blir adressen en engångsadress som bara gäller ordern.",
+      "Material och operationer kan läggas till, ändras och tas bort på en Frisläppt eller Pågående tillverkningsorder, utan att artikelns beredning ändras. Operationsändringar planerar om ordern direkt.",
+      "Rapporter → Orderförteckning kundorder och Orderförteckning inköp: ordervärde och restvärde per order eller med rader, urval på datum, kund/leverantör, status, artikel och artikelgrupp, som PDF i liggande A4 och CSV.",
+      "Ett tomt Artikelnummer i Ny artikel får nästa lediga nummer ur standardserien Artikelnummer eller ur en egen artikelserie som kopplas till artikelgrupper (System → Nummerserier → Egna artikelserier).",
+      "Endast läsning under System → Användare: kontot ser allt dess behörighetsgrupp ger men kan inte ändra något.",
+      "Ny leverantörsfaktura förifyller Momsbelopp och Bruttobelopp ur nettot och Momssats, och fakturan kan registreras med Betalas till en annan leverantör.",
+      "Sökfält i manualen, på Hjälp och ovanför varje kapitel.",
+      "API: `newDeliveryAddress` på `POST /quotes` och `PATCH /sales-orders/:id`, `expectedDeliveryDate` på kundorderrader, `confirmedDeliveryDate` på inköpsorder och inköpsorderrader, `nextDeliveryDate` i orderlistorna, `POST /articles` utan `articleNumber`, `GET /reports/sales-order-register` och `/reports/purchase-order-register`, och `POST/PATCH/DELETE /manufacturing-orders/:id/materials` och `…/operations`.",
+    ],
+    changed: [
+      "Ett konto som är markerat Endast läsning får 403 `read-only-account` på allt utom läsningar. En administratör kan inte vara Endast läsning.",
+    ],
+  },
+  {
     version: "0.3.0-alpha",
     date: "2026-10-18",
     summary:

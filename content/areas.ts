@@ -192,6 +192,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Artikelgrupper, alternativa enheter och leverantörskatalog med staffelpriser.",
           "Import av artiklar, struktur och operationer från CSV — kom igång med data från ert gamla system.",
           "En ny artikel kan kopiera uppgifter, beredning, leverantörer och ritningar från en befintlig artikel.",
+          "Artikelnummer ur en nummerserie, med egna serier per artikelgrupp.",
         ],
       },
       {
@@ -301,6 +302,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Prislistor och kundpriser, med import av kunder och priser från CSV.",
           "Samlingsfakturering: en faktura per kund för alla levererade, ofakturerade rader.",
           "Täckningsbidrag och täckningsgrad på offerten och ordern, räknat mot artiklarnas förkalkyl.",
+          "Eget leveransdatum per orderrad, och en ny leveransadress kan skrivas in direkt på ordern.",
         ],
       },
       {
@@ -310,6 +312,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Prisförfrågan → inköpsorder → inleverans, med tillåten överleverans som inställning och möjlighet att ångra en inleverans.",
           "Leverantörer och inköpspriser med import från CSV.",
           "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post.",
+          "Önskat och bekräftat leveransdatum på inköpsordern och per rad — planeringen räknar med det bekräftade.",
+          "Orderförteckning för kundorder och inköp med ordervärde och restvärde, som PDF och CSV.",
         ],
       },
       {

@@ -66,6 +66,21 @@ export default async function AreaPage({ params }: Props) {
           </ul>
         </aside>
       </div>
+      {area.gallery && (
+        <section className={`container ${styles.gallery}`} aria-labelledby="sa-ser-det-ut">
+          <h2 id="sa-ser-det-ut">Så ser det ut</h2>
+          <div className={styles.shots}>
+            {area.gallery.map(({ shot, caption }) => (
+              <Screenshot
+                key={shot}
+                shot={shot}
+                caption={caption}
+                sizes="(min-width: 1280px) 584px, (min-width: 768px) 50vw, 100vw"
+              />
+            ))}
+          </div>
+        </section>
+      )}
       <nav className="container" aria-label="Fler funktionsområden">
         <h2 className={styles.othersTitle}>Fler områden</h2>
         <ul className={styles.others}>

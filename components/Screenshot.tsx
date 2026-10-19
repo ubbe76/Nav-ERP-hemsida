@@ -15,10 +15,13 @@ export function Screenshot({
   shot,
   caption,
   priority = false,
+  sizes = "(min-width: 1280px) 1200px, 100vw",
 }: {
   shot: ScreenshotKey;
   caption?: string;
   priority?: boolean;
+  /** The rendered width, for picking a srcset candidate. Defaults to the full 1200 px container. */
+  sizes?: string;
 }) {
   const images = loadScreenshot(shot);
   return (
@@ -33,8 +36,7 @@ export function Screenshot({
               data-themes={img.themes.join(" ")}
               src={withBase(img.src)}
               srcSet={img.webp.map((w) => `${withBase(w.src)} ${w.width}w`).join(", ") || undefined}
-              // Never wider than the 1200 px container.
-              sizes={img.webp.length ? "(min-width: 1280px) 1200px, 100vw" : undefined}
+              sizes={img.webp.length ? sizes : undefined}
               width={img.width}
               height={img.height}
               alt={SCREENSHOTS[shot]}

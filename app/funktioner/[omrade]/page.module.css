@@ -40,6 +40,21 @@
   font-size: 15px;
 }
 
+.gallery {
+  padding-bottom: var(--site-section-y);
+}
+
+.gallery h2 {
+  margin-bottom: 24px;
+  font-size: 22px;
+}
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
 .othersTitle {
   margin-bottom: 16px;
   font-family: var(--font-body);
@@ -68,6 +83,12 @@
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .shots {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 1024px) {

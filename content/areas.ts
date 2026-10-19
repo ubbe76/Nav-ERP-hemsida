@@ -37,6 +37,8 @@ export interface FeatureArea {
   seoTitle: string;
   description: string;
   screenshot?: ScreenshotKey;
+  /** More screenshots, shown in pairs under the text, each with a caption saying what it shows. */
+  gallery?: Array<{ shot: ScreenshotKey; caption: string }>;
   groups: FeatureGroup[];
   example: FeatureExample;
   /** What the area doesn't do yet — said up front, so nobody finds out after installing. */
@@ -58,6 +60,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
     intro:
       "Tillverkningsordern hämtar struktur och rutt från artikelns beredning, drar material från lagret och samlar tid från verkstaden. När ordern är klar vet ni vad den faktiskt kostade.",
     screenshot: "manufacturing-orders",
+    gallery: [
+      { shot: "belaggning", caption: "Beläggning per resurs och vecka. En överbelagd vecka blir röd." },
+      { shot: "pagaende-arbete", caption: "Pågående arbete visar vem som är instämplad på vad just nu." },
+      { shot: "behovsberakning", caption: "Behovsberäkningen föreslår inköp och tillverkning ur nettobehovet." },
+    ],
     groups: [
       {
         id: "ordrar",
@@ -165,6 +172,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
     intro:
       "Allt i Nav|ERP utgår från artikeln: lager, inköp, försäljning, tillverkning och kalkyl. Lagret ändras aldrig utan en transaktion, så varje saldo går att följa bakåt till inleveransen, uttaget eller justeringen som skapade det.",
     screenshot: "article-overview",
+    gallery: [
+      { shot: "lager-transaktioner", caption: "Transaktionsloggen visar varje rörelse och vad som orsakade den." },
+      { shot: "lager-saldon", caption: "Saldon per lagerplats." },
+      { shot: "behovsberakning", caption: "Behovsberäkningen räknar nettobehovet för alla artiklar på en gång." },
+    ],
     groups: [
       {
         id: "artiklar",
@@ -267,6 +279,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
     intro:
       "Hela affärsflödet åt båda hållen, med reskontra och bankfiler. Det ni säljer och köper hänger ihop med lager och tillverkning: en kundorder syns direkt som behov och en inleverans direkt som saldo.",
     screenshot: "dashboard",
+    gallery: [
+      { shot: "kundorder", caption: "Kundordern med en tillverkningsorder per rad." },
+      { shot: "faktura", caption: "En betald faktura med OCR-nummer och betalningens verifikat." },
+      { shot: "inkopsordrar", caption: "Inköpsordrar, bekräftade och delvis mottagna." },
+    ],
     groups: [
       {
         id: "forsaljning",
@@ -378,6 +395,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
     intro:
       "Förkalkylen räknar fram självkostnad och försäljningspris ur artikelns struktur och rutt. Efterkalkylen visar vad tillverkningsordern faktiskt kostade, med verklig materialförbrukning och rapporterad tid. Skillnaden mellan dem är er lönsamhet.",
     screenshot: "article",
+    gallery: [
+      { shot: "kalkyl", caption: "Förkalkyler och efterkalkyler på artikelns flik Kalkyl." },
+      { shot: "marginal", caption: "Marginalrapporten: täckningsbidrag och täckningsgrad per månad." },
+    ],
     groups: [
       {
         id: "forkalkyl",
@@ -487,6 +508,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Närvaro- och orderstämpling på en delad skärm i verkstaden. Tiden går till tillverkningsordern och efterkalkylen och blir efter attest en PAXml-fil.",
     intro:
       "Personalen stämplar närvaro och arbete på en delad skärm i verkstaden. Tiden hamnar direkt på tillverkningsordern och i efterkalkylen, och samma underlag blir efter attest en PAXml-fil till lönesystemet.",
+    screenshot: "terminal",
+    gallery: [
+      { shot: "pagaende-arbete", caption: "Pågående arbete: vem som är instämplad på vilken operation." },
+    ],
     groups: [
       {
         id: "terminal",
@@ -589,6 +614,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Grundbokföring med kontoplan, verifikat och huvudbok. Fakturor, betalningar och moms bokförs automatiskt, med momsrapport och SIE-fil till revisorn.",
     intro:
       "Nav|ERP har en riktig grundbokföring: kontoplan, räkenskapsår, verifikat och huvudbok. Kund- och leverantörsfakturor, betalningar och momsomföring bokförs automatiskt, och revisorn får en SIE-fil.",
+    screenshot: "momsrapport",
+    gallery: [
+      { shot: "verifikat", caption: "Fakturor och betalningar bokförs automatiskt i sina verifikatserier." },
+      { shot: "kundreskontra", caption: "Kundreskontrans öppna poster." },
+    ],
     groups: [
       {
         id: "bokforing",

@@ -20,6 +20,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      indexnow: ${{ steps.indexnow.outputs.body }}
     env:
       NAV_ERP_DIR: ${{ github.workspace }}/.nav-erp
     steps:
@@ -69,6 +71,13 @@ jobs:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
           GITHUB_TOKEN: ${{ github.token }}
 
+      # Pages whose lastmod differs from the sitemap still live, for IndexNow
+      # once this build is deployed (the deploy job sends them).
+      - id: indexnow
+        run: npx tsx scripts/indexnow.ts out/sitemap.xml "$SITE" >> "$GITHUB_OUTPUT"
+        env:
+          SITE: ${{ steps.pages.outputs.base_url }}
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
@@ -82,3 +91,14 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Now that the pages are live: tell Bing and the other IndexNow engines.
+      # A failed submission is shown as a warning — it's no reason to fail a
+      # finished deploy, and the engines still find the pages via the sitemap.
+      - if: needs.build.outputs.indexnow != ''
+        continue-on-error: true
+        env:
+          BODY: ${{ needs.build.outputs.indexnow }}
+        run: >-
+          curl --fail-with-body -sS -X POST https://api.indexnow.org/indexnow
+          -H "Content-Type: application/json; charset=utf-8" --data "$BODY"

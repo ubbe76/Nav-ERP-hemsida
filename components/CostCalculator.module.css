@@ -1,0 +1,111 @@
+.calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  margin: 24px 0 32px;
+  padding: var(--space-card-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.fields {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input input {
+  width: 100%;
+  max-width: 160px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border-control);
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.input input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.unit {
+  color: var(--color-text-muted);
+}
+
+.results {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.table caption {
+  margin-bottom: 6px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table th,
+.table td {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.table td {
+  text-align: right;
+}
+
+.table th {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: left;
+}
+
+.table tfoot th,
+.table tfoot td {
+  border-bottom: 0;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.difference {
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--color-track);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .calc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -146,6 +146,15 @@
   list-style: none;
 }
 
+.costMore {
+  margin: 32px 0 0;
+  font-weight: 600;
+}
+
+.costMore a {
+  color: var(--accent-fg);
+}
+
 .cost {
   display: grid;
   gap: 8px;

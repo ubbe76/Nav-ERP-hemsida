@@ -8,6 +8,7 @@ export function allRoutes(): string[] {
     "/funktioner/",
     ...FEATURE_AREAS.map((a) => `/funktioner/${a.slug}/`),
     "/kom-igang/",
+    "/gratis-affarssystem/",
     "/oppen-kallkod/",
     "/om/",
     "/versioner/",

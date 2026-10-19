@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { HARDWARE } from "@/content/hardware";
 import { SITE } from "@/lib/site";
 import styles from "./page.module.css";
 
@@ -103,6 +104,19 @@ export default function GetStartedPage() {
             <li>Git, för att hämta och uppdatera källkoden.</li>
             <li>Någon som är van vid en terminal. Resten av företaget behöver bara en webbläsare.</li>
           </ul>
+          <h3 id="krav" className={styles.h3}>
+            Serverns storlek
+          </h3>
+          <p>{HARDWARE.summary}</p>
+          <ul className={styles.list}>
+            {HARDWARE.points.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+          <p>
+            Vad servern och driften kostar över fem år kan ni räkna på under{" "}
+            <Link href="/gratis-affarssystem/">Vad det kostar</Link>.
+          </p>
         </section>
 
         <ol className={styles.steps} aria-label="Installationssteg">

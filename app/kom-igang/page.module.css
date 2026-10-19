@@ -3,6 +3,20 @@
   font-size: 24px;
 }
 
+.h3 {
+  margin: 24px 0 8px;
+  font-size: 18px;
+}
+
+.needs > p {
+  margin: 0 0 8px;
+  color: var(--color-text-secondary);
+}
+
+.needs .list + p {
+  margin: 12px 0 0;
+}
+
 .notice {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);

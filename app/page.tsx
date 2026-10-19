@@ -194,6 +194,9 @@ export default function Home() {
               </li>
             ))}
           </ul>
+          <p className={styles.costMore}>
+            <Link href="/gratis-affarssystem/">Räkna på vad det kostar över fem år</Link>
+          </p>
         </div>
       </section>
 

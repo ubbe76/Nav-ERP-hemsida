@@ -5,7 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Öppen källkod: gratis affärssystem utan inlåsning",
+  title: "Öppen källkod och GPL-3.0: ett affärssystem utan inlåsning",
   description: "Nav|ERP är fri programvara under GPL-3.0-or-later. Vad det betyder för ett företag: ingen licenskostnad, ingen inlåsning, er data.",
 };
 

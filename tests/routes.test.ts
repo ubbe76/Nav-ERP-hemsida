@@ -17,6 +17,7 @@ describe("allRoutes", () => {
     expect(routes).toContain("/oppen-kallkod/");
     expect(routes).toContain("/om/");
     expect(routes).toContain("/versioner/");
-    expect(routes).toHaveLength(7 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
+    expect(routes).toContain("/gratis-affarssystem/");
+    expect(routes).toHaveLength(8 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
   });
 });

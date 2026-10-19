@@ -67,6 +67,14 @@ export default function MarkupCalculatorPage() {
             ))}
           </dl>
 
+          <h2>Pålägg eller marginal?</h2>
+          <p>
+            Påslaget räknas på självkostnaden, men täckningsgraden räknas på försäljningspriset. Därför blir de inte
+            samma tal: ett påslag på 20 % ger en täckningsgrad på knappt 17 %, och för att få 20 % täckningsgrad
+            behöver påslaget vara 25 %. Kalkylatorn ovan visar båda. I Nav|ERP visar marginalrapporten och offerten
+            täckningsgraden, mot artikelns senaste förkalkyl.
+          </p>
+
           <h2>Halvfabrikat får inget MO- eller LO-påslag</h2>
           <p>
             Ett halvfabrikat som ni tillverkar själva har redan fått sina påslag i sin egen kalkyl. Därför läggs

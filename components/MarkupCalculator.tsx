@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { EXAMPLE, type CalcInput } from "@/lib/calc";
+import { EXAMPLE, calcChain, formatKr, type CalcInput } from "@/lib/calc";
 import { CalcChain } from "./CalcChain";
 import styles from "./MarkupCalculator.module.css";
 
@@ -36,6 +36,12 @@ const clean = (input: CalcInput): CalcInput =>
 // JavaScript; the fields come alive once it loads.
 export function MarkupCalculator() {
   const [input, setInput] = useState<CalcInput>(EXAMPLE);
+  const values = clean(input);
+  const { svk, price } = calcChain(values);
+  // TB and TG as the Marginal report counts them: against the cost price.
+  const tb = price - svk;
+  const tg = price > 0 ? (tb / price) * 100 : 0;
+  const pct = (n: number) => `${new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(n)} %`;
   return (
     <div className={styles.calc}>
       <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
@@ -63,8 +69,12 @@ export function MarkupCalculator() {
           </fieldset>
         ))}
       </form>
-      <div aria-live="polite">
-        <CalcChain input={clean(input)} caption="Er kalkyl per styck" note="" />
+      <div aria-live="polite" className={styles.result}>
+        <CalcChain input={values} caption="Er kalkyl per styck" note="" />
+        <p className={styles.margin}>
+          Täckningsbidrag {formatKr(tb)} per styck, täckningsgrad {pct(tg)}. Påslaget på {pct(values.generalPct)}{" "}
+          räknas på självkostnaden, täckningsgraden på försäljningspriset.
+        </p>
       </div>
     </div>
   );

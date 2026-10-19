@@ -6,6 +6,20 @@
   margin: 24px 0 32px;
 }
 
+.result {
+  display: grid;
+  gap: 16px;
+}
+
+.margin {
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--color-track);
+  color: var(--color-text-primary);
+}
+
 .form {
   display: grid;
   gap: 24px;

@@ -22,9 +22,13 @@ export default function OpenSourcePage() {
       />
       <div className="container">
         <div className="prose">
+          {/* The definition first, written to be quoted as is. */}
           <p>
-            Nav|ERP sprids under <strong>GNU General Public License version 3 eller senare</strong>{" "}
-            (GPL-3.0-or-later), © 2026 Urban Källefors.
+            Ett affärssystem med öppen källkod är ett affärssystem vars källkod är offentlig och vars licens låter
+            företaget använda, läsa, ändra och dela programmet utan licensavgift. Nav|ERP sprids under{" "}
+            <strong>GNU General Public License version 3 eller senare</strong> (GPL-3.0-or-later), © 2026 Urban
+            Källefors. Det betyder att ni kan köra det i hela företaget med hur många användare som helst, och att
+            koden och datan finns kvar hos er oavsett vad som händer med projektet.
           </p>
 
           <h2>Vad ni får göra</h2>
@@ -45,6 +49,78 @@ export default function OpenSourcePage() {
             garanti.
           </p>
 
+          <h2>Vem ger support?</h2>
+          <p>
+            Projektet säljer ingen support och har inget serviceavtal. Det finns tre vägar, och de går att kombinera:
+          </p>
+          <ul>
+            <li>
+              <strong>Projektet på GitHub.</strong> Fel, frågor och förslag tas upp som ärenden, öppet för alla. Det
+              finns ingen utlovad svarstid.
+            </li>
+            <li>
+              <strong>Er egen IT.</strong> Driften är Docker och PostgreSQL, och installation, backup och återställning
+              står steg för steg i <Link href="/kom-igang/">Kom igång</Link> och manualen.
+            </li>
+            <li>
+              <strong>En konsult ni själva väljer.</strong> Eftersom koden är öppen kan vem som helst som kan
+              TypeScript, Docker och PostgreSQL sätta sig in i den. Ni är inte bundna till en viss leverantör för
+              support eller anpassningar.
+            </li>
+          </ul>
+
+          <h2>Riskerna, och hur ni hanterar dem</h2>
+          <ul>
+            <li>
+              <strong>Projektet är ungt.</strong> Nav|ERP är i alfa och har ännu inte använts i skarp drift. Prova i
+              demon och med era egna artiklar innan ni bestämmer er.
+            </li>
+            <li>
+              <strong>En person bygger det.</strong> Utvecklingstakten hänger på det. Koden finns kvar oavsett, och
+              licensen låter vem som helst bygga vidare.
+            </li>
+            <li>
+              <strong>Ni ansvarar för driften.</strong> Servern, säkerhetsuppdateringarna och backupen är era. Nav|ERP
+              har färdiga skript för nattlig backup och en krypterad kopia utanför servern.
+            </li>
+            <li>
+              <strong>Att komma ur systemet.</strong> Datan ligger i en vanlig PostgreSQL-databas, register och
+              rapporter kan exporteras som CSV, och bokföringen går att ta ut som SIE 4-fil till ett annat program.
+            </li>
+          </ul>
+
+          <h2>Så bedömer ni ett affärssystem med öppen källkod</h2>
+          <p>Frågorna gäller vilket system ni än tittar på. Svaren för Nav|ERP står efter varje punkt.</p>
+          <ul>
+            <li>
+              <strong>Är licensen tydlig och fri?</strong> GPL-3.0-or-later, utan betalda moduler eller funktioner som
+              bara finns i en betald utgåva.
+            </li>
+            <li>
+              <strong>Utvecklas det?</strong> Varje version och dess ändringar står under{" "}
+              <Link href="/versioner/">Versioner</Link>, med datum.
+            </li>
+            <li>
+              <strong>Finns det dokumentation?</strong> En manual för varje del av systemet, på svenska, i systemet och
+              på <Link href="/hjalp/">webbplatsen</Link>.
+            </li>
+            <li>
+              <strong>Klarar det svenska krav?</strong> Momsrapport med momsdeklarationens rutor, SIE 4, BAS-kontoplanen,
+              PAXml till lönesystemet och bankens filer för in- och utbetalningar.
+            </li>
+            <li>
+              <strong>Hur kommer ni åt er data?</strong> En PostgreSQL-databas på er egen server, CSV-export och SIE 4.
+            </li>
+            <li>
+              <strong>Vad kräver driften?</strong> En Linux-server med Docker. Uppmätta krav står under{" "}
+              <Link href="/kom-igang/#krav">Serverns storlek</Link>.
+            </li>
+            <li>
+              <strong>Hur hanteras säkerhetsbrister?</strong> De rapporteras privat via GitHub, så att de kan rättas
+              innan de blir kända.
+            </li>
+          </ul>
+
           <h2>Varför öppen källkod</h2>
           <p>
             Ett affärssystem är något ett företag lever med i tio år eller mer. Med öppen källkod hänger det inte på en
@@ -54,8 +130,8 @@ export default function OpenSourcePage() {
 
           <h2>Bakgrunden</h2>
           <p>
-            Nav|ERP byggs av Urban Källefors, som arbetar dagligen med inköp, tillverkning, lager och kalkyl i ett
-            tillverkande företag. Målet är ett system som täcker kärnflödet från artikel till kalkyl och bokföring —
+            Nav|ERP byggs av Urban Källefors, som har arbetat i mekaniska verkstäder sedan 1999 med beredning,
+            planering, offerter, IT och konstruktion. Målet är ett system som täcker kärnflödet från artikel till kalkyl och bokföring —
             utan den komplexitet som gör stora affärssystem tunga att införa och dyra att äga.{" "}
             <Link href="/om/">Mer om projektet</Link>.
           </p>

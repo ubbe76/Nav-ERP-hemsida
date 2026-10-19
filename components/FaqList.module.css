@@ -1,0 +1,31 @@
+.list {
+  display: grid;
+  gap: 28px;
+  max-width: var(--measure);
+}
+
+.item {
+  scroll-margin-top: calc(var(--site-header-h) + 24px);
+}
+
+.item p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.question {
+  margin: 0 0 8px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--color-text-primary);
+}
+
+.item .more {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.more a {
+  color: var(--accent-fg);
+}

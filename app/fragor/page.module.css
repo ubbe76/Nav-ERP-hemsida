@@ -1,0 +1,33 @@
+.groups {
+  display: grid;
+  gap: 48px;
+  padding-bottom: var(--site-section-y);
+}
+
+.group {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: 22px;
+}
+
+.more {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.more a {
+  color: var(--accent-fg);
+}
+
+@media (max-width: 640px) {
+  .group {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}

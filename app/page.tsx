@@ -4,9 +4,11 @@ import { AnnouncementBar } from "@/components/AnnouncementBar";
 import { CalcChain } from "@/components/CalcChain";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CtaBand } from "@/components/CtaBand";
+import { FaqList } from "@/components/FaqList";
 import { HubDiagram } from "@/components/HubDiagram";
 import { Reveal } from "@/components/Reveal";
 import { Screenshot } from "@/components/Screenshot";
+import { HOME_FAQ_IDS, getFaq } from "@/content/faq";
 import { RELEASES } from "@/content/releases";
 import type { ScreenshotKey } from "@/content/screenshots";
 import { SITE } from "@/lib/site";
@@ -196,6 +198,19 @@ export default function Home() {
           </ul>
           <p className={styles.costMore}>
             <Link href="/gratis-affarssystem/">Räkna på vad det kostar över fem år</Link>
+          </p>
+        </div>
+      </section>
+
+      <section className={`section ${styles.alt}`} aria-labelledby="fragor">
+        <div className="container">
+          <div className={styles.sectionHead}>
+            <p className="eyebrow">Vanliga frågor</p>
+            <h2 id="fragor">Innan ni provar</h2>
+          </div>
+          <FaqList items={HOME_FAQ_IDS.map((id) => getFaq(id)!)} />
+          <p className={styles.costMore}>
+            <Link href="/fragor/">Fler frågor och svar</Link>
           </p>
         </div>
       </section>

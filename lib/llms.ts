@@ -24,6 +24,7 @@ export function llmsTxt(): string {
     link("Startsidan", "/", "vad Nav|ERP är, vad det kostar och hur kalkylen byggs upp"),
     link("Kom igång", "/kom-igang/", "installation med Docker, import av register, uppdatering och backup"),
     link("Gratis affärssystem", "/gratis-affarssystem/", "vad det kostar att köra Nav|ERP i fem år, och serverkraven"),
+    link("Vanliga frågor", "/fragor/", "hur färdigt systemet är, data och backup, flytt från ett gammalt system, säkerhet"),
     link("Öppen källkod", "/oppen-kallkod/", "vad GPL-3.0 betyder för ett företag"),
     link("Om Nav|ERP", "/om/", "vem som bygger systemet och hur man når projektet"),
     link("Versioner", "/versioner/", "nyheter och ändringar i varje version"),

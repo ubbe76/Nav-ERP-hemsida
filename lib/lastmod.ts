@@ -16,6 +16,8 @@ export function routeSources(route: string): string[] {
   if (route.startsWith("/funktioner/")) return ["app/funktioner/[omrade]/page.tsx", "content/areas.ts"];
   if (route === "/versioner/") return ["app/versioner/page.tsx", "content/releases.ts"];
   if (route === "/hjalp/") return ["app/hjalp/page.tsx", "content/manual-meta.ts"];
+  if (route === "/kom-igang/") return ["app/kom-igang/page.tsx", "content/hardware.ts"];
+  if (route === "/gratis-affarssystem/") return ["app/gratis-affarssystem/page.tsx", "content/hardware.ts", "lib/tco.ts"];
   return [`app${route}page.tsx`];
 }
 

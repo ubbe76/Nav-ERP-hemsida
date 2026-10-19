@@ -32,7 +32,12 @@ export function ManualLayout({
         <ul>
           {MANUAL_CHAPTERS.map((c) => (
             <li key={c.slug}>
-              <Link href={`/hjalp/${c.slug}/`} aria-current={c.slug === current ? "page" : undefined}>
+              {/* No prefetch: the list in view would otherwise fetch every chapter (~280 KiB). */}
+              <Link
+                href={`/hjalp/${c.slug}/`}
+                prefetch={false}
+                aria-current={c.slug === current ? "page" : undefined}
+              >
                 {c.title}
               </Link>
             </li>

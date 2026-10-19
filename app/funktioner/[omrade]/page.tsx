@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalcChain } from "@/components/CalcChain";
 import { CtaBand } from "@/components/CtaBand";
+import { DemoBox } from "@/components/DemoBox";
 import { FeatureGroups } from "@/components/FeatureGroups";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
@@ -67,6 +68,18 @@ export default async function AreaPage({ params }: Props) {
               </li>
             ))}
           </ul>
+          {area.sources && (
+            <>
+              <h2 className={`${styles.asideTitle} ${styles.sourcesTitle}`}>Lagar och standarder</h2>
+              <ul>
+                {area.sources.map((s) => (
+                  <li key={s.href}>
+                    <a href={s.href}>{s.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </aside>
       </div>
       {area.gallery && (
@@ -84,6 +97,9 @@ export default async function AreaPage({ params }: Props) {
           </div>
         </section>
       )}
+      <div className={`container ${styles.demo}`}>
+        <DemoBox where={area.demoWhere} />
+      </div>
       <nav className="container" aria-label="Fler funktionsområden">
         <h2 className={styles.othersTitle}>Fler områden</h2>
         <ul className={styles.others}>

@@ -37,6 +37,10 @@ export interface FeatureArea {
   seoTitle: string;
   description: string;
   screenshot?: ScreenshotKey;
+  /** Laws and standards the area is built around, linked to their own source. */
+  sources?: Array<{ label: string; href: string }>;
+  /** Where in the demo the area is seen — the menu path a visitor opens after logging in. */
+  demoWhere: string;
   /** More screenshots, shown in pairs under the text, each with a caption saying what it shows. */
   gallery?: Array<{ shot: ScreenshotKey; caption: string }>;
   groups: FeatureGroup[];
@@ -53,6 +57,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     slug: "tillverkning",
     title: "Tillverkning",
     icon: Factory,
+    demoWhere: "Tillverkning → Beläggning och Tillverkning → Pågående arbete",
     tagline: "Tillverkningsorder från frisläpp till efterkalkyl.",
     seoTitle: "Tillverkningsorder och produktionsplanering",
     description:
@@ -165,6 +170,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     slug: "lager-och-artiklar",
     title: "Lager och artiklar",
     icon: Boxes,
+    demoWhere: "Lager → Transaktioner, eller en artikel under Artiklar",
     tagline: "Artikeln är navet — saldot är alltid spårbart.",
     seoTitle: "Lager och artiklar: lagerstyrning i affärssystemet",
     description:
@@ -272,6 +278,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
     slug: "inkop-och-forsaljning",
     title: "Inköp och försäljning",
     icon: ShoppingCart,
+    sources: [{ label: "ISO 20022, standarden bakom camt.054 och pain.001", href: "https://www.iso20022.org/" }],
+    demoWhere: "Försäljning → Kundorder och Försäljning → Fakturor",
     tagline: "Från offert och förfrågan till faktura och betalning.",
     seoTitle: "Inköp, försäljning och fakturering",
     description:
@@ -388,6 +396,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     slug: "kalkyl",
     title: "Kalkyl",
     icon: Calculator,
+    demoWhere: "en tillverkad artikel under Artiklar och dess flik Kalkyl, eller Rapporter → Marginal",
     tagline: "Vet vad varje artikel kostar — före och efter.",
     seoTitle: "Förkalkyl och efterkalkyl för tillverkning",
     description:
@@ -502,6 +511,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
     slug: "personal-tid-lon",
     title: "Personal, tid och lön",
     icon: Clock,
+    sources: [
+      { label: "PAXml, standarden för löneunderlag", href: "https://www.paxml.se/" },
+      { label: "Integritetsskyddsmyndigheten om dataskydd", href: "https://www.imy.se/verksamhet/dataskydd/" },
+    ],
+    demoWhere: "Tillverkning → Stämpelterminal och Tillverkning → Pågående arbete",
     tagline: "Stämpling i verkstaden, underlag till lönen.",
     seoTitle: "Stämpelterminal, tidrapportering och löneunderlag",
     description:
@@ -558,6 +572,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       ],
     },
     limits: [
+      "Det finns ännu ingen funktion för att radera eller anonymisera en anställds uppgifter. En anställd kan bara markeras som inaktiv.",
       "Nav|ERP är inte ett lönesystem. Det räknar inte ut lön, skatteavdrag eller arbetsgivaravgifter. PAXml-filen innehåller timmar per tidkod och dag, inte belopp.",
       "Nav|ERP för inget semestersaldo och inget kompsaldo. Semester och kompledighet registreras som frånvaro i timmar, och kompsaldot förs i lönesystemet.",
       "Det finns inga färdiga kollektivavtal att välja. OB-fönster, övertidströskel och tidkoder lägger ni upp själva.",
@@ -565,6 +580,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Det finns ingen mobilapp. Nav|ERP och stämpelterminalen används i webbläsaren.",
     ],
     faq: [
+      {
+        question: "Hur hanteras de anställdas personuppgifter?",
+        answer:
+          "De ligger på er egen server, och ert företag är personuppgiftsansvarigt. Personalregistret med personnummer och lön syns bara för administratörer och arbetsledare med behörigheten Tillverkning, och terminalen visar bara anställningsnummer och namn. Frånvaron kan omfatta sjukfrånvaro, som är en känslig uppgift. Det finns ännu ingen funktion för att radera eller anonymisera en anställds uppgifter.",
+      },
       {
         question: "Vilka lönesystem kan läsa exporten?",
         answer:
@@ -608,6 +628,13 @@ export const FEATURE_AREAS: FeatureArea[] = [
     slug: "ekonomi",
     title: "Ekonomi",
     icon: Landmark,
+    sources: [
+      { label: "Bokföringslagen (1999:1078)", href: "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/bokforingslag-19991078_sfs-1999-1078/" },
+      { label: "Bokföringsnämnden", href: "https://www.bfn.se/" },
+      { label: "BAS-kontoplanen", href: "https://www.bas.se/" },
+      { label: "SIE-formatet", href: "https://sie.se/" },
+    ],
+    demoWhere: "Ekonomi → Verifikat, eller Ekonomi → Momsrapport för oktober 2026",
     tagline: "Bokföringen sköter sig själv där den kan.",
     seoTitle: "Bokföring, moms och SIE i affärssystemet",
     description:

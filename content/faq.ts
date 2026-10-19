@@ -129,7 +129,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     ],
   },
   {
-    title: "Säkerhet",
+    title: "Säkerhet och personuppgifter",
     items: [
       {
         id: "sakerhet",
@@ -137,6 +137,13 @@ export const FAQ_GROUPS: FaqGroup[] = [
         answer:
           "Varje användare loggar in med eget konto, behörighetsgrupperna begränsar vad var och en ser, och händelseloggen visar vem som gjort vad. Databasen och API:et lyssnar bara på servern själv. Lägg en omvänd proxy med HTTPS framför webben. Tvåfaktorsinloggning finns ännu inte.",
         more: { href: "/kom-igang/", label: "Installationen steg för steg" },
+      },
+      {
+        id: "personuppgifter",
+        question: "Vilka personuppgifter lagrar Nav|ERP, och vem ansvarar för dem?",
+        answer:
+          "Personalregistret har namn, kontaktuppgifter, personnummer, lön och anställningsform. Dessutom lagras stämplingar, tidrapporter och frånvaro, och frånvaron kan omfatta sjukfrånvaro, som är en känslig uppgift. Kunders och leverantörers kontaktpersoner och användarnas e-postadresser finns också. Allt ligger på er egen server, så det är ert företag som är personuppgiftsansvarigt. Personalregistret syns bara för administratörer och för arbetsledare med behörigheten Tillverkning. En anställd kan markeras som inaktiv, men det finns ännu ingen funktion för att radera eller anonymisera en anställds uppgifter.",
+        more: { href: "/hjalp/personal-tid/", label: "Personalregistret i manualen" },
       },
       {
         id: "sakerhetsbrist",

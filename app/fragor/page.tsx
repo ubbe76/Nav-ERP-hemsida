@@ -10,7 +10,7 @@ import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Vanliga frågor om Nav|ERP",
+  title: "Vanliga frågor och svar",
   description:
     "Är det redo för skarp drift, vad kostar det, var lagras datan, hur tas backup och kan vi flytta in data från vårt gamla system? Svaren på det de flesta frågar.",
 };

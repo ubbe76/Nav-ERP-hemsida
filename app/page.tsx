@@ -7,12 +7,14 @@ import { CtaBand } from "@/components/CtaBand";
 import { DemoBox } from "@/components/DemoBox";
 import { FaqList } from "@/components/FaqList";
 import { HubDiagram } from "@/components/HubDiagram";
+import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { Screenshot } from "@/components/Screenshot";
 import { HOME_FAQ_IDS, getFaq } from "@/content/faq";
 import { RELEASES } from "@/content/releases";
 import type { ScreenshotKey } from "@/content/screenshots";
 import { SITE } from "@/lib/site";
+import { softwareGraph } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 const VALUES = [
@@ -71,6 +73,7 @@ docker compose up -d --build`;
 export default function Home() {
   return (
     <>
+      <JsonLd data={softwareGraph()} />
       <AnnouncementBar />
       <section className={`container ${styles.hero}`}>
         <div className={styles.heroText}>
@@ -124,7 +127,7 @@ export default function Home() {
             <h2>Allt hänger ihop — och allt landar i kalkylen</h2>
             <p className="lead">
               En kundorder blir behov, behovet blir inköp och tillverkning, tiden från verkstaden blir kostnad och
-              fakturan bokförs av sig själv. Inga integrationer mellan olika program, inga dubbelregistreringar.
+              fakturan bokförs av sig själv. Inga integrationer mellan olika program att hålla ihop.
             </p>
           </div>
           <HubDiagram />
@@ -228,7 +231,7 @@ export default function Home() {
       </section>
 
       <CtaBand
-        title="Kör igång på några minuter"
+        title="Allt startar med ett kommando"
         text="Allt som behövs är en server med Docker. Databasen, API:et och webben startar med ett kommando."
       >
         <CodeBlock code={INSTALL} label="Terminal" />

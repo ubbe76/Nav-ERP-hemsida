@@ -2,8 +2,11 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { FEATURE_AREAS } from "@/content/areas";
+import { SITE } from "@/lib/site";
+import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -15,11 +18,21 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   return (
     <>
+      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Funktioner" }])} />
       <PageHero
         eyebrow="Funktioner"
-        title="Allt ett tillverkande företag behöver — i ett system"
+        title="Kärnflödet i ett tillverkande företag, i ett system"
         lead="Sex områden som delar samma artiklar, samma lager och samma kalkyl. Det ni registrerar på ett ställe syns direkt överallt där det behövs."
-      />
+      >
+        <div className="btnRow">
+          <Link href="/kom-igang/#demo" className="btn btnPrimary">
+            Prova demon
+          </Link>
+          <Link href="/kom-igang/" className="btn btnSecondary">
+            Kom igång gratis
+          </Link>
+        </div>
+      </PageHero>
       <div className="container">
         <ul className={styles.grid}>
           {FEATURE_AREAS.map(({ slug, title, tagline, icon: Icon }) => (
@@ -38,14 +51,14 @@ export default function FeaturesPage() {
       </div>
       <CtaBand
         title="Se det med egna ögon"
-        text="Det snabbaste sättet att förstå Nav|ERP är att köra det. Installationen tar några minuter med Docker."
+        text="Det snabbaste sättet att förstå Nav|ERP är att klicka runt i demon. Vill ni köra det själva installerar ni det med Docker."
       >
         <div className="btnRow">
-          <Link href="/kom-igang/" className="btn btnPrimary">
-            Kom igång gratis
+          <Link href="/kom-igang/#demo" className="btn btnPrimary">
+            Prova demon
           </Link>
-          <Link href="/hjalp/" className="btn btnSecondary">
-            Läs manualen
+          <Link href="/kom-igang/" className="btn btnSecondary">
+            Kom igång gratis
           </Link>
         </div>
       </CtaBand>

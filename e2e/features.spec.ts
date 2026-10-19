@@ -16,7 +16,7 @@ test("manuallänkarna på en funktionssida landar på rätt rubrik", async ({ pa
 
 test("installationsguiden visar stegen i ordning", async ({ page }) => {
   await page.goto("/kom-igang/");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Från noll till inloggad på några minuter");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Från tom server till inloggad");
   const steps = page.getByRole("list", { name: "Installationssteg" }).getByRole("heading", { level: 3 });
   await expect(steps).toHaveText(["Installera Docker och skapa ett servicekonto", "Hämta och konfigurera", "Starta", "Skapa första användaren", "Öppna bara webben"]);
 });

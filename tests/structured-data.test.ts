@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { RELEASES } from "@/content/releases";
 import { MANUAL_CHAPTERS } from "@/lib/manual";
-import { breadcrumbs, siteGraph, techArticle } from "@/lib/structured-data";
+import { breadcrumbs, siteGraph, softwareGraph, techArticle } from "@/lib/structured-data";
 
 afterEach(() => vi.unstubAllEnvs());
 
@@ -11,16 +11,25 @@ function stubSite() {
 }
 
 describe("siteGraph", () => {
-  it("beskriver webbplatsen, personen och programmet med absoluta id:n", () => {
+  it("beskriver webbplatsen och personen med absoluta id:n", () => {
     stubSite();
     const graph = siteGraph()["@graph"];
-    expect(graph.map((node) => node["@type"])).toEqual(["WebSite", "Person", "SoftwareApplication"]);
+    expect(graph.map((node) => node["@type"])).toEqual(["WebSite", "Person"]);
     for (const node of graph) expect(node["@id"]).toMatch(/^https:\/\/naverp\.se\/#/);
+  });
+
+  it("beskriver programmet och källkoden för sig, med källkoden kopplad till programmet", () => {
+    stubSite();
+    const [software, source] = softwareGraph()["@graph"] as Array<Record<string, unknown>>;
+    expect(software!["@type"]).toBe("SoftwareApplication");
+    expect(software).not.toHaveProperty("codeRepository");
+    expect(source!["@type"]).toBe("SoftwareSourceCode");
+    expect(source!.targetProduct).toEqual({ "@id": "https://naverp.se/#software" });
   });
 
   it("anger gratis licens, GPL och den senaste versionen", () => {
     stubSite();
-    const software = siteGraph()["@graph"][2] as Record<string, unknown>;
+    const software = softwareGraph()["@graph"][0] as Record<string, unknown>;
     expect(software.offers).toEqual({ "@type": "Offer", price: "0", priceCurrency: "SEK" });
     expect(software.license).toBe("https://www.gnu.org/licenses/gpl-3.0.html");
     expect(software.softwareVersion).toBe(RELEASES[0]!.version);

@@ -36,6 +36,10 @@
   font-size: 15px;
 }
 
+.sourcesTitle {
+  margin-top: 24px;
+}
+
 .manual ul {
   display: grid;
   gap: 8px;
@@ -50,7 +54,7 @@
 }
 
 .gallery {
-  padding-bottom: var(--site-section-y);
+  padding-bottom: 56px;
 }
 
 .gallery h2 {
@@ -62,6 +66,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
+}
+
+.demo {
+  padding-bottom: 64px;
 }
 
 .othersTitle {

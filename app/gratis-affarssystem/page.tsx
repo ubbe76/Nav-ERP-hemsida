@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
 import { breadcrumbs } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Gratis affärssystem: vad det kostar att äga i fem år",
+  title: "Gratis affärssystem: vad kostar det på fem år?",
   description:
     "Nav|ERP har ingen licenskostnad. Det ni betalar för är server, backup och tid. Så räknar ni totalkostnaden över fem år mot licenser per användare.",
 };
@@ -81,7 +81,7 @@ export default function FreeErpPage() {
             </li>
             <li>
               <strong>Installation.</strong> Någon som är van vid en terminal och Docker. Själva installationen tar
-              några minuter, men räkna med en arbetsdag för server, adress, backup och första kontroll.
+              under en timme, men räkna med en arbetsdag för server, adress, backup och första kontroll.
             </li>
             <li>
               <strong>Drift.</strong> Uppdateringar, en blick på att backupen fungerar och en och annan omstart.

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { RELEASES } from "@/content/releases";
 import { SITE } from "@/lib/site";
+import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -41,6 +43,7 @@ function List({ title, items, className }: { title: string; items: string[]; cla
 export default function ReleasesPage() {
   return (
     <>
+      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Versioner" }])} />
       <PageHero
         eyebrow="Versioner"
         title="Vad är nytt i Nav|ERP"

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { RELEASES } from "@/content/releases";
 import { SITE } from "@/lib/site";
+import { breadcrumbs } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Om Nav|ERP: vem som bygger det och hur ni når oss",
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Om Nav|ERP" }])} />
       <PageHero
         eyebrow="Om Nav|ERP"
         title="Ett affärssystem byggt från verkstadsgolvet"

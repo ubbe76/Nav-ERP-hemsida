@@ -54,9 +54,13 @@
   gap: 12px;
 }
 
+/* A 32 px tap target around the 18 px icon (WCAG asks for 24); 40 overflows a 320 px header. */
 .github {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
   gap: 6px;
   color: var(--color-text-secondary);
   font-size: 14px;
@@ -141,5 +145,13 @@
 @media (max-width: 640px) {
   .github span {
     display: none;
+  }
+}
+
+/* The narrowest phones: tighter spacing so the theme toggle, GitHub and the
+   menu button fit beside the logo. */
+@media (max-width: 400px) {
+  .actions {
+    gap: 4px;
   }
 }

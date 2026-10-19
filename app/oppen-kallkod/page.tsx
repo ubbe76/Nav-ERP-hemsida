@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { SITE } from "@/lib/site";
+import { breadcrumbs } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Öppen källkod och GPL-3.0: ett affärssystem utan inlåsning",
+  title: "Affärssystem med öppen källkod (GPL-3.0)",
   description: "Nav|ERP är fri programvara under GPL-3.0-or-later. Vad det betyder för ett företag: ingen licenskostnad, ingen inlåsning, er data.",
 };
 
 export default function OpenSourcePage() {
   return (
     <>
+      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Öppen källkod" }])} />
       <PageHero
         eyebrow="Öppen källkod"
         title="Ert affärssystem. Er data. Er kod."
@@ -73,7 +76,7 @@ export default function OpenSourcePage() {
           </p>
         </div>
       </div>
-      <CtaBand title="Läs koden, kör systemet" text="Allt finns på GitHub. Installationen tar några minuter med Docker.">
+      <CtaBand title="Läs koden, kör systemet" text="Allt finns på GitHub. Installera med Docker, eller prova demon först.">
         <div className="btnRow">
           <Link href="/kom-igang/" className="btn btnPrimary">
             Kom igång

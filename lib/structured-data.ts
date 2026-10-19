@@ -1,6 +1,7 @@
 // Schema.org JSON-LD for the pages, rendered by components/JsonLd.tsx.
-// The site-wide graph defines the website, the author and the software once;
-// page-level objects point back to them by @id instead of repeating them.
+// The site-wide graph defines the website and the author once; the software
+// and its source code are described in full on the start page only. Page-level
+// objects everywhere point back to them by @id instead of repeating them.
 import { FEATURE_AREAS } from "@/content/areas";
 import { RELEASES } from "@/content/releases";
 import { SITE, absoluteUrl } from "./site";
@@ -10,13 +11,14 @@ const id = (fragment: string) => `${absoluteUrl("/")}#${fragment}`;
 const WEBSITE_ID = () => id("website");
 const AUTHOR_ID = () => id("author");
 const SOFTWARE_ID = () => id("software");
+const SOURCE_ID = () => id("source");
 
 const AUTHOR = { name: "Urban Källefors", profileUrl: "https://github.com/ubbe76" };
 
 /** Ways people write the name — so "NavERP" or "Nav ERP" resolve to the same thing. */
 const ALTERNATE_NAMES = ["NavERP", "Nav-ERP", "Nav ERP"];
 
-/** WebSite, the person behind it and the software — on every page, from the root layout. */
+/** WebSite and the person behind it — on every page, from the root layout. */
 export function siteGraph() {
   return {
     "@context": "https://schema.org",
@@ -38,7 +40,26 @@ export function siteGraph() {
         email: SITE.email,
         sameAs: [AUTHOR.profileUrl],
       },
+    ],
+  };
+}
+
+/** The software and its source code — on the start page, which is about them. */
+export function softwareGraph() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
       softwareApplication(),
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": SOURCE_ID(),
+        name: `${SITE.name}, källkoden`,
+        codeRepository: SITE.repoUrl,
+        programmingLanguage: "TypeScript",
+        license: "https://www.gnu.org/licenses/gpl-3.0.html",
+        targetProduct: { "@id": SOFTWARE_ID() },
+        author: { "@id": AUTHOR_ID() },
+      },
     ],
   };
 }
@@ -60,8 +81,9 @@ function softwareApplication() {
     license: "https://www.gnu.org/licenses/gpl-3.0.html",
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "SEK" },
-    codeRepository: SITE.repoUrl,
     downloadUrl: SITE.repoUrl,
+    sameAs: [SITE.repoUrl],
+    releaseNotes: absoluteUrl("/versioner/"),
     screenshot: absoluteUrl("/screenshots/screenshot-dashboard.png"),
     featureList: FEATURE_AREAS.map((a) => a.title),
     author: { "@id": AUTHOR_ID() },

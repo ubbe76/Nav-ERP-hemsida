@@ -4,14 +4,17 @@ import Link from "next/link";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CtaBand } from "@/components/CtaBand";
 import { DemoBox } from "@/components/DemoBox";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { HARDWARE } from "@/content/hardware";
 import { SITE } from "@/lib/site";
+import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Kom igång: installera med Docker",
-  description: "Installera Nav|ERP på en egen server med Docker: krav, steg för steg, import av register, uppdatering och backup.",
+  description:
+    "Installera Nav|ERP på en egen server med Docker: uppmätta serverkrav, steg för steg, import av register, uppdatering, backup och en demo att prova först.",
 };
 
 const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
@@ -45,7 +48,7 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
   },
   {
     title: "Starta",
-    text: "Första gången byggs alla images — räkna med några minuter. Databasen skapas och migreras automatiskt när API:et startar.",
+    text: "Första gången byggs alla images — räkna med omkring tio minuter. Databasen skapas och migreras automatiskt när API:et startar.",
     code: "docker compose up -d --build",
   },
   {
@@ -77,9 +80,10 @@ const STEPS: Array<{ title: string; text: React.ReactNode; code?: string }> = [
 export default function GetStartedPage() {
   return (
     <>
+      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Kom igång" }])} />
       <PageHero
         eyebrow="Kom igång"
-        title="Från noll till inloggad på några minuter"
+        title="Från tom server till inloggad"
         lead="Nav|ERP körs i Docker: databas, API och webb i tre containrar. Den här guiden är för den som installerar — IT-ansvarig, konsult eller den på företaget som är van vid en terminal."
       />
 

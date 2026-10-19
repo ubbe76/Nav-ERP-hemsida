@@ -23,8 +23,8 @@ export interface ScreenshotImage {
   height: number;
 }
 
-/** Widths scripts/optimize-screenshots.ts writes: phone, 1x desktop, 2x desktop. */
-export const WEBP_WIDTHS = [720, 1440, 2880] as const;
+/** Widths scripts/optimize-screenshots.ts writes: phone, 2x/3x phone, 1x desktop, 2x desktop. */
+export const WEBP_WIDTHS = [720, 1080, 1440, 2880] as const;
 
 /** The link-preview card cut from the light dashboard, also by scripts/optimize-screenshots.ts. */
 export const OG_IMAGE = { file: "og-image.jpg", width: 1200, height: 630 } as const;

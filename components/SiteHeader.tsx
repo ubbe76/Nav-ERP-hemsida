@@ -30,6 +30,9 @@ export async function SiteHeader() {
             <Github size={18} aria-hidden />
             {stars !== null && <span className="num">{stars}</span>}
           </a>
+          <Link href="/kom-igang/#demo" className={`btn btnSecondary btnSmall ${styles.cta}`}>
+            Prova demon
+          </Link>
           <Link href="/kom-igang/" className={`btn btnPrimary btnSmall ${styles.cta}`}>
             Ladda ner
           </Link>
@@ -43,6 +46,9 @@ export async function SiteHeader() {
           >
             <nav className={styles.mobilePanel} aria-label="Huvudmeny (mobil)">
               <NavLinks className={styles.mobileLinks} linkClassName={styles.mobileLink} />
+              <Link href="/kom-igang/#demo" className="btn btnSecondary">
+                Prova demon
+              </Link>
               <Link href="/kom-igang/" className="btn btnPrimary">
                 Ladda ner
               </Link>

@@ -13,7 +13,7 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
       "Artikelregistret och artikelkortet, artikelöversikten, artikelgrupper och import av artiklar, alternativa enheter, strukturer och operationer från CSV.",
   },
   grunddata: {
-    title: "Grunddata: villkor, speditörer och enheter",
+    title: "Grunddata: villkor, speditörer, enheter",
     description:
       "Leveransvillkor, betalningsvillkor, speditörer, enheter och kollityper i Nav|ERP – och hur de används på order, fakturor och frakt.",
   },
@@ -33,7 +33,7 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
       "Kunder och prislistor, offert och kundorder, leveranstidskontroll, utleverans och frakt, fakturor och samlingsfakturering, kundreskontra och bankfiler.",
   },
   tillverkning: {
-    title: "Tillverkningsorder, beläggning och planering",
+    title: "Tillverkningsorder och planering",
     description:
       "Resurser och produktionsgrupper, tillverkningsorder, behovsberäkning, beläggning och planering per vecka, pågående arbete och tidrapporter.",
   },
@@ -48,7 +48,7 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
       "Lönekoder, frånvaro, övertid och attestering av tid i Nav|ERP, och hur löneunderlaget exporteras som en PAXml-fil till lönesystemet.",
   },
   lager: {
-    title: "Lager: saldon, inventering och lagervärdering",
+    title: "Lager: saldon, inventering, värdering",
     description:
       "Hur saldot fungerar, transaktionsloggen, lagerplatser och lagerflytt, inventering, justeringar och lagervärdering – varje saldo går att spåra bakåt.",
   },

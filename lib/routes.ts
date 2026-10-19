@@ -10,6 +10,7 @@ export function allRoutes(): string[] {
     "/kom-igang/",
     "/gratis-affarssystem/",
     "/fragor/",
+    "/verktyg/paslagskalkyl/",
     "/oppen-kallkod/",
     "/om/",
     "/versioner/",

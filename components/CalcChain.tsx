@@ -1,8 +1,18 @@
-import { EXAMPLE, calcChain, formatKr } from "@/lib/calc";
+import { EXAMPLE, calcChain, formatKr, type CalcInput } from "@/lib/calc";
 import styles from "./CalcChain.module.css";
 
-export function CalcChain() {
-  const { lines } = calcChain(EXAMPLE);
+// Pure markup: rendered on the server with the example, and inside the
+// interactive calculator on /verktyg/paslagskalkyl/ with the visitor's numbers.
+export function CalcChain({
+  input = EXAMPLE,
+  caption = "Räkneexempel: så byggs försäljningspriset upp",
+  note = "Påslagen sätter ni själva under System → Kalkyler, TO-påslaget per resurs. Beloppen i exemplet är påhittade.",
+}: {
+  input?: CalcInput;
+  caption?: string;
+  note?: string;
+}) {
+  const { lines } = calcChain(input);
   const parts = lines.filter((l) => l.kind !== "subtotal" && l.amount > 0);
   return (
     <figure className={styles.calc}>
@@ -13,7 +23,7 @@ export function CalcChain() {
         ))}
       </div>
       <table className={styles.table}>
-        <caption className={styles.caption}>Räkneexempel: så byggs försäljningspriset upp</caption>
+        <caption className={styles.caption}>{caption}</caption>
         <tbody>
           {lines.map((l) => (
             <tr key={l.label} data-kind={l.kind}>
@@ -26,9 +36,7 @@ export function CalcChain() {
           ))}
         </tbody>
       </table>
-      <figcaption className={styles.note}>
-        Påslagen sätter ni själva under System → Kalkyler, TO-påslaget per resurs. Beloppen i exemplet är påhittade.
-      </figcaption>
+      {note && <figcaption className={styles.note}>{note}</figcaption>}
     </figure>
   );
 }

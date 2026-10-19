@@ -172,9 +172,14 @@ export default function Home() {
               Förkalkylen räknar fram självkostnad och försäljningspris ur struktur och rutt. Efterkalkylen visar vad
               ordern faktiskt kostade. Påslagen är era egna.
             </p>
-            <Link href="/funktioner/kalkyl/" className={styles.more}>
-              Så fungerar kalkylen <ArrowRight size={16} aria-hidden />
-            </Link>
+            <div className={styles.moreLinks}>
+              <Link href="/funktioner/kalkyl/" className={styles.more}>
+                Så fungerar kalkylen <ArrowRight size={16} aria-hidden />
+              </Link>
+              <Link href="/verktyg/paslagskalkyl/" className={styles.more}>
+                Räkna själv i påläggskalkylen <ArrowRight size={16} aria-hidden />
+              </Link>
+            </div>
           </div>
           <CalcChain />
         </div>

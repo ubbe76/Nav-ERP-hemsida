@@ -2,6 +2,15 @@
   padding-top: 64px;
 }
 
+.calcMore {
+  margin: 16px 0 0;
+  font-weight: 600;
+}
+
+.calcMore a {
+  color: var(--accent-fg);
+}
+
 .body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;

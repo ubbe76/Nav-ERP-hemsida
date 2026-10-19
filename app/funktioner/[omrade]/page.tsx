@@ -49,6 +49,9 @@ export default async function AreaPage({ params }: Props) {
       {area.slug === "kalkyl" && (
         <div className={`container ${styles.calc}`}>
           <CalcChain />
+          <p className={styles.calcMore}>
+            <Link href="/verktyg/paslagskalkyl/">Räkna med era egna siffror</Link>
+          </p>
         </div>
       )}
       <div className={`container section ${styles.body}`}>

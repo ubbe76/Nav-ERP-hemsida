@@ -477,7 +477,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Vad är en påläggskalkyl?",
         answer:
-          "En påläggskalkyl räknar fram priset genom att lägga procentuella påslag på de direkta kostnaderna: material, lön och legoarbete. Påslagen MO, TO och LO täcker material-, tillverknings- och legoomkostnader och ger tillverkningskostnaden. Affo-påslaget för affärsomkostnader ger självkostnaden, och ett generellt påslag ger försäljningspriset.",
+          "En påläggskalkyl räknar fram priset genom att lägga procentuella påslag på de direkta kostnaderna: material, lön och legoarbete. Påslagen MO och LO täcker material- och legoomkostnader och ger tillverkningskostnaden. Affo-påslaget för affärsomkostnader ger självkostnaden, och ett generellt påslag ger tillsammans med TO-påslaget (tillverkningsomkostnader, läggs sist på priset utan vinstpåslag) försäljningspriset.",
       },
       {
         question: "Vilket materialpris använder kalkylen?",

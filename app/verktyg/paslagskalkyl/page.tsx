@@ -19,11 +19,11 @@ const TERMS = [
   { term: "Legokostnad", text: "Arbete som köps av en underleverantör, till exempel ytbehandling eller härdning." },
   {
     term: "MO, TO och LO",
-    text: "Material-, tillverknings- och legoomkostnader: de indirekta kostnaderna för inköp och lager, för verkstaden och för att hantera legoarbete. De läggs på som procent av material, lön och lego.",
+    text: "Material-, tillverknings- och legoomkostnader: de indirekta kostnaderna för inköp och lager, för verkstaden och för att hantera legoarbete. De läggs på som procent av material, lön och lego. TO ingår inte i tillverknings- eller självkostnaden utan läggs sist på försäljningspriset.",
   },
   {
     term: "Tillverkningskostnad (TVK)",
-    text: "De direkta kostnaderna plus MO, TO och LO. Det produkten kostar att tillverka.",
+    text: "De direkta kostnaderna plus MO och LO. Det produkten kostar att tillverka, utan TO-påslaget.",
   },
   {
     term: "Affo",
@@ -32,7 +32,7 @@ const TERMS = [
   { term: "Självkostnad (SVK)", text: "Tillverkningskostnaden plus Affo. Det produkten kostar företaget totalt." },
   {
     term: "Generellt påslag",
-    text: "Vinsten, i procent av självkostnaden. Självkostnaden plus det generella påslaget är försäljningspriset.",
+    text: "Vinsten, i procent av självkostnaden. Självkostnaden plus det generella påslaget och TO-påslaget (som inte får något vinstpåslag) är försäljningspriset.",
   },
 ];
 

@@ -25,17 +25,17 @@ export function calcChain(i: CalcInput): { lines: CalcLine[]; tvk: number; svk: 
   const to = (i.labour * i.toPct) / 100;
   const lo = (i.subcontract * i.loPct) / 100;
   // Semi-finished goods carry no MO/LO markup — it's already inside their own cost.
-  const tvk = i.material + mo + i.labour + to + i.subcontract + lo + i.semiFinished;
+  // TO is not part of TVK/SVK: it is added toward the sales price only, last, with no profit markup on it.
+  const tvk = i.material + mo + i.labour + i.subcontract + lo + i.semiFinished;
   const affo = (tvk * i.affoPct) / 100;
   const svk = tvk + affo;
   const general = (svk * i.generalPct) / 100;
-  const price = svk + general;
+  const price = svk + general + to;
 
   const lines: CalcLine[] = [
     { label: "Direkt material", amount: i.material, kind: "base" },
     { label: `MO-påslag ${pct(i.moPct)}`, amount: mo, kind: "markup" },
     { label: "Direkt lön", amount: i.labour, kind: "base" },
-    { label: `TO-påslag ${pct(i.toPct)}`, amount: to, kind: "markup" },
     { label: "Legokostnad", amount: i.subcontract, kind: "base" },
     { label: `LO-påslag ${pct(i.loPct)}`, amount: lo, kind: "markup" },
     ...(i.semiFinished > 0 ? [{ label: "Halvfabrikat", amount: i.semiFinished, kind: "base" } as const] : []),
@@ -43,6 +43,7 @@ export function calcChain(i: CalcInput): { lines: CalcLine[]; tvk: number; svk: 
     { label: `Affo-påslag ${pct(i.affoPct)}`, amount: affo, kind: "markup" },
     { label: "Självkostnad", amount: svk, kind: "subtotal" },
     { label: `Generellt påslag ${pct(i.generalPct)}`, amount: general, kind: "markup" },
+    { label: `TO-påslag ${pct(i.toPct)}`, amount: to, kind: "markup" },
     { label: "Försäljningspris", amount: price, kind: "subtotal" },
   ];
   return { lines, tvk, svk, price };

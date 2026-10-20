@@ -19,7 +19,7 @@ const GROUPS: Array<{ title: string; fields: Array<{ key: keyof CalcInput; label
     title: "Påslag",
     fields: [
       { key: "moPct", label: "MO-påslag, på materialet", unit: "%" },
-      { key: "toPct", label: "TO-påslag, på lönen", unit: "%" },
+      { key: "toPct", label: "TO-påslag, på lönen (läggs sist på priset)", unit: "%" },
       { key: "loPct", label: "LO-påslag, på legot", unit: "%" },
       { key: "affoPct", label: "Affo-påslag, på tillverkningskostnaden", unit: "%" },
       { key: "generalPct", label: "Generellt påslag, på självkostnaden", unit: "%" },
@@ -73,7 +73,8 @@ export function MarkupCalculator() {
         <CalcChain input={values} caption="Er kalkyl per styck" note="" />
         <p className={styles.margin}>
           Täckningsbidrag {formatKr(tb)} per styck, täckningsgrad {pct(tg)}. Påslaget på {pct(values.generalPct)}{" "}
-          räknas på självkostnaden, täckningsgraden på försäljningspriset.
+          räknas på självkostnaden, täckningsgraden på försäljningspriset. TO-påslaget ingår i täckningsbidraget men
+          får inget vinstpåslag.
         </p>
       </div>
     </div>

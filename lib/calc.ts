@@ -10,6 +10,7 @@ export interface CalcInput {
   semiFinished: number;
   affoPct: number;
   generalPct: number;
+  materialMarkupPct: number;
 }
 
 export interface CalcLine {
@@ -30,7 +31,10 @@ export function calcChain(i: CalcInput): { lines: CalcLine[]; tvk: number; svk: 
   const affo = (tvk * i.affoPct) / 100;
   const svk = tvk + affo;
   const general = (svk * i.generalPct) / 100;
-  const price = svk + general + to;
+  // Materialpåslag: on material + MO, sales price only — beside the general
+  // markup, not stacked on it, and not part of TVK/SVK.
+  const materialMarkup = ((i.material + mo) * i.materialMarkupPct) / 100;
+  const price = svk + general + materialMarkup + to;
 
   const lines: CalcLine[] = [
     { label: "Direkt material", amount: i.material, kind: "base" },
@@ -43,6 +47,7 @@ export function calcChain(i: CalcInput): { lines: CalcLine[]; tvk: number; svk: 
     { label: `Affo-påslag ${pct(i.affoPct)}`, amount: affo, kind: "markup" },
     { label: "Självkostnad", amount: svk, kind: "subtotal" },
     { label: `Generellt påslag ${pct(i.generalPct)}`, amount: general, kind: "markup" },
+    { label: `Materialpåslag ${pct(i.materialMarkupPct)}`, amount: materialMarkup, kind: "markup" },
     { label: `TO-påslag ${pct(i.toPct)}`, amount: to, kind: "markup" },
     { label: "Försäljningspris", amount: price, kind: "subtotal" },
   ];
@@ -60,6 +65,7 @@ export const EXAMPLE: CalcInput = {
   semiFinished: 0,
   affoPct: 8,
   generalPct: 20,
+  materialMarkupPct: 15,
 };
 
 export function formatKr(n: number): string {

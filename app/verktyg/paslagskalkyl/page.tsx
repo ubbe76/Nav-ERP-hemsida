@@ -10,7 +10,7 @@ import { breadcrumbs } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Påläggskalkyl: räkna fram självkostnad och pris",
   description:
-    "Räkna en påläggskalkyl med MO-, TO-, LO- och Affo-påslag: från direkt material och lön till tillverkningskostnad, självkostnad och försäljningspris.",
+    "Räkna en påläggskalkyl med MO-, TO-, LO-, Affo- och materialpåslag: från direkt material och lön till tillverkningskostnad, självkostnad och försäljningspris.",
 };
 
 const TERMS = [
@@ -32,7 +32,11 @@ const TERMS = [
   { term: "Självkostnad (SVK)", text: "Tillverkningskostnaden plus Affo. Det produkten kostar företaget totalt." },
   {
     term: "Generellt påslag",
-    text: "Vinsten, i procent av självkostnaden. Självkostnaden plus det generella påslaget och TO-påslaget (som inte får något vinstpåslag) är försäljningspriset.",
+    text: "Vinsten, i procent av självkostnaden. Självkostnaden plus det generella påslaget, materialpåslaget och TO-påslaget (som inte får något vinstpåslag) är försäljningspriset.",
+  },
+  {
+    term: "Materialpåslag",
+    text: "Ett försäljningspåslag på materialet, i procent av direkt material plus MO. Det ingår inte i tillverknings- eller självkostnaden, så självkostnaden blir den riktiga kostnaden, utan läggs bara på försäljningspriset, bredvid det generella påslaget.",
   },
 ];
 
@@ -79,7 +83,8 @@ export default function MarkupCalculatorPage() {
           <p>
             Ett halvfabrikat som ni tillverkar själva har redan fått sina påslag i sin egen kalkyl. Därför läggs
             inget MO- eller LO-påslag på det igen. Affo och det generella påslaget träffar däremot hela
-            tillverkningskostnaden, eftersom de gäller företaget som helhet.
+            tillverkningskostnaden, eftersom de gäller företaget som helhet. Halvfabrikatets eget materialpåslag
+            följer med upp till priset, men läggs inte på en gång till.
           </p>
 
           <h2>Hur stora ska påslagen vara?</h2>
@@ -93,7 +98,7 @@ export default function MarkupCalculatorPage() {
           <h2>Påläggskalkyl i Nav|ERP</h2>
           <p>
             I Nav|ERP räknar förkalkylen fram kedjan ur artikelns struktur och rutt, med materialpriser och
-            resursernas timkostnad. MO-, LO-, Affo- och det generella påslaget sätts under System → Kalkyler och
+            resursernas timkostnad. MO-, LO-, Affo-, det generella påslaget och materialpåslaget sätts under System → Kalkyler och
             TO-påslaget per resurs. När ordern är klar räknar efterkalkylen samma kedja med verklig förbrukning och
             rapporterad tid.{" "}
             <Link href="/funktioner/kalkyl/">Mer om kalkylen i Nav|ERP</Link> och om påslagen i{" "}

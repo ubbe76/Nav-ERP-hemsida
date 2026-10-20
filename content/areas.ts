@@ -437,7 +437,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "paslag",
         title: "Påslag",
         points: [
-          "MO-, LO- och Affo-påslag samt ett generellt påslag, i procent med decimaler.",
+          "MO-, LO- och Affo-påslag samt ett generellt påslag och ett materialpåslag, i procent med decimaler.",
           "TO-påslag per resurs — maskinen och handarbetet kostar olika.",
           "Panelen Så räknas försäljningspriset visar hela kedjan med ett räkneexempel.",
         ],
@@ -457,7 +457,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       title: "Exempel: en konsol från förkalkyl till efterkalkyl",
       intro: "Så går en artikel genom kalkyl, offert och tillverkning, och så hittar ni var avvikelsen uppstod.",
       steps: [
-        "Under System → Kalkyler fyller ni i MO-, LO-, Affo- och generellt påslag en gång. Timkostnad och TO-påslag sätter ni per resurs under Tillverkning → Resurser. Med materialkostnad från Verklig kostnad räknar förkalkylen på standardpriset och efterkalkylen på vad materialet faktiskt kostade.",
+        "Under System → Kalkyler fyller ni i MO-, LO-, Affo-, generellt påslag och materialpåslag en gång. Timkostnad och TO-påslag sätter ni per resurs under Tillverkning → Resurser. Med materialkostnad från Verklig kostnad räknar förkalkylen på standardpriset och efterkalkylen på vad materialet faktiskt kostade.",
         "Konsolen har en struktur med plåt och skruv och en rutt med laserskärning, bockning och svetsning. På artikelns flik Kalkyl skriver ni 50 i Antal att förkalkylera och klickar Förkalkylera. Panelen visar kedjan till försäljningspris, totalt och per styck.",
         "Klicka Spara kalkyl. I Kalkylspecifikation trycker ni Sätt försäljningspris, så blir kalkylens pris per styck artikelns försäljningspris.",
         "På offerten förifylls à-priset ur priskedjan, där artikelns försäljningspris gäller när kunden saknar egna priser och prislista. Under raderna visas täckningsbidrag och täckningsgrad mot förkalkylen, så ni ser vad en rabatt kostar.",
@@ -477,7 +477,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Vad är en påläggskalkyl?",
         answer:
-          "En påläggskalkyl räknar fram priset genom att lägga procentuella påslag på de direkta kostnaderna: material, lön och legoarbete. Påslagen MO och LO täcker material- och legoomkostnader och ger tillverkningskostnaden. Affo-påslaget för affärsomkostnader ger självkostnaden, och ett generellt påslag ger tillsammans med TO-påslaget (tillverkningsomkostnader, läggs sist på priset utan vinstpåslag) försäljningspriset.",
+          "En påläggskalkyl räknar fram priset genom att lägga procentuella påslag på de direkta kostnaderna: material, lön och legoarbete. Påslagen MO och LO täcker material- och legoomkostnader och ger tillverkningskostnaden. Affo-påslaget för affärsomkostnader ger självkostnaden, och ett generellt påslag ger tillsammans med TO-påslaget (tillverkningsomkostnader) och materialpåslaget (på material + MO) försäljningspriset. TO- och materialpåslaget läggs sist på priset, utan vinstpåslag, och ingår inte i självkostnaden.",
       },
       {
         question: "Vilket materialpris använder kalkylen?",

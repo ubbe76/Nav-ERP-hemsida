@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.4.1-alpha",
+    date: "2026-10-21",
+    summary:
+      "E-faktura via Peppol till svenska företagskunder, ångra en utleverans per leveransrad, nya pallkort med streck- eller QR-kod och eget antal per kolli, materialpåslag i kalkylen och TO-påslaget sist på försäljningspriset.",
+    breaking: [
+      "Migrationerna 0129–0133 körs automatiskt när API:et startar. Befintliga leveransrader paras ihop med sina lagerrader så att de kan ångras; en leveransrad som inte går att para ihop kan inte ångras.",
+      "Kalkylen: TO-påslaget ingår inte längre i tillverkningskostnaden (TVK) eller självkostnaden (SVK) utan läggs sist, direkt på försäljningspriset, utan Affo eller generellt påslag på sig. En ny kalkyl kan därför ge lägre TVK, SVK och försäljningspris än förut, och standardpris, varianters standardpris, lagervärdet vid inleverans av en konfigurerad tillverkningsorder, marginal och Kalkylutfall följer med. Sparade kalkyler summerar fortfarande till sitt sparade försäljningspris.",
+      "Pallkort: utan egen inställning får dialogen Pallkort skriva ut även när kollina inte stämmer med totalt antal — den varnar men spärrar inte. Stäng av Tillåt utskrift av pallkort även om kollina inte stämmer med totalt antal under Systeminställningar för att spärra.",
+    ],
+    added: [
+      "E-faktura via Peppol (Peppol BIS Billing 3): Skicka e-faktura på fakturakortet skickar fakturan eller kreditfakturan till en svensk företagskund genom accesspunkten B2Brouter, och statusen (Skickad, Mottagen, Avvisad, Misslyckad) hämtas automatiskt. Inställningarna finns under System → E-faktura, och kundkortet har Fakturaleverans och Peppol-id med Kontrollera mot Peppol-katalogen. Börja i B2Brouters testmiljö (Sandbox). Ingen ändring i `.env` behövs.",
+      "Ångra… i kundorderkortets Följesedlar ångrar en leveransrad: varorna går tillbaka till sin lagerplats och ordern öppnas igen. Det går inte när raden är fakturerad (även utkast) eller följesedeln ligger på en bokad transport.",
+      "Nya pallkort: ett vikbart A4-kort med Kolli n av m, kund och båda ordernumren, och valfri streckkod eller QR-kod (Kod på pallkort i Systeminställningar och per kund). Dialogen Pallkort fördelar ett totalt antal på flera kolli, och pallkorten kan skrivas ut igen per rapport i tillverkningsorderns logg och per följesedel.",
+      "Materialpåslag (%) under System → Kalkyler: ett påslag på direkt material och MO som läggs på försäljningspriset bredvid det generella påslaget, utan att ändra självkostnaden.",
+      "Kundorderkortet visar tillverkningsorderns nummer och status på raden, och Skapa TO skapar bara det som återstår.",
+      "API: `GET`/`POST /invoices/:id/einvoice`, `POST /einvoice-transmissions/:id/refresh`, `GET /einvoice-transmissions/:id/document`, `GET`/`PATCH /einvoice-settings`, `POST /customers/:id/peppol-lookup`, `invoiceDelivery` och `peppolId` på kunden, `einvoiceStatus` i fakturalistan och `POST /sales-orders/:id/deliveries/:deliveryId/rows/:deliveryRowId/undo`.",
+    ],
+    changed: [
+      "Följesedelns PDF markerar ångrade rader, och leveransprecisionen räknar bara följesedlar som inte är ångrade.",
+    ],
+  },
+  {
     version: "0.4.0-alpha",
     date: "2026-10-19",
     summary:

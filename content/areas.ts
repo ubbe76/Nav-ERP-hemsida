@@ -301,6 +301,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Offert → kundorder → utleverans → faktura, med följesedel och kreditfaktura.",
           "Prislistor och kundpriser, med import av kunder och priser från CSV.",
           "Samlingsfakturering: en faktura per kund för alla levererade, ofakturerade rader.",
+          "E-faktura via Peppol till svenska företagskunder, med leveransstatus på fakturan.",
+          "Pallkort med streck- eller QR-kod och eget antal per kolli, och en utleverans kan ångras per rad.",
           "Täckningsbidrag och täckningsgrad på offerten och ordern, räknat mot artiklarnas förkalkyl.",
           "Eget leveransdatum per orderrad, och en ny leveransadress kan skrivas in direkt på ordern.",
         ],
@@ -350,7 +352,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       ],
     },
     limits: [
-      "Det finns ännu ingen e-faktura via Peppol. Fakturor skickas som PDF med e-post.",
+      "E-faktura via Peppol går bara till svenska företagskunder i kronor, och inkommande e-fakturor tas inte emot. Andra fakturor skickas som PDF med e-post.",
       "Det finns ingen EDI för order eller fakturor.",
       "Försäljningen sker bara i svenska kronor. En leverantörsfaktura i annan valuta bokförs inte automatiskt, och betalfilerna klarar inte utlandsbetalningar.",
       "Offert, orderbekräftelse, följesedel och faktura skrivs bara ut på svenska.",

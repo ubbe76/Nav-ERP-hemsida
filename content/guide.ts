@@ -156,7 +156,7 @@ export const GUIDE: GuideGroup[] = [
           "En kundorder ska bli behov i planeringen direkt, och leveransen ska kunna faktureras utan att något knappas in igen. Samma sak åt andra hållet för inköp.",
         status: "ja",
         navErp:
-          "Offert, kundorder, utleverans och faktura hänger ihop, liksom förfrågan, inköpsorder, inleverans och leverantörsfaktura. Fakturor skickas som PDF med e-post. E-faktura enligt Peppol och EDI finns inte.",
+          "Offert, kundorder, utleverans och faktura hänger ihop, liksom förfrågan, inköpsorder, inleverans och leverantörsfaktura. Fakturor skickas som PDF med e-post eller som e-faktura via Peppol till svenska företagskunder. EDI finns inte.",
         more: { href: "/funktioner/inkop-och-forsaljning/", label: "Inköp och försäljning" },
       },
     ],

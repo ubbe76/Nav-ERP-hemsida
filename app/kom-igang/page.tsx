@@ -174,13 +174,14 @@ export default function GetStartedPage() {
           <div>
             <h2 className={styles.h2}>Läs in era register</h2>
             <p>
-              Artiklar, struktur, operationer, kunder, leverantörer, priser och resurser kan läsas in från CSV, så ni
-              slipper knappa in allt för hand.
+              Artiklar, struktur, operationer, kunder, leverantörer, priser och resurser kan läsas in från CSV eller Excel, så ni
+              slipper knappa in allt för hand. Till varje import finns en Excelmall med förklaringar av kolumnerna.
             </p>
             <ul className={styles.links}>
               <li><Link href="/hjalp/artiklar/#importera-artiklar">Importera artiklar</Link></li>
               <li><Link href="/hjalp/forsaljning/#importera-kunder">Importera kunder</Link></li>
               <li><Link href="/hjalp/inkop/#importera-leverantorer">Importera leverantörer</Link></li>
+              <li><Link href="/hjalp/importmallar/">Importmallar (Excel)</Link></li>
             </ul>
           </div>
           <div>

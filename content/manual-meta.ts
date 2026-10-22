@@ -17,6 +17,11 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
     description:
       "Leveransvillkor, betalningsvillkor, speditörer, enheter och kollityper i Nav|ERP – och hur de används på order, fakturor och frakt.",
   },
+  importmallar: {
+    title: "Importmallar i Excel",
+    description:
+      "Excelmallar för alla importer i Nav|ERP – artiklar, struktur, operationer, kunder, leverantörer, priser och resurser – med förklaring och exempel per kolumn.",
+  },
   aviseringar: {
     title: "Aviseringar: det som behöver åtgärdas",
     description:

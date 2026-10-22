@@ -17,6 +17,7 @@ export const SYNC_ITEMS: SyncItem[] = [
   // README.md is the folder's index on GitHub, not a chapter.
   { from: "docs/manual", to: "content/manual", match: /^(?!README\.md$).+\.md$/ },
   { from: "docs/assets", to: "public/screenshots", match: /^screenshot-.+\.png$/ },
+  { from: "apps/web/public/importmallar", to: "public/importmallar", match: /\.xlsx$/ },
   { from: "apps/web/styles/tokens.css", to: "styles/tokens.css" },
   { from: "apps/web/lib/manual.ts", to: "lib/upstream/manual.ts" },
   { from: "apps/web/lib/manualSearch.ts", to: "lib/upstream/manualSearch.ts" },

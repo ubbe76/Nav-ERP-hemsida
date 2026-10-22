@@ -17,6 +17,11 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
     description:
       "Leveransvillkor, betalningsvillkor, speditörer, enheter och kollityper i Nav|ERP – och hur de används på order, fakturor och frakt.",
   },
+  aviseringar: {
+    title: "Aviseringar: det som behöver åtgärdas",
+    description:
+      "Försenade ordrar, negativa saldon, förfallna fakturor och misslyckade utskick samlade på ett ställe i Nav|ERP, plus den dagliga sammanställningen via e-post.",
+  },
   "personal-tid": {
     title: "Personal, scheman och tidrapporter",
     description:

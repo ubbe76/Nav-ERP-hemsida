@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.4.2-alpha",
+    date: "2026-10-22",
+    summary:
+      "Aviseringar med daglig sammanställning per e-post, uppföljning av offerter med giltighetstid, status Förlorad och hit rate, Excelmallar för alla importer, anledning vid sen ankomst och tidig hemgång och val av övertidsersättning i stämpelterminalen, och en egen huvudmeny Personal & lön.",
+    breaking: [
+      "Migrationerna 0134–0137 körs automatiskt när API:et startar.",
+      "Personal & lön är en egen huvudmeny och en egen behörighet. Anställda (tidigare Personal), Attestering, Löneunderlag och Lönekoder har flyttat från Tillverkning till `/personal/…`; de gamla adresserna skickas vidare. Varje behörighetsgrupp som hade Tillverkning får Personal & lön vid uppdateringen, så ingen tappar åtkomst — men en grupp som ska attestera eller se personalregistret behöver från och med nu Personal & lön, och en grupp med bara Tillverkning når inte längre de sidorna. Attestering och Löneunderlag kräver fortfarande rollen arbetsledare eller administratör.",
+      "API: personal-, frånvaro-, attesterings- och lönerutterna (`/employees`, frånvaron, löneperioden, övertidsvalen, lönekoderna och arbetsledarens rättning av närvaro) kräver behörigheten `personal` i stället för Tillverkning. Terminalens rutter, `/employees/directory`, tidrapporterna och scheman är oförändrade.",
+      "En ny offert får Giltig t.o.m. dagens datum plus 30 dagar, även via `POST /quotes`. Sätt Offertens giltighetstid (dagar) till 0 under Systeminställningar för att stänga av det. Kundorder har en ny status, `lost` (Förlorad).",
+    ],
+    added: [
+      "Aviseringar: en egen sida och Översiktens Att bevaka visar det som behöver åtgärdas — negativa saldon, försenade kundordrar, inköpsordrar och tillverkningsordrar, inköps- och tillverkningsbehov, förfallna kundfakturor, leverantörsfakturor att betala, misslyckade e-fakturor och utskick och offerter att följa upp. En avisering försvinner när orsaken är åtgärdad. Varje användare kan slå på en daglig sammanställning per e-post; fyll i Navs adress under Systeminställningar för att få länkar i mejlet.",
+      "Offerter har Giltig t.o.m. och kan markeras Förlorad… med en förlustorsak ur det nya registret Förlustorsaker, och öppnas igen. Rapporten Offertuppföljning visar hit rate i antal och värde per kund, månad och förlustorsak.",
+      "Ladda ned mall i varje importflik ger en Excelmall med rätt kolumner, en kommentar per kolumn och ett instruktionsblad. Importguidens mappningssteg visar förklaringen för varje fält, och manualen har kapitlet Importmallar.",
+      "Stämpelterminalen kan kräva en anledning när någon stämplar in senare eller går hem tidigare än schemat, med en marginal i minuter, och fråga om övertiden ska betalas ut eller sparas. Båda är av som förval och slås på under Systeminställningar → Lön & PAXml; anledningarna väljs ur registret Avvikelseorsaker under Personal & lön → Lönekoder. Attesteringen visar avvikelserna och anledningarna per dag.",
+      "API: `GET /alerts`, `POST /sales-orders/:id/lose` och `…/reopen`, `GET /reports/quote-followup`, registret `/quote-loss-reasons`, `GET /imports/:entity/fields`, `GET /attendance-deviation-reasons` och `reason`/`overtimeDisposition` på närvarostämplingen.",
+    ],
+    changed: [
+      "Översiktens Att bevaka och flödesremsans försenade och negativa siffror räknas nu på samma sätt som Aviseringar.",
+    ],
+  },
+  {
     version: "0.4.1-alpha",
     date: "2026-10-21",
     summary:

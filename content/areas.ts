@@ -190,7 +190,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Artikelkort med flikarna Allmänt, Beredning, Lager, Kalkyl, Revisioner och Filer.",
           "Artikelgrupper, alternativa enheter och leverantörskatalog med staffelpriser.",
-          "Import av artiklar, struktur och operationer från CSV — kom igång med data från ert gamla system.",
+          "Import av artiklar, struktur och operationer från CSV eller Excel, med färdiga Excelmallar — kom igång med data från ert gamla system.",
           "En ny artikel kan kopiera uppgifter, beredning, leverantörer och ritningar från en befintlig artikel.",
           "Artikelnummer ur en nummerserie, med egna serier per artikelgrupp.",
         ],
@@ -305,6 +305,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Pallkort med streck- eller QR-kod och eget antal per kolli, och en utleverans kan ångras per rad.",
           "Täckningsbidrag och täckningsgrad på offerten och ordern, räknat mot artiklarnas förkalkyl.",
           "Eget leveransdatum per orderrad, och en ny leveransadress kan skrivas in direkt på ordern.",
+          "Offerter med giltighetstid och status Förlorad med förlustorsak, och rapporten Offertuppföljning med hit rate.",
         ],
       },
       {
@@ -541,6 +542,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Arbetslistan visar en operation per rad för den anställdes egna stationer — vad som är redo att börja, vad som brådskar och vilket material som behövs.",
           "Närvaro (kom/gå) och uttag av ATF. En glömd utstämpling fångas nästa gång personen stämplar in.",
           "Pågående arbete visar i realtid vem som är instämplad på vad, och vem som är frånvarande.",
+          "Valfritt krav på anledning vid sen ankomst och tidig hemgång, och val mellan utbetald och sparad övertid vid Gå hem.",
         ],
       },
       {
@@ -573,8 +575,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
         "På tisdagen glöms Gå hem. På onsdagsmorgonen frågar terminalen när operatören gick, med tisdagens schemaslut förifyllt, och Spara och stämpla in rättar det.",
         "På torsdagen blir det sent, till 19.30. Tiden efter schemaslutet blir övertid om den är längre än er övertidströskel, och tiden inom ert OB-fönster för vardagskvällar blir OB. Ingen registrerar något för hand.",
         "På fredagen går operatören tidigare och väljer Ta ut ATF. Timmarna är förifyllda med dagens schemalagda tid och går att ändra. Uttaget dras från ATF-saldot och närvaron stämplas ut samtidigt.",
-        "Efter månadsskiftet öppnar arbetsledaren Tillverkning → Lön → Attestering. Ofördelad tid står i rött och rättas under Detaljer, med Ändra på en stämpling eller Registrera frånvaro. Sedan trycker arbetsledaren Attestera.",
-        "När alla är attesterade låser en administratör perioden med Lås period, och underlaget fryses. Under Tillverkning → Lön → Löneunderlag trycker arbetsledaren Exportera PAXml, och filen läses in i lönesystemet.",
+        "Efter månadsskiftet öppnar arbetsledaren Personal & lön → Attestering. Ofördelad tid står i rött och rättas under Detaljer, med Ändra på en stämpling eller Registrera frånvaro. Sedan trycker arbetsledaren Attestera.",
+        "När alla är attesterade låser en administratör perioden med Lås period, och underlaget fryses. Under Personal & lön → Löneunderlag trycker arbetsledaren Exportera PAXml, och filen läses in i lönesystemet.",
       ],
     },
     limits: [

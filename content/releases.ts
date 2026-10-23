@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.5.0-alpha",
+    date: "2026-10-23",
+    summary:
+      "Tillägg: externa program som får händelser från Nav|ERP och kan visa egna sidor och flikar, egna färgteman med temaredigerare, och offerter som en egen rutin med egen nummerserie.",
+    breaking: [
+      "Migrationerna 0138–0141 körs automatiskt när API:et startar.",
+      "Ändringsanrop med en inloggad session (även inloggning, registrering och utloggning) som kommer från en annan webbplats vägras nu med 403 `cross-site-request`. Webben, stämpelterminalen och integrationer med API-klient (OAuth2) påverkas inte. Har du gett API:et en egen publik adress med `NEXT_PUBLIC_API_URL` måste `WEB_ORIGIN` vara adressen användarna öppnar webben på.",
+      "En ny offert får sitt nummer ur den nya serien Offert (`OF-…`), även via `POST /quotes` utan `confirm`; när offerten bekräftas får den nästa kundordernummer och offertnumret sparas. Ny kundorder får ett kundordernummer direkt som förut, och befintliga offerter behåller sina nummer. Kontrollera serien under System → Nummerserier. `GET /sales-orders` tar `kind=quote|order`.",
+      "Användarregistret visar tilläggens tekniska användare, märkta Tillägg. De kan inte loggas in med eller ändras där. API: `GET /auth/users` har fältet `kind`.",
+    ],
+    added: [
+      "Tillägg under System → Tillägg: ett externt program installeras från sin adress och får en egen API-nyckel och behörighetsgrupp, med Endast läsning om man vill. Det kan prenumerera på 16 händelser — artikel, kund och leverantör skapad eller ändrad, offert skapad, kundorder bekräftad, levererad eller makulerad, faktura utfärdad eller betald, inköpsorder skapad eller mottagen och tillverkningsorder skapad eller klar — som skickas som signerade webhooks och försöks igen automatiskt. Tillägget kan visa egna sidor i modulernas menyer och egna flikar på artikel-, kund- och leverantörskorten, och de följer användarens tema. Ett tillägg måste köras på en annan värd än Nav|ERP. Ett exempeltillägg utan beroenden finns i `examples/nav-plugin-exempel/`, och manualen har kapitlet Tillägg.",
+      "Egna färgteman under System → Teman: skapa ett tema i temaredigeraren utifrån fyra grundfärger — Nav|ERP räknar fram resten och kontrollerar att all text klarar WCAG AA — eller ladda upp en temafil. Teman kan exporteras, och administratören väljer företagets förvalda tema och kan låsa valet för alla.",
+      "Offerter är en egen rutin under Försäljning → Offerter, skild från Kundorder, och offerten har fältet Kundens förfrågan som skrivs ut som Er förfrågan på offerten och orderbekräftelsen. Orderbekräftelsen visar Vår offert.",
+      "API: `/themes` med `/themes/validate` och export, `GET /theme-boot`, `/plugins` med förhandsgranskning, nyckelbyte, testhändelse och leveranser, `GET /plugin-ui`, `POST /plugins/:id/context`, `GET /plugin-kit.css` och `customerInquiryNumber` på offerten.",
+    ],
+    changed: [
+      "Användarens temaval sparas på användaren och följer med mellan datorer.",
+      "Personalkortets Schema visar Kommande 4 veckor staplat på mobilen.",
+    ],
+  },
+  {
     version: "0.4.2-alpha",
     date: "2026-10-22",
     summary:

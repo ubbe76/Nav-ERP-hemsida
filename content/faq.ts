@@ -123,7 +123,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "integrationer",
         question: "Kan Nav|ERP kopplas till andra system?",
         answer:
-          "Ja, genom API:t, där externa system loggar in med egna API-klienter och bara får de rättigheter ni ger dem, till exempel en produktkonfigurator som lägger offerter. Dessutom kan Nav|ERP läsa och skriva standardfiler: SIE 4 till revisorn, PAXml till lönesystemet och bankens filer för in- och utbetalningar.",
+          "Ja, genom API:t, där externa system loggar in med egna API-klienter och bara får de rättigheter ni ger dem, till exempel en produktkonfigurator som lägger offerter. Ett tillägg kan dessutom få händelser som webhooks och visa egna sidor och flikar i Nav|ERP. Dessutom kan Nav|ERP läsa och skriva standardfiler: SIE 4 till revisorn, PAXml till lönesystemet och bankens filer för in- och utbetalningar.",
         more: { href: "/hjalp/system/#integrationer", label: "Integrationer i manualen" },
       },
     ],

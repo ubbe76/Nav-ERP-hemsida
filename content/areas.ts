@@ -305,7 +305,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Pallkort med streck- eller QR-kod och eget antal per kolli, och en utleverans kan ångras per rad.",
           "Täckningsbidrag och täckningsgrad på offerten och ordern, räknat mot artiklarnas förkalkyl.",
           "Eget leveransdatum per orderrad, och en ny leveransadress kan skrivas in direkt på ordern.",
-          "Offerter med giltighetstid och status Förlorad med förlustorsak, och rapporten Offertuppföljning med hit rate.",
+          "Offerter som en egen rutin med egen nummerserie, giltighetstid och status Förlorad med förlustorsak, och rapporten Offertuppföljning med hit rate.",
         ],
       },
       {

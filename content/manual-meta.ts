@@ -22,6 +22,11 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
     description:
       "Excelmallar för alla importer i Nav|ERP – artiklar, struktur, operationer, kunder, leverantörer, priser och resurser – med förklaring och exempel per kolumn.",
   },
+  tillagg: {
+    title: "Tillägg: webhooks, sidor och flikar",
+    description:
+      "Så installeras och hanteras tillägg i Nav|ERP – API-nyckel, rättigheter, signerade webhooks, egna sidor och flikar – och hur man bygger ett eget tillägg.",
+  },
   aviseringar: {
     title: "Aviseringar: det som behöver åtgärdas",
     description:

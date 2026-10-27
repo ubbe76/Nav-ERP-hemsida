@@ -27,6 +27,11 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
     description:
       "Så installeras och hanteras tillägg i Nav|ERP – API-nyckel, rättigheter, signerade webhooks, egna sidor och flikar – och hur man bygger ett eget tillägg.",
   },
+  kvalitet: {
+    title: "Kvalitet: reklamationer och avvikelser",
+    description:
+      "Kundreklamationer, leverantörsavvikelser och interna avvikelser i Nav|ERP – utredning, kostnader, kopplade dokument och reklamationsrapporten.",
+  },
   aviseringar: {
     title: "Aviseringar: det som behöver åtgärdas",
     description:

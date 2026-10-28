@@ -391,7 +391,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Hur fungerar det med kunder i andra länder?",
         answer:
-          "Det går, men fakturan är alltid i svenska kronor. Momssatsen sätts per fakturarad, och intäktskontot styrs av artikelgrupp och momssats, inte av kundens land, så kontrollera att försäljningen hamnar i rätt ruta i momsrapporten. Fraktbokningen hanterar inte tull.",
+          "Kunden får en egen valuta, och offert, order och faktura följer den med dagens kurs. Bokföringen sker i kronor, och betalningen bokförs med kursvinst eller kursförlust. Momskoden väljs efter kundens land och VAT-nummer och styr sats, intäktskonto och ruta i momsdeklarationen: ett företag i ett annat EU-land faktureras utan moms och kommer med i den periodiska sammanställningen, och varor till länder utanför EU blir export utan moms. Distansförsäljning till privatpersoner i andra EU-länder (OSS) ingår inte, dokumenten skrivs bara ut på svenska och fraktbokningen hanterar inte tull.",
       },
     ],
     manual: [

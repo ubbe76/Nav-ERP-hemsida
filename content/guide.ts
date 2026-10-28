@@ -132,7 +132,7 @@ export const GUIDE: GuideGroup[] = [
           "Kassationer ska registreras med orsak när de uppstår, så att ni ser vilka artiklar, resurser och orsaker som kostar mest.",
         status: "delvis",
         navErp:
-          "Kassationer rapporteras med obligatorisk orsak och summeras i rapporten Kassationsstatistik. Det finns ingen separat funktion för avvikelserapporter eller reklamationer.",
+          "Kassationer rapporteras med orsak ur registret Kvalitetsorsaker och summeras i rapporten Kassationsstatistik per månad, artikel, resurs eller orsak. Under Kvalitet hanteras kundreklamationer, leverantörsavvikelser och interna avvikelser som ärenden med orsak, utredning, åtgärd och kostnad, kopplade till order, faktura och tillverkningsorder. Kassationsrapporten visar antal kasserade, inte värdet i kronor.",
       },
     ],
   },

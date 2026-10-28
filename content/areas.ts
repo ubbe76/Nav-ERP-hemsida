@@ -551,6 +551,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Personalregister, veckoscheman och schema per anställd.",
           "ATF med tidbank eller veckouttag, och intjäning per vecka.",
+          "ATF och inarbetning i veckoschemat: veckans sista arbetsdag blir den korta dagen, längre i veckor med helgdag eller sjukfrånvaro och flyttad till dagen före när den är röd.",
           "Tidrapporter per anställd.",
           "Dagsscheman med obetald rast och betald paus, och svenska helgdagar som läggs in med en knapp.",
         ],
@@ -619,6 +620,11 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "ATF tjänas in med ett fast antal minuter per fullbordad arbetsvecka. Standarden sätts under System → Inställningar och kan ändras per anställd på personalkortet, där ni också väljer tidbank eller veckouttag. Uttag görs i terminalen eller på personalkortet och exporteras med en egen tidkod.",
       },
       {
+        question: "Kan vi sluta tidigare på fredagar med ATF och inarbetad tid?",
+        answer:
+          "Ja. Slå på Tillåt ATF-uttag via schemat och ge veckoschemat ordinarie arbetstid och ATF per vecka. Båda räknas per arbetsdag, och veckans sista arbetsdag får det som återstår: en vecka med en röd onsdag gör fredagen lite längre, och är fredagen röd blir torsdagen den korta dagen. Sjukfrånvaro och vård av barn tjänar inte in ATF, så då blir sista dagen så mycket längre. Lönen, attesteringen och stämpelterminalen räknar med den uträknade dagen.",
+      },
+      {
         question: "Klarar Nav|ERP kollektivavtalets regler för OB och övertid?",
         answer:
           "Ni lägger själva upp reglerna. Ett OB-tillägg är ett tidsfönster per dagtyp (vardag, lördag, söndag eller helgdag) med egen tidkod, och OB räknas ut ur närvarostämplingarna. Övertid räknas per dag mot schemat, och arbete en dag utan schema blir övertid helg. Belopp och ersättningsnivåer sätts i lönesystemet.",
@@ -628,6 +634,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       { chapter: "terminal", label: "Kapitlet Stämpelterminalen" },
       { chapter: "personal-tid", label: "Kapitlet Personal & tid" },
       { chapter: "personal-tid", anchor: "atf-arbetstidsforkortning", label: "ATF" },
+      { chapter: "personal-tid", anchor: "atf-och-inarbetning-i-veckoschemat", label: "ATF och inarbetning i veckoschemat" },
       { chapter: "lon", label: "Kapitlet Lön & attestering" },
       { chapter: "lon", anchor: "paxml-export", label: "PAXml-export" },
     ],

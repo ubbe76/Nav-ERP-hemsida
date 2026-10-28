@@ -12,6 +12,21 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.6.1-alpha",
+    date: "2026-10-28",
+    summary:
+      "ATF och inarbetning kan läggas in i veckoschemat: ATF och inarbetad tid räknas per arbetsdag, och veckans sista arbetsdag blir den korta dagen — längre i veckor med helgdag eller sjukfrånvaro, och flyttad till dagen före när den är röd.",
+    breaking: [
+      "Migration 0166 körs automatiskt när API:et startar. Den lägger till fält på veckoscheman och frånvarokoder och slår av Tjänar in ATF för frånvarokoderna SJK, VAB, FPE och TJL. Ingen ändring i `.env` behövs, och utan den nya inställningen beter sig scheman och lön som förut.",
+    ],
+    added: [
+      "Utjämning av ATF och inarbetning i veckoschemat, påslagen under System → Inställningar (Tillåt ATF-uttag via schemat, av från början). Veckoschemat får Ordinarie arbetstid per vecka och ATF per vecka, som tjänas in per arbetsdag, och veckans sista arbetsdag får det som återstår av veckan. En helgdag gör veckan kortare och sista arbetsdagen längre, och är fredagen röd blir torsdagen den korta dagen. Formuläret förhandsvisar en hel och en kort vecka och kontrollerar att veckan går ihop för alla kombinationer av helgdagar. Lönen, attesteringens Ofördelat och Avvikelser, stämpelterminalens fråga om tidig hemgång och Hämta ur schema räknar med den uträknade dagen, och personalkortets Kommande 4 veckor visar den. ATF:en dras inte från Nav|ERP:s eget ATF-saldo — kontot förs i lönesystemet.",
+      "Frånvarokoderna har Tjänar in ATF. Sjukfrånvaro, vård av barn, föräldraledighet och tjänstledighet tjänar inte in sin ATF-andel, så veckans sista arbetsdag blir så mycket längre — proportionellt när frånvaron gäller en del av dagen.",
+      "API: `scheduleBalancing` i `/settings`, `ordinaryMinutesPerWeek` och `atfMinutesPerWeek` på veckoscheman, `POST /week-schedules/preview`, `earnsAtf` på frånvarokoder, och `scheduleNetMinutes`, `scheduleEndTime` och `balance` i `GET /employees/:id/schedule-calendar`, där `netMinutes` och `endTime` på en utjämnad veckas sista arbetsdag är den uträknade tiden. Frånvarons inverkan syns där bara för administratörer och arbetsledare.",
+    ],
+    changed: [],
+  },
+  {
     version: "0.6.0-alpha",
     date: "2026-10-27",
     summary:

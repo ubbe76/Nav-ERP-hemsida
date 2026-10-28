@@ -359,7 +359,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "E-faktura via Peppol går bara till svenska företagskunder i kronor, och inkommande e-fakturor tas inte emot. Andra fakturor skickas som PDF med e-post.",
       "Det finns ingen EDI för order eller fakturor.",
-      "Försäljningen sker bara i svenska kronor. En leverantörsfaktura i annan valuta bokförs inte automatiskt, och betalfilerna klarar inte utlandsbetalningar.",
       "Offert, orderbekräftelse, följesedel och faktura skrivs bara ut på svenska.",
       "Det finns ingen färdig koppling till en webbutik. Externa system kan däremot lägga offerter via API:t.",
     ],
@@ -724,11 +723,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
       ],
     },
     limits: [
-      "Fakturor skickas som PDF via e-post. E-faktura enligt Peppol finns inte, och leverantörsfakturor registreras för hand.",
-      "Nav|ERP lämnar inte in momsdeklarationen. Ni för över rutorna i Skatteverkets e-tjänst.",
-      "SIE-importen läser bara ingående balanser, inte verifikat från ett annat program.",
-      "Bokföringen sker i svenska kronor. Leverantörsfakturor i annan valuta räknas inte om, och inbetalningar i annan valuta bokförs inte från bankfilen.",
-      "En installation hanterar ett företag. Flera bolag, koncernredovisning och budget finns inte.",
+      "Nav|ERP lämnar inte in momsdeklarationen. Ni laddar själva upp filen från Momsrapporten i Skatteverkets e-tjänst.",
+      "En installation hanterar ett företag. Flera bolag och koncernredovisning finns inte.",
     ],
     faq: [
       {

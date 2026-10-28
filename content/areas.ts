@@ -67,8 +67,9 @@ export const FEATURE_AREAS: FeatureArea[] = [
     screenshot: "manufacturing-orders",
     gallery: [
       { shot: "belaggning", caption: "Beläggning per resurs och vecka. En överbelagd vecka blir röd." },
-      { shot: "pagaende-arbete", caption: "Pågående arbete visar vem som är instämplad på vad just nu." },
       { shot: "behovsberakning", caption: "Behovsberäkningen föreslår inköp och tillverkning ur nettobehovet." },
+      { shot: "arbetskort", caption: "Arbetskortet: tillverkningsordern utskriven med operationer, instruktioner och material." },
+      { shot: "pallkort", caption: "Pallkortet skrivs ut när en operation rapporteras, med streckkod för artikel och order." },
     ],
     groups: [
       {
@@ -291,7 +292,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
     gallery: [
       { shot: "kundorder", caption: "Kundordern med en tillverkningsorder per rad." },
       { shot: "faktura", caption: "En betald faktura med OCR-nummer och betalningens verifikat." },
+      { shot: "offertuppfoljning", caption: "Offertuppföljningen: hit rate i antal och värde, totalt och per kund." },
       { shot: "inkopsordrar", caption: "Inköpsordrar, bekräftade och delvis mottagna." },
+      { shot: "fakturagranskning", caption: "Fakturainkorgen tolkar leverantörsfakturan och matchar den mot leverantör och inköpsorder." },
+      { shot: "reklamation", caption: "En kundreklamation under utredning, kopplad till order och faktura." },
     ],
     groups: [
       {
@@ -532,6 +536,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
     screenshot: "terminal",
     gallery: [
       { shot: "pagaende-arbete", caption: "Pågående arbete: vem som är instämplad på vilken operation." },
+      { shot: "veckoschema", caption: "ATF och inarbetning i veckoschemat: fredagen blir den korta dagen." },
+      { shot: "attestering", caption: "Attesteringen per period med schema, arbetad tid, frånvaro och övertid." },
     ],
     groups: [
       {

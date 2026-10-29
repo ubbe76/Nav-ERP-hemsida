@@ -233,7 +233,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "Det finns ännu ingen spårbarhet på batch- eller serienummer.",
       "Det finns ännu inget stöd för streckkoder i lagret. Artikel och antal väljs och skrivs in för hand.",
-      "Lagersaldon går inte att importera från fil. Ingående saldon läggs in med inventering eller justering.",
       "Behovsberäkningen räknar på artikelns totala saldo över alla lager. Det går inte att planera eller sätta beställningspunkt per lager.",
       "Det finns ingen FIFO-värdering, och en lagerrörelse kan inte backdateras in i en tidigare värdering.",
     ],
@@ -241,7 +240,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Kan vi ta med artiklar och strukturer från vårt gamla system?",
         answer:
-          "Ja. Artiklar → Importera läser CSV och xlsx med artiklar, alternativa enheter, operationer, struktur, inköpspriser och kundpriser. Varje fil importeras helt eller inte alls, så ett radfel stoppar filen tills det är rättat. Lagersaldon läggs in med en inventering.",
+          "Ja. Artiklar → Importera läser CSV och xlsx med artiklar, alternativa enheter, operationer, struktur, inköpspriser, kundpriser och lagersaldon. Varje fil importeras helt eller inte alls, så ett radfel stoppar filen tills det är rättat. Lagersaldon bokas som lagerjusteringar med à-pris, så lagerloggen och lagervärderingen stämmer från första dagen.",
       },
       {
         question: "Vad händer om saldot blir negativt?",

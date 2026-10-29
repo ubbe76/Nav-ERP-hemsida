@@ -476,7 +476,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Påslagen gäller hela företaget. Bara TO-påslaget sätts per resurs, och det finns inga påslag per artikelgrupp, kund eller order.",
       "Omkostnaderna fördelas med procentuella påslag. Det finns ingen aktivitetsbaserad kalkyl.",
       "Det går inte att pröva andra påslag på en enskild artikel. Förkalkylen räknar alltid med inställningarna under System → Kalkyler.",
-      "Leverantörspriser räknas inte om mellan valutor. Med Aktiv leverantörs pris används katalogpriset som det står, även när det är i en annan valuta än kronor.",
       "Det finns ännu ingen automatisk uppdelning av avvikelsen på pris, mängd och tid, och efterkalkylen skiljer inte på ställtid och stycktid.",
     ],
     faq: [
@@ -488,7 +487,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Vilket materialpris använder kalkylen?",
         answer:
-          "Det väljer ni under System → Kalkyler: artikelns standardkostnad, som är standardvalet, eller huvudleverantörens pris, med eller utan staffelpris. Saknas leverantörspris används standardkostnaden och kalkylen varnar. Verklig kostnad gäller bara efterkalkylen och värderar materialet till glidande medelpris vid uttaget.",
+          "Det väljer ni under System → Kalkyler: artikelns standardkostnad, som är standardvalet, eller huvudleverantörens pris, med eller utan staffelpris. Ett leverantörspris i euro eller någon annan valuta räknas om till kronor med dagens kurs från Riksbanken. Saknas leverantörspris, eller kurs för valutan, används standardkostnaden och kalkylen varnar. Verklig kostnad gäller bara efterkalkylen och värderar materialet till glidande medelpris vid uttaget.",
       },
       {
         question: "Hur räknas halvfabrikat?",

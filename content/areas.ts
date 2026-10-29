@@ -191,6 +191,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Artikelkort med flikarna Allmänt, Beredning, Lager, Kalkyl, Revisioner och Filer.",
           "Artikelgrupper, alternativa enheter och leverantörskatalog med staffelpriser.",
+          "Prishistorik för standardkostnad, försäljningspris och leverantörspriser.",
           "Import av artiklar, struktur och operationer från CSV eller Excel, med färdiga Excelmallar — kom igång med data från ert gamla system.",
           "En ny artikel kan kopiera uppgifter, beredning, leverantörer och ritningar från en befintlig artikel.",
           "Artikelnummer ur en nummerserie, med egna serier per artikelgrupp.",
@@ -434,7 +435,9 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "efterkalkyl",
         title: "Efterkalkyl",
         points: [
+          "Egen materialkälla: standardpris, aktiv leverantörs pris eller verklig kostnad.",
           "Verklig materialkostnad: glidande medelpris vid förbrukningstillfället, härlett ur lagertransaktionerna.",
+          "Standard- och leverantörspriser, och valutakursen, som de var när materialet togs ut — efterkalkylen ger samma svar om den görs om senare.",
           "Rapporterad tid gånger resursens timkostnad, med TO-påslag per resurs.",
           "Legoarbete som egen post med LO-påslag.",
         ],
@@ -463,7 +466,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       title: "Exempel: en konsol från förkalkyl till efterkalkyl",
       intro: "Så går en artikel genom kalkyl, offert och tillverkning, och så hittar ni var avvikelsen uppstod.",
       steps: [
-        "Under System → Kalkyler fyller ni i MO-, LO-, Affo-, generellt påslag och materialpåslag en gång. Timkostnad och TO-påslag sätter ni per resurs under Tillverkning → Resurser. Med materialkostnad från Verklig kostnad räknar förkalkylen på standardpriset och efterkalkylen på vad materialet faktiskt kostade.",
+        "Under System → Kalkyler fyller ni i MO-, LO-, Affo-, generellt påslag och materialpåslag en gång. Timkostnad och TO-påslag sätter ni per resurs under Tillverkning → Resurser. Förkalkylen räknar materialet på standardpriset, och efterkalkylen med Verklig kostnad på vad materialet faktiskt kostade.",
         "Konsolen har en struktur med plåt och skruv och en rutt med laserskärning, bockning och svetsning. På artikelns flik Kalkyl skriver ni 50 i Antal att förkalkylera och klickar Förkalkylera. Panelen visar kedjan till försäljningspris, totalt och per styck.",
         "Klicka Spara kalkyl. I Kalkylspecifikation trycker ni Sätt försäljningspris, så blir kalkylens pris per styck artikelns försäljningspris.",
         "På offerten förifylls à-priset ur priskedjan, där artikelns försäljningspris gäller när kunden saknar egna priser och prislista. Under raderna visas täckningsbidrag och täckningsgrad mot förkalkylen, så ni ser vad en rabatt kostar.",

@@ -588,7 +588,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
       ],
     },
     limits: [
-      "Det finns ännu ingen funktion för att radera eller anonymisera en anställds uppgifter. En anställd kan bara markeras som inaktiv.",
       "Nav|ERP är inte ett lönesystem. Det räknar inte ut lön, skatteavdrag eller arbetsgivaravgifter. PAXml-filen innehåller timmar per tidkod och dag, inte belopp.",
       "Nav|ERP för inget semestersaldo och inget kompsaldo. Semester och kompledighet registreras som frånvaro i timmar, och kompsaldot förs i lönesystemet.",
       "Det finns inga färdiga kollektivavtal att välja. OB-fönster, övertidströskel och tidkoder lägger ni upp själva.",
@@ -599,7 +598,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Hur hanteras de anställdas personuppgifter?",
         answer:
-          "De ligger på er egen server, och ert företag är personuppgiftsansvarigt. Personalregistret med personnummer och lön syns bara för administratörer och arbetsledare med behörigheten Tillverkning, och terminalen visar bara anställningsnummer och namn. Frånvaron kan omfatta sjukfrånvaro, som är en känslig uppgift. Det finns ännu ingen funktion för att radera eller anonymisera en anställds uppgifter.",
+          "De ligger på er egen server, och ert företag är personuppgiftsansvarigt. Personalregistret med personnummer och lön syns bara för administratörer och arbetsledare med behörigheten Personal & lön, och terminalen visar bara anställningsnummer och namn. Frånvaron kan omfatta sjukfrånvaro, som är en känslig uppgift. När en anställd har slutat kan en administratör radera uppgifterna, eller anonymisera dem när det finns tid och lön: namn, personnummer, kontaktuppgifter och kommentarer tas bort, och tiderna och de låsta löneunderlagen finns kvar under anställningsnumret.",
       },
       {
         question: "Vilka lönesystem kan läsa exporten?",

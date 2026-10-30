@@ -214,6 +214,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Saldon per lagerplats och en fullständig transaktionslogg med källa, löpande saldo och vem som gjorde vad.",
           "Lagerflytt, justering och inventering per lagerplats — med möjlighet att spärra platsen medan ni räknar.",
           "Lagervärdering per valfritt datum: standardpris, senaste inköp eller vägt snitt.",
+          "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering — artikelnummer, EAN, ordernummer och lagerplatsetiketter, med etiketter för artiklar och lagerplatser.",
         ],
       },
     ],
@@ -232,7 +233,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
     },
     limits: [
       "Det finns ännu ingen spårbarhet på batch- eller serienummer.",
-      "Det finns ännu inget stöd för streckkoder i lagret. Artikel och antal väljs och skrivs in för hand.",
       "Behovsberäkningen räknar på artikelns totala saldo över alla lager. Det går inte att planera eller sätta beställningspunkt per lager.",
       "Det finns ingen FIFO-värdering, och en lagerrörelse kan inte backdateras in i en tidigare värdering.",
     ],

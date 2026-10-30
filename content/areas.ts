@@ -307,6 +307,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Samlingsfakturering: en faktura per kund för alla levererade, ofakturerade rader.",
           "E-faktura via Peppol till svenska företagskunder, med leveransstatus på fakturan.",
           "Pallkort med streck- eller QR-kod och eget antal per kolli, och en utleverans kan ångras per rad.",
+          "Tillåten överleverans till kund som inställning, med eget val per kund: tillåt, tillåt inte eller följ förvalet.",
           "Täckningsbidrag och täckningsgrad på offerten och ordern, räknat mot artiklarnas förkalkyl.",
           "Eget leveransdatum per orderrad, och en ny leveransadress kan skrivas in direkt på ordern.",
           "Offerter som en egen rutin med egen nummerserie, giltighetstid och status Förlorad med förlustorsak, och rapporten Offertuppföljning med hit rate.",

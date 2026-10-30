@@ -12,6 +12,41 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.7.0-alpha",
+    date: "2026-10-30",
+    summary:
+      "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering, med streckkod (EAN) på artikeln och etiketter för artiklar och lagerplatser. Prishistorik och en efterkalkyl prissatt vid uttaget, leverantörspriser i valuta omräknade i kalkylen, tillåten överleverans till kund, import av lagersaldon och radering eller anonymisering av anställda — och rättningar av fel som kunde ge fel belopp eller dubbla timmar i löneunderlaget.",
+    breaking: [
+      "Migrationerna 0167–0173 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Kalkylen räknar om leverantörspriser i utländsk valuta till kronor med dagens kurs — förut lästes 10 EUR som 10 kr. En förkalkyl med materialkällan Aktiv leverantörs pris och en leverantör i annan valuta blir därför högre när den räknas om. Saknas kurs används standardpriset och kalkylen varnar.",
+      "Efterkalkylen har en egen materialkälla under System → Kalkyler och prissätter, med Standardpris eller Aktiv leverantörs pris, varje komponent som den var vid sitt senaste uttag på ordern. En efterkalkyl som görs om kan alltså få andra materialbelopp än förut. Förkalkylens källa Verklig kostnad heter nu Standardpris — den räknade redan så.",
+      "Inköpsorderns PDF har nu ordernumret som streckkod uppe till höger, även den PDF som skickas till leverantören. Stäng av den under System → Inställningar → Streckkod på inköpsorder om ni inte vill det.",
+      "En anställd kan bara ha en öppen närvaro, och bara en öppen stämpling per operation (migration 0173). Har installationen redan dubbletter — som felet kunde ge — stängs den senare vid sin egen start: passet ligger kvar i historiken men räknar inga timmar. Kontrollera löneunderlaget om ni misstänker dubbla timmar i en öppen period.",
+      "API: `timeUnit` på operationer kan vara `seconds_per_unit`. `PATCH /sales-orders/:id/rows/:rowId` med ändrat antal på en beställningsvara vars mall har fått ett förval sedan raden konfigurerades svarar 409 `row-configuration-outdated` — använd `PUT …/configuration`. `POST /planning/orders` skapar aldrig mer tillverkningsorder för en konfigurerad rad än raden saknar.",
+    ],
+    added: [
+      "Skanning: Lager → Skanna visar vad en kod är — en artikel med saldo per lagerplats, en lagerplats med innehåll eller en order. Koderna är artikelnummer, ordernummer, Streckkod (EAN) på artikeln och lagerplatsens etikettkod (LP0042). En handskanner som skriver som ett tangentbord fungerar, och knappen Kamera läser streckkoder och QR-koder med mobilen.",
+      "Inleverans med skanning: skanna inköpsordern, lagerplatsen och varje artikel — en skanning räknar en enhet, och bara det räknade tas emot. En artikel som skannas innan ordern är vald hittar de ordrar som väntar på den.",
+      "Plock och utleverans med skanning: skanna kundordern (plocklistan har numret som streckkod) och artiklarna. Kolumnen Kvar att plocka visar det som återstår, och ett överplock räknas aldrig.",
+      "Inventering med skanning: lagerplatsens etikett öppnar platsens inventering, eller Ny inventering med platsen förvald, och artikeln tar fram raden att skriva räknat antal på. Räknelistan har platsens kod som streckkod.",
+      "Etiketter för artiklar och lagerplatser på A4-ark (70 × 37 mm, valbar startetikett) eller för etikettskrivare (100 × 50 mm), med Code 128 eller QR-kod.",
+      "Tillåten överleverans till kund: en procentsats under System → Inställningar och fältet Överleverans på kundkortet (Systemets förval, Tillåt med egen procentsats, Tillåt inte). En överlevererad rad faktureras med det levererade antalet.",
+      "Prishistorik för försäljningspriset och leverantörskatalogen (pris, valuta, staffel och huvudleverantör), som Historik på artikelkortets Allmänt och Katalogprishistorik på Inköp.",
+      "Import av lagersaldon: Antal är saldot på platsen efter importen, och skillnaden bokas som en lagerjustering med à-pris. Saknade lager och lagerplatser skapas.",
+      "Radera eller anonymisera en anställd (GDPR) från personalkortet. En anställd utan historik raderas; en med historik anonymiseras, och anställningsnumret behålls för avstämning mot lönesystemet.",
+      "Operationens tidsenhet kan vara sek/st, och arbetskortet skriver tiderna utan onödiga decimaler.",
+      "API: `GET /scan?code=`, `POST /articles/labels` och `POST /stock/locations/labels`; `barcode` på artiklar och `labelCode` på lagerplatser; `openArticleId` på `GET /purchase-orders` och `locationId` på `GET /stock-counts`; `salesOverDeliveryPercent` och `purchaseOrderBarcode` i `/settings`, `overDelivery`/`overDeliveryPercent` på kunder och `overDeliveryPercent` på `GET /sales-orders/:id`; `sourceRowId` på kreditfakturans rader.",
+    ],
+    changed: [
+      "Rättat: två samtidiga stämplingar (ett dubbeltryck eller två terminaler) kunde stämpla in en anställd två gånger, så att löneunderlaget räknade timmarna dubbelt.",
+      "Rättat: en kreditfaktura med angivna rader kunde bokas på ett annat intäktskonto än fakturan den krediterade, till exempel en räntefaktura.",
+      "Rättat: Ändra på en kundorderrad prissätter om efter det senast prissatta antalet (10 → 100 → 10 ger 10-stegets pris igen), och priset skrivs inte längre över bara genom att Ändra öppnas på en rad i en annan enhet.",
+      "Rättat: ett antalsbyte på en beställningsvara visar direkt när konfigurationen inte längre håller, i stället för att spara det gamla priset tyst.",
+      "Rättat: behovsberäkningens Skapa ordrar kunde ge en konfigurerad rad en andra tillverkningsorder från en lista som var upp till en minut gammal.",
+      "Antal, saldon och timmar visas med svenska decimaler överallt.",
+    ],
+  },
+  {
     version: "0.6.1-alpha",
     date: "2026-10-28",
     summary:

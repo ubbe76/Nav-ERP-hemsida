@@ -12,6 +12,37 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.7.1-alpha",
+    date: "2026-10-31",
+    summary:
+      "Rapportering på en klar tillverkningsorder fram till Stäng order, ett samlat kort Rapportera på tillverkningsordern och statusfiltret Sen i orderlistorna — och en lång rad rättningar efter genomgången av kända fel: beställningsvaror som inte går att tillverka stoppas redan vid försäljningen, ett stängt räkenskapsår säger det, och bankfiler, bokslut, anläggningsregister, konfigurator och stämpelterminal har fått sina småfel rättade.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`. Uppdatera som vanligt.",
+      "En kundorder- eller offertrad på en beställningsvara vars struktur inte går att härleda för valen (ett alternativ utan artikel, en formel som inte går att räkna, ett operationsnummer som krockar) vägras nu när raden läggs in, när antalet ändras och vid Ändra konfiguration — förut sparades den och felet syntes först när tillverkningsordern skapades. Redan sparade rader ändras inte. API: 409 `configuration-not-derivable` på `POST /quotes`, orderradernas `POST`/`PATCH` och `PUT …/configuration`; `details` med härledningens fel bara för inloggade användare, aldrig för en API-klient.",
+      "Bokföring i ett stängt räkenskapsår svarar 409 `fiscal-year-closed` (\"Räkenskapsåret är stängt — öppna det igen under Bokslut\") — förut `accounting-period-locked` för ett manuellt verifikat och `bookkeeping-record-locked` från databasspärren.",
+      "Ett fel i förkalkylen för en beställningsvara (till exempel en valutakurs som inte går att hämta) stoppar inte längre raden eller tillverkningsordern: raden sparas utan förkalkyl och kundorderkortet säger \"Förkalkyl saknas för konfigurationen\".",
+      "Ett tillgångs- eller ack-konto får inte ha en annan roll i någon annan anläggningsgrupp (409 `fixed-asset-category-account-role-conflict`); befintliga grupper prövas först när ett konto ändras. En anläggning med ingående avskrivning kan inte byta grupp.",
+      "Villkorstexten om dröjsmålsränta skrivs bara på fakturor i SEK, som räntefaktureringen, och förseningsersättningen bedömer privatperson utifrån fakturan, inte kundkortet.",
+      "API: Makulera på en kundorder svarar 409 när ordern hunnit gå till Under tillverkning; en tillverkningsorder mot en kundorderrad vägras (409) om ordern makulerats under tiden, och med 409 `configurator-mode-changed` om mallens läge ändrats.",
+    ],
+    added: [
+      "Rapportering på en klar tillverkningsorder: fram till Stäng order tar ordern emot Slutför operation, Förbruka och Rapportera tid för operationer som inte hann rapporteras — antal, kassation och material bokförs, men inga fler färdiga varor läggs in och statusen ändras inte.",
+      "Tillverkningsorderns kort Rapportera: en rad per operation (Antal klart, Kasserat, Faktisk tid, Slutför) med dess material under, material utan operation, Rapportera tid och Slutför order, med en gemensam lagerplats för uttaget.",
+      "Statusfiltret Sen i kund-, inköps- och tillverkningsorderlistorna, med samma regel som aviseringarna (även i CSV-exporten). Aviseringarnas Visa alla går dit.",
+      "API: `status=late` på orderlistorna.",
+    ],
+    changed: [
+      "Rättat: förfallodagen räknas i hela kalenderdagar och kunde förut bli en dag fel över ett sommartidsskifte.",
+      "Rättat: ett förifyllt pris som var på väg när du började skriva kunde skriva över det du skrev, på kund- och inköpsorderrader och i Ny offert.",
+      "Rättat: att bokföra en post i en bankfil nollställde de andra posternas osparade fördelning; fel per rad ligger kvar tills posten ändrar läge, och okända fel visas med en allmän text i stället för ett tekniskt meddelande.",
+      "Rättat: kontrollerna i bokslutet fäller inte längre hela sidan när en av dem misslyckas, och ett osparat utkast av periodiseringarna döljer inte rader som någon annan bokfört.",
+      "Rättat: verifikatredigeraren visar Kostnadsställe och Projekt så fort en rad står på ett konto som kräver kostnadsställe, och användningen av ett kostnadsställe eller projekt räknar offerter för sig.",
+      "Rättat: färdigdatumsförslaget för en helt levererad konfigurerad rad, en inaktiv mall som fortfarande gav förslag i behovsberäkningen, och flera fel i mallredigeringen och dialogen Konfigurera (Ändra konfiguration behåller valen vid fel, förval för tal prövas mot steget).",
+      "Stämpelterminalen: Starta valda startar bara rader som syns efter Sök och Bara redo, och Gå hem nu erbjuds bara för en närvaro som började i går.",
+      "Rättningar av races, felmeddelanden och layout i bland annat anläggningsregistret, årsbokslutet, reskontran, betalfilerna, frakten och Personal & lön.",
+    ],
+  },
+  {
     version: "0.7.0-alpha",
     date: "2026-10-30",
     summary:

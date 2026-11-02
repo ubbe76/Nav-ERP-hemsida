@@ -12,6 +12,33 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.7.2-alpha",
+    date: "2026-11-02",
+    summary:
+      "Tidsfasade förslag i behovsberäkningen med ledtid för tillverkning, dokument på engelska för kunder och leverantörer, samma artikel flera gånger på en order och i en struktur, och import av stafflade kundpriser.",
+    breaking: [
+      "Migrationerna 0174–0177 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Behovsberäkningen ger nu ett förslag per behovsvecka i stället för ett per artikel, och materialbehovet för en tillverkningsorder räknas på orderns startdatum (färdigdatum minus ledtid) i stället för på färdigdatumet. Förslagen för köpta komponenter kan därför komma tidigare än förut. Ange Ledtid (dagar) på tillverkade artiklar, eller Standardledtid och Kötid mellan operationer under System → Inställningar, om ruttens tider inte ger en rimlig ledtid.",
+      "Samma artikel får nu ligga på flera rader på en kundorder, offert, inköpsorder och förfrågan, och flera gånger i en struktur. API:t svarar inte längre 409 `duplicate-purchase-order-row`, `duplicate-inquiry-row`, `row-variant-exists` eller `duplicate-bom-component` — raden läggs till. `POST /quotes` med två likadana konfigurationer ger två rader på samma variant. En integration som letar upp \"raden\" för en artikel på en order behöver ta hänsyn till att det kan finnas flera.",
+      "API: `GET /planning/requirements` bär `proposals[]` per artikel (`proposalQuantity` är summan, som förut) och tar `sort` och `latest`; CSV-exporten har en rad per förslag. `POST /planning/orders` tar `needDate` och `reason` per förslag, och Skapa ordrar lägger alla förslag till en leverantör på en inköpsorder med eget datum per rad.",
+    ],
+    added: [
+      "Tidsfasade förslag: behovsberäkningen visar ett förslag per behovsvecka med behovsdatum, senaste dag att beställa eller starta och markeringen Passerat, med sorteringen Senaste datum och filtret Senast (passerat, denna vecka, nästa vecka, fyra veckor). Skapa ordrar sätter färdigdatum och önskat leveransdatum ur förslagets behovsdatum och varnar när det inte hinner.",
+      "Ledtid (dagar) på tillverkade artiklar, och systeminställningarna Standardledtid och Kötid mellan operationer. Artikelöversikten och färdigdatumsförslaget räknar med dem.",
+      "Dokument på engelska: Språk på kunden och leverantören. Offert, orderbekräftelse, följesedel, pallkort, faktura, påminnelse, förfrågan, inköpsorder och reklamationsbesked skrivs på motpartens språk, med Benämning (engelska) och Extra benämning (engelska) på artikeln och engelska namn på villkor, enheter och momskoder. Fakturan behåller språket den utfärdades på, och mejlens förval följer dokumentets språk.",
+      "Samma artikel på flera rader på en kundorder, offert, inköpsorder och förfrågan — till exempel en delad leverans med olika datum, eller två legooperationer på samma artikel. Formulären visar en notis när artikeln redan finns, och skanningen i Inleverans och Utleverans räknar raden med tidigast leveransdatum först.",
+      "Samma material flera gånger i en struktur, med en varning på artikelkortet och i strukturimporten.",
+      "Import av stafflade kundpriser: kolumnerna Gränsvärde antal och Pris (staffling) i kundprisimporten blir ett pris per steg.",
+      "Importerna av kunder, leverantörer och artiklar läser kolumnerna Språk, Benämning engelska och Extra benämning engelska.",
+    ],
+    changed: [
+      "Rättat: Inleveransloggen på artikelkortet kunde visa en inleverans två gånger och med fel à-pris när samma artikel låg på flera rader på en inköpsorder.",
+      "Fakturainkorgens matchning mot inköpsordern väljer den rad vars öppna antal stämmer när artikeln finns på flera rader, och leverantörsfakturans Koppla till inköpsorderrad visar antal och leveransdatum.",
+      "Momsdeklarationsfilens elementordning är kontrollerad mot Skatteverkets DTD.",
+      "Layout: avskrivningsplanen och attesteringen ryms utan sidledsscroll, och artikelkortets rubrik, periodiseringarna och sidhuvudet fungerar på mobil.",
+    ],
+  },
+  {
     version: "0.7.1-alpha",
     date: "2026-10-31",
     summary:

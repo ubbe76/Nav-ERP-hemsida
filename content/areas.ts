@@ -95,7 +95,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "planering",
         title: "Planering",
         points: [
-          "Behovsberäkningen räknar fram nettobehovet per artikel och föreslår inköps- och tillverkningsordrar.",
+          "Behovsberäkningen räknar fram nettobehovet per artikel och vecka och föreslår inköps- och tillverkningsordrar, med senaste dag att beställa eller starta utifrån ledtiden.",
           "Beläggning: last mot tillgänglig tid per resurs och vecka, där röda dagar minskar kapaciteten.",
           "Produktionsplanering: Planera lägger operationerna på resursernas lediga tid vecka för vecka, en operation kan flyttas och låsas för hand, och en ny tillverkningsorder planeras direkt.",
           "Leveranstidskontrollen på kundordern räknar fram ett leveransdatum ur lager, inköp och kapacitet och kan skapa tillverkningsordrarna för det som saknas.",
@@ -130,7 +130,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Det finns ännu ingen spårbarhet med batch- eller serienummer.",
       "Det finns ingen koppling mellan en tillverkningsorder och tillverkningsordrarna för dess halvfabrikat.",
       "Planeringen och Leveranstidskontrollen prövar inte alternativa resurser. En operation planeras alltid på den resurs den har på ordern.",
-      "Behovsberäkningens förslag är inte tidsfasade. Datumen sätts först när ordrarna skapas.",
     ],
     faq: [
       {
@@ -309,7 +308,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Pallkort med streck- eller QR-kod och eget antal per kolli, och en utleverans kan ångras per rad.",
           "Tillåten överleverans till kund som inställning, med eget val per kund: tillåt, tillåt inte eller följ förvalet.",
           "Täckningsbidrag och täckningsgrad på offerten och ordern, räknat mot artiklarnas förkalkyl.",
-          "Eget leveransdatum per orderrad, och en ny leveransadress kan skrivas in direkt på ordern.",
+          "Eget leveransdatum per orderrad, samma artikel på flera rader, och en ny leveransadress kan skrivas in direkt på ordern.",
+          "Offert, orderbekräftelse, följesedel och faktura på svenska eller engelska efter kundens språk, och förfrågan och inköpsorder efter leverantörens.",
           "Offerter som en egen rutin med egen nummerserie, giltighetstid och status Förlorad med förlustorsak, och rapporten Offertuppföljning med hit rate.",
         ],
       },
@@ -360,7 +360,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "E-faktura via Peppol går bara till svenska företagskunder i kronor, och inkommande e-fakturor tas inte emot. Andra fakturor skickas som PDF med e-post.",
       "Det finns ingen EDI för order eller fakturor.",
-      "Offert, orderbekräftelse, följesedel och faktura skrivs bara ut på svenska.",
       "Det finns ingen färdig koppling till en webbutik. Externa system kan däremot lägga offerter via API:t.",
     ],
     faq: [
@@ -392,7 +391,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Hur fungerar det med kunder i andra länder?",
         answer:
-          "Kunden får en egen valuta, och offert, order och faktura följer den med dagens kurs. Bokföringen sker i kronor, och betalningen bokförs med kursvinst eller kursförlust. Momskoden väljs efter kundens land och VAT-nummer och styr sats, intäktskonto och ruta i momsdeklarationen: ett företag i ett annat EU-land faktureras utan moms och kommer med i den periodiska sammanställningen, och varor till länder utanför EU blir export utan moms. Distansförsäljning till privatpersoner i andra EU-länder (OSS) ingår inte, dokumenten skrivs bara ut på svenska och fraktbokningen hanterar inte tull.",
+          "Kunden får en egen valuta, och offert, order och faktura följer den med dagens kurs. Bokföringen sker i kronor, och betalningen bokförs med kursvinst eller kursförlust. Momskoden väljs efter kundens land och VAT-nummer och styr sats, intäktskonto och ruta i momsdeklarationen: ett företag i ett annat EU-land faktureras utan moms och kommer med i den periodiska sammanställningen, och varor till länder utanför EU blir export utan moms. Dokumenten skrivs på engelska när kunden har språket engelska. Distansförsäljning till privatpersoner i andra EU-länder (OSS) ingår inte, och fraktbokningen hanterar inte tull.",
       },
     ],
     manual: [

@@ -91,9 +91,9 @@ export const GUIDE: GuideGroup[] = [
         question: "Räknar det ut vad som ska köpas och tillverkas?",
         demand:
           "Behovsberäkningen ska gå igenom kundordrar, lager och inkommande och föreslå inköps- och tillverkningsordrar, med hänsyn till beställningspunkt, ledtid och förpackningsstorlek.",
-        status: "delvis",
+        status: "ja",
         navErp:
-          "Behovsberäkningen föreslår ordrar för alla artiklar på en gång, med beställningspunkt, orderkvantitet och avrundning. Förslagen är inte tidsfasade: datumen sätts när ordrarna skapas.",
+          "Behovsberäkningen föreslår ordrar för alla artiklar på en gång, med beställningspunkt, orderkvantitet och avrundning. Förslagen är tidsfasade: ett förslag per behovsvecka, med behovsdatum och senaste dag att beställa eller starta tillverkningen utifrån ledtiden.",
         more: { href: "/hjalp/tillverkning/#behovsberakning", label: "Behovsberäkning i manualen" },
       },
       {

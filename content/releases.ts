@@ -12,6 +12,32 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.0-alpha",
+    date: "2026-11-04",
+    summary:
+      "Inventering som bokförs per dagen då underlaget skapades, FIFO som fjärde metod i lagervärderingen, fasta lagerplatser med uttag där saldot finns, import av alla kund- och leverantörsfiler på en gång, och betalfiler som är provade i Swedbanks och Nordeas testtjänster.",
+    breaking: [
+      "Migrationerna 0178–0181 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Nordea: betalfilerna följer nu Nordea Corporate Access. CCM-avtals-ID är obligatoriskt under System → Bank (8–18 siffror, eller NB och siffror i Nordea Business), och utan det går ingen betalfil att skapa. Signer-ID får börja med NB. Utlandsbetalningar kräver företagets ort under System → Företagsinformation, som Nordea kräver från den 14 november 2026.",
+      "Periodisk sammanställning: kontaktpersonens namn ska vara 5–35 tecken, eftersom Skatteverket avvisar kortare namn. Är ett kortare namn sparat skapas ingen fil förrän det är ändrat.",
+      "Lagerplatser som finns sedan tidigare blir fasta och inaktiveras inte längre när de blir tomma. Utleverans och materialuttag utan vald plats tas nu där saldot finns, med artikelns egen plats först, i stället för att alltid dras från artikelns lagerplats, även om den då gick minus.",
+      "Lagervärderingen räknar dagar i svensk tid. Förut användes UTC, så en lagerrörelse mellan midnatt och klockan ett eller två på natten hamnade på föregående dag. Värdet per ett sådant datum kan därför ändras, och bokslutets steg Lagerförändring kan bli Inaktuell.",
+      "API: `POST /stock-counts/:id/post` bokför som förval per underlagets datum när det är tillåtet, och tar `bookOn` (`count_date` eller `today`). Lagerloggens CSV-export har kolumnen Registrerad efter Datum, och Datum är värderingsdatumet. Lagerloggens rader bär `valuedAt`.",
+    ],
+    added: [
+      "Inventering per underlagets datum: Registrera kan bokföra differenserna per tidpunkten då underlaget skapades, så att en inventering som börjar på bokslutsdagen kommer med i bokslutet. Det går när artiklarna inte har rört sig på lagerplatsen efter att underlaget skapades och dagen inte ligger i en låst period eller ett stängt räkenskapsår. Lagerloggen visar både datum och registreringsdag.",
+      "FIFO som värderingsmetod i lagervärderingen och i bokslutets Lagerförändring.",
+      "Fasta och tillfälliga lagerplatser. Utleverans och materialuttag tas där saldot finns, Utleverans har Lagerplats per rad, och plocklistan listar artikelns egen plats först. Ångra lägger tillbaka varje del där den togs.",
+      "Importera kunder och leverantörer: fliken Alla filer känner igen exportfilerna, kör dem i rätt ordning och förhandsgranskar alla filer i en provkörning innan något sparas. Personnummer fyller ett tomt organisationsnummer.",
+      "Artikelimporten läser Ledtid ur planeringsfilen, och strukturimporten läser kalkylmarkeringen. En strukturrad markerad Kalkyl räknas i förkalkylen men tas inte ut på tillverkningsordern.",
+      "Bokslutets steg Lagerförändring blir Inaktuell även när lagervärdet per bokslutsdagen ändras efter bokningen, och kortet visar det nya värdet.",
+    ],
+    changed: [
+      "Betalfilerna är godkända i Swedbanks Validex och i Nordeas testverktyg för Corporate Access, där både inrikes- och utlandsfilen provades. Momsdeklarationsfilen är provad i Skatteverkets e-tjänst och den periodiska sammanställningen i Skatteverkets filtest.",
+      "Kundorder- och inköpsorderkortet har en kompaktare radtabell med Ändra och en ⋯-meny, och Skapa TO ligger i kolumnen I tillverkning. Tillverkningsorderns Operationer och Rapportera tar mindre plats, och tabellerna ryms utan sidledsscroll.",
+    ],
+  },
+  {
     version: "0.7.2-alpha",
     date: "2026-11-02",
     summary:

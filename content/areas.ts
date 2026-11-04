@@ -211,8 +211,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
         title: "Lagret",
         points: [
           "Saldon per lagerplats och en fullständig transaktionslogg med källa, löpande saldo och vem som gjorde vad.",
-          "Lagerflytt, justering och inventering per lagerplats — med möjlighet att spärra platsen medan ni räknar.",
-          "Lagervärdering per valfritt datum: standardpris, senaste inköp eller vägt snitt.",
+          "Lagerflytt, justering och inventering per lagerplats — med möjlighet att spärra platsen medan ni räknar, och att bokföra inventeringen per dagen då underlaget skapades.",
+          "Lagervärdering per valfritt datum: standardpris, senaste inköp, vägt snitt eller FIFO.",
           "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering — artikelnummer, EAN, ordernummer och lagerplatsetiketter, med etiketter för artiklar och lagerplatser.",
         ],
       },
@@ -233,7 +233,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "Det finns ännu ingen spårbarhet på batch- eller serienummer.",
       "Behovsberäkningen räknar på artikelns totala saldo över alla lager. Det går inte att planera eller sätta beställningspunkt per lager.",
-      "Det finns ingen FIFO-värdering, och en lagerrörelse kan inte backdateras in i en tidigare värdering.",
+      "En lagerrörelse kan inte backdateras in i en tidigare värdering. Undantaget är inventeringen, som kan bokföras per dagen då underlaget skapades.",
     ],
     faq: [
       {
@@ -249,7 +249,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Hur värderas lagret i bokslutet?",
         answer:
-          "Bokslutsguidens steg Lagerförändring värderar lagret per bokslutsdagen med standardpris, senaste inköp eller vägt snitt. Skillnaden mot kontot Lager (förval 1460) bokförs mot Lagerförändring (förval 4990). Inkurans och pågående tillverkning bokför ni själva med ett eget verifikat.",
+          "Bokslutsguidens steg Lagerförändring värderar lagret per bokslutsdagen med standardpris, senaste inköp, vägt snitt eller FIFO. En inventering som börjar på bokslutsdagen och registreras några dagar senare kan bokföras per bokslutsdagen. Skillnaden mot kontot Lager (förval 1460) bokförs mot Lagerförändring (förval 4990). Inkurans och pågående tillverkning bokför ni själva med ett eget verifikat.",
       },
       {
         question: "Kan vi inventera medan produktionen går?",

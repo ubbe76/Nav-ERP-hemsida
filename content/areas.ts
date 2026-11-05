@@ -320,6 +320,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Prisförfrågan → inköpsorder → inleverans, med tillåten överleverans som inställning och möjlighet att ångra en inleverans.",
           "Leverantörer och inköpspriser med import från CSV.",
           "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post.",
+          "Leverantörernas e-fakturor via Peppol hamnar färdigtolkade i Fakturainkorgen, och originalet sparas som räkenskapsinformation.",
           "Önskat och bekräftat leveransdatum på inköpsordern och per rad — planeringen räknar med det bekräftade.",
           "Orderförteckning för kundorder och inköp med ordervärde och restvärde, som PDF och CSV.",
         ],
@@ -358,7 +359,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       ],
     },
     limits: [
-      "Inkommande e-fakturor via Peppol tas inte emot, och e-faktura går bara till företag. Privatpersoner får fakturan som PDF med e-post.",
+      "E-faktura går bara till företag. Privatpersoner får fakturan som PDF med e-post.",
       "Det finns ingen EDI för order eller fakturor.",
       "Det finns ingen färdig koppling till en webbutik. Externa system kan däremot lägga offerter via API:t.",
     ],

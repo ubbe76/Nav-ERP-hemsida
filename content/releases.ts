@@ -12,6 +12,33 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.2-alpha",
+    date: "2026-11-06",
+    summary:
+      "Spärrade lagerplatser för karantän, ett lagerplatsregister med saldo per plats, huvudplats och alternativa lagerplatser per artikel, och avvikelseanalys i efterkalkylen: pris, mängd, ställtid och stycktid, med Ställ och Produktion i stämpelterminalen och timkostnad per arbetsdag.",
+    breaking: [
+      "Migrationerna 0185–0190 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Lagerplats: fältet Lagerplats har flyttat från artikelkortets flik Allmänt till kortet Lagerplatser på fliken Lager och heter nu Huvudplats. API:t `defaultLocationId` på `/articles` fungerar som förut. En artikel med huvudplatsen `*** (standard)` räknas som utan huvudplats, så inleveranser utan vald plats går till första alternativa plats när en sådan finns.",
+      "Uttag med Automatiskt tar nu i ordningen huvudplats, alternativa platser i ordning, övriga platser med saldo och sist `***`. Plocklistan visar samma ordning.",
+      "Tillverkningsorder: när sista operationen rapporteras med en vald Lagerplats för materialuttag läggs de färdiga varorna på den platsen, och okopplat material tas därifrån, som vid Slutför order. Förut hamnade varorna alltid på artikelns plats.",
+      "Kalkylutfall: Efterkalkyl TVK/st delas nu med inlevererat antal när ordern är klar, inte med orderantalet. Siffrorna ändras därför för kortstängda ordrar. En konfigurerad tillverkningsorder jämförs mot sin egen konfiguration i stället för att räknas som ej jämförbar.",
+      "Efterkalkylen: en legooperation utan inleverans på inköpsordern tar ställ- och transportpris bara när operationen har arbetats. Lönen räknas med resursens timkostnad den arbetsdagen. Historiken börjar vid uppdateringen, så tid före den behåller dagens timkostnad. Redan sparade efterkalkyler ändras inte.",
+    ],
+    added: [
+      "Spärrade lagerplatser (Lager → Lagerplatser, Spärra…): saldot på en spärrad plats räknas inte i behovsberäkningen, artikelöversikten, Materialbrist eller Leveranstidskontrollen och tas aldrig med Automatiskt, men värderas som vanligt i lagervärderingen och bokslutet. Utleverans, Leverera och Förbruka från en spärrad plats vägras. Inleverans, justering, flytt och inventering fungerar som vanligt, så gods kan läggas i karantän. Artikelkortet och artikelöversikten visar \"varav spärrat\", och Saldon har ett filter för spärrade platser.",
+      "Lagerplatsregistret har sök på plats, lager och etikettkod, filter för lager, status och spärr, sidor, CSV och kolumnerna Artiklar och Saldo summerat per enhet. Visa saldon öppnar Saldon för platsen.",
+      "Huvudplats och alternativa lagerplatser per artikel på fliken Lager, i ordning med ↑/↓. Inleveranser utan vald plats går till huvudplatsen, eller till första användbara alternativa plats när huvudplatsen är spärrad eller inaktiv.",
+      "Avvikelseanalys i efterkalkylen: avvikelsen mot orderns egen kalkyl delas i pris, mängd (varav kassation), ställtid, stycktid, timpris och påslag, och delarna summerar exakt. Kalkylerat är tillverkningsorderns egna rader prissatta som förkalkylen gjorde när ordern skapades, räknat på inlevererat antal. Analysen visas på TO-kortet efter Efterkalkylera och i Kalkylspecifikation, och sparas med efterkalkylen.",
+      "Kalkylutfall har vyerna Mot förkalkyl och Avvikelseanalys, grupperad per order, artikel eller resurs, med summarutor och CSV.",
+      "Ställ och Produktion: med inställningen Dela tid i ställ och produktion (System → Inställningar, av som förval) får stämpelterminalen Starta ställ och Starta produktion och knappen Ställ klart, och Tidrapporter och Rapportera tid får fältet Typ. Analysen visar då verklig ställtid och stycktid för sig. Löneunderlaget och PAXml påverkas inte.",
+      "Timkostnad per datum: resursens timkostnad får historik, och efterkalkylen och produkter i arbete räknar lönen med den timkostnad som gällde arbetsdagen.",
+    ],
+    changed: [
+      "Prishistoriken för försäljningspris, leverantörspris och standardkostnad kunde i sällsynta fall få fel senaste värde när två ändringar gjordes samtidigt. Det är rättat.",
+      "Arbetsledaren kan stämpla ut en gammal pausad stämpling under Pågående arbete även när pausens dag ligger i en låst löneperiod; tiden hamnar då på dagens datum.",
+    ],
+  },
+  {
     version: "0.8.1-alpha",
     date: "2026-11-06",
     summary:

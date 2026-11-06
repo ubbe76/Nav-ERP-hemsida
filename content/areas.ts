@@ -214,6 +214,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Saldon per lagerplats och en fullständig transaktionslogg med källa, löpande saldo och vem som gjorde vad.",
           "Lagerflytt, justering och inventering per lagerplats — med möjlighet att spärra platsen medan ni räknar, och att bokföra inventeringen per dagen då underlaget skapades.",
           "Lagervärdering per valfritt datum: standardpris, senaste inköp, vägt snitt eller FIFO.",
+          "Spärrade lagerplatser för karantän och reklamationer: saldot där räknas inte i planeringen och tas aldrig automatiskt, men värderas som vanligt.",
+          "Huvudplats och alternativa lagerplatser per artikel, och ett lagerplatsregister med sök och saldo per plats.",
           "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering — artikelnummer, EAN, ordernummer och lagerplatsetiketter, med etiketter för artiklar och lagerplatser.",
         ],
       },
@@ -440,7 +442,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Egen materialkälla: standardpris, aktiv leverantörs pris eller verklig kostnad.",
           "Verklig materialkostnad: glidande medelpris vid förbrukningstillfället, härlett ur lagertransaktionerna.",
           "Standard- och leverantörspriser, och valutakursen, som de var när materialet togs ut — efterkalkylen ger samma svar om den görs om senare.",
-          "Rapporterad tid gånger resursens timkostnad, med TO-påslag per resurs.",
+          "Rapporterad tid gånger resursens timkostnad den arbetsdagen, med TO-påslag per resurs.",
+          "Avvikelseanalys mot orderns egen kalkyl: pris, mängd med kassation, ställtid, stycktid, timpris och påslag.",
           "Legoarbete som egen post med LO-påslag.",
         ],
       },
@@ -457,7 +460,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "uppfoljning",
         title: "Uppföljning",
         points: [
-          "Rapporterna Kalkylutfall och Marginal under Rapporter.",
+          "Rapporterna Kalkylutfall och Marginal under Rapporter. Kalkylutfall visar avvikelsen mot förkalkylen och som avvikelseanalys per order, artikel eller resurs.",
           "Marginalrapporten visar täckningsbidrag per månad, kund eller artikel.",
           "Rapporten Produkter i arbete visar värdet av pågående tillverkning per valfritt datum, med tillverkningskostnad eller direkta kostnader som underlag.",
           "Täckningsbidrag och täckningsgrad visas direkt på offert och kundorder, mot artikelns senaste förkalkyl.",
@@ -482,7 +485,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Påslagen gäller hela företaget. Bara TO-påslaget sätts per resurs, och det finns inga påslag per artikelgrupp, kund eller order.",
       "Omkostnaderna fördelas med procentuella påslag. Det finns ingen aktivitetsbaserad kalkyl.",
       "Det går inte att pröva andra påslag på en enskild artikel. Förkalkylen räknar alltid med inställningarna under System → Kalkyler.",
-      "Det finns ännu ingen automatisk uppdelning av avvikelsen på pris, mängd och tid, och efterkalkylen skiljer inte på ställtid och stycktid.",
     ],
     faq: [
       {
@@ -553,6 +555,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Närvaro (kom/gå) och uttag av ATF. En glömd utstämpling fångas nästa gång personen stämplar in.",
           "Pågående arbete visar i realtid vem som är instämplad på vad, och vem som är frånvarande.",
           "Valfritt krav på anledning vid sen ankomst och tidig hemgång, och val mellan utbetald och sparad övertid vid Gå hem.",
+          "Valfri uppdelning av tiden i Ställ och Produktion, så att efterkalkylen visar ställtid och stycktid för sig.",
         ],
       },
       {

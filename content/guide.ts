@@ -78,7 +78,7 @@ export const GUIDE: GuideGroup[] = [
           "Efterkalkylen ska bygga på verklig materialförbrukning och rapporterad tid, inklusive kassationer, så att ni ser var avvikelsen uppstod.",
         status: "ja",
         navErp:
-          "Efterkalkylen räknar verklig förbrukning till glidande medelpris och rapporterad tid gånger resursens timkostnad, och Kalkylutfall jämför den med förkalkylen per styck.",
+          "Efterkalkylen räknar verklig förbrukning och rapporterad tid gånger resursens timkostnad den arbetsdagen. Avvikelseanalysen delar skillnaden mot orderns kalkyl i pris, mängd, ställtid och stycktid, och Kalkylutfall summerar den per order, artikel eller resurs.",
         more: { href: "/funktioner/kalkyl/", label: "Kalkyl" },
       },
     ],

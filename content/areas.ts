@@ -80,6 +80,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Materialförbrukning och tidrapportering mot ordern, med rapporteringslogg och möjlighet att ångra.",
           "Efterkalkyl per order: vad materialet och tiden faktiskt kostade.",
           "Material och operationer kan ändras på en frisläppt order, bara för den ordern, och väntande operationer planeras om direkt.",
+          "Inköpsorder och förfrågan för legoarbete skapas direkt från orderns legooperation, och dagen godset ska vara tillbaka räknas bakåt från färdigdatumet.",
         ],
       },
       {
@@ -249,7 +250,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Hur värderas lagret i bokslutet?",
         answer:
-          "Bokslutsguidens steg Lagerförändring värderar lagret per bokslutsdagen med standardpris, senaste inköp, vägt snitt eller FIFO. En inventering som börjar på bokslutsdagen och registreras några dagar senare kan bokföras per bokslutsdagen. Skillnaden mot kontot Lager (förval 1460) bokförs mot Lagerförändring (förval 4990). Inkurans och pågående tillverkning bokför ni själva med ett eget verifikat.",
+          "Bokslutsguidens steg Lagerförändring värderar lagret per bokslutsdagen med standardpris, senaste inköp, vägt snitt eller FIFO. En inventering som börjar på bokslutsdagen och registreras några dagar senare kan bokföras per bokslutsdagen. Skillnaden mot kontot Lager (förval 1460) bokförs mot Lagerförändring (förval 4990). Steget Produkter i arbete värderar de pågående tillverkningsordrarna per bokslutsdagen och bokför skillnaden mot kontot Produkter i arbete (förval 1440) mot Förändring av produkter i arbete (förval 4940). Inkurans bokför ni själva med ett eget verifikat.",
       },
       {
         question: "Kan vi inventera medan produktionen går?",
@@ -321,6 +322,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Leverantörer och inköpspriser med import från CSV.",
           "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post.",
           "Leverantörernas e-fakturor via Peppol hamnar färdigtolkade i Fakturainkorgen, och originalet sparas som räkenskapsinformation.",
+          "Avsändning till legoleverantör med pallkort, och en egen leveransadress på inköpsordern, till exempel direkt till er kund.",
           "Önskat och bekräftat leveransdatum på inköpsordern och per rad — planeringen räknar med det bekräftade.",
           "Orderförteckning för kundorder och inköp med ordervärde och restvärde, som PDF och CSV.",
         ],
@@ -457,6 +459,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Rapporterna Kalkylutfall och Marginal under Rapporter.",
           "Marginalrapporten visar täckningsbidrag per månad, kund eller artikel.",
+          "Rapporten Produkter i arbete visar värdet av pågående tillverkning per valfritt datum, med tillverkningskostnad eller direkta kostnader som underlag.",
           "Täckningsbidrag och täckningsgrad visas direkt på offert och kundorder, mot artikelns senaste förkalkyl.",
           "Alla rapporter kan exporteras till Excel (CSV).",
         ],
@@ -691,7 +694,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         title: "Bokslut och utbyte",
         points: [
           "Anläggningsregister som bokför planenliga avskrivningar och avyttringar.",
-          "Bokslutsguide i sex steg som stänger räkenskapsåret.",
+          "Bokslutsguide i sex steg som stänger räkenskapsåret, med lagerförändring och produkter i arbete.",
           "SIE typ 4-export till revisorn eller ett annat bokföringsprogram.",
           "Import av ingående balanser från en SIE-fil när ni flyttar in bokföringen från ett annat system.",
           "Bokslutsguiden stämmer av reskontran, anläggningsregistret och lagret mot huvudboken innan året stängs.",

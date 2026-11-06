@@ -12,6 +12,33 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.1-alpha",
+    date: "2026-11-06",
+    summary:
+      "Produkter i arbete per datum med ett eget steg i bokslutet, e-faktura till utländska kunder och i fakturans valuta, leverantörernas e-fakturor via Peppol direkt i Fakturainkorgen, avsändning till legoleverantör och legoinköp direkt från tillverkningsordern.",
+    breaking: [
+      "Migrationerna 0182–0184 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "E-faktura: inställningen Skicka e-faktura automatiskt vid Utfärda under System → E-faktura är ny och förvald på. En faktura eller kreditfaktura till en kund med Fakturaleverans E-faktura (Peppol) skickas därför i samma ögonblick som den utfärdas, även från samlingsfaktureringens Utfärda direkt. Stäng av inställningen om ni vill fortsätta skicka med Skicka e-faktura på fakturakortet.",
+      "Bokslutet: det nya steget Produkter i arbete måste bokföras innan året kan stängas och resultatet föras över, när de pågående tillverkningsordrarna har ett värde per bokslutsdagen eller kontot Produkter i arbete har ett saldo. Har ni redan bokfört produkter i arbete med ett eget verifikat bokför steget bara skillnaden mot kontots saldo. Migrationen lägger in kontona 1440 Produkter i arbete och 4940 Förändring av produkter i arbete i kontoplanen när de saknas.",
+      "Behovsberäkningen lägger legobehovet på dagen då operationen ska börja hos leverantören, räknad bakåt från tillverkningsorderns färdigdatum, i stället för på orderns startdatum. Legoförslagen kan därför hamna i en senare vecka än förut.",
+    ],
+    added: [
+      "Rapporten Produkter i arbete (Rapporter, administratörer): värdet av varje tillverkningsorder som var öppen per ett valfritt datum, upparbetat minus det som levererats in till lagret, med Tillverkningskostnad eller Direkta kostnader som underlag. Visa kostnadsslag delar upp på material, lön, lego och påslag, och rapporten finns som PDF.",
+      "Bokslutets steg Produkter i arbete bokför skillnaden mot kontot Produkter i arbete (förval 1440) mot Förändring av produkter i arbete (förval 4940) och blir Inaktuell om värdet ändras efter bokningen, som Lagerförändring. Kontona ställs in under Konteringsregler.",
+      "E-faktura till företagskunder i andra länder, i fakturans egen valuta. Momskoden avgör momskategorin i Peppol (unionsintern leverans, omvänd betalningsskyldighet, export), och Peppol-id härleds ur organisationsnumret för kunder i Sverige, Norge, Danmark och Belgien.",
+      "Statusbesked direkt: Nav kan registrera en webhook hos B2Brouter, så att e-fakturans leveransstatus uppdateras utan att vänta på den schemalagda hämtningen. Det kräver att Nav nås utifrån med https.",
+      "Mottagning av e-faktura: Ta emot e-faktura under System → E-faktura gör företaget till mottagare i Peppol. Leverantörernas e-fakturor hämtas till Inköp → Fakturainkorg med källan E-faktura, redan tolkade och matchade mot leverantör och inköpsorder, och originalet (XML) sparas oförändrat som räkenskapsinformation.",
+      "Avsändning till legoleverantör (Inköp → Avsändning lego): rapportera antal och kolli per legorad och skriv ut pallkort till leverantören. Avsändningen påverkar inte lagret och kan ångras, och Skickat syns på inköpsordern och tillverkningsordern.",
+      "Inköpsordern får en egen leveransadress, som kan hämtas från en kundorder eller en kund, och Företagsinformation får en godsadress.",
+      "Tillverkningsorderns operationsrader har Ändra och en ⋯-meny. På en väntande legooperation skapas inköpsorder och förfrågan direkt, och legoinköpen står under operationen. Lego-inköpsorderns leveransdatum räknas bakåt från tillverkningsorderns färdigdatum, med en varning när det inte hinner.",
+      "Inköpsordern visar moms ur leverantörens momskod på kortet och i PDF:en: Summa exkl. moms, Moms och Summa inkl. moms.",
+    ],
+    changed: [
+      "Inköpsorderns PDF skriver alltid Leveransadress: orderns egen adress, annars företagets godsadress och sist företagets adress.",
+      "Lagervärderingens förvalda datum är dagens datum i svensk tid.",
+    ],
+  },
+  {
     version: "0.8.0-alpha",
     date: "2026-11-04",
     summary:

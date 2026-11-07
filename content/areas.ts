@@ -108,6 +108,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         title: "Resurser",
         points: [
           "Maskiner och personal med timkostnad, TO-påslag och veckoschema.",
+          "Alternativa resurser per operation med egna tider. Beläggningen och Leveranstidskontrollen föreslår ett alternativ när den ordinarie är full.",
           "Produktionsgrupper, och legoresurser med standardleverantör och ledtider.",
           "Import av resurser från fil.",
         ],
@@ -130,7 +131,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Planeringen räknar ledig tid per resurs och vecka. Det finns ingen detaljplanering per dag eller timme och ingen köberäkning.",
       "Det finns ännu ingen spårbarhet med batch- eller serienummer.",
       "Det finns ingen koppling mellan en tillverkningsorder och tillverkningsordrarna för dess halvfabrikat.",
-      "Planeringen och Leveranstidskontrollen prövar inte alternativa resurser. En operation planeras alltid på den resurs den har på ordern.",
+      "Alternativa resurser föreslås men byts inte automatiskt. Planera lägger alltid operationen på den resurs den har på ordern, och ett byte görs för hand eller när Leveranstidskontrollen skapar ordrarna.",
     ],
     faq: [
       {
@@ -453,6 +454,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "MO-, LO- och Affo-påslag samt ett generellt påslag och ett materialpåslag, i procent med decimaler.",
           "TO-påslag per resurs — maskinen och handarbetet kostar olika.",
+          "Generellt påslag och materialpåslag per varugrupp, kund eller order. Kundens och orderns påslag ger ett Kalkylpris i priskedjan.",
+          "Pröva påslag på en enskild artikel utan att ändra inställningarna.",
           "Panelen Så räknas försäljningspriset visar hela kedjan med ett räkneexempel.",
         ],
       },
@@ -475,16 +478,16 @@ export const FEATURE_AREAS: FeatureArea[] = [
         "Under System → Kalkyler fyller ni i MO-, LO-, Affo-, generellt påslag och materialpåslag en gång. Timkostnad och TO-påslag sätter ni per resurs under Tillverkning → Resurser. Förkalkylen räknar materialet på standardpriset, och efterkalkylen med Verklig kostnad på vad materialet faktiskt kostade.",
         "Konsolen har en struktur med plåt och skruv och en rutt med laserskärning, bockning och svetsning. På artikelns flik Kalkyl skriver ni 50 i Antal att förkalkylera och klickar Förkalkylera. Panelen visar kedjan till försäljningspris, totalt och per styck.",
         "Klicka Spara kalkyl. I Kalkylspecifikation trycker ni Sätt försäljningspris, så blir kalkylens pris per styck artikelns försäljningspris.",
-        "På offerten förifylls à-priset ur priskedjan, där artikelns försäljningspris gäller när kunden saknar egna priser och prislista. Under raderna visas täckningsbidrag och täckningsgrad mot förkalkylen, så ni ser vad en rabatt kostar.",
+        "På offerten förifylls à-priset ur priskedjan, där artikelns försäljningspris gäller när kunden saknar egna priser, prislista och egna påslag. Under raderna visas täckningsbidrag och täckningsgrad mot förkalkylen, så ni ser vad en rabatt kostar.",
         "Kunden beställer och en tillverkningsorder på 50 st skapas. Personalen stämplar tid i stämpelterminalen. Vid bockningen kasseras 3 st, som görs om, och materialet som hör till bockningen dras för både godkända och kasserade enheter.",
         "När ordern är klar klickar ni Efterkalkylera på orderns detaljsida och sedan Spara kalkyl. Efterkalkylen räknar med verklig materialförbrukning och rapporterad tid.",
         "På artikelns flik Kalkyl ligger nu båda kalkylerna. Öppna dem i Kalkylspecifikation och jämför rad för rad: bockningen har fler timmar, plåten ett större antal på grund av kassationen och ett högre à-pris eftersom den köptes in dyrare än standardpriset. Orsaken till kassationen finns under Rapporter → Kassationsstatistik.",
       ],
     },
     limits: [
-      "Påslagen gäller hela företaget. Bara TO-påslaget sätts per resurs, och det finns inga påslag per artikelgrupp, kund eller order.",
+      "Bara generellt påslag och materialpåslag kan sättas per varugrupp, kund eller order. MO, LO och Affo gäller hela företaget och TO-påslaget resursen, så självkostnaden är densamma oavsett köpare.",
       "Omkostnaderna fördelas med procentuella påslag. Det finns ingen aktivitetsbaserad kalkyl.",
-      "Det går inte att pröva andra påslag på en enskild artikel. Förkalkylen räknar alltid med inställningarna under System → Kalkyler.",
+      "Förkalkylen görs en artikel i taget. Det går ännu inte att förkalkylera flera artiklar på en gång.",
     ],
     faq: [
       {

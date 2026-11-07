@@ -12,6 +12,35 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.3-alpha",
+    date: "2026-11-07",
+    summary:
+      "Alternativa resurser per operation, som beläggningen och Leveranstidskontrollen föreslår när den ordinarie är full, påslag per varugrupp, kund eller order som ger ett Kalkylpris i priskedjan, Lön & PAXml på en egen sida, och en rättelse så att en ny installation går igenom igen.",
+    breaking: [
+      "Migrationerna 0191–0197 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Ny installation: 0.8.2-alpha gick inte att installera på en tom databas. Migreringen stannade på 0187 med felet `New enum values must be committed before they can be used`. Har ni fått det felet, uppdatera till 0.8.3-alpha och starta om. Den misslyckade körningen rullades tillbaka helt, så databasen installeras nu från början. Varje migration körs nu i en egen transaktion. En installation som har uppgraderats version för version berördes inte.",
+      "Priskedjan har ett nytt steg, Kalkylpris, efter prislistan. Det används bara när kunden eller ordern har ett eget påslag, så inga priser ändras förrän ni sätter ett. API: `source` i `GET /price-quote` kan nu vara `calculated`, och orderraderna har fältet `priceOrigin` (`manual`, `chain` eller `calculated`). En integration som jämför `source` mot en fast lista måste ta med det nya värdet.",
+      "Orderrader som fanns före uppdateringen räknas som handskrivna, eftersom det inte går att veta i efterhand varifrån priset kom. De räknas därför inte om när ordern får ett påslag. Ta bort raden och lägg till den igen om den ska följa påslagen.",
+      "Lagervärderingen per datum tar standardpriset per svensk dag. Ett standardpris som ändrades mellan midnatt och klockan ett eller två på natten räknades förut till föregående dag. Värdet per ett sådant datum kan därför ändras, och bokslutets steg Lagerförändring kan bli Inaktuell.",
+    ],
+    added: [
+      "Alternativa resurser per operation i beredningen, högst fem, med egna ställ- och stycktider (tomt betyder samma som den ordinarie). De följer med till tillverkningsordern vid frisläpp. Ändra på TO-kortet listar operationens resurser först, fyller i tiderna och märker operationen Vald för hand.",
+      "Förslag på alternativ resurs: när den ordinarie resursen är full och ett alternativ skulle bli klart en tidigare vecka visar Beläggningen, Planera-resultatet och TO-kortet förslaget med knappen Byt till. Planera byter aldrig resurs av sig självt.",
+      "Leveranstidskontrollen prövar de alternativa resurserna och visar både datumet med ordinarie och det tidigare datumet med alternativ. Skapas ordrarna på datumet med alternativ läggs operationerna på de valda resurserna, märkta Vald för hand.",
+      "Påslag per varugrupp: ett eget generellt påslag och materialpåslag på varugruppen, som förkalkylen använder i stället för företagets. Bara prispåslagen kan sättas per nivå, så tillverkningskostnad, självkostnad, standardpris och lagervärde är desamma. System → Kalkyler visar var varje påslag sätts.",
+      "Pröva påslag på artikelns flik Kalkyl: förkalkylera med andra påslag utan att ändra inställningarna, och spara resultatet som en prövad kalkyl.",
+      "Påslag per kund på kundkortets flik Villkor & frakt ger Kalkylpris: när kunden saknar kundpris och prislistepris räknas priset på artikelns senaste sparade förkalkyl med kundens påslag, utan kundrabatt. Formulären visar förkalkylens datum och vilken nivå varje påslag kommer från.",
+      "Påslag på offert och kundorder i Ändra orderhuvud, före kundens. När påslaget ändras visar Nav vilka rader som räknas om, med à-pris före och efter, och sparar med Räkna om och spara. Handskrivna priser och levererade eller fakturerade rader ändras aldrig.",
+    ],
+    changed: [
+      "Lön & PAXml har en egen sida under Personal & lön, för administratörer. Inställningarna låg förut under System → Inställningar.",
+      "Tidrapporter och stämplingar sparar sin resurs. Efterkalkylen och produkter i arbete räknar varje rapports timmar med den resursens timkostnad, så ett senare resursbyte räknar inte om kostnaden bakåt. Tid som rapporterades före uppdateringen räknas som förut på operationens nuvarande resurs.",
+      "Produktionsplaneringen räknar ställtiden som gjord när operationen har rapporterad tid på sin nuvarande resurs, även innan något antal är rapporterat.",
+      "Svensk dag oberoende av serverns tidszon: lönen, ATF, makuleringarnas datum, SIE, händelseloggens datumfilter, filtret på förfallna kund- och leverantörsfakturor och PDF:ernas datum räknas i svensk tid även när API:et körs i UTC. Filtret på förfallna fakturor jämförde förut med databasens dag i UTC. Gå hem nu i stämpelterminalen räknade fel dag natten efter omställningen till sommar- eller vintertid.",
+      "Docker-bygget tar inte längre med en lokal `apps/web/.next`. Den som bygger ur en arbetskopia där `next dev` har körts får en mycket mindre webbimage och ett snabbare bygge.",
+    ],
+  },
+  {
     version: "0.8.2-alpha",
     date: "2026-11-06",
     summary:

@@ -81,6 +81,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Efterkalkyl per order: vad materialet och tiden faktiskt kostade.",
           "Material och operationer kan ändras på en frisläppt order, bara för den ordern, och väntande operationer planeras om direkt.",
           "Inköpsorder och förfrågan för legoarbete skapas direkt från orderns legooperation, och dagen godset ska vara tillbaka räknas bakåt från färdigdatumet.",
+          "Ordern visar vad som täcker varje materialrad och vilka behov den själv täcker. Ett halvfabrikat som blir klart för sent märks, och halvfabrikatens ordrar kan flyttas eller skapas direkt från ordern.",
         ],
       },
       {
@@ -130,7 +131,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "Planeringen räknar ledig tid per resurs och vecka. Det finns ingen detaljplanering per dag eller timme och ingen köberäkning.",
       "Det finns ännu ingen spårbarhet med batch- eller serienummer.",
-      "Det finns ingen koppling mellan en tillverkningsorder och tillverkningsordrarna för dess halvfabrikat.",
       "Alternativa resurser föreslås men byts inte automatiskt. Planera lägger alltid operationen på den resurs den har på ordern, och ett byte görs för hand eller när Leveranstidskontrollen skapar ordrarna.",
     ],
     faq: [
@@ -204,6 +204,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Artikelöversikten visar alla behov och allt inkommande i datumordning, med löpande disponibelt.",
           "Beställningspunkt, orderkvantitet och huvudleverantör med ledtid på samma ställe.",
+          "Prognos för artiklar som säljs från lager: snittet av förbrukningen eller ett eget antal per månad. Kända order förbrukar prognosen.",
+          "ABC-analys på förbrukningsvärde, som visar vilka artiklar som är värda beställningspunkt och säkerhetslager.",
           "Behovsberäkningen föreslår inköps- och tillverkningsordrar för alla artiklar på en gång.",
           "Avrundning till hela förpackningar eller stänger, både i förslagen och på orderraderna.",
         ],
@@ -237,6 +239,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "Det finns ännu ingen spårbarhet på batch- eller serienummer.",
       "Behovsberäkningen räknar på artikelns totala saldo över alla lager. Det går inte att planera eller sätta beställningspunkt per lager.",
+      "Prognosen är ett snitt av förbrukningen eller ett eget antal per månad. Den räknar inte fram säsonger eller trender.",
       "En lagerrörelse kan inte backdateras in i en tidigare värdering. Undantaget är inventeringen, som kan bokföras per dagen då underlaget skapades.",
     ],
     faq: [

@@ -12,6 +12,29 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.4-alpha",
+    date: "2026-11-08",
+    summary:
+      "Kopplingen mellan en tillverkningsorder och tillverkningsordrarna för dess halvfabrikat, med Flytta halvfabrikaten och Skapa saknade halvfabrikat, prognos per artikel i behovsberäkningen och ABC-klassning på förbrukningsvärde.",
+    breaking: [
+      "Migrationen 0198 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Behovsberäkningens CSV har den nya kolumnen Varav prognos direkt efter Behov, och Behov tar med prognosen. Den som läser filen efter kolumnernas plats måste ta med den nya kolumnen.",
+      "API: förslagens `reason` i behovsberäkningen och i `POST /planning/orders` kan nu vara `forecast`. En integration som jämför mot en fast lista måste ta med det nya värdet. Inga siffror ändras förrän en artikel markeras Prognosstyrd.",
+    ],
+    added: [
+      "Täcks av och Går till på tillverkningsordern: kolumnen Täcks av visar för varje materialrad vad som täcker den, lager eller en inköps- eller tillverkningsorder med datum, och vad som saknas eller kommer för sent. Sektionen Går till visar vilka kundorder och tillverkningsordrar ordern själv täcker. Kopplingen räknas fram varje gång, och ingenting reserveras.",
+      "Märket Halvfabrikat sent på TO-kortet, i Tillverkning → Ordrar och i Beläggningen, när en tillverkningsorder för ett halvfabrikat blir klar efter att ordern behöver det. Listan kan filtreras på Halvfabrikat sent.",
+      "Flytta halvfabrikaten… på TO-kortet föreslår nya färdigdatum för halvfabrikatens tillverkningsordrar, nivå för nivå, och flyttar aldrig en order så att den blir sen för ett annat behov. Bara färdigdatumen ändras. Kör Planera i Beläggningen för att lägga om veckorna.",
+      "Skapa saknade halvfabrikat… på TO-kortet skapar tillverkningsordrar för de tillverkade material som ingenting täcker, hela strukturen i ett svep och med antalet nettat som i behovsberäkningen. Köpta artiklar som saknas listas och föreslås i behovsberäkningen.",
+      "Prognos per artikel: kryssrutan Prognosstyrd under Planering på artikelns flik Lager och kortet Prognos med snittet av förbrukningen de senaste hela månaderna, ett eget antal per månad och historiken. Kända order förbrukar prognosen, så ingenting räknas två gånger. Prognosbehovet fördelas per vecka i behovsberäkningen och syns i artikelöversikten, men flyttar aldrig ett färdigdatum och räknas inte av Leveranstidskontrollen.",
+      "ABC-analys under Lager: artiklarna delas in i klasserna A, B och C efter förbrukningsvärdet, med beställningspunkt, säkerhetslager och CSV. Klassen syns också på artikelkortet och i artikelregistret, med kolumnen och filtret ABC. Värdena visas bara för den som får se priser.",
+      "Fem nya inställningar under System → Inställningar: prognosens historik och horisont och ABC-analysens period och gränser.",
+    ],
+    changed: [
+      "Fältet Ställpris på inköpsorderraden radbryts i en smal kolumn i stället för att klippas.",
+    ],
+  },
+  {
     version: "0.8.3-alpha",
     date: "2026-11-07",
     summary:

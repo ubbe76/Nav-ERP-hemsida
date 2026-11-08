@@ -436,6 +436,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Flernivåkalkyl: halvfabrikat räknas ur sin egen struktur och rutt.",
           "Varje kalkyl sparar inställningarna den kördes med — en gammal kalkyl går alltid att förstå.",
           "Sätt standardpris och Sätt försäljningspris för tillbaka en sparad kalkyl till artikeln.",
+          "Förkalkylera flera: kalkylera om en egen lista med kopierade artiklar eller ett filtrerat urval i ett svep, med ändringen mot förra kalkylen.",
           "Kalkyloperationer: tid som prissätts i förkalkylen men aldrig följer med till tillverkningsordern.",
         ],
       },
@@ -695,7 +696,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Balansräkning och resultaträkning.",
           "Momsrapport med momsdeklarationens rutor per period.",
-          "Leveransprecision samt försäljnings-, inköps- och kassationsstatistik.",
+          "Leveransprecision med valbara marginaler för sena och för tidiga leveranser, samt försäljnings-, inköps- och kassationsstatistik.",
         ],
       },
       {

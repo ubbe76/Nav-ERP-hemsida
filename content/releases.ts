@@ -12,6 +12,31 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.5-alpha",
+    date: "2026-11-08",
+    summary:
+      "Översikten per användare med sju nya kort att välja, marginaler för sena och för tidiga leveranser i leveransprecisionen, listan Kopierat och Förkalkylera flera för artiklar, sparade underlag när en löneperiod låses upp och raden Skapad i tillverkningsorderns historik.",
+    breaking: [
+      "Migrationen 0199 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+    ],
+    added: [
+      "Anpassa Översikten: varje användare väljer själv vilka kort startsidan visar och i vilken ordning. Valet gäller bara den användaren, och Återställ standard ger tillbaka de fyra ursprungliga korten.",
+      "Sju nya kort att välja på Översikten: Leveranser denna vecka, Inleveranser denna vecka, Beläggning denna vecka, Förfallna kundfakturor, Leverantörsfakturor att betala, Offerter att följa upp och Öppna avvikelser. Ett kort erbjuds bara den som får öppna kortets lista. Inget nytt kort visas förrän användaren väljer det.",
+      "Marginaler i leveransprecisionen under System → Inställningar → Leveransprecision, för kundordrar och inköpsordrar var för sig: Sen efter (dagar) och För tidig före (dagar). Med en marginal för tidiga leveranser får rapporten kolumnen För tidiga, och en för tidig leverans sänker precisionen som en sen. Utan inställning räknas allt som förut.",
+      "Kopierat: en egen lista med artiklar per användare. Kopiera i artikelregistret, Kopiera alla träffar, Kopiera artiklar i behovsberäkningen och Kopiera komponenterna i beredningen lägger till artiklar, och registret kan filtreras på Kopierat.",
+      "Förkalkylera flera under Artiklar: förkalkylera Kopierat eller ett filtrerat urval i ett svep, med förra tillverkningskostnaden och ändringen per artikel. Spara markerade kan samtidigt sätta standardpris eller försäljningspris. Ett pris som skulle bli 0 sätts aldrig från svepet.",
+      "Tidigare låsta underlag på Personal & lön → Löneunderlag: när en löneperiod låses upp sparas det frysta underlaget, med när och av vem det låstes, och kan laddas ner som CSV i samma format som periodens egen. Upplåsningar före uppdateringen sparade inget underlag.",
+      "Raden Skapad i tillverkningsorderns historik, med artikelnummer, antal, planerat färdigdatum och kundorder, oavsett hur ordern skapades. Ordrar från före uppdateringen har bara raden Frisläppt.",
+      "API: `GET /alerts` tar `kinds` för att bara räkna vissa aviseringar, och kund- och inköpsorderlistorna tar `deliveryTo` och `sort=delivery`. Parametrarna är valfria, så befintliga anrop svarar som förut.",
+    ],
+    changed: [
+      "Lön & PAXml heter nu Lön, PAXml & schema. Inställningarna ATF-intjäning och Tillåt ATF-uttag via schemat har flyttat dit från System → Inställningar och sparas med sidans Spara. Värdena följer med.",
+      "Översikten hämtar bara det de valda korten behöver. Behovsberäkningen körs bara när Materialflöde eller Att bevaka visas. Faktura- och offertkorten räknar bara sina egna aviseringar.",
+      "Händelseloggens rad för en upplåst löneperiod visar bara att underlaget är sparat, inte själva underlaget.",
+      "För utvecklare: API-testerna typkontrolleras i CI med `npm run typecheck:test` i `apps/api`.",
+    ],
+  },
+  {
     version: "0.8.4-alpha",
     date: "2026-11-08",
     summary:

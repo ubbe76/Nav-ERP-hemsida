@@ -12,6 +12,37 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.7-alpha",
+    date: "2026-11-09",
+    summary:
+      "Beläggning, tillverkningsorderlistan och lagervärderingen går betydligt snabbare i stora register. Dessutom sidan Kopierat, eget antal per rad i Förkalkylera flera, säkerhetslagrets påfyllning som eget förslag och ett svep av förbättringar i behovsberäkningen, inköpsordern, fakturan, huvudboken och artikelimporten.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "API: `POST /costing/pre-calculations/batch` tar artikelnummerintervallen som `selection.articleNumberRanges: [{ from, to }]` (högst 20 intervall). De tidigare fälten `articleNumberFrom` och `articleNumberTo` ger 400.",
+      "API: förslagens `reason` i behovsberäkningen och i `POST /planning/orders` kan nu vara `safety_stock`. En integration som jämför mot en fast lista måste ta med det nya värdet.",
+    ],
+    added: [
+      "Sidan Artiklar → Kopierat: listan i den ordning artiklarna kopierades, med Lägg till, Ta bort per rad och för de markerade, Töm Kopierat och Förkalkylera Kopierat. Den nås också från Förkalkylera flera, artikelregistret och Ctrl+K.",
+      "Förkalkylera flera: Antal i tabellen går att ändra per rad, och det egna antalet följer med när urvalet förkalkyleras igen och när raderna sparas. Filtrera tar flera artikelnummerintervall.",
+      "Inköpsorderraden visar Staffelpris från N under à-priset när priset kommer från leverantörens staffel, både i Lägg till rad och i Ändra.",
+      "Lägg till rad på fakturan har fältet Enhet när en artikel är vald, förvalt på artikelns försäljningsenhet. Antal och à-pris anges i den enheten.",
+      "Artikelimporten och importmallen har kolumnen Prognosstyrd (Ja eller Nej).",
+      "API: fakturaraden tar `unitId` som visningsenhet för en fri rad med artikel, `POST /costing/pre-calculations/batch` tar `quantities` och `onlyArticleIds`, och `GET /articles/copied?details=true` ger de kopierade artiklarna i ordning. Allt är tillägg, så befintliga anrop svarar som förut.",
+    ],
+    changed: [
+      "Beläggning svarar på en tiondel av tiden och tillverkningsorderlistan på en tredjedel eller mindre i ett register med 25 000 artiklar. Lagervärderingen är omkring 40 % snabbare. Svaren är desamma som förut.",
+      "Behovsberäkningen: en artikel under sitt säkerhetslager får förslaget Säkerhetslager, daterat i dag och aldrig Passerat, i stället för Förslag vecka N märkt Passerat vid varje körning. Antalen är desamma.",
+      "Behovsberäkningen: Sortering: Senaste datum sätter ett inköpsförslag som inte längre hinner fram först. När listan räknas om stäms valda förslag av mot det nya resultatet, även på andra sidor, och förslagsraderna under en artikel visar artikelnumret.",
+      "Skapa ordrar utan behovsdatum, som integrationer använder, daterar inköpsraderna från behovet utan tillverkningens ledtid.",
+      "Huvudboken ordnar raderna inom en dag efter verifikatserie och nummer, även på PDF och CSV.",
+      "Fakturalistans sökning hittar en faktura både på namnet som står på fakturan och på kundens nuvarande namn. Fakturera på en order som inte har något kvar att fakturera säger det i dialogen.",
+      "Verifikatnumren i tabellerna Betalningar och Påminnelser och på betalningarna visas som text för den som inte har behörighet till Ekonomi, och som länk för den som har det.",
+      "Staffeln på en leverantörsrad stoppar vid 50 steg i formuläret.",
+      "Aviseringar står längre ner i sidomenyn, efter Rapporter. Lagertransaktionernas Mängd och Saldo skrivs med decimalkomma.",
+      "Tider och datum i webben visas alltid i svensk tid, så sidorna inte längre får fel när servern går i en annan tidszon. En flik i Delad vy kan inte längre visa Nav inuti sig själv.",
+    ],
+  },
+  {
     version: "0.8.6-alpha",
     date: "2026-11-09",
     summary:

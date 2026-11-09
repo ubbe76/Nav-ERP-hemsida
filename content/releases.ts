@@ -12,6 +12,39 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.6-alpha",
+    date: "2026-11-09",
+    summary:
+      "Nav som program: en fast ram med toppremsa och statusrad, Sök eller gå till (Ctrl+K), verktygsraden överst på dokumenten, kortkommandon, flikar och delad vy, täthet och egna kolumner i listorna, notiser med Ångra och Installera Nav. Dessutom ritningsrevisioner med filer, revisionerna en tillverkningsorder byggs efter, och ritningar och filer per operation, som stämpelterminalen visar.",
+    breaking: [
+      "Migrationerna 0200–0201 körs automatiskt när API:et startar. Ta en säkerhetskopia först. Ingen ändring i `.env` behövs.",
+      "Migrationen 0200 sparar på varje frisläppt eller pågående tillverkningsorder vilka revisioner och ritningsrevisioner den byggs efter, så att de står still när en ny revision aktiveras. Klara, stängda och makulerade ordrar får ingen sådan bild och visar de gällande revisionerna.",
+    ],
+    added: [
+      "Programramen: toppremsan med sökningen, Favorit, Aviseringar-klockan och användarmenyn står kvar när sidan scrollar, och statusraden längst ned visar om Nav har kontakt med servern.",
+      "Sök eller gå till (Ctrl+K): hoppa till en sida eller sök fram en kundorder, inköpsorder, tillverkningsorder, artikel, kund eller leverantör med tangentbordet. Paletten minns de senast öppnade.",
+      "Verktygsraden överst på kundorder, offert, inköpsorder, förfrågan, tillverkningsorder och kundfaktura: dokumentets knappar i en rad som står kvar när du scrollar och då visar numret och statusen. Knappar som inte får plats samlas under ⋯, och huvudknappen står alltid kvar.",
+      "Kortkommandon: när inget fält har fokus visar ? dem, N är sidans + Ny …, ↑/↓ och Enter flyttar och öppnar i listorna och 1–9 byter flik. Ctrl+S sparar formuläret du står i, och högerklick på en tabellrad öppnar radens ⋯-meny. Webbläsarens egna genvägar lämnas orörda.",
+      "Flikar och delad vy: på en bred skärm öppnas dokument som flikar under toppremsan. Scroll och osparat finns kvar när du byter flik, och Delad vy visar listan och dokumentet bredvid varandra. En flik kan dras till en ny plats, och ett dokument som skapas från ett annat, som en kreditfaktura eller en tillverkningsorder från en kundorderrad, öppnas i en ny flik. Högst 8 flikar. Dokument i flikar i användarmenyn stänger av dem.",
+      "Täthet i användarmenyn (Normal eller Kompakt) för alla tabeller, och Kolumner på listorna: välj kolumner, dra i kanten för bredden och flytta kolumner med greppet i rubriken eller pilarna. Valen sparas per användare och lista.",
+      "Notiser nere till höger efter inleverans, utleverans och rapportering på tillverkningsordern (Slutför, Förbruka, Rapportera tid och Slutför order), ofta med Ångra. Tabellerna visar grå platshållarrader medan de hämtas.",
+      "Installera Nav i användarmenyn när webbläsaren erbjuder det (Chrome och Edge), med en kort instruktion för Safari. Nav öppnas då i ett eget fönster. Installationen kräver https.",
+      "Osparade ändringar: en ändrad rad på kundorder, offert, inköpsorder eller förfrågan och ett oskrivet färdigdatum på tillverkningsordern ger en fråga innan du lämnar sidan eller stänger fliken.",
+      "Favoriter som kort på Översikten. Favoriter i användarmenyn väljer om de visas i menyn, på Översikten eller båda.",
+      "Fil på ritningsrevisionen: varje ritningsrevision kan ha en egen fil (PDF, JPEG eller PNG), uppladdad eller vald bland artikelns filer. Bara den aktiva revisionens fil följer med tillverkningsorderns utskrift, legomejlet och ordermejlen. En äldre revisions fil öppnas och skrivs ut från fliken Revisioner.",
+      "Revisionerna en tillverkningsorder byggs efter sparas vid frisläpp. Kortet Ritningar på tillverkningsordern visar dem med filerna, varnar för Ny revision sedan frisläpp och har Uppdatera till gällande revisioner. Utskriften visar revisionerna under artikeln.",
+      "Ritningar och filer per operation: operationsdialogen väljer vilka ritningar och filer en operation arbetar efter. Stämpelterminalen visar dem som knappar under en pågående stämpling, utskriften skriver dem under operationen och legomejlet skickar bara dem. Utan val gäller alla, som förut.",
+      "Panelen Ritningar och filer i Beredningen, med nya ritningar, revisioner och filer på samma ställe, och komponentens gällande ritning på strukturraden.",
+      "API: svaren från Förbruka och Slutför order har `reportId`, rutten har `drawings` och `files` per operation och tar `drawingIds` och `fileIds`, `GET /articles/:id/bom` har `componentDrawings` och `POST /articles/:id/files` tar `drawingRevisionId`. Allt är tillägg, så befintliga anrop svarar som förut.",
+    ],
+    changed: [
+      "Dokument öppnas i flikar på en bred skärm som förval. Den som vill ha vanliga sidor väljer Av under Dokument i flikar i användarmenyn.",
+      "Fliken Revisioner har två kort, Artikelrevisioner och Ritningar, med dialoger och ⋯-menyer i stället för formulär under varje tabell. Fliken Filer visar vilken ritningsrevision en fil hör till.",
+      "Kopiera från befintlig artikel tar med de gällande filerna, inte äldre revisioners. Operationernas valda ritningar och filer följer med via ritningsnumret och filnamnet.",
+      "Lagersaldon och inventeringslistan har nu också Kolumner.",
+    ],
+  },
+  {
     version: "0.8.5-alpha",
     date: "2026-11-08",
     summary:

@@ -92,7 +92,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "mobil",
         question: "Fungerar Nav|ERP på mobilen?",
         answer:
-          "Ja, i webbläsaren. Gränssnittet är anpassat för mobil och surfplatta, men det finns ingen app att installera. Stämpelterminalen är gjord för en delad skärm i verkstaden.",
+          "Ja, i webbläsaren. Gränssnittet är anpassat för mobil och surfplatta. Det finns ingen app i appbutikerna, men Nav kan läggas på hemskärmen eller installeras som program från webbläsaren. Stämpelterminalen är gjord för en delad skärm i verkstaden.",
       },
     ],
   },

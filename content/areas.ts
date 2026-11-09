@@ -91,6 +91,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Artikelstruktur (material) och rutt (operationer) på samma flik i artikelkortet.",
           "Ställtid och tid per enhet för varje operation, kopplad till en resurs.",
           "Legoarbete — ytbehandling, härdning, lackering — som egna operationer med ställ- och styckpris.",
+          "Ritningar och filer per operation, som stämpelterminalen visar och utskriften och legomejlet följer.",
         ],
       },
       {
@@ -266,7 +267,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Hur håller vi ordning på revisioner och ritningar?",
         answer:
-          "Fliken Revisioner har artikelns revisioner och ritningsnummer, med en aktiv revision i taget. Den aktiva revisionen kan skrivas ut på offert, orderbekräftelse, inköpsorder och förfrågan. Ritningarna laddas upp på fliken Filer och följer med när tillverkningsordern skrivs ut.",
+          "Fliken Revisioner har artikelns revisioner och ritningsnummer, med en aktiv revision i taget, och varje ritningsrevision kan ha en egen fil. Bara den aktiva revisionens fil följer med utskrifter och mejl, och en tillverkningsorder sparar vid frisläpp vilka revisioner den byggs efter. Den aktiva revisionen kan också skrivas ut på offert, orderbekräftelse, inköpsorder och förfrågan.",
       },
       {
         question: "Vi köper i meter men lagerför i kilo. Fungerar det?",
@@ -605,7 +606,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       "Nav|ERP för inget semestersaldo och inget kompsaldo. Semester och kompledighet registreras som frånvaro i timmar, och kompsaldot förs i lönesystemet.",
       "Det finns inga färdiga kollektivavtal att välja. OB-fönster, övertidströskel och tidkoder lägger ni upp själva.",
       "Det finns ingen koppling till passerkort eller RFID-brickor. Personalen identifierar sig med anställningsnumret.",
-      "Det finns ingen mobilapp. Nav|ERP och stämpelterminalen används i webbläsaren.",
+      "Det finns ingen app i appbutikerna. Nav|ERP och stämpelterminalen används i webbläsaren, och Nav kan installeras som program därifrån.",
     ],
     faq: [
       {

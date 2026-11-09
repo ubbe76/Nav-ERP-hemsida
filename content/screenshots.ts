@@ -3,12 +3,12 @@ export const SCREENSHOTS = {
   dashboard:
     "Översikten i Nav|ERP: öppna inköps-, tillverknings- och försäljningsordrar, sådant att bevaka, pågående tillverkning och senaste lagerhändelser.",
   article:
-    "Artikelkortets flik Beredning: artikelträdet med komponenter till vänster och rutten med operationer, ställtid och tid per enhet till höger.",
+    "Artikelkortets flik Beredning: artikelträdet med komponenter till vänster, och till höger ritningen med sin aktiva revision och rutten med operationer, ställtid och tid per enhet.",
   "article-overview":
     "Artikelöversikten: lagersaldo, beställningspunkt och huvudleverantör, och därunder alla behov och allt inkommande i datumordning med löpande disponibelt.",
   "manufacturing-orders": "Listan över tillverkningsordrar med artikel, antal, färdigdatum och status.",
   belaggning:
-    "Beläggningen per resurs och vecka: planerade timmar mot tillgänglig tid, där svetsningen är överbelagd vecka 47 och markeras röd.",
+    "Beläggningen per resurs och vecka: planerade timmar mot tillgänglig tid, där svetsningen är överbelagd vecka 49 och markeras röd.",
   "pagaende-arbete":
     "Pågående arbete: vilka anställda som är instämplade på vilken tillverkningsorder och operation, och vem som är på plats utan arbete.",
   behovsberakning:
@@ -38,9 +38,16 @@ export const SCREENSHOTS = {
   veckoschema:
     "Ett veckoschema med 40 timmars ordinarie arbetstid och 60 minuter ATF per vecka: fredagen blir den korta dagen, och en vecka med helgdag på fredag får den korta dagen på torsdagen.",
   attestering:
-    "Attesteringen för september: schema, arbetad tid, frånvaro och övertid per anställd, avvikelser och vilka som är attesterade.",
+    "Attesteringen för oktober: schema, arbetad tid, frånvaro och övertid per anställd, avvikelser och vilka som är attesterade.",
   arbetskort:
     "Arbetskortet, en utskriven tillverkningsorder med operationer, instruktioner, packning och material att signera.",
+  flikar:
+    "Dokument i flikar: en tillverkningsorder, en artikel, en faktura och en kundorder öppna samtidigt i flikraden, med kundordern framme.",
+  "delad-vy":
+    "Delad vy: listan över tillverkningsordrar till vänster och den öppna tillverkningsordern med material och behov till höger.",
+  sok: "Sök eller gå till (Ctrl+K): sökningen arbetsbord hittar offerter, tillverkningsordrar och artiklar.",
+  kolumner:
+    "Kolumnvalet i kundorderlistan: kolumner som visas eller döljs och flyttas upp och ned, och bredden dras i rubriken.",
   pallkort:
     "Ett pallkort till kund med artikelnummer, antal, kolli, kund och ordernummer, och streckkoder för artikel och order.",
 } as const;

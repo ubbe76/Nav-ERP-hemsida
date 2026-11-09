@@ -70,6 +70,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       { shot: "behovsberakning", caption: "Behovsberäkningen föreslår inköp och tillverkning ur nettobehovet." },
       { shot: "arbetskort", caption: "Arbetskortet: tillverkningsordern utskriven med operationer, instruktioner och material." },
       { shot: "pallkort", caption: "Pallkortet skrivs ut när en operation rapporteras, med streckkod för artikel och order." },
+      { shot: "delad-vy", caption: "Delad vy: listan till vänster och ordern till höger." },
     ],
     groups: [
       {
@@ -185,6 +186,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       { shot: "lager-transaktioner", caption: "Transaktionsloggen visar varje rörelse och vad som orsakade den." },
       { shot: "lager-saldon", caption: "Saldon per lagerplats." },
       { shot: "behovsberakning", caption: "Behovsberäkningen räknar nettobehovet för alla artiklar på en gång." },
+      { shot: "sok", caption: "Ctrl+K söker fram artiklar, ordrar och sidor var ni än står." },
     ],
     groups: [
       {

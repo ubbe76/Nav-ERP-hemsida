@@ -57,6 +57,13 @@ const SHOWCASE: Array<{ shot: ScreenshotKey; title: string; text: string; href: 
     href: "/funktioner/tillverkning/#ordrar",
     more: "Mer om tillverkningsorder",
   },
+  {
+    shot: "flikar",
+    title: "Flera dokument öppna samtidigt",
+    text: "Kundorder, tillverkningsorder och artikel i var sin flik, och varje flik står kvar där ni lämnade den. Delad vy lägger listan och dokumentet sida vid sida, och Ctrl+K hittar ordrar, artiklar och sidor.",
+    href: "/hjalp/komma-igang/#flikar-och-delad-vy",
+    more: "Om flikar och delad vy",
+  },
 ];
 
 const COSTS = [

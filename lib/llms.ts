@@ -33,6 +33,7 @@ export function llmsTxt(): string {
     link("Öppen källkod", "/oppen-kallkod/", "vad GPL-3.0 betyder för ett företag"),
     link("Om Nav|ERP", "/om/", "vem som bygger systemet och hur man når projektet"),
     link("Versioner", "/versioner/", "nyheter och ändringar i varje version"),
+    link("Färdplan", "/farplan/", "de öppna förslagen på GitHub, sorterade efter prioritet"),
     "",
     "## Funktioner",
     "",

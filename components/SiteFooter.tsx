@@ -30,6 +30,7 @@ export async function SiteFooter() {
               <li><Link href="/verktyg/paslagskalkyl/">Påläggskalkyl</Link></li>
               <li><Link href="/hjalp/">Manual</Link></li>
               <li><Link href="/versioner/">Versioner</Link></li>
+              <li><Link href="/farplan/">Färdplan</Link></li>
             </ul>
           </div>
           <div>

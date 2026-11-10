@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fetchRepoStats } from "@/lib/github";
+import { fetchRepoStats, fetchRoadmap } from "@/lib/github";
 
 const REPO = "https://api.github.com/repos/ubbe76/Nav-ERP";
 const RELEASE = `${REPO}/releases/latest`;
@@ -46,5 +46,45 @@ describe("fetchRepoStats", () => {
     const seen: RequestInit[] = [];
     await fetchRepoStats(fakeFetch({}, seen), "hemlig");
     expect(seen[0]?.headers).toMatchObject({ Authorization: "Bearer hemlig" });
+  });
+});
+
+describe("fetchRoadmap", () => {
+  const ISSUES = `${REPO}/issues?state=open&labels=${encodeURIComponent("förslag")}&per_page=100`;
+  const issue = (number: number, labels: string[], extra: Record<string, unknown> = {}) => ({
+    number,
+    title: `Förslag ${number}`,
+    html_url: `https://github.com/ubbe76/Nav-ERP/issues/${number}`,
+    labels: labels.map((name) => ({ name })),
+    ...extra,
+  });
+
+  it("sorterar efter prioritet, sedan äldst först, och skiljer områdena från etiketterna", async () => {
+    const items = await fetchRoadmap(
+      fakeFetch({
+        [ISSUES]: {
+          status: 200,
+          body: [
+            issue(32, ["förslag", "prio: låg", "kalkyl"]),
+            issue(8, ["förslag", "prio: medel", "tillverkning", "lager"]),
+            issue(40, ["förslag"]),
+            issue(11, ["förslag", "prio: låg", "lager"]),
+            issue(50, ["förslag"], { pull_request: {} }),
+          ],
+        },
+      }),
+      undefined,
+    );
+    expect(items).toEqual([
+      { number: 8, title: "Förslag 8", url: "https://github.com/ubbe76/Nav-ERP/issues/8", priority: "medel", areas: ["tillverkning", "lager"] },
+      { number: 11, title: "Förslag 11", url: "https://github.com/ubbe76/Nav-ERP/issues/11", priority: "låg", areas: ["lager"] },
+      { number: 32, title: "Förslag 32", url: "https://github.com/ubbe76/Nav-ERP/issues/32", priority: "låg", areas: ["kalkyl"] },
+      { number: 40, title: "Förslag 40", url: "https://github.com/ubbe76/Nav-ERP/issues/40", priority: null, areas: [] },
+    ]);
+  });
+
+  it("ger null när GitHub inte svarar, så sidan länkar dit i stället", async () => {
+    expect(await fetchRoadmap(fakeFetch({ [ISSUES]: { status: 403 } }), undefined)).toBeNull();
+    expect(await fetchRoadmap(fakeFetch({}), undefined)).toBeNull();
   });
 });

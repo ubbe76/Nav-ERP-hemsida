@@ -15,6 +15,7 @@ export function allRoutes(): string[] {
     "/oppen-kallkod/",
     "/om/",
     "/versioner/",
+    "/farplan/",
     "/hjalp/",
     ...MANUAL_CHAPTERS.map((c) => `/hjalp/${c.slug}/`),
   ];

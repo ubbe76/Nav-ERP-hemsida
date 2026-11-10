@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { FeatureArea } from "@/content/areas";
 import styles from "./FeatureGroups.module.css";
 
@@ -30,11 +31,16 @@ export function FeatureGroups({ area }: { area: FeatureArea }) {
       </section>
       <section id="saknas" className={styles.group}>
         <h2 className={styles.title}>Det här saknas i dag</h2>
-        <ul className={styles.points}>
-          {area.limits.map((limit) => (
-            <li key={limit}>{limit}</li>
-          ))}
-        </ul>
+        <div className={styles.text}>
+          <ul className={styles.points}>
+            {area.limits.map((limit) => (
+              <li key={limit}>{limit}</li>
+            ))}
+          </ul>
+          <p>
+            Vad som byggs härnäst står i <Link href="/farplan/">färdplanen</Link>.
+          </p>
+        </div>
       </section>
       <section id="fragor" className={styles.group}>
         <h2 className={styles.title}>Vanliga frågor</h2>

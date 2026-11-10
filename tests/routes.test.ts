@@ -17,10 +17,11 @@ describe("allRoutes", () => {
     expect(routes).toContain("/oppen-kallkod/");
     expect(routes).toContain("/om/");
     expect(routes).toContain("/versioner/");
+    expect(routes).toContain("/farplan/");
     expect(routes).toContain("/gratis-affarssystem/");
     expect(routes).toContain("/fragor/");
     expect(routes).toContain("/verktyg/paslagskalkyl/");
     expect(routes).toContain("/affarssystem-for-tillverkning/");
-    expect(routes).toHaveLength(11 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
+    expect(routes).toHaveLength(12 + FEATURE_AREAS.length + MANUAL_CHAPTERS.length);
   });
 });

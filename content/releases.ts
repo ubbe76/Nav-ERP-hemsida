@@ -12,6 +12,46 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.8-alpha",
+    date: "2026-11-11",
+    summary:
+      "En genomgång av hela kodbasen, modul för modul: kapplöpningar, avrundningar och fel som gav 500 är rättade i ekonomin, lagret, tillverkningen, försäljningen och inköpet, behörigheterna, planeringen, banken och e-fakturan, tid och lön, importen, artiklarna och konfiguratorn, frakten och PDF:erna, systemet och rapporterna. PDF:erna har fått ett typsnitt som klarar alla europeiska tecken, och bankavstämningen kan ignorera poster.",
+    breaking: [
+      "Sex migrationer (0202–0207). 0205 gör alla e-postadresser till gemener och stoppar om två användare har samma adress i olika skiftläge (till exempel `Anna@x.se` och `anna@x.se`) — rätta dem före uppdateringen. 0204 nollar lagersaldon som tjänster fått tidigare, med en lagerjustering per plats. 0207 sorterar om strukturrader som skapats samtidigt (import, Kopiera från, varianter) efter Pos. Ingen ändring i `.env`.",
+      "Ett nytt lösenord loggar ut kontot på alla enheter. Logga ut gäller fortfarande bara den egna enheten.",
+      "Tjänster lagerförs inte längre: inleverans, utleverans och tillverkningens uttag av en tjänst bokar ingen lagerrörelse, justering, flytt och inventering vägrar tjänster, och en artikel med lagersaldo kan inte göras till tjänst förrän saldot är 0.",
+      "API: `POST /stock/transactions` bokar bara justeringar.",
+      "API: svaren till OAuth-klienter innehåller bara det klienten behöver. `order` i `POST /quotes` och `POST /sales-orders/:id/confirm` har `id`, `orderNumber`, `quoteNumber`, `documentKind`, `status`, `customerId`, `customerOrderNumber`, `customerInquiryNumber`, `customerReference`, `deliveryAddressId`, `expectedDeliveryDate`, `quoteValidUntil`, `note`, `currency`, `exchangeRate`, `revision`, `costCenterId`, `projectId` och `createdAt`; raderna `id`, `articleId`, `quantityOrdered`, `unitId`, `unitFactor`, `unitPrice`, `discountPercent`, `calculatedPrice`, `expectedDeliveryDate`, `configuration` och `setupForRowId`. Bland annat fraktens inköpspris och påslagen följer inte längre med. `GET /articles/:id/bom` saknar `routingOperationId` och filernas id för klienter.",
+      "API: `GET /stamp-sessions` och `GET /attendance-sessions` utan `?open=true` svarar `{ rows, total }` med `search`, `limit` och `offset`. Närvarohistoriken och anledningarna kräver behörigheten Personal & lön.",
+      "API: ett felaktigt urval på en variantmall (okänd valgrupp, fel värdetyp) ger 400 `configurator-invalid-configuration` med `details` på `POST /configurator/:id/variant`, orderraderna och `POST /quotes` — förut `invalid-configurator-variant-set` respektive 500.",
+      "E-faktura: en nyckel vars prefix (`test_`, `stag_`, `prod_`) motsäger vald Miljö sparas inte.",
+      "PDF-dokumenten skrivs med Liberation Sans i stället för Helvetica (samma teckenbredder, så layouten är densamma). Antal och à-pris visas med upp till fyra decimaler, och fakturans momsrader visar underlaget per sats. Redan arkiverade fakturor ändras inte.",
+      "Lön: dagar före Anställd från och efter Anställd till på personalkortet har inget schema i löneunderlaget. En OB-regel med Till 00:00 gäller till midnatt — ändra regler som slutar 23:59, annars får den sista minuten fortfarande ingen OB.",
+      "Legopriser räknas om med orderns kurs när leverantören har annan valuta, och efterkalkylens Per st, Sätt standardpris och Sätt försäljningspris delar med inlevererat antal (en preliminär efterkalkyl sätter inga priser).",
+    ],
+    added: [
+      "Bankavstämningen: Ignorera poster med orsak och Ångra ignorering, så en felimport inte låser Avstämd t.o.m. för alltid.",
+      "Förkalkylera flera: Visa urval listar artiklarna urvalet träffar innan något räknas, och Från/Till föreslår artiklar medan man skriver.",
+      "Leveransadress på kunden: kryssrutan Ändra inte befintliga ordrar när adressen ändras. Ordrarna behåller alltid adressen när den tas bort.",
+      "Personalkortets kalender visar Ej anställd före Anställd från och efter Anställd till.",
+    ],
+    changed: [
+      "PDF:erna klarar polska, baltiska och andra europeiska tecken samt Ω och ≤ — förut förstörde ett sådant tecken resten av raden. Långa namn och artikelnummer skriver inte längre över grannraderna, inköpsorderns moms avrundas till öre som på kortet, och visningskopian av en mottagen e-faktura visar rabatt, tillägg och förskott.",
+      "Löneperiodens Lås väntar in frånvaro, övertidsval, attest, närvarorättningar, ATF och schemaavvikelser som sparas samtidigt, och två samtidiga Lås ger fel i stället för att skriva över varandra.",
+      "Ekonomi: en omföring kan inte ändras eller omföras, Lås period väntar in en pågående bokning, Nordirlands XI-nummer godtas för EU-varor och ogiltiga anrop ger begripliga fel i stället för 500.",
+      "Lager och tillverkning: decimalsummor avrundas till fyra decimaler (0,7 + 0,1 når 0,8, och 0,1 + 0,2 av 0,3 godtas), statusbyten görs under lås så att en samtidig Slutför, Makulera eller leverans inte skrivs över, och frisläppet klarar fantomer vars rader är kopplade till fantomens egna operationer.",
+      "Försäljning och inköp: en inköpsorder till en utländsk leverantör får dagens kurs (förut 1), kreditfakturorna mot en faktura kan inte överstiga dess belopp, och en inbetalning på en påminnelse betalar avgiften före kapitalet.",
+      "Behovsberäkningen: Skapa ordrar vägrar förslag som redan täckts i en annan flik, och cachen nollas efter Leveranstidskontrollens reservation och Skapa saknade halvfabrikat.",
+      "Importen: strukturrader visas i filens ordning, en kolumnrubrik som är ett tal förskjuter inte längre kolumnerna, betalningsvillkor som \"1 månad netto\" får ingen kod som läses som dagar, tom Land på en leveransadress blir kundens land, och rader med bara semikolon, UTF-16-filer och för stora Excel-filer ger tydliga fel.",
+      "Konfiguratorn: en rad vars valgrupp döpts om eller tagits bort fastnar inte längre, variantpriset följer bara en variant vars val fortfarande stämmer, och ingen kurs hämtas medan mallen är låst.",
+      "Artiklar: aktivera en revision som tagits bort lämnar den aktiva kvar, Kopiera från ger operationerna källans filer, strukturens cykelkontroll håller vid samtidiga tillägg, och en streckkod hittas både som UPC-A (12 siffror) och EAN-13.",
+      "Frakt: ett osäkert svar på en bokning visas som Bokningen kan ha genomförts och loggas, och två samtidiga prishämtningar kan inte peka försändelsen på fel sändning hos Sendify.",
+      "Tid och lön: en öppen närvaro kan inte tas bort (sätt en sluttid först), en starttid i framtiden vägras, en manuell tidrapport kräver en frisläppt, pågående eller klar order, och Radera anställd rensar händelseloggens fritext.",
+      "System och rapporter: en avbruten nedladdning av säkerhetskopian lämnar ingen databasprocess kvar, en nummerserie som skulle ge för långa eller upptagna nummer sparas inte, en manuell kurs för en framtida dag gäller den dagen, inköpets leveransprecision mäter lego- och tjänsteordrar, och räntefakturor räknas inte som nettoomsättning.",
+      "Webben visar API-fel med svensk text överallt, även i formulären där den engelska texten tidigare syntes.",
+    ],
+  },
+  {
     version: "0.8.7-alpha",
     date: "2026-11-09",
     summary:

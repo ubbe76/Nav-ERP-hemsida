@@ -11,7 +11,7 @@ export function AnnouncementBar() {
   return (
     <section className={styles.bar} aria-label="Tidig version">
       <p className={`container ${styles.inner}`}>
-        <span className={styles.badge}>Alfaversion</span>
+        <span className={styles.badge}>Tidig version</span>
         <span>
           Nav|ERP {latest.version} finns som öppen källkod <a href={SITE.repoUrl}>på GitHub</a> —{" "}
           <Link href="/versioner/">se vad som är nytt</Link>. En tidig version som ännu inte är redo för skarp drift,

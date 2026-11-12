@@ -12,6 +12,37 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.8",
+    date: "2026-11-12",
+    summary:
+      "Samma versionsserie som förut, nu utan alfamarkeringen. Granskningen av kodbasen är klar: den delade koden och databasschemat och hela webben, område för område. Formulären skickar bara det du ändrat och tar hänsyn till osparade ändringar, stämpelterminalen nollställs mellan personerna, fel visas på svenska överallt, och en SEK-betalning till utlandet där banken räknat in avgiften stäms av automatiskt.",
+    breaking: [
+      "Versionen heter 0.8.8 utan \"-alpha\", och GitHub-releasen är inte längre märkt som förhandsversion. Versionsnumret börjar fortfarande på 0: datamodell och API kan ändras mellan versionerna.",
+      "Två migrationer (0208–0209). 0208 stoppar om två räkenskapsår överlappar — rätta dem före uppdateringen (Nav har inte släppt igenom sådana tidigare). Den spärrar också lagerloggen i databasen: rader i `stock_transactions` kan inte ändras eller tas bort, inte ens med SQL. 0209 låter en SEK-betalning bära en bankavgift. Ingen ändring i `.env`.",
+      "Öresavrundningen avrundar ett halvt öre uppåt även över cirka 2 kronor, som Postgres. Momsen på en fakturarad kan därför bli ett öre högre än förut.",
+      "API: ett talfält som är `null` eller en tom sträng ger 400 i stället för att sparas som 0, och ett tal som är för stort för fältet ger 400 `number-out-of-range` i stället för 500. Där `null` betyder något (till exempel att rensa ett pris) gäller det som förut.",
+      "API: en inköpsorderrad som tas bort lämnar sina ångrade inleveranser kvar i historiken i stället för att ta bort dem.",
+    ],
+    added: [
+      "Bankavstämningen: en betalning i SEK till ett utländskt konto där banken räknat in sin avgift i beloppet stäms av automatiskt, och avgiften bokförs som bankkostnad på samma verifikat.",
+      "Skapa ordrar i behovsberäkningen visar Varning vid frisläpp i resultatet, och samma varning står på tillverkningsordern.",
+      "Tillverkningsordern frågar innan Stäng order, och åtgärderna som räknar från färdigdatumet väntar tills ett ändrat datum är sparat.",
+      "API (tillägg, befintliga anrop svarar som förut): `releaseWarnings` per tillverkningsorder i svaret från `POST /planning/orders`, `materialConsumptionId` på rapporteringarnas materialrader, `articleUnitCode` i tillverkningsorderlistan och felkoderna `logo-file-missing` och `invalid-logo-file-type` för logotypen.",
+    ],
+    changed: [
+      "Bokför, Utfärda och Godkänn sparar ett ändrat huvud först, i stället för att bokföra det som senast sparats. Det gäller verifikat, fakturor och leverantörsfakturor.",
+      "Ändra på en rad skickar bara det du ändrat: en orderrad, inköpsorderrad, strukturrad, operation eller materialrad räknas inte längre om med enhetens nuvarande omräkningsfaktor, och en ändring skriver inte över det en annan användare just sparat.",
+      "Osparade ändringar skyddas på fler ställen: kortens flikar behåller det du skrivit, flera formulär på samma sida varnar tillsammans, och Skicka via e-post vägras tills ändringarna är sparade.",
+      "Stämpelterminalen: det som skrivits på utstämplingen töms innan nästa person stämplar ut, Ta ut ATF kan inte registrera samma uttag två gånger, och terminalen går aldrig tillbaka till knappsatsen mitt i en sparning.",
+      "Slutför order lägger bara in det som återstår efter en delinleverans.",
+      "Inleverans tar inte emot redan bokade rader igen efter en delvis misslyckad Rapportera.",
+      "En utgången session leder till inloggningen i stället för en felsida, och ett tillfälligt serverfel loggar inte ut någon. Logga ut tömmer Senast öppnade och de öppna flikarna i webbläsaren.",
+      "Artikelväljaren väljer aldrig en artikel ur en gammal träfflista när man trycker Enter direkt efter att ha skrivit ett nummer.",
+      "Prisfälten med fyra decimaler tar emot och visar fyra decimaler.",
+      "Felmeddelanden visas på svenska överallt, också vid uppladdningar, en utgången session och när servern inte nås.",
+    ],
+  },
+  {
     version: "0.8.8-alpha",
     date: "2026-11-11",
     summary:

@@ -171,7 +171,7 @@ export const GUIDE: GuideGroup[] = [
           "Fakturor och betalningar ska bokföras automatiskt, momsrapporten ska ge momsdeklarationens rutor, och bokföringen ska gå att lämna till revisorn som SIE-fil. Bokförda verifikat ska inte gå att ändra, bara rätta.",
         status: "ja",
         navErp:
-          "Grundbokföring med BAS-kontoplan, automatkontering, momsrapport, bokslutsguide och SIE 4-export. Bokförda verifikat är spärrade i databasen och rättas med omföring. Systemet är i alfa och ännu inte prövat i skarp bokföring.",
+          "Grundbokföring med BAS-kontoplan, automatkontering, momsrapport, bokslutsguide och SIE 4-export. Bokförda verifikat är spärrade i databasen och rättas med omföring. Systemet är i ett tidigt skede och ännu inte prövat i skarp bokföring.",
         more: { href: "/funktioner/ekonomi/", label: "Ekonomi" },
       },
       {

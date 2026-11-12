@@ -25,7 +25,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "redo-for-produktion",
         question: "Är Nav|ERP redo att användas i skarp drift?",
         answer:
-          "Inte än. Nav|ERP är i alfa och har ännu inte använts i skarp drift. Datamodell, API och arbetsflöden kan ändras mellan versioner. Prova det med exempeldata eller era egna artiklar, men använd det ännu inte för riktig bokföring, lön eller fakturering.",
+          "Inte än. Nav|ERP är i ett tidigt skede och har ännu inte använts i skarp drift. Datamodell, API och arbetsflöden kan ändras mellan versioner. Prova det med exempeldata eller era egna artiklar, men använd det ännu inte för riktig bokföring, lön eller fakturering.",
         more: { href: "/versioner/", label: "Vad som är nytt i varje version" },
       },
       {

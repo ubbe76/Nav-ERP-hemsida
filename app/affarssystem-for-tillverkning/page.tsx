@@ -38,7 +38,7 @@ export default function ManufacturingErpGuide() {
           <p>
             Under varje fråga står vad ni bör kräva, och därefter hur Nav|ERP klarar det i dag:{" "}
             {all.filter((i) => i.status === "ja").length} av {all.length} punkter finns,{" "}
-            {all.filter((i) => i.status === "delvis").length} finns delvis. Nav|ERP är i alfa, så se svaren som en
+            {all.filter((i) => i.status === "delvis").length} finns delvis. Nav|ERP är i ett tidigt skede, så se svaren som en
             beskrivning av vad som är byggt, inte som ett löfte om skarp drift.
           </p>
         </div>

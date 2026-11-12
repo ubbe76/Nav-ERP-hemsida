@@ -119,7 +119,7 @@ export default function Home() {
             Nav|ERP är ett affärssystem (ERP) med öppen källkod för mindre och medelstora tillverkande företag i
             Sverige. Det samlar artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett
             system, är gratis under licensen GPL-3.0 och körs på företagets egen server med Docker och PostgreSQL.
-            Nav|ERP byggs av Urban Källefors och är ännu i alfa — senaste version är {RELEASES[0]!.version}.
+            Nav|ERP byggs av Urban Källefors och är ännu i ett tidigt skede — senaste version är {RELEASES[0]!.version}.
           </p>
         </div>
         <div className={styles.demo}>

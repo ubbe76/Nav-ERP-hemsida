@@ -115,7 +115,7 @@ export default function FreeErpPage() {
           <h2>Det ska ni också väga in</h2>
           <ul>
             <li>
-              Nav|ERP är i alfa och har ännu inte använts i skarp drift. Prova med exempeldata och era egna artiklar
+              Nav|ERP är i ett tidigt skede och har ännu inte använts i skarp drift. Prova med exempeldata och era egna artiklar
               innan ni bestämmer er.
             </li>
             <li>Ni ansvarar själva för servern, säkerhetsuppdateringarna och att backupen fungerar.</li>

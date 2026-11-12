@@ -772,7 +772,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Är Nav|ERP redo för vår skarpa bokföring?",
         answer:
-          "Inte än. Nav|ERP är en alfaversion och har ännu inte använts i skarp drift. Prova och utvärdera gärna, men använd det ännu inte för er skarpa bokföring. Funktioner kan ändras mellan versioner.",
+          "Inte än. Nav|ERP är en tidig version (0.x) och har ännu inte använts i skarp drift. Prova och utvärdera gärna, men använd det ännu inte för er skarpa bokföring. Funktioner kan ändras mellan versioner.",
       },
     ],
     manual: [

@@ -90,7 +90,7 @@ export default function AboutPage() {
 
           <h2>Var projektet står</h2>
           <p>
-            Nav|ERP är i alfa. Senaste version är <Link href="/versioner/">{RELEASES[0]!.version}</Link>. Det går att
+            Nav|ERP är i ett tidigt skede. Senaste version är <Link href="/versioner/">{RELEASES[0]!.version}</Link>. Det går att
             installera och prova, och det finns en <Link href="/kom-igang/#demo">demo</Link> att klicka runt i, men
             systemet är ännu inte redo för skarp drift.
           </p>

@@ -16,7 +16,7 @@ export function llmsTxt(): string {
       "Sverige. Det samlar artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett system, " +
       "är gratis under GPL-3.0 och körs på företagets egen server med Docker och PostgreSQL.",
     "",
-    `${SITE.name} byggs av Urban Källefors och är i alfa: senaste version är ${RELEASES[0]!.version}, ` +
+    `${SITE.name} byggs av Urban Källefors och är i ett tidigt skede: senaste version är ${RELEASES[0]!.version}, ` +
       "som går att prova men ännu inte är redo för skarp drift. Sajten och manualen är på svenska.",
     "",
     `Demo: ${SITE.demo.url}, ett påhittat företag. Logga in med ${SITE.demo.user} och lösenordet ` +

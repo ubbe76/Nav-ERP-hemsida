@@ -72,7 +72,7 @@ export default function OpenSourcePage() {
           <h2>Riskerna, och hur ni hanterar dem</h2>
           <ul>
             <li>
-              <strong>Projektet är ungt.</strong> Nav|ERP är i alfa och har ännu inte använts i skarp drift. Prova i
+              <strong>Projektet är ungt.</strong> Nav|ERP är i ett tidigt skede och har ännu inte använts i skarp drift. Prova i
               demon och med era egna artiklar innan ni bestämmer er.
             </li>
             <li>

@@ -26,7 +26,8 @@ test("avsnittslänkarna finns överst i kapitlet på mobil", async ({ page, isMo
   test.skip(!isMobile, "på dator finns sidomenyn");
   await page.goto("/hjalp/tillverkning/");
   const list = page.locator("details", { hasText: "I det här kapitlet" });
-  await expect(list.locator("summary")).toHaveText("I det här kapitlet (10 avsnitt)");
+  // The count follows the manual, which grows with Nav — only its form is fixed here.
+  await expect(list.locator("summary")).toHaveText(/^I det här kapitlet \(\d+ avsnitt\)$/);
   // Under kapitelrubriken, före brödtexten.
   const [h1, summary, firstParagraph] = await Promise.all([
     page.getByRole("heading", { level: 1 }).boundingBox(),

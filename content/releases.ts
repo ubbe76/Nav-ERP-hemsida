@@ -12,6 +12,34 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.9",
+    date: "2026-11-12",
+    summary:
+      "Sex nyheter: fliken Försäljning på artikelkortet, Efterkalkylera flera, Skapa kundorder från offert, Körplan per resurs, export till Excel och export av registren som importfiler, och Behöver beställas grupperad per leverantör med inköpsorder direkt ur listan.",
+    breaking: [
+      "Tre migrationer (0210–0212): index för artikelns kundpriser och prislisterader, statusen `ordered` (Order) för offerter och kopplingen från en kundorder till offerten den skapades ur. Ingen ändring i `.env`.",
+      "Offertkortet har Skapa kundorder i stället för Bekräfta: offerten står kvar med statusen Order och en ny kundorder skapas. En offert med status Order kan inte bli Förlorad, makuleras eller öppnas igen. API:ts bekräftelsevägar (`POST /quotes` med `confirm`, `POST /sales-orders/:id/confirm`) fungerar som förut på en vanlig offert.",
+      "API: kundorderstatus har ett nytt värde, `ordered`, som räknas som offert (`documentKind: \"quote\"`) — en integration som läser status ska tåla det. Bekräfta, makulera, förlorad, öppna igen och manuell status på en `ordered`-offert ger 409 `quote-already-ordered`.",
+      "Försäljningspris och Försäljningsenhet har flyttat från artikelkortets flik Allmänt till den nya fliken Försäljning.",
+      "Behörighet: Skapa ordrar i behovsberäkningen (`POST /planning/orders`) får nu också användas av den som har Inköp, för köp- och legoförslag. Ett tillverkningsförslag kräver fortfarande Tillverkning.",
+      "Import: en apostrof framför ett formeltecken (`'+46…`, `'-100`) tas bort när filen läses in, och en operationskommentar som är densamma som den sparade skrivs inte om, så Skriv ut kommentaren på arbetskortet behålls.",
+      "Rapporter: Offertuppföljningen räknar en offert med status Order som vunnen, och Orderförteckningens filter Öppna tar inte med den — värdet ligger i ordrarna som skapats ur den.",
+    ],
+    added: [
+      "Fliken Försäljning på artikelkortet: kundpriser med staffel och kundens artikelnummer, en rad per kund, artikelns priser i prislistorna och kundernas regler för artikelns varugrupp — samma uppgifter som på kundkortet.",
+      "Efterkalkylera flera (Tillverkning): efterkalkyl för ett urval tillverkningsordrar i ett svep — urval på senaste inleverans, artikel, varugrupp och status — med Kalkylerat och Efterkalkyl per styck och avvikelsen, och Spara markerade.",
+      "Skapa kundorder från offert: rader, priser och huvud kopieras till en ny kundorder, orderhuvudet visar Offertnummer och offerten visar Ordrar från offerten. Samma offert kan ge flera ordrar.",
+      "Körplan (Tillverkning): kommande arbeten per resurs vecka för vecka, med tid kvar, antal kvar och om föregående operation är klar, utskrivbar som PDF och nåbar från stämpelterminalen.",
+      "Exportera → CSV eller Excel på listor och rapporter. I Excel är tal och datum riktiga tal och datum.",
+      "Exportera på importsidan: alla 16 importtyper med importmallens kolumner, med urval för de artikelbundna och flera filer om det blir fler än 10 000 rader. En export kan ändras och läsas in igen.",
+      "Behöver beställas (Aviseringar och Översikten) grupperas per förvald leverantör, och inköpsorder skapas direkt ur listan.",
+      "API (tillägg, befintliga anrop svarar som förut): `GET /articles/:id/sales-prices`, `PUT /articles/:id/customer-prices/:customerId`, `PUT /articles/:id/price-lists/:priceListId`, `POST /sales-orders/:id/create-order`, `POST /costing/post-calculations/batch` (och `/selection`, `/save`), `GET /planning/run-plan` (och `/pdf`), en `…/xlsx` bredvid varje tabellexport på `…/csv`, och `GET /imports/:entity/export`.",
+    ],
+    changed: [
+      "Behöver beställas står i leverantörsordning även i den dagliga sammanställningen.",
+    ],
+  },
+  {
     version: "0.8.8",
     date: "2026-11-12",
     summary:

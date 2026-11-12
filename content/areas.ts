@@ -79,7 +79,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Flödet frisläppt → pågår → klar → stängd, med statusövergångar som kontrolleras i systemet.",
           "Materialförbrukning och tidrapportering mot ordern, med rapporteringslogg och möjlighet att ångra.",
-          "Efterkalkyl per order: vad materialet och tiden faktiskt kostade.",
+          "Efterkalkyl per order: vad materialet och tiden faktiskt kostade — eller för ett urval ordrar i ett svep med Efterkalkylera flera.",
           "Material och operationer kan ändras på en frisläppt order, bara för den ordern, och väntande operationer planeras om direkt.",
           "Inköpsorder och förfrågan för legoarbete skapas direkt från orderns legooperation, och dagen godset ska vara tillbaka räknas bakåt från färdigdatumet.",
           "Ordern visar vad som täcker varje materialrad och vilka behov den själv täcker. Ett halvfabrikat som blir klart för sent märks, och halvfabrikatens ordrar kan flyttas eller skapas direkt från ordern.",
@@ -99,6 +99,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "planering",
         title: "Planering",
         points: [
+          "Körplan per resurs: kommande arbeten vecka för vecka, utskrivbar och nåbar från stämpelterminalen.",
           "Behovsberäkningen räknar fram nettobehovet per artikel och vecka och föreslår inköps- och tillverkningsordrar, med senaste dag att beställa eller starta utifrån ledtiden.",
           "Beläggning: last mot tillgänglig tid per resurs och vecka, där röda dagar minskar kapaciteten.",
           "Produktionsplanering: Planera lägger operationerna på resursernas lediga tid vecka för vecka, en operation kan flyttas och låsas för hand, och en ny tillverkningsorder planeras direkt.",
@@ -193,10 +194,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "artiklar",
         title: "Artikelregistret",
         points: [
-          "Artikelkort med flikarna Allmänt, Beredning, Lager, Kalkyl, Revisioner och Filer.",
+          "Artikelkort med flikarna Allmänt, Beredning, Försäljning, Lager, Kalkyl, Revisioner och Filer — på Försäljning står kundernas priser och artikelnummer och prislistornas priser för artikeln.",
           "Artikelgrupper, alternativa enheter och leverantörskatalog med staffelpriser.",
           "Prishistorik för standardkostnad, försäljningspris och leverantörspriser.",
-          "Import av artiklar, struktur och operationer från CSV eller Excel, med färdiga Excelmallar — kom igång med data från ert gamla system.",
+          "Import och export av artiklar, struktur, operationer och priser i CSV eller Excel, med färdiga Excelmallar — kom igång med data från ert gamla system, och exportera, ändra och läs in igen.",
           "En ny artikel kan kopiera uppgifter, beredning, leverantörer och ritningar från en befintlig artikel.",
           "Artikelnummer ur en nummerserie, med egna serier per artikelgrupp.",
         ],
@@ -321,12 +322,14 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Eget leveransdatum per orderrad, samma artikel på flera rader, och en ny leveransadress kan skrivas in direkt på ordern.",
           "Offert, orderbekräftelse, följesedel och faktura på svenska eller engelska efter kundens språk, och förfrågan och inköpsorder efter leverantörens.",
           "Offerter som en egen rutin med egen nummerserie, giltighetstid och status Förlorad med förlustorsak, och rapporten Offertuppföljning med hit rate.",
+          "Skapa kundorder ur en offert: offerten står kvar och kan ge flera ordrar med samma rader och priser.",
         ],
       },
       {
         id: "inkop",
         title: "Inköp",
         points: [
+          "Behöver beställas grupperad per förvald leverantör, med inköpsorder direkt ur listan.",
           "Prisförfrågan → inköpsorder → inleverans, med tillåten överleverans som inställning och möjlighet att ångra en inleverans.",
           "Leverantörer och inköpspriser med import från CSV.",
           "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post.",
@@ -361,7 +364,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       intro: "En kund ber om pris på 40 motorkonsoler som ni tillverkar själva, och plåten till dem räcker inte i lager.",
       steps: [
         "Under Försäljning → Kundorder väljer ni + Ny offert med kunden och 40 konsoler, och priset hämtas från kundens priser. Leveranstidskontroll räknar fram ett datum ni kan lova, Kontrollera fraktpris lägger frakten som en rad och Skicka offert mejlar offerten.",
-        "Kunden tackar ja, och Skicka orderbekräftelse gör offerten till en bekräftad kundorder. Skapa tillverkningsorder på raden frisläpper en tillverkningsorder, och kundordern går till Under tillverkning.",
+        "Kunden tackar ja, och Skapa kundorder gör en bekräftad kundorder med offertens rader och priser — offerten står kvar och kan ge fler ordrar. Skapa tillverkningsorder på raden frisläpper en tillverkningsorder, och kundordern går till Under tillverkning.",
         "Tillverkning → Behovsberäkning visar att plåten saknas. Skapa ordrar lägger en inköpsorder hos huvudleverantören med ett önskat leveransdatum som tar hänsyn till leverantörens ledtid, och Skicka via e-post skickar och bekräftar den.",
         "När plåten kommer rapporterar ni den under Inköp → Inleverans. Saldot ökar direkt, och ordern väntar under Fakturaunderlag på leverantörens faktura.",
         "När konsolerna är klara rapporterar ni dem under Försäljning → Utleverans och får följesedel och pallkort. Boka transport skapar en försändelse med den offererade transporten vald, och Boka vald produkt bokar den.",

@@ -12,6 +12,26 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.11",
+    date: "2026-11-13",
+    summary:
+      "Aviseringarna grupperas per område med fem rader per typ, och Översiktens Att bevaka visar antalet per typ. De utgående dokumenten har ett mindre huvud, så att tabellen kommer högre upp på sidan, och Utleverans säger direkt när den valda ordern inte kan levereras.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "De utgående dokumenten har ett nytt huvud (se Ändrat). Två texter har blivit etiketter i uppgiftsrutan: \"Offerten gäller till och med X.\" heter nu Offerten gäller t.o.m., och kreditfakturans \"Ordernummer: Krediterar faktura X\" heter nu Krediterar faktura. Redan utfärdade fakturor behåller sitt arkiverade dokument med det gamla huvudet.",
+    ],
+    added: [
+      "Aviseringar per område i sidomenyns ordning: Inköp, Försäljning, Tillverkning, Lager, Kvalitet, Ekonomi och System. Varje område har en rubrik med antal och en röd eller gul prick, och en rad överst hoppar till området. Varje typ visar fem rader, och Visa fler fäller ut resten direkt på sidan.",
+      "API (tillägg, befintliga anrop svarar som förut): varje grupp i `GET /alerts` har fältet `area` med området.",
+    ],
+    changed: [
+      "Mindre huvud på offert, orderbekräftelse, faktura och kreditfaktura, förfrågan, inköpsorder, följesedel, betalningspåminnelse och reklamationsbesked. Titel och nummer står uppe till höger och adresserna till vänster. Datum, nummer, referenser och villkor står i en uppgiftsruta till höger. Tabellen börjar ungefär en tredjedel ned på sidan i stället för nästan halvvägs, och inga uppgifter har tagits bort.",
+      "Översiktens Att bevaka visar en rad per aviseringstyp med antalet, under samma områdesrubriker som sidan Aviseringar. En rad öppnar typen på sidan.",
+      "Aviseringarnas länk till typens lista heter Öppna listan i stället för Visa alla. Markera alla i Behöver beställas fäller ut listan, så att inget markeras utan att synas. Kryssrutorna för den dagliga sammanställningen står per område, men mejlet är som förut.",
+      "Utleverans säger direkt varför den valda ordern inte kan levereras, till exempel att en bekräftad order först måste startas med Starta tillverkning eller Skapa TO, eller att det är en offert.",
+    ],
+  },
+  {
     version: "0.8.10",
     date: "2026-11-13",
     summary:

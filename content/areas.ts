@@ -133,7 +133,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
     },
     limits: [
       "Planeringen räknar ledig tid per resurs och vecka. Det finns ingen detaljplanering per dag eller timme och ingen köberäkning.",
-      "Det finns ännu ingen spårbarhet med batch- eller serienummer.",
       "Alternativa resurser föreslås men byts inte automatiskt. Planera lägger alltid operationen på den resurs den har på ordern, och ett byte görs för hand eller när Leveranstidskontrollen skapar ordrarna.",
     ],
     faq: [
@@ -223,7 +222,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Lagervärdering per valfritt datum: standardpris, senaste inköp, vägt snitt eller FIFO.",
           "Spärrade lagerplatser för karantän och reklamationer: saldot där räknas inte i planeringen och tas aldrig automatiskt, men värderas som vanligt.",
           "Huvudplats och alternativa lagerplatser per artikel, och ett lagerplatsregister med sök och saldo per plats.",
-          "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering — artikelnummer, EAN, ordernummer och lagerplatsetiketter, med etiketter för artiklar och lagerplatser.",
+          "Spårbarhet med batch- eller serienummer per artikel, med utgångsdatum och FEFO. Sidan Spårbarhet följer en batch bakåt till leverantören och framåt till kunden, och batch och serienummer skrivs på följesedel, pallkort och faktura.",
+          "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering — artikelnummer, EAN, ordernummer, lagerplatsetiketter och GS1-koder med batch, serienummer och utgångsdatum, med etiketter för artiklar och lagerplatser.",
         ],
       },
     ],
@@ -241,7 +241,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
       ],
     },
     limits: [
-      "Det finns ännu ingen spårbarhet på batch- eller serienummer.",
       "Behovsberäkningen räknar på artikelns totala saldo över alla lager. Det går inte att planera eller sätta beställningspunkt per lager.",
       "Prognosen är ett snitt av förbrukningen eller ett eget antal per månad. Den räknar inte fram säsonger eller trender.",
       "En lagerrörelse kan inte backdateras in i en tidigare värdering. Undantaget är inventeringen, som kan bokföras per dagen då underlaget skapades.",
@@ -332,7 +331,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Behöver beställas grupperad per förvald leverantör, med inköpsorder direkt ur listan.",
           "Prisförfrågan → inköpsorder → inleverans, med tillåten överleverans som inställning och möjlighet att ångra en inleverans.",
           "Leverantörer och inköpspriser med import från CSV.",
-          "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post.",
+          "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post, med kopia till fler kontakter och en egen adress för inköpsordrar.",
+          "Leverantörens förval på nya dokument: Frakt på vårt konto, och huvudkontakten som Er referens.",
           "Leverantörernas e-fakturor via Peppol hamnar färdigtolkade i Fakturainkorgen, och originalet sparas som räkenskapsinformation.",
           "Avsändning till legoleverantör med pallkort, och en egen leveransadress på inköpsordern, till exempel direkt till er kund.",
           "Önskat och bekräftat leveransdatum på inköpsordern och per rad — planeringen räknar med det bekräftade.",

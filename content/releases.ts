@@ -12,6 +12,36 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.10",
+    date: "2026-11-13",
+    summary:
+      "Spårbarhet med batch- och serienummer, frivilligt per artikel. Funktionen har utgångsdatum med FEFO, serienummer ur egna serier, GS1-skanning och sidan Spårbarhet, som följer en batch bakåt till leverantören och framåt till kunden. Dessutom fyller leverantörens förval i nya inköpsdokument, och dokumenten kan skickas med kopia till fler kontakter.",
+    breaking: [
+      "Fem migrationer (0213–0217). De lägger till batcher och serienummer på lagerloggen (kolumnen `batch_id` på `stock_transactions`, där NULL betyder batchen Okänd), artikelns Spårning, Hållbarhet och Serienummer skapas, serienummerserierna och leverantörens förval. Ingen ändring i `.env`.",
+      "Spårbarheten är avstängd tills den slås på under System → Inställningar → Använd batch- och serienummer. Artiklar utan Spårning fungerar som förut. Saldot som finns när en artikel får Spårning hamnar i batchen Okänd.",
+      "Databasen vägrar en lagerrörelse som skulle ge ett serienummer mer än ett exemplar i lager (SQLSTATE `NV003`, 409 `serial-balance-violated`), även när rörelsen kommer från SQL.",
+      "API: `GET /scan` har en ny träfftyp, `kind: \"batch\"`, för ett batch- eller serienummer, även ur en GS1-kod. En integration som läser svaret måste tåla den.",
+      "API: för en serienummerstyrd artikel måste inleverans, rapportering och justering ange ett serienummer per styck, och antalet måste vara ett helt antal styck (`serial-numbers-required`, `serial-quantity-not-integer`). Räcker inte en namngiven batch som valts vid ett uttag blir svaret 409 `batch-insufficient`.",
+      "API, inköp: ett utelämnat `yourReference` på en ny inköpsorder blir namnet på leverantörens huvudkontakt, och `\"\"` ger ingen referens. Ett utelämnat `freightPaidByUs` på en ny förfrågan eller inköpsorder blir leverantörens förval, som är avslaget tills det slås på.",
+      "Inköpsordern skickas till leverantörens nya fält E-post för inköpsorder när det är ifyllt, och annars som förut till huvudkontaktens e-post.",
+    ],
+    added: [
+      "Spårning på artikelkortets flik Lager: Ingen, Batch eller Serienummer. Där finns också Hållbarhet i dagar och Saldo per batch eller per serienummer.",
+      "Batch vid inleverans. Lämnas fältet tomt blir inköpsorderns nummer batch, och en leverans kan delas på flera batcher. Tillverkade varor får tillverkningsorderns nummer som batch. Batch kan väljas i Förbruka, Utleverans, Leverera på kundordern, Lagerflytt och Justering. Annars tar Automatiskt den äldsta först.",
+      "Utgångsdatum per batch, angivet vid inleveransen eller räknat från artikelns hållbarhet. Med FEFO tar Automatiskt den batch som går ut först och hoppar över utgångna vid förbrukning och utleverans. Aviseringen Utgångna batcher varnar ett valfritt antal dagar före utgångsdatumet (förval 30).",
+      "Serienummer per styck. Vid inleveransen skrivs eller skannas ett nummer per styck, och tillverkade styck får löpnummer ur artikelns serienummerserie (System → Nummerserier). Numren kan också skapas Vid utleverans. Ångra utleverans bränner de nummer som redan har getts.",
+      "Batch och serienummer på följesedel, pallkort, plocklista, faktura och räknelista. Inventeringen räknas per batch och serienummer, och lagerloggen har kolumnen och filtret Batch. Batchen Okänd skrivs aldrig på ett kunddokument.",
+      "Lager → Spårbarhet följer en batch eller ett serienummer bakåt genom inleveranserna och tillverkningsordrarnas material, och framåt genom förbrukningen och utleveranserna till kunderna.",
+      "GS1-skanning: Skanna, inleveransen, utleveransen och inventeringen läser artikel, batch, serienummer och utgångsdatum ur en GS1-kod. Lagersaldoimporten har kolumnerna Batch, Serienummer, Batchdatum och Utgångsdatum, och artikelimporten har kolumnen Spårning.",
+      "Leverantörens förval på leverantörskortet: Frakt på vårt konto och E-post för inköpsorder. Huvudkontakten blir Er referens på nya inköpsordrar. Förvalen gäller alla vägar som skapar förfrågningar och inköpsordrar, och leverantörsimporten och exporten har kolumnerna.",
+      "Kopia när en inköpsorder eller förfrågan skickas via e-post: leverantörens kontakter eller egna adresser, högst tio. Kopian syns i e-postloggen och följer med när ett utskick skickas om.",
+      "API (tillägg, befintliga anrop svarar som förut): `GET /stock/batches`, `GET /stock/batches/:id/trace`, `PATCH /stock/batches/:id`, `POST /stock/batches/labels`, `GET /stock/batch-balances`, `GET /articles/:id/batch-balances`, `GET /serial-number-series` och `GET /serial-suggestions`. Artikeln har `tracking`, `shelfLifeDays` och `serialAssignedAt`, lagerrörelserna har fält för batch- och serienummer, och utskicken av inköpsorder och förfrågan har `cc`. `to` får utelämnas på `POST /purchase-orders/:id/send-email`, och saknas en adress blir svaret `purchase-order-recipient-missing`.",
+    ],
+    changed: [
+      "Ny inköpsorder fyller i Er referens med leverantörens huvudkontakt och Frakt på vårt konto med leverantörens förval när leverantören väljs. Det du själv har skrivit eller kryssat i står kvar.",
+    ],
+  },
+  {
     version: "0.8.9",
     date: "2026-11-12",
     summary:

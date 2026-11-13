@@ -144,9 +144,9 @@ export const GUIDE: GuideGroup[] = [
         question: "Går varje saldo att följa bakåt?",
         demand:
           "Saldot ska bara ändras genom transaktioner, så att ni kan se vad som orsakade en differens. Spårbarhet på batch- eller serienummer kan vara ett krav i er bransch.",
-        status: "delvis",
+        status: "ja",
         navErp:
-          "Lagret ändras bara genom transaktioner, med källa, löpande saldo och vem som gjorde vad. Spårbarhet på batch- eller serienummer finns ännu inte.",
+          "Lagret ändras bara genom transaktioner, med källa, löpande saldo och vem som gjorde vad. Med batch- eller serienummer följer sidan Spårbarhet en batch bakåt till leverantören och framåt till kunden.",
         more: { href: "/funktioner/lager-och-artiklar/", label: "Lager och artiklar" },
       },
       {

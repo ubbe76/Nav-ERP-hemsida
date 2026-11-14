@@ -12,6 +12,32 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.14",
+    date: "2026-11-14",
+    summary:
+      "Behörighetsgrupper kan få förvalda favoriter, och en favorit kan vara en genväg som + Ny kundorder som öppnar formuläret direkt. Kopiera från befintlig artikel kan ta med ritningarnas revisioner, kvalitetsorsakerna får en engelsk benämning, och flera mindre saker blir tydligare.",
+    breaking: [
+      "Två migrationer (0222–0223). Ingen ändring i `.env`.",
+      "API: `GET /me/settings` har fältet `favoritesFromGroup`. En användare som aldrig har sparat egna favoriter får sin behörighetsgrupps förvalda favoriter i `favorites`, där det förut var en tom lista. `PATCH /me/settings` tar `favorites: null`, som tar bort användarens egen lista.",
+      "API: `POST /quotes` med flera ogiltiga konfigurerade rader svarar med alla raderna i `details` (`Rad 2: …`) i stället för bara den första. Ett antalsbyte på en beställningsvarurad vars mall inte längre är en beställningsvara ger 409 `row-template-not-to-order` i stället för `configurator-not-to-order-mode`.",
+    ],
+    added: [
+      "Förvalda favoriter per behörighetsgrupp. Under System → Behörighetsgrupper väljer administratören sidor och genvägar som gruppens medlemmar får. En medlem som inte har ändrat sina favoriter ser gruppens lista, och en ändring i gruppen når medlemmen direkt. Ändrar medlemmen något blir listan hens egen, och Använd gruppens favoriter byter tillbaka.",
+      "Genvägar som favoriter: + Ny offert, kundorder, faktura, kund, förfrågan, inköpsorder, leverantörsfaktura, leverantör, artikel, tillverkningsorder, tidrapport och avvikelse finns under Favoriter → Ändra. En genväg öppnar listan med formuläret för en ny post direkt.",
+      "Kopiera från befintlig artikel har delen Ritningsrevisioner. Ritningarna kopieras då med alla revisioner, och varje revisions fil hamnar på sin revision, även de äldre.",
+      "Kvalitetsorsakerna har Benämning (engelska), som skrivs på reklamationer och reklamationsbesked på engelska.",
+      "API (tillägg, befintliga anrop svarar som förut): `PUT /permission-groups/:id/default-favorites` och `defaultFavorites` på behörighetsgrupperna, delen `revisioner` i `copyFrom.parts` på `POST /articles` (bara tillsammans med `filer`) och `nameEn` på kvalitetsorsakerna.",
+    ],
+    changed: [
+      "Momsrapporten visar Delvis deklarerad när bara en del av perioden är deklarerad, till exempel ett kvartal där en månad är deklarerad.",
+      "Varningen för ett okänt konto på en inläst bankfil tipsar om att lägga in företagets IBAN när det saknas.",
+      "Behovsberäkningen: en legorads förfrågningar står på en rad med + N till, och sektionen Konfigurerade kundorderrader har Välj alla.",
+      "Konfiguratorn: en återanvänd inaktiv variant ger en notis, Konfigurera visar en laddningstext, ett artikelnummer som blir lika för två kombinationer i samma körning får en egen förklaring, och hjälptexten för förval nämner Med/Utan och tomt mått.",
+      "Ett antalsbyte på en beställningsvarurad vars mall inte längre är en beställningsvara säger att raden ska tas bort och läggas in på nytt.",
+      "Manualen förklarar att Vägt snitt och FIFO prissätter tillverkade artiklar och justeringar med standardpriset, både under Lagervärdering och Årsbokslut.",
+    ],
+  },
+  {
     version: "0.8.13",
     date: "2026-11-14",
     summary:

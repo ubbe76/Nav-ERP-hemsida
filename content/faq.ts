@@ -65,7 +65,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "var-lagras-data",
         question: "Var lagras vår data?",
         answer:
-          "På er egen server, i en PostgreSQL-databas som bara ni når. Ingenting skickas till projektet. Nav|ERP kontaktar andra tjänster bara om ni själva ställer in det: en e-postserver för utskick, frakttjänsten Sendify och lagringen för den externa backupen.",
+          "På er egen server, i en PostgreSQL-databas som bara ni når. Ingenting skickas till projektet. Nav|ERP kontaktar andra tjänster bara om ni själva ställer in det: en e-postserver för utskick, en fraktförmedlare (Sendify, nShift eller Shipmondo) och lagringen för den externa backupen.",
       },
       {
         id: "backup",

@@ -12,6 +12,35 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.13",
+    date: "2026-11-14",
+    summary:
+      "Frakt kan nu bokas via nShift och Shipmondo bredvid Sendify, med förmedlarens priser eller företagets egna avtal hos till exempel DHL och DB Schenker. Frakt som inte bokas i Nav, som egen bil eller när kunden hämtar, registreras med Eget fraktsätt. Versionen rättar också två omgångar mindre fel.",
+    breaking: [
+      "Två migrationer (0220–0221). Ingen ändring i `.env`.",
+      "nShift och Shipmondo är byggda efter förmedlarnas dokumentation och har inte provats mot riktiga konton. Prova först med nShifts Testläge eller Shipmondos sandlåda. Försändelser via nShift och Shipmondo spåras inte automatiskt än. De markeras levererade för hand.",
+      "API: försändelserna har fälten `provider` (`sendify`, `nshift`, `shipmondo` eller `manual`) och `carrier`. `pickupFrom` och `pickupTo` är `null` för en försändelse med eget fraktsätt. `GET /invoiceable-shipments` kan ha `productName: null`.",
+      "API: ett pris i prissvaret kan vara `null` (Pris saknas, för ett eget avtal utan prisfråga), och kundpriset är då också `null`. `GET /freight-settings/status` svarar `{ enabled, brokers }`, där `enabled` är sant när någon förmedlare är aktiverad.",
+      "API: en nummerserie som har vuxit förbi 20 tecken, till exempel från 9999 till 10000 med ett långt prefix, ger 409 `document-number-too-long` när dokumentet skapas i stället för 500. Ett LF-nummer som redan finns ger `document-number-taken` i stället för `duplicate-supplier-invoice-number`, som nu bara gäller leverantörens eget fakturanummer.",
+    ],
+    added: [
+      "Eget fraktsätt bredvid Boka transport i Utleverans och på kundorderkortet. Det registrerar en försändelse utan bokning, till exempel med egen bil, när kunden hämtar eller med ett eget avtal som bokas utanför Nav. Försändelsen har speditör ur registret Speditörer, fraktsedelsnummer, datum och kundpris, och kundpriset blir en fraktrad på fakturan. Den kan ändras, markeras levererad och makuleras, och fungerar även när ingen förmedlare är aktiverad.",
+      "nShift som förmedlare för företagets egna avtal, till exempel DHL Freight, DB Schenker och PostNord. Med nShift Professional hämtas priset för varje vald tjänst. Annars visas Pris saknas och kundpriset skrivs för hand. Fraktsedel och etikett sparas direkt vid bokningen.",
+      "Shipmondo som förmedlare, med Shipmondos egna priser och med företagets egna avtal hos bland annat DHL Freight, DSV Road och PostNord.",
+      "Förmedlare per försändelse. En ny försändelse får förmedlaren från orderns eller kundens fraktprodukt, annars Förvald förmedlare under System → Frakt. På ett utkast kan förmedlaren bytas.",
+      "API (tillägg, befintliga anrop svarar som förut): `POST /shipments/manual`, `PATCH /shipments/:id/manual` och `POST /shipments/:id/delivered`. `PATCH /shipments/:id` tar `broker`, och `POST /freight-settings/test` och `POST /freight-settings/fetch-products` tar `broker`. Fraktinställningarna har `defaultBroker`, `nshift` och `shipmondo`.",
+    ],
+    changed: [
+      "System → Frakt har korten Förmedlare, nShift och Shipmondo. Varje förmedlare har egna uppgifter som aldrig visas igen, Testa anslutning och Hämta produkter. Påslagen, fraktartikeln, avsändaren och upphämtningstiderna gäller alla förmedlare.",
+      "En konfigurerad orderrad vars mall har fått ett nytt förval efter att raden konfigurerades visar \"Mallen har ändrats sedan raden konfigurerades — använd Ändra konfiguration\" i behovsberäkningen och Leveranstidskontrollen, och ger inget materialbehov för val som raden inte visar.",
+      "Säkerhetskopian är klar först när databasdumpen har avslutats utan fel. Ett fel sent i dumpen gör att nedladdningen misslyckas, i stället för att en avkortad fil ser ut som en lyckad säkerhetskopia.",
+      "Fakturaunderlaget under Inköp tar mottagningsdatumet ur inleveransloggen, så lego- och tjänsterader får sitt riktiga datum. Förut användes orderns senaste ändring.",
+      "Två samtidiga Aktivera på olika revisioner körs efter varandra i stället för att den ena får ett fel.",
+      "Ändra status manuellt är spärrad på kundorder- och inköpsorderkortet medan en rad står öppen i Ändra, som de andra knapparna.",
+      "Förfrågans Ställpris visar leverantörens valuta.",
+    ],
+  },
+  {
     version: "0.8.12",
     date: "2026-11-14",
     summary:

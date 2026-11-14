@@ -343,8 +343,9 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "frakt",
         title: "Frakt",
         points: [
-          "Boka transport direkt från följesedeln via Sendify — bland annat DHL, UPS, DSV, PostNord och Schenker.",
+          "Boka transport direkt från följesedeln via Sendify, nShift eller Shipmondo — med förmedlarens priser eller ert eget avtal hos till exempel DHL och DB Schenker.",
           "Jämför priser, boka och skriv ut fraktsedel utan att lämna systemet.",
+          "Eget fraktsätt för egen bil, när kunden hämtar eller ett avtal som bokas utanför systemet — med kundpris som fraktrad på fakturan.",
           "Fraktpris direkt på offert och kundorder.",
         ],
       },
@@ -412,7 +413,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     manual: [
       { chapter: "forsaljning", label: "Kapitlet Försäljning" },
       { chapter: "inkop", label: "Kapitlet Inköp" },
-      { chapter: "forsaljning", anchor: "frakt", label: "Frakt via Sendify" },
+      { chapter: "forsaljning", anchor: "frakt", label: "Frakt" },
       { chapter: "forsaljning", anchor: "bankfiler-inbetalningar", label: "Bankfiler (inbetalningar)" },
       { chapter: "inkop", anchor: "betalfiler", label: "Betalfiler" },
     ],

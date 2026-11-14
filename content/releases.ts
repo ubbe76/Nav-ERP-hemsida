@@ -12,6 +12,31 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.12",
+    date: "2026-11-14",
+    summary:
+      "Sidan Mina inställningar med egna e-postmallar, e-postsignatur med företagets logotyp och Byt lösenord. Stycktiden sparas med åtta decimaler, så snabba operationer räknas rätt, och API:t kontrollerar storleken på varje tal.",
+    breaking: [
+      "Två migrationer (0218–0219). Ingen ändring i `.env`.",
+      "Migration 0218 räknar om beredningens tider som skrevs i st/h eller sek/st från det inskrivna talet. 9 000 st/h, som tidigare visades som 8 955,22 st/h, sparas nu exakt. Kalkyl och beläggning för sådana operationer ändras därför lite, som mest en halv procent i våra prov. Tider skrivna i minuter, tillverkningsordrarnas operationer och konfiguratorns operationer rörs inte.",
+      "API: `runTimePerUnit` och `cycleTimePerUnit` kommer som text med åtta decimaler (`\"1.50000000\"` i stället för `\"1.5000\"`) på beredningen, alternativen, tillverkningsordrarnas operationer och konfiguratorn. Konfiguratorns operationer tar emot upp till åtta decimaler.",
+      "API: varje tal har en övre gräns efter sin databaskolumn. Ett för stort tal ger 400 `validation-failed` med fältet i `issues` i stället för `number-out-of-range`. Ett positivt tal under kolumnens minsta steg, till exempel antalet 0,00004 där kolumnen har fyra decimaler, vägras med 400 i stället för att avrundas till 0 och sparas som en nollrad. Listornas `offset` har också en övre gräns.",
+      "Dokumentmejlen har Ämne och Meddelande från användarens e-postmall. Förvalen är de gamla texterna med avsändarens namn på raden efter hälsningen, så även den som aldrig ändrar en mall får sitt namn i mejlen.",
+    ],
+    added: [
+      "Mina inställningar i användarmenyn. Sidan samlar Utseende och arbetssätt (samma val som i användarmenyn), Byt lösenord, E-postmallar och E-postsignatur.",
+      "Byt lösenord för det egna kontot. Det nya lösenordet loggar ut kontot på andra datorer och telefoner, men inte där du bytte.",
+      "E-postmallar per användare, dokumenttyp och språk, med platshållare som `{nummer}`, `{kund}`, `{belopp}` och `{avsändare}`. Mallen har förhandsvisning och Återställ förval.",
+      "E-postsignatur per användare med företagets logotyp. Användaren slår på signaturen och väljer sina uppgifter: namn, befattning, telefon, mobil och e-post. Admin väljer under Företagsinformation vilka företagsuppgifter som tas med. Dokumentmejlen får då en formaterad del med logotypen och har kvar textdelen. Signaturen följer dokumentets språk, och Skicka om i e-postloggen signerar som den som skickade först.",
+      "API (tillägg, befintliga anrop svarar som förut): `POST /me/password`, `GET /me/mail-templates`, `PUT` och `DELETE /me/mail-templates/:kind/:language`, `POST /me/mail-text`, `GET` och `PUT /me/mail-signature` och `POST /me/mail-signature/preview`. Systeminställningarna har `mailSignatureCompanyFields`, och e-postloggens rader har `senderId`.",
+    ],
+    changed: [
+      "Stycktid och cykeltid sparas med åtta decimaler i minuter. 0,05 sek/st och 36 000 st/h läses tillbaka exakt som de skrevs. Förut sparades 0,05 sek/st som 0,048 sek, så kalkyl och beläggning blev 4 % för låga. st/h visas som det kortaste talet som räknas tillbaka till den sparade tiden, och minuter under en minut visas med sex värdesiffror.",
+      "Ett för stort eller för litet tal i ett formulär ger meddelandet \"Ett tal är för stort — högst …\" eller \"Ett tal är för litet — minst …\" med gränsen.",
+      "Reklamationens och avvikelserapportens förvalda mejltext säger \"Se bifogad\" i stället för \"Se bifogat\".",
+    ],
+  },
+  {
     version: "0.8.11",
     date: "2026-11-13",
     summary:

@@ -396,7 +396,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Kan vi skicka offerter, order och fakturor med e-post direkt från systemet?",
         answer:
-          "Ja, när en e-postserver (SMTP) är inställd. Offert, orderbekräftelse, faktura, påminnelse, prisförfrågan och inköpsorder skickas som PDF, och artiklarnas ritningar kan följa med som bilagor. Alla utskick sparas i e-postloggen.",
+          "Ja, när en e-postserver (SMTP) är inställd. Offert, orderbekräftelse, faktura, påminnelse, prisförfrågan och inköpsorder skickas som PDF, och artiklarnas ritningar kan följa med som bilagor. Varje användare har egna e-postmallar och kan ha en e-postsignatur med företagets logotyp. Alla utskick sparas i e-postloggen.",
       },
       {
         question: "Kan olika kunder ha olika priser?",

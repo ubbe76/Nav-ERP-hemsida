@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.16",
+    date: "2026-11-15",
+    summary:
+      "Lagerjusteringar och inleveranser kan bokföras per ett tidigare datum, så att en rörelse som glömdes räknas in i rätt lagervärdering och bokslut. En faktura på 0 kr kan utfärdas, en kreditfaktura skrivs på samma språk som fakturan den krediterar, och löneperiodens Lås får inte längre med en ändring som görs medan underlaget räknas.",
+    breaking: [
+      "Två migrationer (0226–0227). Ingen ändring i `.env`. 0227 gör OB-regelns namn unikt. Har två regler samma namn döps den senare om till \"namn (2)\" när migrationen körs.",
+      "Bokföring: en faktura på 0 kr utfärdas och blir Betald direkt, där den förut vägrades. Rader som tar ut varandra på samma konton bokförs inte alls, och rader som går jämnt ut på olika konton bokförs utan rad för kundfordran. Samma sak gäller en kreditfaktura på 0 kr.",
+      "API: `POST /invoices/:id/issue` för en faktura på 0 kr utfärdar fakturan i stället för att svara 409 `zero-amount-posting`. Webhooks får `invoice.paid` direkt efter `invoice.issued`.",
+      "API: `language` på en kreditfaktura, både utkastet i `GET /invoices/:id` och den utfärdade krediten, följer fakturan som krediteras i stället för kundens nuvarande språk.",
+    ],
+    added: [
+      "Bokför per i Lager → Justering, i Inleverans och i dialogen Ta emot leverans på inköpsordern. Rörelsen räknas in i lagervärderingen, FIFO och bokslutets Lagerförändring per det datumet, och raden i Transaktioner visar när den registrerades. En inleverans räknas som mottagen det datumet även i leveransprecisionen, Inleveransloggen, Fakturaunderlag och listan Inleveranser på ordern. Datumet vägras efter i dag, i en låst period eller ett stängt räkenskapsår, och när artikeln har inventerats eller fått ett importerat saldo på lagerplatsen samma dag eller senare. En legorad inlevereras alltid per i dag.",
+      "API (tillägg, befintliga anrop svarar som förut): `valuedOn` på `POST /stock/transactions`, `receivedOn` på `POST /purchase-orders/:id/rows/:rowId/receive` och `receivedAt` på `GET /purchase-orders/:id/receipts`, som sorteras på det. Nya felkoder: 400 `stock-backdate-in-future`, 409 `stock-backdate-refused` och 400 `purchase-receipt-backdate-lego`.",
+    ],
+    changed: [
+      "Löneperiodens Lås väntar ut ändringar i personalkortet, dags- och veckoscheman, OB-regler, frånvarokoder och lönens inställningar. Förut kunde en sådan ändring medan Lås räknade ge ett underlag som var hälften före och hälften efter ändringen. En ändring som görs under Lås sparas när Lås är klart.",
+      "Attestering vägras när den anställda stämplar in samtidigt. Förut kunde en anställd som höll på att stämpla in bli attesterad med en öppen närvaro.",
+      "Två OB-regler kan inte få samma namn, inte heller när de sparas samtidigt.",
+      "En faktura på 0 kr visar Inget verifikat — fakturan är på 0 kr på fakturakortet, och Räntefakturering hoppar över den.",
+    ],
+  },
+  {
     version: "0.8.15",
     date: "2026-11-15",
     summary:

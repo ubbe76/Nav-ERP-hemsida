@@ -220,6 +220,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Saldon per lagerplats och en fullständig transaktionslogg med källa, löpande saldo och vem som gjorde vad.",
           "Lagerflytt, justering och inventering per lagerplats — med möjlighet att spärra platsen medan ni räknar, och att bokföra inventeringen per dagen då underlaget skapades.",
           "Lagervärdering per valfritt datum: standardpris, senaste inköp, vägt snitt eller FIFO.",
+          "En justering eller inleverans som glömdes kan bokföras per dagen den hände, så att den räknas in i rätt lagervärdering och bokslut.",
           "Spärrade lagerplatser för karantän och reklamationer: saldot där räknas inte i planeringen och tas aldrig automatiskt, men värderas som vanligt.",
           "Huvudplats och alternativa lagerplatser per artikel, och ett lagerplatsregister med sök och saldo per plats.",
           "Spårbarhet med batch- eller serienummer per artikel, med utgångsdatum och FEFO. Sidan Spårbarhet följer en batch bakåt till leverantören och framåt till kunden, och batch och serienummer skrivs på följesedel, pallkort och faktura.",
@@ -243,7 +244,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     limits: [
       "Behovsberäkningen räknar på artikelns totala saldo över alla lager. Det går inte att planera eller sätta beställningspunkt per lager.",
       "Prognosen är ett snitt av förbrukningen eller ett eget antal per månad. Den räknar inte fram säsonger eller trender.",
-      "En lagerrörelse kan inte backdateras in i en tidigare värdering. Undantaget är inventeringen, som kan bokföras per dagen då underlaget skapades.",
+      "Utöver inventeringen kan bara justeringar och inleveranser bokföras per ett tidigare datum, och aldrig förbi en inventering av artikeln på samma lagerplats. Utleveranser och tillverkningsorderns uttag och inleveranser bokförs per dagen de registreras.",
     ],
     faq: [
       {

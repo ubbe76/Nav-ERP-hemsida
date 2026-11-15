@@ -12,6 +12,29 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.15",
+    date: "2026-11-15",
+    summary:
+      "En version med rättelser och förbättringar under ytan. Två samtidiga ändringar på samma order kunde ge ett fel, och ett enhetsbyte på en orderrad kunde avrunda antalet eller priset en gång för mycket. Konfiguratorn går snabbare, och spärrarna i bokslutet är skärpta.",
+    breaking: [
+      "Två migrationer (0224–0225). Ingen ändring i `.env`. 0225 gör att databasen vägrar lägga till eller ta bort perioder i ett stängt räkenskapsår. Förut gällde spärren bara att låsa upp en period. 0224 kontrollerar att vinstdispositionens omföring är ett annat verifikat än dispositionen. Ingen del av Nav har brutit mot någon av reglerna.",
+      "API: en bankfil större än 20 MB ger 400 med samma fel som en avkortad fil, i stället för 413.",
+      "API: konfiguratorns omsortering av grupper, alternativ och regler med fel uppsättning id:n svarar 400 `validation-failed` med `issues` (fältet `ids`), som alla andra valideringsfel.",
+      "API: en bokslutsdag som saknar räkenskapsperiod ger spärren `closing-period-missing` i stället för `closing-period-locked`.",
+    ],
+    added: [
+      "API (tillägg, befintliga anrop svarar som förut): `GET /articles/:id?withVariantOf=true` bär `variantOf`, variantens mall och val, och `null` för en vanlig artikel och för mallen själv.",
+    ],
+    changed: [
+      "Två samtidiga radändringar på samma offert eller kundorder, eller en radändring medan en ny rad läggs till, kunde ge ett internt fel. Nu väntar den ena på den andra.",
+      "Ett antal eller à-pris som visar det sparade värdet i den nya enheten sparas oförändrat vid ett enhetsbyte. Förut kunde 12,3456 st som 1,2346 förp bli 12,346 st, och 245,8333 kr/st som 49,1667 kr/kg bli 245,8335 kr/st. Gäller raderna på kundorder, inköpsorder och förfrågan.",
+      "Konfiguratorn går snabbare. Mallen läses en gång per rad, priskedjan frågar bara efter varianter när artikeln är en variant, och självkostnaden för en beställningsvara hämtas när du slutat skriva.",
+      "Årsbokslut: en bokslutsdag som saknar räkenskapsperiod sägs som det, i stället för att sidan erbjuder Lås upp period för en månad som inte finns. Bokslutssidan räknar lagervärderingen en gång.",
+      "Leveranstidskontrollen visar orderraderna i samma ordning som orderkortet.",
+      "Sökfälten med lista, till exempel artikelväljaren, öppnar listan vid ett klick även när fältet redan har fokus. Listan öppnas inte av sig själv när en dialog stängs, till exempel efter Konfigurera.",
+    ],
+  },
+  {
     version: "0.8.14",
     date: "2026-11-14",
     summary:

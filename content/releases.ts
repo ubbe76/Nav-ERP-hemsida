@@ -12,6 +12,26 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.17",
+    date: "2026-11-16",
+    summary:
+      "Det som tas emot från en inköpsorder kan få etiketter och pallkort direkt i Inleverans och på inköpsordern. Flera lager är nu en systeminställning som är avstängd från början, så ett företag med ett lager slipper se lagrets namn framför varje lagerplats.",
+    breaking: [
+      "En migration (0228). Ingen ändring i `.env`. 0228 slår på den nya inställningen Flera lager där fler än ett lager redan används, så de installationerna ser ut som förut.",
+      "Med Flera lager avstängt, som är förvalet när högst ett lager används, skrivs lagerplatsen utan lagrets namn i webben, på plocklistan, räknelistan och lagerplatsetiketten, och sektionen Lager och lagrets kolumner och filter döljs. Exporterna och API-svaren har kvar lagret.",
+      "API: `POST /stock/locations` utan `warehouseId` lägger platsen i standardlagret, där den förut gav 400. Med Flera lager avstängt vägras ett andra lager i bruk med 409 `multiple-warehouses-disabled`: att skapa eller återaktivera ett lager, flytta en lagerplats dit eller importera saldon till det. `PATCH /settings` med `multipleWarehouses: false` ger 409 `multiple-warehouses-in-use` när fler än ett lager används.",
+    ],
+    added: [
+      "Etiketter och pallkort vid inleverans. Knapparna Etiketter och Pallkort finns efter Rapportera inleverans och i listan Inleveranser på inköpsordern, för alla inleveranser eller för en rad i ⋯-menyn. Etiketten har artikelnumret som streckkod, antal, inköpsorder, leverantör, mottagningsdag, lagerplats och batch eller serienummer, på A4-ark eller etikettskrivare. Pallkortet INLEVERANS har eget antal per kolli och följer inställningen Kod på pallkort.",
+      "Systeminställningen Flera lager under System → Inställningar. Avstängd har Nav ett lager som inte visas, och nya lagerplatser hamnar i det. Påslagen fungerar lagren som förut.",
+      "API (tillägg, befintliga anrop svarar som förut): `POST /purchase-orders/:id/receipts/labels` och `POST /purchase-orders/:id/receipts/pallet-card` ger PDF. `GET /settings/stock` och `multipleWarehouses` i `/settings` ger inställningen.",
+    ],
+    changed: [
+      "Etikettdialogen kommer ihåg formatet du valde, A4-ark eller etikettskrivare, i webbläsaren.",
+      "Ny lagerplats förväljer ett riktigt lager i stället för reservlagret ***.",
+    ],
+  },
+  {
     version: "0.8.16",
     date: "2026-11-15",
     summary:

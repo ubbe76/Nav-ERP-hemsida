@@ -222,7 +222,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Lagervärdering per valfritt datum: standardpris, senaste inköp, vägt snitt eller FIFO.",
           "En justering eller inleverans som glömdes kan bokföras per dagen den hände, så att den räknas in i rätt lagervärdering och bokslut.",
           "Spärrade lagerplatser för karantän och reklamationer: saldot där räknas inte i planeringen och tas aldrig automatiskt, men värderas som vanligt.",
-          "Huvudplats och alternativa lagerplatser per artikel, och ett lagerplatsregister med sök och saldo per plats.",
+          "Huvudplats och alternativa lagerplatser per artikel, och ett lagerplatsregister med sök och saldo per plats. Ett lager är förvalt, och fler lager slås på med en inställning.",
           "Spårbarhet med batch- eller serienummer per artikel, med utgångsdatum och FEFO. Sidan Spårbarhet följer en batch bakåt till leverantören och framåt till kunden, och batch och serienummer skrivs på följesedel, pallkort och faktura.",
           "Skanning med handskanner eller mobilens kamera i inleverans, plock och inventering — artikelnummer, EAN, ordernummer, lagerplatsetiketter och GS1-koder med batch, serienummer och utgångsdatum, med etiketter för artiklar och lagerplatser.",
         ],
@@ -331,6 +331,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Behöver beställas grupperad per förvald leverantör, med inköpsorder direkt ur listan.",
           "Prisförfrågan → inköpsorder → inleverans, med tillåten överleverans som inställning och möjlighet att ångra en inleverans.",
+          "Etiketter och pallkort för det som tas emot, med artikelnumret som streckkod, antal, inköpsorder, leverantör, lagerplats och batch eller serienummer.",
           "Leverantörer och inköpspriser med import från CSV.",
           "Leverantörsfakturor med attest, och inköpsdokument som skickas direkt via e-post, med kopia till fler kontakter och en egen adress för inköpsordrar.",
           "Leverantörens förval på nya dokument: Frakt på vårt konto, och huvudkontakten som Er referens.",

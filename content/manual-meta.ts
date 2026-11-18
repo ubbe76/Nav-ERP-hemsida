@@ -55,7 +55,7 @@ export const MANUAL_META: Record<string, { title: string; description: string }>
   tillverkning: {
     title: "Tillverkningsorder och planering",
     description:
-      "Resurser och produktionsgrupper, tillverkningsorder, behovsberäkning, beläggning och planering per vecka, pågående arbete och tidrapporter.",
+      "Resurser och produktionsgrupper, tillverkningsorder, behovsberäkning, beläggning och planering per dag, pågående arbete och tidrapporter.",
   },
   terminal: {
     title: "Stämpelterminalen i verkstaden",

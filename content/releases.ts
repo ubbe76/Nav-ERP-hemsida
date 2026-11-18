@@ -12,6 +12,32 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.18",
+    date: "2026-11-18",
+    summary:
+      "Produktionsplaneringen räknar per dag i stället för per vecka. En operation är klar den dag den görs och nästa börjar arbetsdagen efter, Beläggning har en dagvy och körplanen kan ordnas inom dagen. Offert och orderbekräftelse visar moms, artikelnumren på ordrarna länkar till artikelkortet och temat kan väljas redan på inloggningssidan.",
+    breaking: [
+      "En migration (0229). Ingen ändring i `.env`. 0229 flyttar produktionsplanen från veckor till dagar: varje planerad veckas tid fördelas jämnt på veckans arbetsdagar, måndag–fredag utom helgdagar. Kör Planera i Tillverkning → Beläggning efter uppdateringen, så läggs alla olåsta operationer på rätt dagar efter resursernas scheman. Låsta operationer, flyttade för hand eller reserverade från Leveranstidskontrollen, ligger kvar i sin vecka fördelade på dagarna. Flytta dem igen om dagen spelar roll.",
+      "Planeringen räknar per dag. En operation är klar den dag sista minuten läggs, inte sista arbetsdagen i veckan, och nästa operation börjar tidigast arbetsdagen efter. Planerade klardagar och leveransdatumen i Leveranstidskontrollen blir därför normalt tidigare. Kötid mellan operationer räknas nu även i planen och i Leveranstidskontrollen, inte bara i ledtiden. Se över värdet under System → Inställningar.",
+      "Ledtiden ur rutten räknar som planen: varje operation tar minst en hel dag, och en legooperation tar dagen den skickas plus resursens Ledtid och Kötid. Artiklar med många korta operationer eller med lego får längre ledtid, så materialbehov och senaste start flyttas tidigare, och fler förslag i Behovsberäkningen kan visas som Passerat direkt efter uppdateringen.",
+      "Offert och orderbekräftelse för en privatperson avrundar momsen per rad som fakturan gör. Varav moms på en offert med flera rader kan därför skilja ett öre mot en tidigare utskrift.",
+      "API: veckofälten är ersatta av datum. `plannedStartWeek` och `plannedEndWeek` heter `plannedStartDate` och `plannedEndDate` i `GET /manufacturing-orders`, `GET /manufacturing-orders/:id`, `GET /manufacturing-orders/:id/operations`, `GET /terminal/operations` och `GET /planning/capacity`. Förslagens `toWeek` och `currentToWeek` heter `toDate` och `currentToDate`. `POST /planning/operations/:opId/move` tar `{ date, moveFollowing }` i stället för `weekMonday`. `GET /planning/run-plan` och PDF:en tar `toDate` i stället för `toWeek` och svarar med `days` i stället för `weeks`. Leveranstidskontrollens operationssteg har `fromDate`, `toDate` och `days`, och `alternativeOf.toDate`. Felkoderna `plan-week-in-past` och `plan-week-no-capacity` heter `plan-date-in-past` och `plan-date-no-capacity`.",
+    ],
+    added: [
+      "Beläggning har växeln Vecka och Dag. Dagvyn visar 7, 14 eller 28 dagar framåt, och veckovyn markerar en vecka där någon dag är överbelagd. Flytta… väljer en dag och visar hur mycket tid resursen har ledigt den dagen.",
+      "Körplanen visar arbetena dag för dag med T.o.m. som datum. Med rättigheten Tillverkning kan arbetsledaren flytta en planerad operation upp eller ned inom dagen med pilknapparna. Ordningen följer med till utskriften och stämpelterminalens sortering Planerad dag, och den ändrar aldrig datumen.",
+      "Moms på offert och orderbekräftelse. PDF:en skriver Summa exkl. moms, Moms (25 %) på underlaget per momssats och Summa inkl. moms. Offert- och orderkortet visar samma summering under raderna, med en förklaring när en rad inte får svensk moms. Momsen räknas med samma momskod och avrundning som fakturan.",
+      "Artikelnumren på kundorder, offert och inköpsorder, även under Inleveranser och Avsändningar, och i artikelns Beredning länkar till artikelkortet. Utan rättigheten Artiklar är numret vanlig text.",
+      "Temaväljaren finns på inloggningssidan. Valet sparas i webbläsaren, och efter inloggningen gäller användarens sparade tema.",
+      "API (tillägg, befintliga anrop svarar som förut): `GET /planning/capacity?granularity=day&days=` (7–42) ger dagceller, varje resurs bär `dayLoads`, veckocellen `overloadedDays` och svaret `today`. `PUT /planning/run-plan/order` sparar ordningen inom en dag, och körplanens rader bär `runPosition` och `reorderable`. `GET /sales-orders/:id` bär `vatSummary`.",
+    ],
+    changed: [
+      "Förslag på alternativ resurs gäller när alternativet blir klart en tidigare dag, inte en tidigare vecka.",
+      "Historiken på tillverkningsordern skriver Operation flyttad, Operation upplåst och Körordning ändrad i stället för de interna händelsenamnen.",
+      "Importen känner igen en kund- eller leverantörsfil med bara numret och adresskolumner som Adressrad 1 eller Stad som Leveransadresser, inte som kunder eller leverantörer. `POST /imports/detect` svarar `customerDeliveryAddresses` eller `supplierDeliveryAddresses` för en sådan fil.",
+    ],
+  },
+  {
     version: "0.8.17",
     date: "2026-11-16",
     summary:

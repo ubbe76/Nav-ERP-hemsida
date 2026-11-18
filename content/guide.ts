@@ -103,7 +103,7 @@ export const GUIDE: GuideGroup[] = [
           "Ni behöver se last mot tillgänglig tid per resurs, så att ni kan lova leveranstider som håller och se flaskhalsen innan den blir ett problem.",
         status: "delvis",
         navErp:
-          "Beläggningen visas per resurs och vecka, operationer planeras på ledig tid och kan flyttas och låsas, och Leveranstidskontrollen räknar fram ett leveransdatum. Det finns ingen detaljplanering per dag eller timme.",
+          "Beläggningen visas per resurs och vecka eller dag, operationer planeras dag för dag på ledig tid och kan flyttas och låsas, och Leveranstidskontrollen räknar fram ett leveransdatum. Det finns ingen planering per timme.",
         more: { href: "/funktioner/tillverkning/", label: "Tillverkning" },
       },
       {

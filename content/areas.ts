@@ -61,7 +61,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     tagline: "Tillverkningsorder från frisläpp till efterkalkyl.",
     seoTitle: "Tillverkningsorder och produktionsplanering",
     description:
-      "Tillverkningsorder med struktur och rutt, materialuttag och tid från verkstaden, planering på ledig kapacitet vecka för vecka och efterkalkyl.",
+      "Tillverkningsorder med struktur och rutt, materialuttag och tid från verkstaden, planering på ledig kapacitet dag för dag och efterkalkyl.",
     intro:
       "Tillverkningsordern hämtar struktur och rutt från artikelns beredning, drar material från lagret och samlar tid från verkstaden. När ordern är klar vet ni vad den faktiskt kostade.",
     screenshot: "manufacturing-orders",
@@ -99,10 +99,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
         id: "planering",
         title: "Planering",
         points: [
-          "Körplan per resurs: kommande arbeten vecka för vecka, utskrivbar och nåbar från stämpelterminalen.",
+          "Körplan per resurs: kommande arbeten dag för dag i den ordning arbetsledaren satt, utskrivbar och nåbar från stämpelterminalen.",
           "Behovsberäkningen räknar fram nettobehovet per artikel och vecka och föreslår inköps- och tillverkningsordrar, med senaste dag att beställa eller starta utifrån ledtiden.",
-          "Beläggning: last mot tillgänglig tid per resurs och vecka, där röda dagar minskar kapaciteten.",
-          "Produktionsplanering: Planera lägger operationerna på resursernas lediga tid vecka för vecka, en operation kan flyttas och låsas för hand, och en ny tillverkningsorder planeras direkt.",
+          "Beläggning: last mot tillgänglig tid per resurs och vecka eller dag, där röda dagar minskar kapaciteten.",
+          "Produktionsplanering: Planera lägger operationerna på resursernas lediga tid dag för dag, med nästa operation arbetsdagen efter den föregående. En operation kan flyttas till en annan dag och låsas för hand, och en ny tillverkningsorder planeras direkt.",
           "Leveranstidskontrollen på kundordern räknar fram ett leveransdatum ur lager, inköp och kapacitet och kan skapa tillverkningsordrarna för det som saknas.",
           "Pågående arbete visar i realtid vem som jobbar med vad.",
         ],
@@ -123,16 +123,16 @@ export const FEATURE_AREAS: FeatureArea[] = [
       intro: "En verkstad får en order på 50 konsoler i plåt.",
       steps: [
         "På artikelns flik Beredning finns plåten i strukturen och tre operationer i rutten: 10 Laserskärning, 20 Bockning och 30 Svetsning, var och en med ställtid, tid per enhet och resurs. Plåten är kopplad till operation 10.",
-        "Kundordern bekräftas, och på kundorderkortet trycker ni Leveranstidskontroll. Kontrollen räknar med lager, öppna ordrar, materialets ledtid och resursernas lediga tid per vecka, och visar leveransdatum och vad som begränsar, till exempel bockningen i vecka 45–46.",
-        "Ni klickar Använd datumet med kryssrutan Skapa tillverkningsordrar för det som saknas ikryssad. Kundordern får sitt leveransdatum och en tillverkningsorder på 50 skapas, kopplad till kundorderraden, frisläppt och låst i de veckor kontrollen räknade med. Plåt som måste köpas föreslås i Tillverkning → Behovsberäkning.",
-        "I Tillverkning → Beläggning syns ordern per resurs och vecka mot tillgänglig tid, och en vecka över 100 procent blir röd. Måste en operation flyttas gör ni det med Flytta…, och Planera lägger övriga ordrar på den tid som är kvar.",
+        "Kundordern bekräftas, och på kundorderkortet trycker ni Leveranstidskontroll. Kontrollen räknar med lager, öppna ordrar, materialets ledtid och resursernas lediga tid per dag, och visar leveransdatum och vad som begränsar, till exempel bockningen den 4–6 november.",
+        "Ni klickar Använd datumet med kryssrutan Skapa tillverkningsordrar för det som saknas ikryssad. Kundordern får sitt leveransdatum och en tillverkningsorder på 50 skapas, kopplad till kundorderraden, frisläppt och låst på de dagar kontrollen räknade med. Plåt som måste köpas föreslås i Tillverkning → Behovsberäkning.",
+        "I Tillverkning → Beläggning syns ordern per resurs och vecka eller dag mot tillgänglig tid, och en vecka eller dag över 100 procent blir röd. Måste en operation flyttas gör ni det med Flytta… till en annan dag, och Planera lägger övriga ordrar på den tid som är kvar.",
         "Operatören vid lasern knappar in sitt anställningsnummer i stämpelterminalen, väljer Stämpla in på arbete, markerar operation 10 och trycker Starta valda. Vid Stämpla ut anges 30 OK och 2 kasserade med orsak. Tiden blir en tidrapport, plåt för 32 enheter dras från lagret och bockningen visar 30 av 50 redo.",
         "Varje utstämpling på svetsningen, som är sista operationen, lägger Antal OK i lager som färdiga varor. När alla 50 är inlevererade blir ordern Klar av sig själv.",
         "På tillverkningsordern trycker ni Efterkalkylera. Den räknar verklig materialförbrukning, inklusive det kasserade, och rapporterad tid gånger resursens timkostnad. Spara kalkyl lägger den på ordern, och på artikelns flik Kalkyl jämför ni den med förkalkylen rad för rad.",
       ],
     },
     limits: [
-      "Planeringen räknar ledig tid per resurs och vecka. Det finns ingen detaljplanering per dag eller timme och ingen köberäkning.",
+      "Planeringen räknar ledig tid per resurs och dag. Det finns ingen planering per timme eller klockslag.",
       "Alternativa resurser föreslås men byts inte automatiskt. Planera lägger alltid operationen på den resurs den har på ordern, och ett byte görs för hand eller när Leveranstidskontrollen skapar ordrarna.",
     ],
     faq: [
@@ -144,7 +144,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       {
         question: "Följer planeringen operationsordningen?",
         answer:
-          "Ja. Planera tar ordrarna efter planerat färdigdatum och lägger varje orders operationer i tur och ordning. Nästa operation får börja samma vecka som den föregående blir klar, om det finns tid kvar. I stämpelterminalen visar märket Redo om föregående operation har rapporterat tillräckligt, men det spärrar aldrig en instämpling.",
+          "Ja. Planera tar ordrarna efter planerat färdigdatum och lägger varje orders operationer i tur och ordning. Nästa operation får börja arbetsdagen efter att den föregående blir klar, plus Kötid mellan operationer om den är inställd. I stämpelterminalen visar märket Redo om föregående operation har rapporterat tillräckligt, men det spärrar aldrig en instämpling.",
       },
       {
         question: "Kan vi rapportera delantal?",
@@ -166,7 +166,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       { chapter: "tillverkning", label: "Kapitlet Tillverkning" },
       { chapter: "tillverkning", anchor: "behovsberakning", label: "Behovsberäkning" },
       { chapter: "tillverkning", anchor: "belaggning", label: "Beläggning" },
-      { chapter: "tillverkning", anchor: "planerade-veckor", label: "Planerade veckor" },
+      { chapter: "tillverkning", anchor: "planerade-dagar", label: "Planerade dagar" },
       { chapter: "terminal", label: "Stämpelterminalen" },
     ],
   },

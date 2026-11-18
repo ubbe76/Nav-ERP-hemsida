@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.19",
+    date: "2026-11-18",
+    summary:
+      "Fakturan för en kundorder kan gå till en annan kund än beställaren, och kunden på en offert eller kundorder kan bytas, liksom leverantören på en inköpsorder. Skriv ut öppnar webbläsarens utskriftsdialog direkt, även i den installerade appen. En ny systeminställning styr om antalsfälten i inleverans, utleverans, rapportering och stämpling föreslår det som är kvar.",
+    breaking: [
+      "En migration (0230). Ingen ändring i `.env`. 0230 lägger till Fakturakund på kunden och på offert och order. Befintliga kunder och ordrar får inget värde och faktureras som förut.",
+      "API, när en order har en fakturakund: fakturan för ordern skapas för fakturakunden, inte för beställaren. `GET /invoiceable-orders`, `GET /invoiceable-shipments` och `GET /collective-invoicing/candidates` listar ordern under fakturakunden, och en fakturarad mot ordern på en faktura till beställaren vägras med `sales-order-row-mismatch`. Samlingsfakturan går per fakturakund, och fakturakundens Samlingsfaktura och Vänteläge gäller. En integration som förutsätter att fakturans kund är orderns kund ska läsa `billToCustomerId` i `GET /sales-orders/:id`.",
+    ],
+    added: [
+      "Fakturakund. Kundkortets flik Villkor & frakt har fältet Fakturakund, och den kund som betalar visar Fakturakund åt. En ny offert eller order tar förvalet, och fältet kan ändras i orderhuvudet. Fakturan får fakturakundens adress, moms, språk, betalningsvillkor, e-fakturaleverans och reskontra, medan priserna är beställarens. Varje fakturarad visar beställaren och beställarens artikelnummer, och offert och orderbekräftelse skriver Fakturamottagare. En ändring gäller fakturor som skapas efteråt. En kund som har en egen fakturakund kan inte väljas som fakturakund.",
+      "Byt kund… på offert- och kundorderkortet, i Offert, Bekräftad och Under tillverkning, så länge inget har levererats, fakturerats eller fraktbokats och ingen avvikelse är kopplad. Dialogen visar varje rad före och efter. Rader som priskedjan prissatt får den nya kundens pris. Handskrivna priser, konfigurerade rader och frakt behåller sitt pris och markeras för översyn. Har den nya kunden en annan valuta byter ordern valuta till dagens kurs, och priserna räknas om till samma värde i kronor. Leveransadress, villkor, Er referens och fakturakund hämtas från den nya kunden, och kundens ordernummer och förfrågan rensas. Statusen står kvar, och kortet påminner om en ny orderbekräftelse eller offert.",
+      "Byt leverantör… på inköps- och legoinköpsorder i Utkast eller Bekräftad, så länge inget har tagits emot, skickats till lego eller fakturerats av leverantören och ingen avvikelse är kopplad. Den nya leverantörens katalogpris gäller där det finns i orderns valuta, och övriga rader behåller sitt pris och markeras. Valutabyte räknas om på samma sätt som för kunden. Villkor, Frakt på vårt konto och Er referens hämtas från den nya leverantören. Bekräftat leveransdatum rensas, och en bekräftad order går tillbaka till Utkast.",
+      "Systeminställningen Rest som förslag i antalsfältet med rutorna Inleverans, Utleverans, Rapportering och Stämpling. De tre första är på från början och Stämpling är av, så allt fungerar som förut tills någon ändrar. När en ruta är av börjar antalsfältet tomt och skanningen räknar från noll. Är Stämpling på fylls Antal OK i terminalen och under Pågående med det som är kvar. Om någon annan stämplar på samma operation står fältet tomt, och en rad förklarar varför.",
+      "API (tillägg, befintliga anrop svarar som förut): `POST /sales-orders/:id/change-customer/preview` och `POST /sales-orders/:id/change-customer`, där en inaktuell förhandsvisning ger 409 `sales-order-customer-change-stale`. `POST /purchase-orders/:id/change-supplier/preview` och `POST /purchase-orders/:id/change-supplier`, där en inaktuell förhandsvisning ger 409 `purchase-order-supplier-change-stale`. `invoiceCustomerId` på kunden och i orderhuvudets PATCH, och `invoiceCustomer` och `billToCustomerId` i `GET /sales-orders/:id`. `restSuggestReceipt`, `restSuggestDelivery`, `restSuggestReport` och `restSuggestStamp` i `GET` och `PATCH /settings`, och de två sista även i `GET /settings/terminal`.",
+    ],
+    changed: [
+      "Skriv ut öppnar webbläsarens utskriftsdialog direkt i stället för en ny flik eller en nedladdning. Det gäller även i den installerade appen i Edge och Chrome. Safari öppnar PDF:en i en ny flik. Tillverkningsorderns kort har Skriv ut TO och Ladda ner PDF, och dokumentdialogens bilagor har Skriv ut bredvid nedladdningen.",
+      "Fyll i restantal i Inleverans och Utleverans fyller i resten när förslaget är avstängt.",
+      "Orderkortets Fakturera leder till fakturan för fakturakunden, eller till Samlingsfakturering när fakturakunden faktureras där.",
+    ],
+  },
+  {
     version: "0.8.18",
     date: "2026-11-18",
     summary:

@@ -315,6 +315,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Offert → kundorder → utleverans → faktura, med följesedel och kreditfaktura.",
           "Prislistor och kundpriser, med import av kunder och priser från CSV.",
           "Samlingsfakturering: en faktura per kund för alla levererade, ofakturerade rader.",
+          "Fakturakund: fakturan kan gå till en annan kund än beställaren, till exempel ett huvudkontor, och samlingsfakturan till den kunden tar med alla beställares ordrar.",
+          "Byt kund på offert och kundorder, och byt leverantör på inköpsorder, med förhandsvisning av priserna innan bytet görs.",
           "E-faktura via Peppol till företagskunder i Sverige och utomlands, i fakturans valuta och automatiskt när fakturan utfärdas, med leveransstatus på fakturan.",
           "Pallkort med streck- eller QR-kod och eget antal per kolli, och en utleverans kan ångras per rad.",
           "Tillåten överleverans till kund som inställning, med eget val per kund: tillåt, tillåt inte eller följ förvalet.",

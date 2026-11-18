@@ -86,8 +86,8 @@ export default function Home() {
         <div className={styles.heroText}>
           <p className="eyebrow">Öppen källkod · GPL-3.0</p>
           <h1 className={styles.heroTitle}>
-            Affärssystemet för svensk tillverkning.{" "}
-            <span>Öppet, självhostat och utan licensavgifter.</span>
+            Affärssystem med öppen källkod för tillverkande företag.{" "}
+            <span>Självhostat och utan licensavgifter.</span>
           </h1>
           <p className={`lead ${styles.heroLead}`}>
             Artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett och samma system — byggt
@@ -120,6 +120,11 @@ export default function Home() {
             Sverige. Det samlar artiklar, lager, inköp, försäljning, tillverkning, tid, kalkyl och bokföring i ett
             system, är gratis under licensen GPL-3.0 och körs på företagets egen server med Docker och PostgreSQL.
             Nav|ERP byggs av Urban Källefors och är ännu i ett tidigt skede — senaste version är {RELEASES[0]!.version}.
+          </p>
+          <p className={styles.note}>
+            Ska ni välja system? Läs{" "}
+            <Link href="/affarssystem-for-tillverkning/">checklistan för affärssystem för tillverkning</Link>: vad ett
+            system ska klara, och hur Nav|ERP klarar varje punkt.
           </p>
         </div>
         <div className={styles.demo}>
@@ -194,7 +199,7 @@ export default function Home() {
                 Så fungerar kalkylen <ArrowRight size={16} aria-hidden />
               </Link>
               <Link href="/verktyg/paslagskalkyl/" className={styles.more}>
-                Räkna själv i påläggskalkylen <ArrowRight size={16} aria-hidden />
+                Räkna själv i påslagskalkylen <ArrowRight size={16} aria-hidden />
               </Link>
             </div>
           </div>
@@ -219,7 +224,7 @@ export default function Home() {
             ))}
           </ul>
           <p className={styles.costMore}>
-            <Link href="/gratis-affarssystem/">Räkna på vad det kostar över fem år</Link>
+            <Link href="/gratis-affarssystem/">Räkna på vad ett gratis affärssystem kostar över fem år</Link>
           </p>
         </div>
       </section>

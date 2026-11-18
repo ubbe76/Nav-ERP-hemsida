@@ -68,8 +68,8 @@ export const GUIDE: GuideGroup[] = [
           "Förkalkylen ska räkna material, lön och lego ur struktur och rutt och lägga på era egna omkostnadspåslag, så att offertpriset bygger på verkliga tider och inte på en känsla.",
         status: "ja",
         navErp:
-          "Förkalkylen är en påläggskalkyl med MO-, TO-, LO-, Affo- och generellt påslag, och halvfabrikat kan räknas ur sin egen struktur och rutt.",
-        more: { href: "/verktyg/paslagskalkyl/", label: "Prova påläggskalkylen" },
+          "Förkalkylen är en påslagskalkyl med MO-, TO-, LO-, Affo- och generellt påslag, och halvfabrikat kan räknas ur sin egen struktur och rutt.",
+        more: { href: "/verktyg/paslagskalkyl/", label: "Prova påslagskalkylen" },
       },
       {
         id: "efterkalkyl",

@@ -6,7 +6,7 @@ import { MANUAL_META } from "@/content/manual-meta";
 import { manualDate } from "@/lib/lastmod";
 import { MANUAL_CHAPTERS, getChapter, loadChapter } from "@/lib/manual";
 import { SITE } from "@/lib/site";
-import { breadcrumbs, techArticle } from "@/lib/structured-data";
+import { breadcrumbs, techArticle, withSoftware } from "@/lib/structured-data";
 
 export const dynamicParams = false;
 
@@ -31,7 +31,7 @@ export default async function ChapterPage({ params }: Props) {
   const updated = manualDate(chapter);
   return (
     <>
-      <JsonLd data={techArticle(chapter, updated)} />
+      <JsonLd data={withSoftware(techArticle(chapter, updated))} />
       <JsonLd
         data={breadcrumbs([
           { name: SITE.name, path: "/" },

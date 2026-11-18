@@ -8,9 +8,9 @@ import { SITE } from "@/lib/site";
 import { breadcrumbs } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Påläggskalkyl: räkna fram självkostnad och pris",
+  title: "Påslagskalkyl och påläggskalkyl: självkostnad och pris",
   description:
-    "Räkna en påläggskalkyl med MO-, TO-, LO-, Affo- och materialpåslag: från direkt material och lön till tillverkningskostnad, självkostnad och försäljningspris.",
+    "Räkna en påslagskalkyl (påläggskalkyl) med MO-, TO-, LO-, Affo- och materialpåslag: från direkt material och lön till självkostnad och försäljningspris.",
 };
 
 const TERMS = [
@@ -43,17 +43,18 @@ const TERMS = [
 export default function MarkupCalculatorPage() {
   return (
     <>
-      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Påläggskalkyl" }])} />
+      <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Påslagskalkyl" }])} />
       <PageHero
         eyebrow="Verktyg"
-        title="Påläggskalkyl"
+        title="Påslagskalkyl och påläggskalkyl"
         lead="Räkna fram tillverkningskostnad, självkostnad och försäljningspris med procentuella påslag, på samma sätt som förkalkylen i Nav|ERP."
       />
       <div className="container">
         <div className="prose">
           <p>
-            En påläggskalkyl räknar fram priset på en produkt genom att lägga procentuella påslag på de direkta
-            kostnaderna. Material, lön och legoarbete går att koppla till produkten direkt. Övriga kostnader, som
+            En påslagskalkyl, eller påläggskalkyl, räknar fram priset på en produkt genom att lägga procentuella
+            påslag på de direkta kostnaderna. Påslag och pålägg betyder samma sak i en kalkyl. Nav|ERP och den här
+            sidan säger påslag: generellt påslag och materialpåslag. Material, lön och legoarbete går att koppla till produkten direkt. Övriga kostnader, som
             lokaler, maskiner, inköp och administration, fördelas med påslagen. Fyll i era egna siffror nedan.
           </p>
         </div>
@@ -71,7 +72,7 @@ export default function MarkupCalculatorPage() {
             ))}
           </dl>
 
-          <h2>Pålägg eller marginal?</h2>
+          <h2>Påslag eller marginal?</h2>
           <p>
             Påslaget räknas på självkostnaden, men täckningsgraden räknas på försäljningspriset. Därför blir de inte
             samma tal: ett påslag på 20 % ger en täckningsgrad på knappt 17 %, och för att få 20 % täckningsgrad
@@ -95,7 +96,7 @@ export default function MarkupCalculatorPage() {
             ändras. Ett påslag som räknats på förra årets volym blir för högt om ni tillverkar mer.
           </p>
 
-          <h2>Påläggskalkyl i Nav|ERP</h2>
+          <h2>Påslagskalkyl i Nav|ERP</h2>
           <p>
             I Nav|ERP räknar förkalkylen fram kedjan ur artikelns struktur och rutt, med materialpriser och
             resursernas timkostnad. MO-, LO-, Affo-, det generella påslaget och materialpåslaget sätts under System → Kalkyler och

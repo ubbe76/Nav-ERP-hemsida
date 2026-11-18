@@ -1,14 +1,18 @@
 // Schema.org JSON-LD for the pages, rendered by components/JsonLd.tsx.
-// The site-wide graph defines the website and the author once; the software
-// and its source code are described in full on the start page only. Page-level
-// objects everywhere point back to them by @id instead of repeating them.
+// The site-wide graph defines the website, the organization and the author on
+// every page; the software and its source code are described in full on the
+// start page only. A page-level object that points at the software by @id
+// carries a minimal definition of it (withSoftware), so every @id a page
+// refers to is also defined on that page.
 import { FEATURE_AREAS } from "@/content/areas";
 import { RELEASES } from "@/content/releases";
+import { OG_IMAGE } from "./screenshots";
 import { SITE, absoluteUrl } from "./site";
 import type { ManualChapter } from "./manual";
 
 const id = (fragment: string) => `${absoluteUrl("/")}#${fragment}`;
 const WEBSITE_ID = () => id("website");
+const ORG_ID = () => id("org");
 const AUTHOR_ID = () => id("author");
 const SOFTWARE_ID = () => id("software");
 const SOURCE_ID = () => id("source");
@@ -18,7 +22,7 @@ const AUTHOR = { name: "Urban Källefors", profileUrl: "https://github.com/ubbe7
 /** Ways people write the name — so "NavERP" or "Nav ERP" resolve to the same thing. */
 const ALTERNATE_NAMES = ["NavERP", "Nav-ERP", "Nav ERP"];
 
-/** WebSite and the person behind it — on every page, from the root layout. */
+/** WebSite, the project as an organization and the person behind it — on every page, from the root layout. */
 export function siteGraph() {
   return {
     "@context": "https://schema.org",
@@ -30,14 +34,25 @@ export function siteGraph() {
         name: SITE.name,
         alternateName: ALTERNATE_NAMES,
         inLanguage: "sv-SE",
-        publisher: { "@id": AUTHOR_ID() },
+        publisher: { "@id": ORG_ID() },
+      },
+      {
+        // The project under its own name, not a legal entity: no address or registration number to give.
+        "@type": "Organization",
+        "@id": ORG_ID(),
+        name: SITE.name,
+        alternateName: ALTERNATE_NAMES,
+        url: absoluteUrl("/"),
+        logo: { "@type": "ImageObject", url: absoluteUrl("/apple-touch-icon.png"), width: 180, height: 180 },
+        founder: { "@id": AUTHOR_ID() },
+        sameAs: [SITE.repoUrl],
       },
       {
         "@type": "Person",
         "@id": AUTHOR_ID(),
         name: AUTHOR.name,
         url: absoluteUrl("/om/"),
-        email: SITE.email,
+        // No email here: the address is on /om/ and in the footer for people, not for harvesters.
         // Confirmed by him (2026-10-19), as on /om/.
         description:
           "Har arbetat i mekaniska verkstäder sedan 1999 med produktionsberedning, planering, offerter, IT och CAD-konstruktion.",
@@ -99,7 +114,30 @@ function softwareApplication() {
     screenshot: absoluteUrl("/screenshots/screenshot-dashboard.png"),
     featureList: FEATURE_AREAS.map((a) => a.title),
     author: { "@id": AUTHOR_ID() },
+    publisher: { "@id": ORG_ID() },
   };
+}
+
+/** The least that defines the software: for pages that point at it without being about it. */
+function softwareStub() {
+  return {
+    "@type": "SoftwareApplication",
+    "@id": SOFTWARE_ID(),
+    name: SITE.name,
+    url: absoluteUrl("/"),
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Linux (Docker)",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "SEK" },
+  };
+}
+
+/**
+ * Wraps a page-level object that refers to the software in a graph that also
+ * defines it. Not for the start page, where softwareGraph has the full description.
+ */
+export function withSoftware<T extends { "@context": string }>(node: T) {
+  const { "@context": context, ...rest } = node;
+  return { "@context": context, "@graph": [rest, softwareStub()] };
 }
 
 /** Breadcrumb trail; the last item is the current page and carries no link. */
@@ -118,7 +156,8 @@ export function breadcrumbs(trail: Array<{ name: string; path?: string }>) {
 
 /**
  * A manual chapter. `dateModified` is its file's last commit in Nav-ERP, when
- * known; no datePublished, as there is none we could vouch for.
+ * known; no datePublished, as there is none we could vouch for. Render it
+ * through withSoftware, as it points at the software.
  */
 export function techArticle(chapter: ManualChapter, dateModified?: string) {
   return {
@@ -127,10 +166,13 @@ export function techArticle(chapter: ManualChapter, dateModified?: string) {
     headline: chapter.title,
     description: chapter.description,
     url: absoluteUrl(`/hjalp/${chapter.slug}/`),
+    mainEntityOfPage: absoluteUrl(`/hjalp/${chapter.slug}/`),
+    image: absoluteUrl(`/screenshots/${OG_IMAGE.file}`),
     inLanguage: "sv-SE",
     isPartOf: { "@id": WEBSITE_ID() },
     about: { "@id": SOFTWARE_ID() },
     author: { "@id": AUTHOR_ID() },
+    publisher: { "@id": ORG_ID() },
     ...(dateModified && { dateModified }),
   };
 }

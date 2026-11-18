@@ -24,10 +24,10 @@ export async function SiteFooter() {
             <ul>
               <li><Link href="/funktioner/">Funktioner</Link></li>
               <li><Link href="/kom-igang/">Kom igång</Link></li>
-              <li><Link href="/affarssystem-for-tillverkning/">Välja affärssystem</Link></li>
-              <li><Link href="/gratis-affarssystem/">Vad det kostar</Link></li>
+              <li><Link href="/affarssystem-for-tillverkning/">Affärssystem för tillverkning</Link></li>
+              <li><Link href="/gratis-affarssystem/">Gratis affärssystem</Link></li>
               <li><Link href="/fragor/">Vanliga frågor</Link></li>
-              <li><Link href="/verktyg/paslagskalkyl/">Påläggskalkyl</Link></li>
+              <li><Link href="/verktyg/paslagskalkyl/">Påslagskalkyl</Link></li>
               <li><Link href="/hjalp/">Manual</Link></li>
               <li><Link href="/versioner/">Versioner</Link></li>
               <li><Link href="/farplan/">Färdplan</Link></li>
@@ -36,7 +36,7 @@ export async function SiteFooter() {
           <div>
             <h2 className={styles.colTitle}>Öppen källkod</h2>
             <ul>
-              <li><Link href="/oppen-kallkod/">Varför öppen källkod</Link></li>
+              <li><Link href="/oppen-kallkod/">Open source ERP</Link></li>
               <li><a href={SITE.repoUrl}>Källkoden på GitHub</a></li>
               <li><a href="https://www.gnu.org/licenses/gpl-3.0.html">Licens: GPL-3.0-or-later</a></li>
             </ul>

@@ -41,7 +41,7 @@ export default async function AreaPage({ params }: Props) {
           { name: area.title },
         ])}
       />
-      <PageHero eyebrow="Funktioner" title={area.title} lead={area.intro} />
+      <PageHero eyebrow="Funktioner" title={area.h1} lead={area.intro} />
       {area.screenshot && (
         <div className="container">
           <Screenshot shot={area.screenshot} priority />
@@ -51,7 +51,7 @@ export default async function AreaPage({ params }: Props) {
         <div className={`container ${styles.calc}`}>
           <CalcChain />
           <p className={styles.calcMore}>
-            <Link href="/verktyg/paslagskalkyl/">Räkna med era egna siffror</Link>
+            <Link href="/verktyg/paslagskalkyl/">Räkna en påslagskalkyl med era egna siffror</Link>
           </p>
         </div>
       )}

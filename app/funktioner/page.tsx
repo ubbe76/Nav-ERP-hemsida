@@ -10,9 +10,9 @@ import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Funktioner i affärssystemet för tillverkning",
+  title: "Funktioner: lager, inköp, tillverkning och kalkyl",
   description:
-    "Tillverkning, lager och artiklar, inköp och försäljning, kalkyl, personal och lön, och ekonomi — allt som ingår i Nav|ERP.",
+    "Tillverkning, lager och artiklar, inköp och försäljning, kalkyl, personal och lön, och ekonomi: det som ingår i Nav|ERP, med skärmbilder ur systemet.",
 };
 
 export default function FeaturesPage() {
@@ -49,8 +49,9 @@ export default function FeaturesPage() {
           ))}
         </ul>
         <p className={styles.guide}>
-          Ska ni välja affärssystem? <Link href="/affarssystem-for-tillverkning/">Läs checklistan</Link> med det ett
-          affärssystem för tillverkning ska klara, och hur Nav|ERP klarar varje punkt.
+          Ska ni välja affärssystem? Läs{" "}
+          <Link href="/affarssystem-for-tillverkning/">checklistan för affärssystem för tillverkning</Link>: vad ett
+          system ska klara, och hur Nav|ERP klarar varje punkt.
         </p>
       </div>
       <CtaBand

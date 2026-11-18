@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { RELEASES } from "@/content/releases";
 import { MANUAL_CHAPTERS } from "@/lib/manual";
-import { breadcrumbs, siteGraph, softwareGraph, techArticle } from "@/lib/structured-data";
+import { breadcrumbs, siteGraph, softwareGraph, techArticle, withSoftware } from "@/lib/structured-data";
 
 afterEach(() => vi.unstubAllEnvs());
 
@@ -11,11 +11,27 @@ function stubSite() {
 }
 
 describe("siteGraph", () => {
-  it("beskriver webbplatsen och personen med absoluta id:n", () => {
+  it("beskriver webbplatsen, organisationen och personen med absoluta id:n", () => {
     stubSite();
     const graph = siteGraph()["@graph"];
-    expect(graph.map((node) => node["@type"])).toEqual(["WebSite", "Person"]);
+    expect(graph.map((node) => node["@type"])).toEqual(["WebSite", "Organization", "Person"]);
     for (const node of graph) expect(node["@id"]).toMatch(/^https:\/\/naverp\.se\/#/);
+  });
+
+  it("ger ut webbplatsen som organisationen Nav|ERP, grundad av personen och med GitHub som sameAs", () => {
+    stubSite();
+    const [website, org] = siteGraph()["@graph"] as Array<Record<string, unknown>>;
+    expect(website!.publisher).toEqual({ "@id": "https://naverp.se/#org" });
+    expect(org).toMatchObject({
+      name: "Nav|ERP",
+      founder: { "@id": "https://naverp.se/#author" },
+      sameAs: ["https://github.com/ubbe76/Nav-ERP"],
+    });
+  });
+
+  it("lämnar inte ut någon e-postadress", () => {
+    stubSite();
+    expect(JSON.stringify([siteGraph(), softwareGraph()])).not.toMatch(/email|@kallefors/);
   });
 
   it("beskriver programmet och källkoden för sig, med källkoden kopplad till programmet", () => {
@@ -61,6 +77,49 @@ describe("techArticle", () => {
     expect(article.url).toBe(`https://naverp.se/hjalp/${chapter.slug}/`);
     expect(article.headline).toBe(chapter.title);
     expect(article.about).toEqual({ "@id": "https://naverp.se/#software" });
+  });
+});
+
+describe("referenserna", () => {
+  // Every { "@id": … } that only points must be defined in a block on the same page.
+  function ids(blocks: object[]) {
+    const defined = new Set<string>();
+    const referred = new Set<string>();
+    const walk = (value: unknown) => {
+      if (Array.isArray(value)) return value.forEach(walk);
+      if (!value || typeof value !== "object") return;
+      const node = value as Record<string, unknown>;
+      const keys = Object.keys(node);
+      if (typeof node["@id"] === "string") (keys.length === 1 ? referred : defined).add(node["@id"]);
+      keys.forEach((k) => walk(node[k]));
+    };
+    blocks.forEach(walk);
+    return { defined, referred };
+  }
+
+  it("startsidan definierar allt den pekar på", () => {
+    stubSite();
+    const { defined, referred } = ids([siteGraph(), softwareGraph()]);
+    expect([...referred].filter((r) => !defined.has(r))).toEqual([]);
+  });
+
+  it("ett manualkapitel definierar programmet det handlar om, på samma sida", () => {
+    stubSite();
+    const article = withSoftware(techArticle(MANUAL_CHAPTERS[0]!, "2026-10-18"));
+    const { defined, referred } = ids([siteGraph(), article]);
+    expect(referred).toContain("https://naverp.se/#software");
+    expect([...referred].filter((r) => !defined.has(r))).toEqual([]);
+    expect(article["@graph"].map((n) => (n as Record<string, unknown>)["@type"])).toEqual([
+      "TechArticle",
+      "SoftwareApplication",
+    ]);
+  });
+
+  it("kapitlet anger utgivare och bild", () => {
+    stubSite();
+    const article = techArticle(MANUAL_CHAPTERS[0]!);
+    expect(article.publisher).toEqual({ "@id": "https://naverp.se/#org" });
+    expect(article.image).toMatch(/^https:\/\/naverp\.se\/screenshots\/.+/);
   });
 });
 

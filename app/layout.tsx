@@ -24,7 +24,7 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: { default: `${SITE.name} — affärssystemet för svensk tillverkning`, template: `%s · ${SITE.name}` },
+  title: { default: `${SITE.name}: affärssystem med öppen källkod för tillverkande företag`, template: `%s · ${SITE.name}` },
   description: SITE.description,
   metadataBase: new URL(absoluteUrl("/")),
   // "./" resolves against each page's own path, so every page is its own canonical

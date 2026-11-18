@@ -9,9 +9,9 @@ import { breadcrumbs } from "@/lib/structured-data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Affärssystem för tillverkning: det här ska det klara",
+  title: "Affärssystem för tillverkning: checklista inför valet",
   description:
-    "En checklista för mindre tillverkande företag som väljer affärssystem: struktur och rutt, kalkyl, planering, stämpling, lager, svensk bokföring, drift och kostnad.",
+    "Checklista för mindre tillverkande företag som väljer affärssystem (ERP): struktur och rutt, kalkyl, planering, stämpling, lager, bokföring, drift och kostnad.",
 };
 
 const all = GUIDE.flatMap((g) => g.items);
@@ -22,14 +22,14 @@ export default function ManufacturingErpGuide() {
       <JsonLd data={breadcrumbs([{ name: SITE.name, path: "/" }, { name: "Affärssystem för tillverkning" }])} />
       <PageHero
         eyebrow="Guide"
-        title="Affärssystem för tillverkning: det här ska det klara"
-        lead="En checklista för mindre och medelstora tillverkande företag som ska välja affärssystem. Ställ frågorna till varje system ni tittar på."
+        title="Affärssystem för tillverkning: checklista inför valet"
+        lead="Det här ska ett ERP för tillverkande företag klara. En checklista för mindre och medelstora företag som ska välja affärssystem. Ställ frågorna till varje system ni tittar på."
       />
       <div className="container">
         <div className="prose">
           {/* The short answer, written to be quoted as is. */}
           <p>
-            Ett affärssystem för ett tillverkande företag behöver mer än ett vanligt affärssystem. Det ska hålla ihop
+            Ett affärssystem (ERP) för ett tillverkande företag behöver mer än ett vanligt affärssystem. Det ska hålla ihop
             artikelns struktur och rutt, kalkylen före och efter, planeringen av material och kapacitet, tiden från
             verkstaden och ekonomin, så att en kundorder blir inköp, tillverkning, leverans, faktura och bokföring utan
             att något knappas in två gånger. För ett svenskt företag tillkommer moms, SIE, löneunderlag och bankens

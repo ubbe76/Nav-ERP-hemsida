@@ -28,7 +28,7 @@ export function llmsTxt(): string {
     link("Kom igång", "/kom-igang/", "installation med Docker, import av register, uppdatering och backup"),
     link("Affärssystem för tillverkning", "/affarssystem-for-tillverkning/", "checklista för att välja affärssystem, med Nav|ERP:s svar per punkt"),
     link("Gratis affärssystem", "/gratis-affarssystem/", "vad det kostar att köra Nav|ERP i fem år, och serverkraven"),
-    link("Påläggskalkyl", "/verktyg/paslagskalkyl/", "räkna självkostnad och pris med MO-, TO-, LO- och Affo-påslag"),
+    link("Påslagskalkyl (påläggskalkyl)", "/verktyg/paslagskalkyl/", "räkna självkostnad och pris med MO-, TO-, LO- och Affo-påslag"),
     link("Vanliga frågor", "/fragor/", "hur färdigt systemet är, data och backup, flytt från ett gammalt system, säkerhet"),
     link("Öppen källkod", "/oppen-kallkod/", "vad GPL-3.0 betyder för ett företag"),
     link("Om Nav|ERP", "/om/", "vem som bygger systemet och hur man når projektet"),

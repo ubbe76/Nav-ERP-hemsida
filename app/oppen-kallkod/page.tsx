@@ -7,8 +7,9 @@ import { SITE } from "@/lib/site";
 import { breadcrumbs } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Affärssystem med öppen källkod (GPL-3.0)",
-  description: "Nav|ERP är fri programvara under GPL-3.0-or-later. Vad det betyder för ett företag: ingen licenskostnad, ingen inlåsning, er data.",
+  title: "Open source ERP på svenska: licens, kod och kontroll",
+  description:
+    "Nav|ERP är ett affärssystem med öppen källkod (open source) under GPL-3.0-or-later. Det betyder ingen licenskostnad, ingen inlåsning och er egen data.",
 };
 
 export default function OpenSourcePage() {
@@ -18,7 +19,7 @@ export default function OpenSourcePage() {
       <PageHero
         eyebrow="Öppen källkod"
         title="Ert affärssystem. Er data. Er kod."
-        lead="Nav|ERP är fri programvara. Här är vad det betyder för ett företag — utan juridiska omvägar."
+        lead="Nav|ERP är fri programvara med öppen källkod, på engelska open source. Här är vad det betyder för ett företag — utan juridiska omvägar."
       />
       <div className="container">
         <div className="prose">
@@ -29,6 +30,11 @@ export default function OpenSourcePage() {
             <strong>GNU General Public License version 3 eller senare</strong> (GPL-3.0-or-later), © 2026 Urban
             Källefors. Det betyder att ni kan köra det i hela företaget med hur många användare som helst, och att
             koden och datan finns kvar hos er oavsett vad som händer med projektet.
+          </p>
+          <p>
+            Licensen är gratis, men driften är det inte. Se{" "}
+            <Link href="/gratis-affarssystem/">vad ett gratis affärssystem kostar ändå</Link>, med server, backup och
+            tid räknat på fem år.
           </p>
 
           <h2>Vad ni får göra</h2>
@@ -69,7 +75,7 @@ export default function OpenSourcePage() {
             </li>
           </ul>
 
-          <h2>Riskerna, och hur ni hanterar dem</h2>
+          <h2 id="risker">Riskerna, och hur ni hanterar dem</h2>
           <ul>
             <li>
               <strong>Projektet är ungt.</strong> Nav|ERP är i ett tidigt skede och har ännu inte använts i skarp drift. Prova i
@@ -80,8 +86,9 @@ export default function OpenSourcePage() {
               licensen låter vem som helst bygga vidare.
             </li>
             <li>
-              <strong>Ni ansvarar för driften.</strong> Servern, säkerhetsuppdateringarna och backupen är era. Nav|ERP
-              har färdiga skript för nattlig backup och en krypterad kopia utanför servern.
+              <strong>Ni ansvarar för driften.</strong> Servern, säkerhetsuppdateringarna och backupen är era, och det
+              är ni som ser till att backupen fungerar. Nav|ERP har färdiga skript för nattlig backup och en krypterad
+              kopia utanför servern.
             </li>
             <li>
               <strong>Att komma ur systemet.</strong> Datan ligger i en vanlig PostgreSQL-databas, register och

@@ -35,6 +35,8 @@ export interface FeatureArea {
   intro: string;
   /** <title> and meta description: what someone searching would type, and short enough to show whole. */
   seoTitle: string;
+  /** The page's H1: the search phrase. Menus, breadcrumbs and cards keep the short `title`. */
+  h1: string;
   description: string;
   screenshot?: ScreenshotKey;
   /** Laws and standards the area is built around, linked to their own source. */
@@ -60,6 +62,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     demoWhere: "Tillverkning → Beläggning och Tillverkning → Pågående arbete",
     tagline: "Tillverkningsorder från frisläpp till efterkalkyl.",
     seoTitle: "Tillverkningsorder och produktionsplanering",
+    h1: "Tillverkningsorder och produktionsplanering",
     description:
       "Tillverkningsorder med struktur och rutt, materialuttag och tid från verkstaden, planering på ledig kapacitet dag för dag och efterkalkyl.",
     intro:
@@ -176,9 +179,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
     icon: Boxes,
     demoWhere: "Lager → Transaktioner, eller en artikel under Artiklar",
     tagline: "Artikeln är navet — saldot är alltid spårbart.",
-    seoTitle: "Lager och artiklar: lagerstyrning i affärssystemet",
+    seoTitle: "Lagerstyrning och artikelregister i affärssystemet",
+    h1: "Lagerstyrning och artikelregister",
     description:
-      "Artikelregister, lagerplatser, inventering och lagervärdering. Varje saldo går att följa bakåt till transaktionen som skapade det.",
+      "Lagerstyrning med artikelregister, lagerplatser, inventering och lagervärdering. Varje saldo går att följa bakåt till transaktionen som skapade det.",
     intro:
       "Allt i Nav|ERP utgår från artikeln: lager, inköp, försäljning, tillverkning och kalkyl. Lagret ändras aldrig utan en transaktion, så varje saldo går att följa bakåt till inleveransen, uttaget eller justeringen som skapade det.",
     screenshot: "article-overview",
@@ -294,6 +298,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     demoWhere: "Försäljning → Kundorder och Försäljning → Fakturor",
     tagline: "Från offert och förfrågan till faktura och betalning.",
     seoTitle: "Inköp, försäljning och fakturering",
+    h1: "Inköp, försäljning och fakturering",
     description:
       "Offert, kundorder, leverans och faktura – och förfrågan, inköpsorder och inleverans. Med reskontra, bankfiler och direkt koppling till lagret.",
     intro:
@@ -428,7 +433,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
     icon: Calculator,
     demoWhere: "en tillverkad artikel under Artiklar och dess flik Kalkyl, eller Rapporter → Marginal",
     tagline: "Vet vad varje artikel kostar — före och efter.",
-    seoTitle: "Förkalkyl och efterkalkyl för tillverkning",
+    seoTitle: "Förkalkyl och efterkalkyl för tillverkande företag",
+    h1: "Förkalkyl och efterkalkyl för tillverkande företag",
     description:
       "Förkalkyl av självkostnad och försäljningspris ur struktur och rutt, med era egna påslag. Efterkalkylen visar vad tillverkningsordern faktiskt kostade.",
     intro:
@@ -506,9 +512,9 @@ export const FEATURE_AREAS: FeatureArea[] = [
     ],
     faq: [
       {
-        question: "Vad är en påläggskalkyl?",
+        question: "Vad är en påslagskalkyl?",
         answer:
-          "En påläggskalkyl räknar fram priset genom att lägga procentuella påslag på de direkta kostnaderna: material, lön och legoarbete. Påslagen MO och LO täcker material- och legoomkostnader och ger tillverkningskostnaden. Affo-påslaget för affärsomkostnader ger självkostnaden, och ett generellt påslag ger tillsammans med TO-påslaget (tillverkningsomkostnader) och materialpåslaget (på material + MO) försäljningspriset. TO- och materialpåslaget läggs sist på priset, utan vinstpåslag, och ingår inte i självkostnaden.",
+          "En påslagskalkyl, även kallad påläggskalkyl, räknar fram priset genom att lägga procentuella påslag på de direkta kostnaderna: material, lön och legoarbete. Påslagen MO och LO täcker material- och legoomkostnader och ger tillverkningskostnaden. Affo-påslaget för affärsomkostnader ger självkostnaden, och ett generellt påslag ger tillsammans med TO-påslaget (tillverkningsomkostnader) och materialpåslaget (på material + MO) försäljningspriset. TO- och materialpåslaget läggs sist på priset, utan vinstpåslag, och ingår inte i självkostnaden.",
       },
       {
         question: "Vilket materialpris använder kalkylen?",
@@ -552,9 +558,10 @@ export const FEATURE_AREAS: FeatureArea[] = [
     ],
     demoWhere: "Tillverkning → Stämpelterminal och Tillverkning → Pågående arbete",
     tagline: "Stämpling i verkstaden, underlag till lönen.",
-    seoTitle: "Stämpelterminal, tidrapportering och löneunderlag",
+    seoTitle: "Stämpelterminal och tidrapportering för verkstaden",
+    h1: "Stämpelterminal och tidrapportering för verkstaden",
     description:
-      "Närvaro- och orderstämpling på en delad skärm i verkstaden. Tiden går till tillverkningsordern och efterkalkylen och blir efter attest en PAXml-fil.",
+      "Stämpelterminal för närvaro och arbete på en delad skärm i verkstaden. Tiden går till tillverkningsordern och efterkalkylen och blir efter attest en PAXml-fil.",
     intro:
       "Personalen stämplar närvaro och arbete på en delad skärm i verkstaden. Tiden hamnar direkt på tillverkningsordern och i efterkalkylen, och samma underlag blir efter attest en PAXml-fil till lönesystemet.",
     screenshot: "terminal",
@@ -684,6 +691,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     demoWhere: "Ekonomi → Verifikat, eller Ekonomi → Momsrapport för oktober 2026",
     tagline: "Bokföringen sköter sig själv där den kan.",
     seoTitle: "Bokföring, moms och SIE i affärssystemet",
+    h1: "Bokföring, moms och SIE i affärssystemet",
     description:
       "Grundbokföring med kontoplan, verifikat och huvudbok. Fakturor, betalningar och moms bokförs automatiskt, med momsrapport och SIE-fil till revisorn.",
     intro:

@@ -65,7 +65,10 @@ export default function FreeErpPage() {
               att låsa upp.
             </li>
             <li>Uppdateringar till nya versioner.</li>
-            <li>Källkoden, som ni får läsa, ändra och bygga vidare på.</li>
+            <li>
+              Källkoden, som ni får läsa, ändra och bygga vidare på. Se{" "}
+              <Link href="/oppen-kallkod/">vad öppen källkod och GPL-3.0 betyder för er</Link>.
+            </li>
           </ul>
 
           <h2>Det här kostar ändå</h2>
@@ -113,16 +116,12 @@ export default function FreeErpPage() {
           </p>
 
           <h2>Det ska ni också väga in</h2>
-          <ul>
-            <li>
-              Nav|ERP är i ett tidigt skede och har ännu inte använts i skarp drift. Prova med exempeldata och era egna artiklar
-              innan ni bestämmer er.
-            </li>
-            <li>Ni ansvarar själva för servern, säkerhetsuppdateringarna och att backupen fungerar.</li>
-            <li>
-              Projektet byggs i dag av en person. Koden finns kvar oavsett, men utvecklingstakten hänger på det.
-            </li>
-          </ul>
+          <p>
+            Kostnaden är inte allt. Nav|ERP är i ett tidigt skede och har ännu inte använts i skarp drift, ni ansvarar
+            själva för servern och backupen, och projektet byggs i dag av en person. Läs om{" "}
+            <Link href="/oppen-kallkod/#risker">riskerna med ett affärssystem med öppen källkod</Link> och hur ni
+            hanterar dem.
+          </p>
 
           <h2>Vanliga frågor</h2>
           {FAQ.map(({ question, answer }) => (

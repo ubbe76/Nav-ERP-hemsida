@@ -16,3 +16,11 @@
     padding-bottom: 32px;
   }
 }
+
+/* A long compound ("produktionsplanering") is wider than the narrowest phones at heading size. */
+@media (max-width: 400px) {
+  .title {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+}

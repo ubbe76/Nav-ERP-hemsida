@@ -12,6 +12,28 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.20",
+    date: "2026-11-18",
+    summary:
+      "Användarna i Nav kan skicka meddelanden till varandra, till stämpelterminalens anslagstavla och till enskilda anställda, som läser och svarar i terminalen. Terminalen kan kräva en egen kod på fyra siffror efter anställningsnumret. Favoriterna på Översikten grupperas per modul.",
+    breaking: [
+      "Tre migrationer (0231–0233). Ingen ändring i `.env`. 0231 och 0232 lägger till meddelandena och 0233 terminalkoden. Inställningen Kräv kod i stämpelterminalen är av från början, så terminalen fungerar som förut.",
+      "API, när Kräv kod i stämpelterminalen är på: ett konto utan meny, som stämpelterminalens konto eller ett tilläggs tekniska konto, måste skicka en bevistoken i headern `X-Terminal-Pin-Token` när det agerar åt en anställd. Det gäller `POST /stamp-sessions`, `POST /stamp-sessions/:id/stop`, `POST /attendance-sessions`, `POST /attendance-sessions/:id/stop`, `GET /employees/:id/atf`, `POST /employees/:id/atf-transactions`, `GET /employees/:id/schedule-calendar` och meddelandenas anställdrutter. Utan token svarar de 403 `terminal-pin-required`. Token fås från `POST /employees/:id/terminal-pin/verify` och gäller 15 minuter. Kontorsanvändare berörs inte. En integration som stämplar med ett konto utan meny ska därför inte slå på inställningen.",
+    ],
+    added: [
+      "Meddelanden. Kuvertet i toppremsan visar antalet olästa och leder till Inkorgen och + Nytt meddelande. Ett meddelande går till en eller flera användare, terminaler och anställda. Det har ett ämne och kan få en länk till sidan man står på (Bifoga länk till sidan du står på). Svaren samlas i en tråd. Konversationen visar när en anställd läst, med klockslag, och hur länge den står på terminalen. Arkivera döljer en konversation tills något nytt kommer. Kuvertet frågar varje minut och visar en notis när något nytt har kommit.",
+      "Deltagare och radering. Alla i en konversation kan lägga till deltagare. Den som startade den kan ta bort deltagare, och övriga kan Lämna konversationen. En rad i tråden visar varje ändring. Egna meddelanden kan raderas, och då står Meddelandet togs bort kvar i tråden.",
+      "Meddelanden på stämpelterminalen. Ett meddelande till en terminal står överst på startvyn, ovanför knappsatsen. Det står kvar till och med ett slutdatum, en vecka som förval, eller tills avsändaren väljer Ta bort från terminalen. Ett meddelande till en anställd visas när hen slagit sitt anställningsnummer. Hen kvitterar det med OK, läst eller svarar med Svara. Svaret skrivs med snabbsvar, terminalens eget skärmtangentbord med å, ä och ö, eller enhetens tangentbord. Svaret står i den anställdes namn och är märkt via terminalen.",
+      "Systeminställningen Kräv kod i stämpelterminalen. När den är på frågar terminalen efter den anställdes kod på fyra siffror efter anställningsnumret, innan stämpling, rapportering och meddelanden öppnas. Första gången väljer den anställde koden själv och slår den två gånger. Fem fel försök i rad spärrar koden i 15 minuter. Personalkortet visar Kod vald eller Ingen kod. Nollställ terminalkoden tar bort både koden och spärren. Koden sparas krypterad och visas aldrig.",
+      "API (tillägg, befintliga anrop svarar som förut). Meddelanden: `GET` och `POST /conversations`, `GET /conversations/:id`, `POST /conversations/:id/messages`, `/read`, `/archive`, `/unarchive`, `/remove-from-board`, `/participants` och `/leave`. Radering: `DELETE /conversations/:id/participants/:participantId` och `DELETE /conversations/:id/messages/:messageId`. Olästa och mottagare: `GET /messages/unread`, `GET /messages/recipients` och `GET /messages/terminal-board`. Anställda: `GET /messages/employees/:employeeId/unread`, `POST /messages/employees/:employeeId/read` och `POST /messages/employees/:employeeId/conversations/:conversationId/messages`. Terminalkoden: `GET`, `POST` och `DELETE /employees/:id/terminal-pin`, `POST /employees/:id/terminal-pin/verify`, och `terminalPinRequired` i `GET` och `PATCH /settings` och i `GET /settings/terminal`.",
+    ],
+    changed: [
+      "Favoriterna på Översikten visas som rader per modul i stället för stora rutor. Under Ändra flyttas en favorit inom sin modul, och hela modulen flyttas för sig. En ny favorit hamnar sist i sin modul.",
+      "Använd gruppens favoriter visas bara när behörighetsgruppen har förvalda favoriter. Frågan visar antalet, och bytet kan ångras direkt efteråt. `GET /me/settings` har det nya fältet `groupFavoritesCount`, som inte kan skickas i `PATCH`.",
+      "Radering och anonymisering av en anställd tömmer också den anställdes egna svar i meddelandena.",
+    ],
+  },
+  {
     version: "0.8.19",
     date: "2026-11-18",
     summary:

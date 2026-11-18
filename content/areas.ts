@@ -574,6 +574,8 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Pågående arbete visar i realtid vem som är instämplad på vad, och vem som är frånvarande.",
           "Valfritt krav på anledning vid sen ankomst och tidig hemgång, och val mellan utbetald och sparad övertid vid Gå hem.",
           "Valfri uppdelning av tiden i Ställ och Produktion, så att efterkalkylen visar ställtid och stycktid för sig.",
+          "Valfri kod på fyra siffror efter anställningsnumret. Den anställde väljer koden själv, så att ingen kan stämpla åt en kollega.",
+          "Meddelanden från kontoret: en anslagstavla överst på terminalen och personliga meddelanden som den anställde kvitterar eller svarar på direkt i terminalen.",
         ],
       },
       {

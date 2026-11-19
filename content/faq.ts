@@ -78,7 +78,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "server",
         question: "Vad behöver servern?",
         answer:
-          "En Linux-server med Docker, antingen en hyrd virtuell server eller en maskin i ert eget nätverk. 2 GB minne och 20 GB disk räcker. Användarna behöver bara en webbläsare.",
+          "En Linux-server med Docker, antingen en hyrd virtuell server eller en maskin i ert eget nätverk. 2 processorkärnor, 4 GB minne och 40 GB disk räcker för ett mindre företag. Användarna behöver bara en webbläsare.",
         more: { href: "/kom-igang/#krav", label: "Uppmätta krav och installationen" },
       },
       {
@@ -117,7 +117,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         id: "anvandare",
         question: "Hur många användare kan vi ha, och vad får de se?",
         answer:
-          "Hur många som helst. En administratör styr med behörighetsgrupper vilka delar av systemet varje användare kommer åt, till exempel Ekonomi. Administratörer har alltid tillgång till allt.",
+          "Hur många som helst. En administratör styr med behörighetsgrupper vilka delar av systemet varje användare kommer åt, till exempel Ekonomi. Administratörer har alltid tillgång till allt. Hur många som kan arbeta samtidigt beror på servern: med 2 processorkärnor svarade demon på 0,3 sekunder när 20 användare arbetade samtidigt.",
       },
       {
         id: "integrationer",

@@ -12,6 +12,30 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.21",
+    date: "2026-11-20",
+    summary:
+      "Utleveransen visar saldot i lager och radens tillverkningsordrar och varnar innan något levereras som inte är tillverkat. Inköpsordrarna visar om leverantören har bekräftat leveransen, och datumen kan bekräftas rad för rad. Orderförteckningen för kundorder räknar bara kundordrar, så en offert som blivit order räknas inte längre dubbelt.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "Orderförteckning kundorder visar bara kundordrar. Tidigare togs även offerterna med: en offert med status Order stod bredvid kundordern som skapats ur den, så summan blev dubbel, och öppna och förlorade offerter räknades som ordervärde. Summorna kan därför bli lägre än i en tidigare utskrift. Öppna ordrar är nu Bekräftad och Under tillverkning.",
+      "API: `GET /reports/sales-order-register` och dess `/csv` och `/pdf` tar bara orderstatusarna `confirmed`, `in_production`, `delivered`, `invoiced` och `cancelled` i `status`, förutom `open`. `quote`, `lost` och `ordered` ger 400. `open` omfattar inte längre `quote`.",
+      "Inköpsorderlistans export till CSV och Excel har den nya kolumnen Bekräftad av leverantör efter Nästa leveransdatum. Kolumnerna efter den flyttas ett steg.",
+    ],
+    added: [
+      "Saldo i utleveransen. Kolumnen I lager visar artikelns användbara saldo, utan spärrade lagerplatser, och radens tillverkningsordrar står under benämningen med status och inlevererat antal. Räcker saldot inte till det som ska levereras varnar raden och nämner tillverkningsordrar som inte är klara. En sammanfattning står ovanför tabellen, och Rapportera utleverans frågar först, med Leverera ändå. Det är en varning, inget stopp.",
+      "Bekräftad av leverantör i inköpsorderlistan: Ja när alla rader med rest har ett bekräftat leveransdatum, Delvis när några har det och Nej när ingen har det. En rad utan eget datum räknas med orderns. Mottagna, stängda och avbrutna ordrar visar –.",
+      "Bekräfta rader… på inköpsorderkortet, i Bekräftad och Delvis mottagen. Dialogen visar varje rad med rest och önskat datum, och leverantörens bekräftade datum skrivs in rad för rad. Som önskat fyller i radens önskade datum och Alla som önskat gör det för alla rader. Ett tomt fält betyder att raden följer orderns datum. Bara ändrade rader sparas, och ordern får ingen ny revision.",
+      "Kolumnen Bekräftat på inköpsorderns rader visar radens bekräftade datum, annars orderns, och Nej när en rad med rest saknar bekräftelse på en öppen order.",
+      "API (tillägg, befintliga anrop svarar som förut): raderna i `GET /purchase-orders` bär `supplierConfirmation` med `confirmed`, `partial` eller `none`, och `null` för mottagen, stängd och avbruten.",
+    ],
+    changed: [
+      "Översiktens kort Inleveranser denna vecka tar med utkast och visar orderns status och om leverantören har bekräftat. Kortens andra rad bryts i stället för att kapas.",
+      "Aviseringen Försenade inköpsordrar inleder raden med orderns status, så ett försenat utkast som aldrig skickats syns.",
+      "Nav hålls borta från sökmotorerna. `robots.txt` spärrar allt och varje sida har noindex, även inloggningssidan på en installation som nås från internet.",
+    ],
+  },
+  {
     version: "0.8.20",
     date: "2026-11-18",
     summary:

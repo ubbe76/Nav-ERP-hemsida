@@ -6,7 +6,8 @@ export const SCREENSHOTS = {
     "Artikelkortets flik Beredning: artikelträdet med komponenter till vänster, och till höger ritningen med sin aktiva revision och rutten med operationer, ställtid och tid per enhet.",
   "article-overview":
     "Artikelöversikten: lagersaldo, beställningspunkt och huvudleverantör, och därunder alla behov och allt inkommande i datumordning med löpande disponibelt.",
-  "manufacturing-orders": "Listan över tillverkningsordrar med artikel, antal, färdigdatum och status.",
+  "manufacturing-orders":
+    "Tillverkningsordrarna: den smala listan med artikel, antal, färdigdatum och status till vänster och en pågående tillverkningsorder med material och vad den går till till höger.",
   belaggning:
     "Beläggningen per resurs och vecka: planerade timmar mot tillgänglig tid, där svetsningen är överbelagd vecka 49 och markeras röd.",
   "pagaende-arbete":
@@ -17,9 +18,9 @@ export const SCREENSHOTS = {
     "Lagrets transaktionslogg: varje rörelse med datum, artikel, lagerplats, typ, mängd och källa, till exempel kundleverans eller materialförbrukning.",
   "lager-saldon": "Saldon per artikel, lager och lagerplats.",
   kundorder:
-    "Ett kundorderkort med kund, leveransdatum och orderrader, där varje rad visar sin tillverkningsorder.",
+    "Ett kundorderkort bredvid den smala listan över kundordrar: kund, leveransdatum och orderrader, där varje rad visar sin tillverkningsorder, och knapparna med ikon överst.",
   faktura:
-    "En betald kundfaktura med OCR-nummer, fakturarader, moms och den registrerade betalningen med sitt verifikat.",
+    "En betald kundfaktura bredvid den smala listan över fakturor: OCR-nummer, fakturarader, moms och den registrerade betalningen med sitt verifikat.",
   inkopsordrar:
     "Listan över inköpsordrar med leverantör, status som Utkast, Bekräftad, Mottagen eller Delvis mottagen och leveransdatum.",
   kalkyl:
@@ -42,9 +43,7 @@ export const SCREENSHOTS = {
   arbetskort:
     "Arbetskortet, en utskriven tillverkningsorder med operationer, instruktioner, packning och material att signera.",
   flikar:
-    "Dokument i flikar: en tillverkningsorder, en artikel, en faktura och en kundorder öppna samtidigt i flikraden, med kundordern framme.",
-  "delad-vy":
-    "Delad vy: listan över tillverkningsordrar till vänster och den öppna tillverkningsordern med material och behov till höger.",
+    "Flikar per funktion: Tillverkningsordrar, Artikelregister, Fakturor och Kundorder öppna samtidigt i flikraden, med kundorder KO-5008 framme bredvid listan.",
   sok: "Sök eller gå till (Ctrl+K): sökningen arbetsbord hittar offerter, tillverkningsordrar och artiklar.",
   kolumner:
     "Kolumnvalet i kundorderlistan: kolumner som visas eller döljs och flyttas upp och ned, och bredden dras i rubriken.",

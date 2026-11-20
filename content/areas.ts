@@ -73,7 +73,6 @@ export const FEATURE_AREAS: FeatureArea[] = [
       { shot: "behovsberakning", caption: "Behovsberäkningen föreslår inköp och tillverkning ur nettobehovet." },
       { shot: "arbetskort", caption: "Arbetskortet: tillverkningsordern utskriven med operationer, instruktioner och material." },
       { shot: "pallkort", caption: "Pallkortet skrivs ut när en operation rapporteras, med streckkod för artikel och order." },
-      { shot: "delad-vy", caption: "Delad vy: listan till vänster och ordern till höger." },
     ],
     groups: [
       {

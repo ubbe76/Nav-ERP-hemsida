@@ -12,6 +12,32 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.22",
+    date: "2026-11-20",
+    summary:
+      "Nav har fått en ny ram som liknar ett program. Menyn har en ikonlist med en panel för varje moduls funktioner, och varje funktion öppnas i en egen flik. Tio register visar en smal lista bredvid dokumentet, så att man går från order till order utan att lämna listan. Knapparna på dokumenten är kompaktare och har ikoner.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "Sidomenyn är ersatt av en ikonlist med en modulpanel. Modulsidorna finns kvar och öppnas med Översikt överst i panelen. Valet att fälla ihop menyn sparades förut i webbläsaren och sparas nu på användaren, så den som hade fällt ihop menyn ser panelen igen första gången.",
+      "Delad vy finns inte längre. Lista och kort ersätter den.",
+      "Flikarna är per funktion i stället för per dokument. En order öppnas i fliken Kundorder, och Ctrl-klick ger ett dokument en egen flik.",
+      "Manualens avsnitt Flikar och delad vy heter nu Flikar (`/hjalp/komma-igang#flikar`).",
+    ],
+    added: [
+      "Ikonlist och modulpanel. Ett klick på en modulikon visar modulens funktioner i panelen, grupperade som på modulsidan, utan att man lämnar sidan man står på. Ett klick på den modul som redan visas fäller ihop panelen så att bara ikonlisten syns. Favoriterna är stjärnan i ikonlisten. Loggan står till vänster i toppremsan och öppnar Översikten. På mobilen ligger ikonlist och panel bakom knappen med tre streck.",
+      "Flikar per funktion. Ett menyval öppnar funktionen i en ny flik, eller visar dess flik om den redan är öppen. En länk till en annan funktion, till exempel kunden på en order, öppnar den funktionens flik. Statusraden visar hur många flikar som är öppna, och adressfältet och fönstrets namn följer fliken man står i.",
+      "Lista och kort för Kundorder, Offerter, Inköpsorder, Förfrågningar, Tillverkningsordrar, Fakturor, Leverantörsfakturor, Artikelregister, Kunder och Leverantörer. En smal lista med sökfält, snabbfilter och två rader per dokument står till vänster och dokumentet till höger. Listan behåller sökning, urval och rullning när man byter dokument, och fler rader hämtas när man rullar mot slutet. Visa som tabell byter till den breda tabellen med kolumner och export, och Visa som lista går tillbaka. Valet sparas per lista i webbläsaren.",
+      "Knapparna i dokumentens verktygsrad är kompakta med en ikon, och den gröna huvudknappen står sist.",
+      "API (tillägg, befintliga anrop svarar som förut): `navPanelCollapsed` i `GET` och `PATCH /me/settings`.",
+    ],
+    changed: [
+      "Ett tema som väljs i användarmenyn gäller direkt i alla flikar och i andra öppna fönster.",
+      "Inställningen Dokument i flikar heter Flikar.",
+      "Kompakta dialoger, till exempel Kortkommandon, klipptes på iPhone så att bara rubriken syntes. Anpassa Översikten är en helskärmsdialog på mobilen.",
+      "Artikelkortets huvud anpassar sina kolumner efter sin egen bredd, även bredvid listan.",
+    ],
+  },
+  {
     version: "0.8.21",
     date: "2026-11-20",
     summary:

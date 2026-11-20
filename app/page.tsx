@@ -59,10 +59,10 @@ const SHOWCASE: Array<{ shot: ScreenshotKey; title: string; text: string; href: 
   },
   {
     shot: "flikar",
-    title: "Flera dokument öppna samtidigt",
-    text: "Kundorder, tillverkningsorder och artikel i var sin flik, och varje flik står kvar där ni lämnade den. Delad vy lägger listan och dokumentet sida vid sida, och Ctrl+K hittar ordrar, artiklar och sidor.",
-    href: "/hjalp/komma-igang/#flikar-och-delad-vy",
-    more: "Om flikar och delad vy",
+    title: "Flera funktioner öppna samtidigt",
+    text: "Kundorder, Artikelregister och Tillverkningsordrar i var sin flik, och varje flik står kvar där ni lämnade den. Listan står bredvid dokumentet, så ni går från order till order utan att lämna listan, och Ctrl+K hittar ordrar, artiklar och sidor.",
+    href: "/hjalp/komma-igang/#flikar",
+    more: "Om flikar",
   },
 ];
 

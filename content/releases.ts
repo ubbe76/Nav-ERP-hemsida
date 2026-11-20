@@ -12,6 +12,31 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.23",
+    date: "2026-11-20",
+    summary:
+      "Kundorder, offert, inköpsorder och förfrågan har fått ett nytt kort. Huvudet ändras direkt på kortet, nya rader skrivs in sist i radlistan, orderns steg syns överst och resten av kortet är uppdelat i flikar. Artikelregistret visar en sammanfattning av artikeln bredvid listan.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "Dialogerna Ändra orderhuvud (kundorder, offert och inköpsorder) och Ändra villkor och frakt (förfrågan) finns inte längre. Fälten står direkt i huvudet på kortet.",
+      "Knappen Lägg till rad i verktygsraden är ersatt av raden + Ny rad sist i radlistan. Dialogen Lägg till rad finns kvar och öppnas med ikonen Fler fält… på raden, för konfiguration, egna leveransdatum och legorader.",
+      "Följesedlar, inleveranser, avsändningar, e-post och PDF, avvikelser och historik står på kortens flikar i stället för under raderna.",
+      "En artikel i artikelregistrets lista öppnar en sammanfattning bredvid listan (`/artiklar/register/:id`). Hela artikelkortet (`/artiklar/:id`) visas utan listan och öppnas med Öppna artikelkort.",
+    ],
+    added: [
+      "Huvudet direkt på kortet. Fälten står i ett rutnät och sparas i ett svep med Spara eller Ctrl+S. När något är ändrat visas Osparade ändringar i huvudet med Ångra ändringar, och den som lämnar sidan innan får frågan först. Sällan använda fält som valuta och kurs, påslag, fakturakund, kostnadsställe och projekt ligger under Fler uppgifter, som är utfällt när något där är ifyllt. Revisionsfrågan och påslagens omräkning fungerar som förut.",
+      "+ Ny rad sist i radlistan. Man söker artikel, skriver antal och à-pris och lägger till med Enter, och raden står tom för nästa artikel. À-priset föreslås som i Lägg till rad: ur priskedjan på kundorder och offert, ur leverantörens katalog med staffel på inköpsordern. Ett pris man skriver själv vinner. Inköpsorderns rad får artikelns ledtid som eget önskat leveransdatum när det är senare än orderns.",
+      "Kortets huvud: var man är (till exempel Försäljning › Kundorder › KO-5008) med länkar tillbaka, numret med status, kundens eller leverantörens namn som rubrik och dokumentets steg med det aktuella markerat.",
+      "Kortets flikar: Rader, Leverans, Dokument, Avvikelser och Historik på kundordern, Mottagning och Avsändning på inköpsordern och Dokument på förfrågan. Fliken man väljer står i adressen.",
+      "Netto, moms per sats och Totalt under raderna på kundorder, offert och inköpsorder.",
+      "Sammanfattning i artikelregistret: I lager, Disponibelt (i lager minus de öppna behoven), Inkommande, standardpris med lagervärde, saldo per lagerplats med Flytta till Lagerflytt, de närmaste behoven och inleveranserna, huvudleverantören och beställningspunkten.",
+    ],
+    changed: [
+      "Verktygsraden på tillverkningsordern och fakturan visar också var man är.",
+      "Förfrågans radlista har samma kolumnbredder som orderkorten, så artikeln inte trängs ihop bredvid listan.",
+    ],
+  },
+  {
     version: "0.8.22",
     date: "2026-11-20",
     summary:

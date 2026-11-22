@@ -12,6 +12,36 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.24",
+    date: "2026-11-22",
+    summary:
+      "Personal & lön har fått rutinen Stämplingar, där en anställds närvaro, frånvaro och arbete en dag rättas på ett ställe. Tidsfälten fylls i som timmar och minuter (tt:mm). Listorna för kundorder, inköpsorder och tillverkningsorder döljer avslutade ordrar och filtrerar på flera statusar samtidigt. En inköpsorder stängs när sista inleveransen är gjord, och raderna kan följa ett nytt bekräftat leveransdatum i huvudet.",
+    breaking: [
+      "Migration 0234 lägger till rapportkällan `stamp_correction` (Rättad stämpling). `source` på tillverkningsorderns rapporter kan alltså ha det värdet. Ingen ändring i `.env`.",
+      "Tidsfälten fylls i som tt:mm, t.ex. 1:30. Ett tal utan kolon är minuter, så den som skrev 8 i fältet Timmar för åtta timmar får nu 0:08. Fältet skriver om tiden när man lämnar det, så att tolkningen syns innan man sparar. Fälten heter bland annat Tid (tt:mm), Paus (tt:mm), Övertidströskel per dag (tt:mm) och Kapacitet per dag (tt:mm). API:t tar emot minuter och timmar som förut.",
+      "En inköpsorder får status Stängd (`closed`), inte Mottagen (`received`), när allt är inlevererat, och historiken visar Stängd automatiskt. Ångra inleverans öppnar den igen. Äldre ordrar med status Mottagen ligger kvar och stängs med Stäng order.",
+      "Listorna Kundorder, Inköpsorder och Tillverkningsordrar döljer avslutade ordrar tills Visa avslutade är ikryssad, och exporten följer urvalet. Statusgruppen Öppna finns bara kvar på Förfrågningar.",
+    ],
+    added: [
+      "Personal & lön → Stämplingar: välj anställd och dag och ändra, lägg till eller ta bort närvaropass, frånvaro och arbetsstämplingar. Ett glömt närvaropass läggs till med Kom och Gick och får inte överlappa ett annat.",
+      "En arbetsstämpling går att ändra ända ner till antalet. Tider, paus, typ och anteckning ändras på plats. Byter man operation eller antal ångras arbetets rapport och görs om i ett steg, med material och färdiga varor, och den nya raden heter Rättad stämpling på tillverkningsordern. Går något steg inte sparas ingenting. Arbete kan också registreras i efterhand och tas bort.",
+      "Ändra på frånvaron, både på personalkortet och i Stämplingar.",
+      "Attesteringens Detaljer länkar varje datum till dagen i Stämplingar.",
+      "Statusfiltret väljer flera statusar samtidigt, både i listan bredvid kortet och i tabellen.",
+      "Manualen har avsnittet Tider (tt:mm) i Kom igång.",
+      "API (tillägg): `GET /employees/:id/stamp-day`, `POST /employees/:id/stamp-sessions`, `PATCH` och `DELETE /stamp-sessions/:id`, `POST /employees/:id/attendance-sessions`, `PATCH /absences/:id` och `rowsFollowConfirmed` på `PATCH /purchase-orders/:id`.",
+    ],
+    changed: [
+      "Ändras inköpsorderns Bekräftat leveransdatum medan rader har ett eget bekräftat datum, frågar kortet om raderna ska följa det nya datumet (Uppdatera raderna). Förut stod raderna kvar på sina gamla datum. Mottagna rader ändras aldrig.",
+      "Listan bredvid inköpsordern visar leverantörens bekräftelse på en egen rad.",
+      "System → Frakt: kortet Förmedlare har en kryssruta per förmedlare som sparas direkt, och sidan visar bara påslagna förmedlares inställningar.",
+      "Sökväljarens lista hamnar ovanpå allt och klipps inte längre av radtabellen på kundordern.",
+      "+ i den smala listan, till exempel + Ny tillverkningsorder, öppnar dialogen igen. Förut stängdes den direkt.",
+      "Två sparningar av upphämtningstiderna i följd gav ett serverfel. Nu väntar den andra på den första, och knappen är avstängd medan den sparar.",
+      "Kolumnerna Faktisk tid på tillverkningsordern och Ställtid i kalkylspecifikationen visar enheten (h), och resursens fält heter Förvald ställtid (min).",
+    ],
+  },
+  {
     version: "0.8.23",
     date: "2026-11-20",
     summary:

@@ -602,6 +602,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Frånvaro registreras löpande, och OB räknas fram ur närvarostämplingarna.",
           "Övertid räknas per dag mot schemat, med tröskel och val mellan utbetalning och komptid.",
+          "Stämplingar: en anställds dag rättas på ett ställe — närvaro, frånvaro och arbete, ända ner till antalet på tillverkningsordern.",
           "Arbetsledaren attesterar perioden, en administratör låser den och löneunderlaget exporteras som PAXml.",
           "Löneunderlaget delat på timlön och månadslön, som CSV eller PDF.",
         ],

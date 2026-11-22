@@ -12,6 +12,19 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.25",
+    date: "2026-11-22",
+    summary:
+      "Webbens typsnitt ligger nu i Nav själv i stället för att hämtas från Google när webben byggs, och två tabeller som inte fick plats bredvid listan är rättade.",
+    breaking: ["Inga migrationer och ingen ändring i `.env`."],
+    added: [],
+    changed: [
+      "Typsnitten Space Grotesk och Figtree följer med i källkoden under SIL Open Font License, med licenstexterna bredvid filerna. Bygget av webben hämtar dem inte längre från Google Fonts, där det ibland föll med felet `next/font/google queries have exactly one entry`.",
+      "Rapporteringar på tillverkningsordern: när listan stod bredvid kortet ritades kolumnrubrikerna över varandra. Nu rullar tabellen i sidled i stället.",
+      "Resurslistan får plats bredvid modulpanelen vid 1440 px bredd, så att Ändra inte längre hamnar utanför kortet.",
+    ],
+  },
+  {
     version: "0.8.24",
     date: "2026-11-22",
     summary:

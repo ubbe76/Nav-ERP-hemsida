@@ -49,7 +49,7 @@ export default function ReleasesPage() {
         title="Vad är nytt i Nav|ERP"
         lead="Läs avsnittet Kräver åtgärd innan ni uppdaterar — där står det som ändrar siffror ni redan har eller som behöver göras för hand."
       />
-      <div className="container">
+      <div className="container pageEnd">
         <div className="prose">
           <p>Uppdatera en installation så här:</p>
           <pre>

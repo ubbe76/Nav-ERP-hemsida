@@ -85,6 +85,12 @@ code {
   padding-bottom: var(--site-section-y);
 }
 
+/* A page that ends in text instead of a band (CtaBand, DemoBox) — the same
+   room above the footer as the manual's chapters. */
+.pageEnd {
+  padding-bottom: var(--site-section-y);
+}
+
 .eyebrow {
   font-size: 12px;
   font-weight: 600;

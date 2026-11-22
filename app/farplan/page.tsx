@@ -61,7 +61,7 @@ export default async function RoadmapPage() {
         title="Det här byggs härnäst"
         lead="De öppna förslagen på GitHub, sorterade efter prioritet. Här står inga datum: Nav|ERP byggs av en person, och ordningen kan ändras när en användare behöver något."
       />
-      <div className="container">
+      <div className="container pageEnd">
         <div className="prose">
           <p className={styles.latest}>
             Senast släppt: <Link href="/versioner/">{latest.version}</Link> ({latest.date}) — {latest.summary.replaceAll("`", "")}

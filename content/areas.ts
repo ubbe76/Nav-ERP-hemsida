@@ -375,7 +375,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
       steps: [
         "Under Försäljning → Kundorder väljer ni + Ny offert med kunden och 40 konsoler, och priset hämtas från kundens priser. Leveranstidskontroll räknar fram ett datum ni kan lova, Kontrollera fraktpris lägger frakten som en rad och Skicka offert mejlar offerten.",
         "Kunden tackar ja, och Skapa kundorder gör en bekräftad kundorder med offertens rader och priser — offerten står kvar och kan ge fler ordrar. Skapa tillverkningsorder på raden frisläpper en tillverkningsorder, och kundordern går till Under tillverkning.",
-        "Tillverkning → Behovsberäkning visar att plåten saknas. Skapa ordrar lägger en inköpsorder hos huvudleverantören med ett önskat leveransdatum som tar hänsyn till leverantörens ledtid, och Skicka via e-post skickar och bekräftar den.",
+        "Tillverkning → Behovsberäkning visar att plåten saknas. Skapa ordrar lägger en inköpsorder hos huvudleverantören med ett önskat leveransdatum som tar hänsyn till leverantörens ledtid, och Skicka via e-post skickar den, så att ordern står som Skickad. När leverantörens ordererkännande har kommit bekräftar ni ordern med Bekräfta.",
         "När plåten kommer rapporterar ni den under Inköp → Inleverans. Saldot ökar direkt, och ordern väntar under Fakturaunderlag på leverantörens faktura.",
         "När konsolerna är klara rapporterar ni dem under Försäljning → Utleverans och får följesedel och pallkort. Boka transport skapar en försändelse med den offererade transporten vald, och Boka vald produkt bokar den.",
         "Under Försäljning → Fakturor väljer ni + Ny faktura och ordern. Utfärda ger fakturan nummer, OCR-nummer och förfallodatum och bokför den, och Skicka faktura mejlar den.",

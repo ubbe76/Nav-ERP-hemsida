@@ -12,6 +12,27 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.27",
+    date: "2026-11-23",
+    summary:
+      "En inköpsorder som har mejlats får nu status Skickad, så att man ser vilka ordrar som har gått iväg. Bara Bekräfta gör ordern Bekräftad, och Bekräftad betyder alltså att leverantören har bekräftat datumen med ett ordererkännande.",
+    breaking: [
+      "Migration 0235 lägger till inköpsorderstatusen `sent` (Skickad) och migration 0236 kolumnen `confirmed_at`. Ingen ändring i `.env`.",
+      "`POST /purchase-orders/:id/send-email` (Skicka via e-post) och Skicka om i e-postloggen ger nu status `sent` i stället för `confirmed`. Bara `POST /purchase-orders/:id/confirm` (Bekräfta) och Ändra status manuellt ger `confirmed`. En integration som väntar på Bekräftad efter utskicket behöver läsa `sent`.",
+      "`status` på en inköpsorder kan vara `sent`, och statusfiltret i `GET /purchase-orders` tar emot det värdet. Inköpsordern har det nya fältet `confirmedAt`, som anger när ordern bekräftades och är null tills dess.",
+      "Ordrar som mejlades före uppdateringen står kvar som Bekräftad.",
+    ],
+    added: [
+      "Statusen Skickad syns på inköpsordern, i statusstegen och i listans filter. Den går också att välja i Ändra status manuellt, till exempel för en order som lagts per telefon.",
+    ],
+    changed: [
+      "En Skickad order går att ta emot, bekräfta rader på, byta leverantör på och avbryta, precis som en Bekräftad. Byter man leverantör går ordern tillbaka till Utkast.",
+      "Behovsberäkningen räknar en Skickad order som vanlig inkommande tillgång. Bara inköpsordrar som inte har skickats står som IO-utkast.",
+      "Ångra inleverans: när inget är mottaget längre går ordern tillbaka till Bekräftad om den har bekräftats, och annars till Skickad.",
+      "Översiktens Inleveranser denna vecka, Inleverans, Avsändning lego och aviseringen Försenade inköpsordrar tar med Skickad.",
+    ],
+  },
+  {
     version: "0.8.26",
     date: "2026-11-23",
     summary:

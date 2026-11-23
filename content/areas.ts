@@ -344,7 +344,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Leverantörens förval på nya dokument: Frakt på vårt konto, och huvudkontakten som Er referens.",
           "Leverantörernas e-fakturor via Peppol hamnar färdigtolkade i Fakturainkorgen, och originalet sparas som räkenskapsinformation.",
           "Avsändning till legoleverantör med pallkort, och en egen leveransadress på inköpsordern, till exempel direkt till er kund.",
-          "Önskat och bekräftat leveransdatum på inköpsordern och per rad — planeringen räknar med det bekräftade. Leverantörens bekräftelse kan registreras rad för rad, och inköpsorderlistan visar om leverantören har bekräftat: Ja, Delvis eller Nej.",
+          "Önskat och bekräftat leveransdatum på inköpsordern och per rad — planeringen räknar med det bekräftade. Leverantörens bekräftelse kan registreras rad för rad, eller för hela ordern med Bekräfta, som gör de önskade datumen till bekräftade, och inköpsorderlistan visar om leverantören har bekräftat: Ja, Delvis eller Nej.",
           "Orderförteckning för kundorder och inköp med ordervärde och restvärde, som PDF och CSV.",
         ],
       },

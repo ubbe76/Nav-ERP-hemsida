@@ -12,6 +12,27 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.26",
+    date: "2026-11-23",
+    summary:
+      "Bekräfta på inköpsordern fyller nu i bekräftat leveransdatum ur det önskade, så ordern visas som bekräftad av leverantören. Breda tabeller rullar i sidled med första kolumnen låst, och listan bredvid kortet visar ändringar direkt när kortet sparas.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "`POST /purchase-orders/:id/confirm` (knappen Bekräfta) fyller nu i bekräftat leveransdatum. Saknar ordern Bekräftat leveransdatum får den sitt Önskat leveransdatum, och en rad med eget önskat datum men utan eget bekräftat får det önskade som bekräftat. Datum som redan är ifyllda ändras inte, och ordern får ingen ny revision. Förut ändrades bara statusen. Skicka via e-post sätter fortfarande status Bekräftad utan att fylla i några datum.",
+    ],
+    added: [
+      "Historiken på inköpsordern visar vilka datum Bekräfta fyllde i.",
+      "Tabeller som är bredare än kortet rullar i sidled med första kolumnen låst till vänster, med en kantlinje när raden har rullat. Det gäller på dator och inte när första kolumnen är en kryssruta.",
+    ],
+    changed: [
+      "Listan bredvid kortet läses om när kortet sparas, så att till exempel inköpsorderlistan visar Leverantören har bekräftat direkt efter Bekräfta. Förut stod det gamla kvar tills man bytte kort.",
+      "Har inköpsordern osparade ändringar säger Bekräfta till i stället för att bekräfta, eftersom datumen tas från det sparade.",
+      "Rapportera på tillverkningsordern staplas efter kortets bredd. Vid 1280 px blev sidan för bred, och operationsnamnen försvann.",
+      "Resurslistan, listan Tillverkningsordrar och listan Inköpsorder får plats bredvid modulpanelen vid 1280 px, och sökfältet och filtren i inköpsorderlistan står på en rad vid 1440 px.",
+      "Skärmbilderna på naverp.se och i README är tagna om med den nya ramen, i ljust, mörkt och Dracula.",
+    ],
+  },
+  {
     version: "0.8.25",
     date: "2026-11-22",
     summary:

@@ -12,6 +12,24 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.28",
+    date: "2026-11-24",
+    summary:
+      "Artikelöversikten kan stå öppen bredvid Behovsberäkningen och följer raden du arbetar med. Med Visa förslag visar den också behovsberäkningens orderförslag och materialet som förslagen högre upp i strukturen behöver, så att man ser vilket behov en order läggs mot. Uppdatera i Behovsberäkningen börjar om rutinen.",
+    breaking: ["Inga migrationer och ingen ändring i `.env`."],
+    added: [
+      "Artikelöversikten följer raden i Behovsberäkningen: klickar du på en rad, eller står i dess antalsfält, byter ett öppet fönster till den artikeln. Fönstret har fått ett grepp i nedre högra hörnet för att ändra storleken, som sparas i webbläsaren precis som positionen.",
+      "Kryssrutan Visa förslag i artikelöversikten, ikryssad när översikten öppnas från Behovsberäkningen. Raderna Orderförslag visar artikelns egna förslag och Material till förslag behovet från förslagen på artiklar högre upp i strukturen, med behovsberäkningens datum. Disponibelt slutar då på samma tal som behovsberäkningen räknar med.",
+      "Antal som skrivs in i Förslag eller Antal i Behovsberäkningen räknas in i översikten direkt, och materialet för förslagets egna komponenter räknas om efter det. Ändrade antal är understrukna och visar det föreslagna antalet när man pekar på dem.",
+      "Artikeln i kolumnen Kund/Leverantör på raderna Material till förslag och Material till TO går att klicka på, så att översikten byter till den. På så sätt kan man följa behovet uppåt till kundordern.",
+      "Artikelöversiktens huvud visar Säkerhetslager.",
+      "`GET /articles/:id/overview?planned=true` ger den planerade vyn. Den har radtyperna `proposal` och `derived_demand` och fälten `proposal`, `sourceProposal` och `parentArticleId` på raderna. Utan parametern är svaret som förut, med det nya fältet `article.safetyStock`.",
+    ],
+    changed: [
+      "Uppdatera i Behovsberäkningen tar också bort korten Skapade ordrar och Skapade förfrågningar, så att rutinen ser ut som nyöppnad. Förut stod de kvar, och det gick bara att börja om genom att stänga fliken. Den automatiska omräkningen direkt efter Skapa ordrar låter kortet stå kvar så att ordrarna kan mejlas och skrivas ut.",
+    ],
+  },
+  {
     version: "0.8.27",
     date: "2026-11-23",
     summary:

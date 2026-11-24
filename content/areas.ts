@@ -213,6 +213,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Prognos för artiklar som säljs från lager: snittet av förbrukningen eller ett eget antal per månad. Kända order förbrukar prognosen.",
           "ABC-analys på förbrukningsvärde, som visar vilka artiklar som är värda beställningspunkt och säkerhetslager.",
           "Behovsberäkningen föreslår inköps- och tillverkningsordrar för alla artiklar på en gång.",
+          "Artikelöversikten kan stå öppen bredvid behovsberäkningen. Den visar förslagen och materialet de behöver, så att ni ser vilket behov en order läggs mot.",
           "Avrundning till hela förpackningar eller stänger, både i förslagen och på orderraderna.",
         ],
       },

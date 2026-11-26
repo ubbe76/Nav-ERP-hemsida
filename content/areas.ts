@@ -81,6 +81,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
         points: [
           "Flödet frisläppt → pågår → klar → stängd, med statusövergångar som kontrolleras i systemet.",
           "Materialförbrukning och tidrapportering mot ordern, med rapporteringslogg och möjlighet att ångra.",
+          "Rapportera för hand från en arbetslapp: tiden och antalen för en operation i ett svep, förifyllda med det som återstår, med sök och skanning.",
           "Efterkalkyl per order: vad materialet och tiden faktiskt kostade — eller för ett urval ordrar i ett svep med Efterkalkylera flera.",
           "Material och operationer kan ändras på en frisläppt order, bara för den ordern, och väntande operationer planeras om direkt.",
           "Inköpsorder och förfrågan för legoarbete skapas direkt från orderns legooperation, och dagen godset ska vara tillbaka räknas bakåt från färdigdatumet.",
@@ -582,6 +583,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
           "Pågående arbete visar i realtid vem som är instämplad på vad, och vem som är frånvarande.",
           "Valfritt krav på anledning vid sen ankomst och tidig hemgång, och val mellan utbetald och sparad övertid vid Gå hem.",
           "Valfri uppdelning av tiden i Ställ och Produktion, så att efterkalkylen visar ställtid och stycktid för sig.",
+          "Arbetsordern med ritningarna skrivs ut med en knapp, eller av sig själv när någon stämplar in på orderns första operation eller på varje operation.",
           "Valfri kod på fyra siffror efter anställningsnumret. Den anställde väljer koden själv, så att ingen kan stämpla åt en kollega.",
           "Meddelanden från kontoret: en anslagstavla överst på terminalen och personliga meddelanden som den anställde kvitterar eller svarar på direkt i terminalen.",
         ],

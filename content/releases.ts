@@ -12,6 +12,30 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.29",
+    date: "2026-11-26",
+    summary:
+      "Tillverkning → Rapportera är en ny rutin för att rapportera tillverkning för hand: tiden och antalen för en operation i ett svep, förifyllda med det som återstår. Stämpelterminalen kan skriva ut arbetsordern med ritningarna av sig själv när någon stämplar in. Kolonet i tidsfälten fylls i medan man skriver, och huvudmenyn kan visa namnen under ikonerna.",
+    breaking: [
+      "Migration 0237 lägger till källan `manual_report` (Manuell rapport) i tillverkningsordrarnas rapporteringslogg. Ingen ändring i `.env`.",
+      "Tidsfälten (tt:mm) läser siffror utan skiljetecken med de två sista som minuter: `130` är nu 1:30, och förut var det 130 minuter (2:10). Kolonet syns medan man skriver, och en eller två siffror är fortfarande minuter, så `90` blir 1:30.",
+    ],
+    added: [
+      "Tillverkning → Rapportera listar de operationer som går att rapportera, samma som i stämpelterminalen men utan lego, med sök, handskanner och Kamera. En sökning som bara lämnar en operation öppnar den direkt.",
+      "Rapportera på raden tar Anställd, Datum, Tid (tt:mm), Antal OK, Kasserat med orsak, Operationen är klar och Anteckning. Tiden är förifylld med det som återstår av den planerade tiden och Antal OK med det som är kvar. Anställd och Datum står kvar till nästa rapport.",
+      "Rapporten skapar en manuell tidrapport och rapporterar antalen i en transaktion. Kopplat material dras och sista operationens antal OK levereras in, som vid annan rapportering. Den syns som Manuell rapport under Rapporteringar på tillverkningsordern, och Ångra tar bort både tiden och antalen.",
+      "`POST /operation-reports` gör samma rapport via API:t, med skrivbehörighet för tillverkning.",
+      "Inställningen Skriv ut arbetsorder och ritning vid instämpling under System → Inställningar, med lägena Manuellt (förval), Första operationen och Alla operationer. Första operationen skriver ut när någon stämplar in på ordern första gången, Alla operationer vid första instämplingen på varje operation. En kollega, en ny dag eller Ställ klart skriver aldrig ut igen, och flera ordrar i samma Starta valda blir en utskrift.",
+      "Knappen Skriv ut arbetsorder under varje pågående stämpling i terminalen, i alla lägen. Arbetsordern är samma utskrift som Skriv ut TO, med ritningarna som extra sidor. Webbläsaren visar sin utskriftsdialog. Med kioskutskrift går utskriften direkt till skrivaren, och på iPad, Android och i Safari visar terminalen en påminnelse i stället för att skriva ut av sig själv.",
+      "`POST /stamp-sessions` svarar också med `firstStampOnOrder` och `firstStampOnOperation`, och inställningen heter `terminalPrintWorkOrder` (`manual`, `first_operation`, `every_operation`) i `/settings` och `/settings/terminal`.",
+      "Namn under ikonerna i användarmenyn och under Mina inställningar: Av, Liten, Normal eller Stor. Valet sparas på kontot (`navLabels` i `/me/settings`).",
+      "Klockslagen i scheman och OB-tillägg får också kolonet medan man skriver: `0730` blir 07:30, och en eller två siffror är hela timmar. Det gäller även terminalens ATF-tid.",
+    ],
+    changed: [
+      "`GET /manufacturing-orders/pdf` (flera tillverkningsordrar i en PDF) kan läsas med samma behörighet som `GET /manufacturing-orders/:id/pdf`, alltså också av stämpelterminalen. Förut krävdes kontorsbehörighet.",
+    ],
+  },
+  {
     version: "0.8.28",
     date: "2026-11-24",
     summary:

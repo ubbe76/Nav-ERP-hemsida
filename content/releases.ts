@@ -12,6 +12,37 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.8.30",
+    date: "2026-11-27",
+    summary:
+      "Planeringen av tillverkningen har fått nya verktyg. Dagplanen visar dagens arbeten per resurs i körordning, med materialet och vem som är på plats, och jobb som använder samma material kan samköras. Strukturvyn visar en orders hela träd på en dagaxel och kan planera om halvfabrikaten före ordern de ska till. Kundordern visar om leveransen ser ut att hålla, och offerten räknar fram tidigaste leverans medan man skriver. Dessutom kan en leverantör kopieras till kund och tvärtom.",
+    breaking: [
+      "Inga migrationer och ingen ändring i `.env`.",
+      "Aviseringen Kundordrar med leverans i fara är ny och syns för alla med behörighet för försäljning, så antalet aviseringar kan öka efter uppdateringen. Den som får den dagliga sammanställningen med alla typer får den också i mejlet.",
+    ],
+    added: [
+      "Tillverkning → Dagplan visar en dag med alla resurser eller en produktionsgrupp: last mot kapacitet, vem som är på plats och dagens operationer i körordning med antal och tid kvar, färdigdatum, material och vem som är instämplad. Ordningen ändras med dragning eller Upp/Ned, och radmenyn har Flytta…, I morgon, Lägg på i dag och Lås upp. Dagplanen kan skrivas ut, och stämpelterminalen har en länk till den.",
+      "Mötesläget visar dagplanen utan ram och skrivknappar, för en stor skärm, och läser om sig varje minut.",
+      "Materialet står på varje rad i Dagplan och Körplan: finns, saknas N st, kommer 2 dec med inköps- eller tillverkningsordern, eller försenad sedan ett datum. Det gäller kopplat köpt material med rest.",
+      "Växeln Visa: Körordning | Material i Dagplan och Körplan grupperar jobben per kopplat köpt material, med behovet mot saldot. Samkör valda… flyttar de valda jobben till samma dag, låser dem och lägger dem intill varandra i körordningen. Dialogen visar först vad som händer: dagens last före och efter, vad som flyttas med och vilka ordrar som blir sena.",
+      "Leveransläge på kundordern: varje rad med rest får I tid, Sen N dagar, Tillgång utan datum eller Saknar täckning, och märket Halvfabrikat sent när ett halvfabrikat blir klart för sent. Raden fälls ut till det som täcker den: lager, inköpsorder eller tillverkningsorder med klar-dag.",
+      "Filtret Leverans i fara i kundorderlistan, ett märke på de ordrar som behöver ses över, kolumnen Leveransläge i listans export, aviseringen Kundordrar med leverans i fara och kortet Leverans i fara på Översikten (inte i standardvalet).",
+      "Rutan Leveranstid i Ny offert, Ny kundorder och på offertkortet räknar fram tidigaste leverans en stund efter att raderna, antalet eller kunden ändrats. Använd datumet sätter leveransdatumet och Visa hur visar hela kedjan. Rutan fyller aldrig i datumet själv, och ingenting bokas.",
+      "Tillverkning → Struktur visar en kundorders eller tillverkningsorders hela träd med halvfabrikat, inköp, lager och det som saknas, med de planerade dagarna på en dagaxel och sena delar markerade. Sidan öppnas med Visa strukturen från tillverkningsorderkortet, kundorderns leveransläge och Beläggningen. Där finns Flytta…, Lås upp, Lås upp hela ordern och Lås upp strukturen.",
+      "Planera om strukturen… på strukturvyn och tillverkningsorderkortet planerar ordern och de valda halvfabrikaten i ett svep, halvfabrikaten först. Varje order får börja den dag dess material är klart, och dagarna låses. Förhandsvisningen visar dagarna före och efter och vilka låsta operationer som planeras om. Med Flytta även halvfabrikatens färdigdatum får halvfabrikaten sin nya klar-dag som färdigdatum. Halvfabrikat som också täcker andra behov är inte förvalda.",
+      "I Beläggningens dagvy kan en operation dras till en annan dag på samma resurs. En bekräftelse visar de nya dagarna och dagens last före och efter. Det går också med tangentbordet, och på telefon används Flytta….",
+      "Kopiera till kund på leverantörskortet och Kopiera till leverantör på kundkortet skapar en ny post på andra sidan med namn, adress, organisations- och momsnummer, kontaktperson, kontakter och leveransadresser. Villkor, priser och bankuppgifter följer inte med, och dialogen säger till om en trolig dubblett.",
+      "Nya anrop i API:t: `GET /planning/day-plan` och `/planning/day-plan/pdf`, `POST /planning/co-run` och `/planning/co-run/preview`, `GET /sales-orders/:id/delivery-outlook`, `GET /planning/structure`, `POST /planning/unlock-orders`, `POST /planning/operations/:opId/move/preview`, `POST /manufacturing-orders/:id/replan-structure` och `/replan-structure/preview`, `POST /customers/from-supplier` och `POST /suppliers/from-customer`.",
+      "`GET /sales-orders` tar `status=delivery_risk`, och med `withOutlook=true` får raderna fältet `deliveryOutlook`. `POST /planning/operations/:opId/move` tar det valfria `expectedStartDate`: är den lagrade startdagen en annan svarar API:t 409 `operation-plan-changed` och inget skrivs. Körplanens rader har fått materialfälten, och svaret har `materialGroups` och `unlinkedRowKeys`.",
+    ],
+    changed: [
+      "Flytta-dialogen i Beläggning, Dagplan och Struktur visar de nya dagarna och varningarna innan man flyttar.",
+      "Ett fel vid omordning, Flytta eller Lås upp i Körplanen syntes aldrig, eftersom sidan lästes om direkt efteråt. Nu visas det som en notis.",
+      "Sökningen i kund- och leverantörslistorna matchar också organisationsnummer.",
+      "Projektets princip för planeringen i CLAUDE.md är omskriven: planeringen är ett av huvudområdena, fortfarande per dag och utan timplanering eller automatisk optimering.",
+    ],
+  },
+  {
     version: "0.8.29",
     date: "2026-11-26",
     summary:

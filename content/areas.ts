@@ -70,6 +70,7 @@ export const FEATURE_AREAS: FeatureArea[] = [
     screenshot: "manufacturing-orders",
     gallery: [
       { shot: "belaggning", caption: "Beläggning per resurs och vecka. En överbelagd vecka blir röd." },
+      { shot: "dagplan-mote", caption: "Dagplanen i mötesläge: dagens arbeten per resurs i körordning, för genomgången med verkstaden." },
       { shot: "behovsberakning", caption: "Behovsberäkningen föreslår inköp och tillverkning ur nettobehovet." },
       { shot: "arbetskort", caption: "Arbetskortet: tillverkningsordern utskriven med operationer, instruktioner och material." },
       { shot: "pallkort", caption: "Pallkortet skrivs ut när en operation rapporteras, med streckkod för artikel och order." },

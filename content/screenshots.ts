@@ -10,6 +10,8 @@ export const SCREENSHOTS = {
     "Tillverkningsordrarna: den smala listan med artikel, antal, färdigdatum och status till vänster och en pågående tillverkningsorder med material och vad den går till till höger.",
   belaggning:
     "Beläggningen per resurs och vecka: planerade timmar mot tillgänglig tid, där svetsningen är överbelagd vecka 49 och markeras röd.",
+  "dagplan-mote":
+    "Dagplanen i mötesläge för skärmen på väggen: dagens arbeten per resurs i körordning med antal och tid kvar, färdigdatum, status och material, och vilka som är på plats vid varje resurs.",
   "pagaende-arbete":
     "Pågående arbete: vilka anställda som är instämplade på vilken tillverkningsorder och operation, och vem som är på plats utan arbete.",
   behovsberakning:
